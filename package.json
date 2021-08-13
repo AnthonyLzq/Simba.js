@@ -1,0 +1,46 @@
+{
+  "name": "simba.js",
+  "version": "1.0.0",
+  "description": "set up a modern backend app by running one command",
+  "main": "lib/index.js",
+  "directories": {
+    "example": "example",
+    "lib": "lib"
+  },
+  "scripts": {
+    "service": "node ./bin"
+  },
+  "bin": {
+    "simba": "bin"
+  },
+  "keywords": [
+    "TypeScript",
+    "cli",
+    "console",
+    "term",
+    "terminal",
+    "tool",
+    "tty",
+    "utility"
+  ],
+  "author": "AnthonyLzq",
+  "license": "MIT",
+  "dependencies": {
+    "cli-progress": "^3.9.0",
+    "colors": "^1.4.0",
+    "readline-sync": "^1.4.10",
+    "underscore": "^1.13.1",
+    "yargs": "^17.1.0"
+  },
+  "devDependencies": {
+    "standard-version": "^9.3.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnthonyLzq/simba.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AnthonyLzq/simba.js/issues"
+  },
+  "homepage": "https://github.com/AnthonyLzq/simba.js#readme"
+}
