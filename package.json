@@ -1,5 +1,5 @@
 {
-  "name": "simba.js",
+  "name": "@anthonylzq/simba.js",
   "version": "1.0.0",
   "description": "set up a modern backend app by running one command",
   "main": "lib/index.js",
@@ -8,7 +8,8 @@
     "lib": "lib"
   },
   "scripts": {
-    "service": "node ./bin"
+    "service": "node ./bin",
+    "release": "standard-version"
   },
   "bin": {
     "simba": "bin"
