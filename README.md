@@ -73,7 +73,7 @@ Options:
   -l, --license             Type of license for the project, it can be one of:
                             MIT, Apache 2.0, MPL 2.0, LGPL 3.0, GPL 3.0 and AGPL
                             3.0, in lowercase without its version
-                                                          [default: "unlicense"]
+                                                         [default: "unlicensed"]
   -v, --version             Project initial version           [default: "0.1.0"]
   -y, --licenseYear         Year when the license starts       [default: "2021"]
   -n, --npm                 Whether or not the project should use npm as package

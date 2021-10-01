@@ -9,10 +9,11 @@
   },
   "scripts": {
     "service": "node ./bin",
-    "release": "standard-version"
+    "release": "standard-version",
+    "test": "node ./bin -a AnthonyLzq -e sluzquinosa@uni.pe -N Test -D Testing"
   },
   "bin": {
-    "simba": "bin"
+    "simba": "./bin"
   },
   "keywords": [
     "TypeScript",
