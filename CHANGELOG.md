@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/AnthonyLzq/simba.js/compare/v1.1.1...v1.1.2) (2021-10-17)
+
+
+### Bug Fixes
+
+* updated eslint package (eslint-config-airbnb -> eslint-config-airbnb-base) ([06547bc](https://github.com/AnthonyLzq/simba.js/commit/06547bc618e79f9f6e47e3b0fbd188358befe408))
+
 ### [1.1.1](https://github.com/AnthonyLzq/simba.js/compare/v1.0.1...v1.1.1) (2021-10-17)
 
 
