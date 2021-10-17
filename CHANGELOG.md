@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/AnthonyLzq/simba.js/compare/v1.0.0...v1.1.0) (2021-10-17)
+
+
+### Features
+
+* updated eslint packages (airbnb) for new version (7.32.0) and added some rules ([7560dbb](https://github.com/AnthonyLzq/simba.js/commit/7560dbbda8cf3d2b7d2b6cc7e3e1d8f6808e13b9))
+
+
+### Bug Fixes
+
+* flag for unlicensed ([6b20a5b](https://github.com/AnthonyLzq/simba.js/commit/6b20a5b8a9ad60e5278b38252849fe5c3b2d54a4))
+
 ## 1.0.0 (2021-09-28)
 
 
