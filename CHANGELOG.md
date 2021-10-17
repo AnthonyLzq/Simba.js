@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.3](https://github.com/AnthonyLzq/simba.js/compare/v1.1.2...v1.1.3) (2021-10-17)
+
+
+### Bug Fixes
+
+* fixed bin path ([bf194ff](https://github.com/AnthonyLzq/simba.js/commit/bf194ff21e6aaf63dd1a80c104b8a3567f0887b1))
+
 ### [1.1.2](https://github.com/AnthonyLzq/simba.js/compare/v1.1.1...v1.1.2) (2021-10-17)
 
 
