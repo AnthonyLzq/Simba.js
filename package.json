@@ -13,7 +13,7 @@
     "test": "node ./bin -a AnthonyLzq -e sluzquinosa@uni.pe -N Test -D Testing"
   },
   "bin": {
-    "simba": "./bin"
+    "simba": "./bin/index.js"
   },
   "keywords": [
     "TypeScript",
