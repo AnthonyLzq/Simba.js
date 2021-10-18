@@ -4,6 +4,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:typescript-sort-keys/recommended',
+    'plugin:import/recommended',
     'prettier'
   ],
   parser       : '@typescript-eslint/parser',
@@ -18,6 +19,7 @@ module.exports = {
   plugins: ['@typescript-eslint', 'typescript-sort-keys', 'sort-keys-fix'],
   rules  : {
     '@typescript-eslint/camelcase'                  : 'off',
+    '@typescript-eslint/comma-dangle'               : ['error', 'never'],
     '@typescript-eslint/lines-between-class-members': 'off',
     '@typescript-eslint/naming-convention'          : [
       'error',
@@ -47,15 +49,15 @@ module.exports = {
     curly                              : ['error', 'multi'],
     'eol-last'                         : ['error', 'always'],
     'import/no-extraneous-dependencies': [
-      'error', 
+      'error',
       {
-        'devDependencies': true
+        devDependencies: true
       }
     ],
     'import/prefer-default-export': 'off',
     'key-spacing'                 : [2, { align: 'colon' }],
     'keyword-spacing'             : ['error', { after: true, before: true }],
-    'max-len': [
+    'max-len'                     : [
       'error',
       {
         code                  : 80,
@@ -67,17 +69,17 @@ module.exports = {
         ignoreUrls            : true
       }
     ],
-    'newline-before-return'      : 'error',
-    'no-extra-parens'            : 'error',
-    'no-console'                 : 'off',
-    'no-param-reassign'          : 'off',
-    'no-plusplus'                : 'off',
-    'no-trailing-spaces'         : 'error',
-    'no-underscore-dangle'       : [
+    'newline-before-return': 'error',
+    'no-extra-parens'      : 'error',
+    'no-console'           : 'off',
+    'no-param-reassign'    : 'off',
+    'no-plusplus'          : 'off',
+    'no-trailing-spaces'   : 'error',
+    'no-underscore-dangle' : [
       'error',
       {
-        'allowAfterThis'      : true,
-        'enforceInMethodNames': false 
+        allowAfterThis      : true,
+        enforceInMethodNames: false
       }
     ],
     'object-curly-spacing'       : ['error', 'always'],
@@ -93,6 +95,23 @@ module.exports = {
         named     : 'never',
         asyncArrow: 'always'
       }
-    ]
+    ],
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies     : ['**/*.test.js'],
+        optionalDependencies: ['**/*.test.js'],
+        peerDependencies    : ['**/*.test.js']
+      }
+    ],
+    'import/extensions': [
+      2,
+      {
+        ts  : 'never',
+        js  : 'always',
+        json: 'always'
+      }
+    ],
+    '@typescript-eslint/no-empty-interface': 'off'
   }
 }

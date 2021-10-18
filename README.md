@@ -178,6 +178,7 @@ simba -a myName -e myEmail@email.com -N myProject -D 'This is a test' -H
 - The server is fully tested and has no errors (at least for now), feel free to report one [here](https://github.com/AnthonyLzq/simba.js/issues).
 - Support for windows and linux platforms is available.
 - To check the content of the files generated, please check the `example` folder.
+- If you provide a project name that contains spaces, something like 'My awesome Project',  every space will be replaced with a hyphen. So at the end your project name will be 'My-awesome-project', but in its README.md file, the hyphens will be removed and the project name will be parsed to title case (My Awesome Project).
 - Finally, `git` will be initialized and a list of libraries will be installed. Check the [**notes**](#notes).
 
 ## What is new?
