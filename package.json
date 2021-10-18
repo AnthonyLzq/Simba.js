@@ -1,6 +1,6 @@
 {
   "name": "@anthonylzq/simba.js",
-  "version": "1.1.3",
+  "version": "1.2.0",
   "description": "set up a modern backend app by running one command",
   "main": "lib/index.js",
   "directories": {
@@ -10,7 +10,7 @@
   "scripts": {
     "service": "node ./bin",
     "release": "standard-version",
-    "test": "node ./bin -a AnthonyLzq -e sluzquinosa@uni.pe -N Test -D Testing"
+    "test": "node ./bin -a AnthonyLzq -e sluzquinosa@uni.pe -N example -D 'This is a test'"
   },
   "bin": {
     "simba": "./bin/index.js"
@@ -28,14 +28,14 @@
   "author": "AnthonyLzq",
   "license": "MIT",
   "dependencies": {
-    "cli-progress": "^3.9.0",
+    "cli-progress": "^3.9.1",
     "colors": "^1.4.0",
     "readline-sync": "^1.4.10",
     "underscore": "^1.13.1",
-    "yargs": "^17.1.0"
+    "yargs": "^17.2.1"
   },
   "devDependencies": {
-    "standard-version": "^9.3.1"
+    "standard-version": "^9.3.2"
   },
   "repository": {
     "type": "git",

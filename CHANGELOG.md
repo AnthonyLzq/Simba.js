@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/AnthonyLzq/simba.js/compare/v1.1.3...v1.2.0) (2021-10-18)
+
+
+### Features
+
+* implemented support for project names with more than a word and updated dependencies ([2600413](https://github.com/AnthonyLzq/simba.js/commit/2600413bf7a5ef92e554738066e9bc4aea892f6f))
+
 ### [1.1.3](https://github.com/AnthonyLzq/simba.js/compare/v1.1.2...v1.1.3) (2021-10-17)
 
 
