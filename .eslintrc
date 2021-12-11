@@ -1,0 +1,63 @@
+{
+  "env": {
+    "node": true
+  },
+  "root": true,
+  "plugins": [
+    "import",
+    "prettier"
+  ],
+  "extends": [
+    "standard",
+    "eslint:recommended",
+    "prettier"
+  ],
+  "rules": {
+    "@typescript-eslint/no-var-requires": "off",
+    "arrow-parens": [
+      "error",
+      "as-needed"
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ],
+    "max-len": [
+      "error",
+      {
+        "code": 80,
+        "ignoreComments": true,
+        "ignoreRegExpLiterals": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreTrailingComments": true,
+        "ignoreStrings": true,
+        "ignoreUrls": true
+      }
+    ],
+    "newline-before-return": "error",
+    "object-curly-spacing": [
+      "error",
+      "always"
+    ],
+    "prefer-const": "error",
+    "prettier/prettier": [
+      "error",
+      {
+        "arrowParens": "avoid",
+        "bracketSpacing": true,
+        "printWidth": 80,
+        "quoteProps": "as-needed",
+        "semi": false,
+        "singleQuote": true,
+        "tabWidth": 2,
+        "trailingComma": "none"
+      }
+    ],
+    "radix": [
+      "error",
+      "as-needed"
+    ]
+  }
+}
