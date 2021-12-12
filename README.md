@@ -160,7 +160,13 @@ simba -a myName -e myEmail@email.com -N myProject -D 'This is a test' -H
 
 - This project is based in other project from my own, [`typescript-project-generator`](https://www.npmjs.com/package/typescript-project-generator), but only considering the `express-mongoose-node` part.
 - You are able to run a server that has one main route, `home` (`/`), and another one, `user` (`/user` or `/user/:userId`).
-- To connect your server with your `MongoDB` database, you need to provide your `uri` in the `.env`.
+- To connect your server with your `MongoDB` database, you need to provide your `uri` in the `.env`. By default, we will try to connect to a local database. The content of the `.env` file is:
+
+  ```bash
+  MONGO_URI = mongodb://mongo:mongo@mongo:27017/${projectName}
+  ```
+
+  Where `${projectName}` will be replaced by the name of the project you provided in lowercase.
 - Once you have done that, now you can perform the following `HTTP REQUEST`: `GET`, `POST`, `PATCH` and `DELETE`.
 - In order to use global variables, just add the one you need in the `src/@types/index.d.ts` file, and add a new `var` with its type to the `global` interface, as follows:
     ```ts
