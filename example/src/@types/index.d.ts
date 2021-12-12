@@ -6,7 +6,14 @@ import { DtoUser } from '../dto-interfaces'
 
 declare global {
   // This variable is global, so it will be available everywhere in the code
-  var myGlobalVariable: unknown
+  var response = (
+    error: boolean,
+    message: unknown,
+    res: Response,
+    status: number
+  ): void => {
+    res.status(status).send({ error, message })
+  }
 
   // We can personalize the response and request objects in case we need it by
   // adding new optional attributes to this interface

@@ -1,4 +1,4 @@
 import { Home } from './home'
-import { User } from './users'
+import { User } from './user'
 
 export { Home, User }

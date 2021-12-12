@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/AnthonyLzq/simba.js/compare/v1.3.1...v1.5.0) (2021-12-12)
+
+
+### Features
+
+* moving response function to the global variables and cleaning user route ([52f44aa](https://github.com/AnthonyLzq/simba.js/commit/52f44aadad180816d710b1e03dcc1c809b2be424))
+* simplified the code ([dde8f2e](https://github.com/AnthonyLzq/simba.js/commit/dde8f2e27f86f60321af2f12b53546227d0ffe64))
+
 ## [1.4.0](https://github.com/AnthonyLzq/simba.js/compare/v1.3.1...v1.4.0) (2021-12-12)
 
 

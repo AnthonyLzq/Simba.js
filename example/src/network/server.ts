@@ -79,11 +79,11 @@ class Server {
       console.log(`Server running at port ${PORT}`)
     })
 
-    try {
-      this._mongo()
-    } catch (e) {
-      console.error(e)
-    }
+    // try {
+    //   this._mongo()
+    // } catch (e) {
+    //   console.error(e)
+    // }
   }
 }
 
