@@ -42,8 +42,6 @@ class Server {
     this._connection = mongoose.connection
     const connection = {
       keepAlive: true,
-      useCreateIndex: true,
-      useFindAndModify: false,
       useNewUrlParser: true,
       useUnifiedTopology: true
     }
