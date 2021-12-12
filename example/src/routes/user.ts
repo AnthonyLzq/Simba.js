@@ -1,7 +1,7 @@
 import { Router, NextFunction } from 'express'
+import httpErrors from 'http-errors'
+import { ValidationError } from 'joi'
 
-import { Response, Request } from '../custom'
-import { response } from '../utils'
 import { User as UserC } from '../controllers/user'
 import { DtoUser } from '../dto-interfaces'
 import { idSchema, userSchema } from '../schemas'
@@ -10,7 +10,11 @@ const User = Router()
 
 User.route('/users')
   .post(
-    async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    async (
+      req: CustomRequest,
+      res: CustomResponse,
+      next: NextFunction
+    ): Promise<void> => {
       const {
         body: { args }
       } = req
@@ -25,7 +29,11 @@ User.route('/users')
     }
   )
   .get(
-    async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    async (
+      req: CustomRequest,
+      res: CustomResponse,
+      next: NextFunction
+    ): Promise<void> => {
       const u = new UserC()
 
       try {
@@ -37,7 +45,11 @@ User.route('/users')
     }
   )
   .delete(
-    async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    async (
+      req: CustomRequest,
+      res: CustomResponse,
+      next: NextFunction
+    ): Promise<void> => {
       const u = new UserC()
 
       try {
@@ -51,7 +63,11 @@ User.route('/users')
 
 User.route('/user/:id')
   .get(
-    async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    async (
+      req: CustomRequest,
+      res: CustomResponse,
+      next: NextFunction
+    ): Promise<void> => {
       const {
         params: { id }
       } = req
@@ -62,13 +78,19 @@ User.route('/user/:id')
         const result = await u.process({ type: 'getOne' })
         response(false, result, res, 200)
       } catch (e) {
-        if (e.isJoi) e.status = 422
+        if (e instanceof ValidationError)
+          return next(new httpErrors.UnprocessableEntity(e.message))
+
         next(e)
       }
     }
   )
   .patch(
-    async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    async (
+      req: CustomRequest,
+      res: CustomResponse,
+      next: NextFunction
+    ): Promise<void> => {
       const {
         body: { args },
         params: { id }
@@ -84,13 +106,19 @@ User.route('/user/:id')
         const result = await u.process({ type: 'update' })
         response(false, result, res, 200)
       } catch (e) {
-        if (e.isJoi) e.status = 422
+        if (e instanceof ValidationError)
+          return next(new httpErrors.UnprocessableEntity(e.message))
+
         next(e)
       }
     }
   )
   .delete(
-    async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    async (
+      req: CustomRequest,
+      res: CustomResponse,
+      next: NextFunction
+    ): Promise<void> => {
       const {
         params: { id }
       } = req
@@ -101,7 +129,9 @@ User.route('/user/:id')
         const result = await u.process({ type: 'delete' })
         response(false, result, res, 200)
       } catch (e) {
-        if (e.isJoi) e.status = 422
+        if (e instanceof ValidationError)
+          return next(new httpErrors.UnprocessableEntity(e.message))
+
         next(e)
       }
     }

@@ -3,7 +3,7 @@ import swaggerUi from 'swagger-ui-express'
 import httpErrors from 'http-errors'
 
 import { Home, User } from '../routes'
-import { response, docs } from '../utils'
+import { docs } from '../utils'
 
 const routers = [User]
 
