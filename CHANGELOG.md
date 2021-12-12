@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/AnthonyLzq/simba.js/compare/v1.2.0...v1.3.0) (2021-12-12)
+
+
+### Features
+
+* implemented eslint rules ([748fb91](https://github.com/AnthonyLzq/simba.js/commit/748fb91a031102855dd7ba08344cc1ec3e181a4f))
+* implemented support for global variables (Node.js v16), linted all the code, fixed unlicensed project bug and simplified project structure ([ae4876f](https://github.com/AnthonyLzq/simba.js/commit/ae4876f249ff7dfd16fd4af7e41b3388c7de0f6a))
+
 ## [1.2.0](https://github.com/AnthonyLzq/simba.js/compare/v1.1.3...v1.2.0) (2021-10-18)
 
 
