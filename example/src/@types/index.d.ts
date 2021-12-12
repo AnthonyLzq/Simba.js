@@ -2,7 +2,7 @@
 import { IncomingHttpHeaders } from 'http'
 import { Request, Response } from 'express'
 
-import { DtoUser } from '../dto-interfaces'
+import { DtoUser } from 'dto-interfaces'
 
 declare global {
   // This variable is global, so it will be available everywhere in the code

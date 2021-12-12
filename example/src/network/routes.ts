@@ -2,8 +2,8 @@ import { Application, Response, Request, Router, NextFunction } from 'express'
 import swaggerUi from 'swagger-ui-express'
 import httpErrors from 'http-errors'
 
-import { Home, User } from '../routes'
-import { docs } from '../utils'
+import { Home, User } from 'routes'
+import { docs } from 'utils'
 
 const routers = [User]
 
