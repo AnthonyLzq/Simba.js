@@ -15,11 +15,9 @@ class User {
     this._args = args
   }
 
-  // eslint-disable-next-line consistent-return
   public process({
     type
   }: Process): Promise<string> | Promise<IUser[]> | Promise<IUser> {
-    // eslint-disable-next-line default-case
     switch (type) {
       case 'store':
         return this._store()
@@ -33,6 +31,8 @@ class User {
         return this._update()
       case 'delete':
         return this._delete()
+      default:
+        throw new httpErrors.InternalServerError(GE.INTERNAL_SERVER_ERROR)
     }
   }
 
@@ -49,7 +49,6 @@ class User {
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
   private async _getAll(): Promise<IUser[]> {
     try {
       const users = await UserModel.find({})
@@ -60,13 +59,11 @@ class User {
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
   private async _deleteAll(): Promise<string> {
     try {
       const usersDeleted = await UserModel.deleteMany({})
 
-      if (usersDeleted.ok === 1)
-        return MFU.ALL_USERS_DELETED
+      if (usersDeleted.acknowledged) return MFU.ALL_USERS_DELETED
 
       throw new httpErrors.InternalServerError(GE.INTERNAL_SERVER_ERROR)
     } catch (e) {
@@ -80,8 +77,7 @@ class User {
     try {
       const user = await UserModel.findById(id)
 
-      if (!user)
-        throw new httpErrors.NotFound(EFU.NOT_FOUND)
+      if (!user) throw new httpErrors.NotFound(EFU.NOT_FOUND)
 
       return user
     } catch (e) {
@@ -99,8 +95,7 @@ class User {
         { new: true }
       )
 
-      if (!updatedUser)
-        throw new httpErrors.NotFound(EFU.NOT_FOUND)
+      if (!updatedUser) throw new httpErrors.NotFound(EFU.NOT_FOUND)
 
       return updatedUser
     } catch (e) {
@@ -114,8 +109,7 @@ class User {
     try {
       const deletedUser = await UserModel.findByIdAndRemove(id)
 
-      if (!deletedUser)
-        throw new httpErrors.NotFound(EFU.NOT_FOUND)
+      if (!deletedUser) throw new httpErrors.NotFound(EFU.NOT_FOUND)
 
       return MFU.USER_DELETED
     } catch (e) {

@@ -4,6 +4,8 @@ import morgan from 'morgan'
 
 import { applyRoutes } from './routes'
 
+const PORT = (process.env.PORT as string) || '1996'
+
 class Server {
   private _app: express.Application
   private _connection: mongoose.Connection | undefined
@@ -14,7 +16,7 @@ class Server {
   }
 
   private _config() {
-    this._app.set('port', process.env.PORT as string || '1996')
+    this._app.set('port', PORT)
     this._app.use(morgan('dev'))
     this._app.use(express.json())
     this._app.use(express.urlencoded({ extended: false }))
@@ -39,10 +41,10 @@ class Server {
   private async _mongo(): Promise<void> {
     this._connection = mongoose.connection
     const connection = {
-      keepAlive         : true,
-      useCreateIndex    : true,
-      useFindAndModify  : false,
-      useNewUrlParser   : true,
+      keepAlive: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+      useNewUrlParser: true,
       useUnifiedTopology: true
     }
     this._connection.on('connected', () => {
@@ -58,7 +60,7 @@ class Server {
         mongoose.connect(process.env.MONGO_URI as string, {
           ...connection,
           connectTimeoutMS: 3000,
-          socketTimeoutMS : 3000
+          socketTimeoutMS: 3000
         })
       }, 3000)
     })
@@ -73,8 +75,8 @@ class Server {
   }
 
   public start(): void {
-    this._app.listen(this._app.get('port'), () => {
-      console.log(`Server running at port ${this._app.get('port')}`)
+    this._app.listen(PORT, () => {
+      console.log(`Server running at port ${PORT}`)
     })
 
     try {

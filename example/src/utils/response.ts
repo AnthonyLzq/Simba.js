@@ -1,10 +1,10 @@
 import { Response } from 'express'
 
 const response = (
-  error  : boolean,
+  error: boolean,
   message: unknown,
-  res    : Response,
-  status : number
+  res: Response,
+  status: number
 ): void => {
   res.status(status).send({ error, message })
 }

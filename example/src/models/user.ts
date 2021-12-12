@@ -2,8 +2,8 @@
 import { Document, model, Schema } from 'mongoose'
 
 interface IUser extends Document {
-  lastName : string
-  name     : string
+  lastName: string
+  name: string
   updatedAt: Date
 }
 
@@ -11,11 +11,11 @@ const User = new Schema(
   {
     lastName: {
       required: true,
-      type    : String
+      type: String
     },
     name: {
       required: true,
-      type    : String
+      type: String
     }
   },
   {
@@ -27,7 +27,7 @@ const User = new Schema(
 )
 
 User.set('toJSON', {
-  // eslint-disable-next-line object-shorthand, @typescript-eslint/no-explicit-any, func-names
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   transform: function (_: any, ret: any) {
     ret.id = ret._id
     delete ret._id
@@ -35,7 +35,7 @@ User.set('toJSON', {
     delete ret.updatedAt
   },
   versionKey: false,
-  virtuals  : true
+  virtuals: true
 })
 
 const UserModel = model<IUser>('users', User)

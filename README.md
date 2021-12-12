@@ -6,7 +6,6 @@ Set up a modern backend app by running one command. This project has the goal to
 - `.eslintignore`
 - `.eslintrc.js`
 - `.gitignore`
-- `.prettier`
 - `CHANGELOG.md`
 - `Dockerfile`
 - `heroku.yml` (optional)
@@ -96,14 +95,11 @@ Regardless of the option chosen, a new folder will be generated with the name of
 ```
 📦node_modules
 📦src
+ ┣ 📂@types
+ ┃ ┣ 📜index.d.ts
  ┣ 📂controllers
  ┃ ┣ 📜index.ts
  ┃ ┗ 📜user.ts
- ┣ 📂custom
- ┃ ┣ 📜express.request.ts
- ┃ ┣ 📜express.response.ts
- ┃ ┣ 📜global.variables.ts
- ┃ ┗ 📜index.ts
  ┣ 📂dto-interfaces
  ┃ ┣ 📜index.ts
  ┃ ┗ 📜user.dto.ts
@@ -126,7 +122,6 @@ Regardless of the option chosen, a new folder will be generated with the name of
 📜.eslintignore
 📜.eslintrc.js
 📜.gitignore
-📜.prettierrc
 📜CHANGELOG.md
 📜Dockerfile
 📜heroku.yml
@@ -167,13 +162,22 @@ simba -a myName -e myEmail@email.com -N myProject -D 'This is a test' -H
 - You are able to run a server that has one main route, `home` (`/`), and another one, `user` (`/user` or `/user/:userId`).
 - To connect your server with your `MongoDB` database, you need to provide your `uri` in the `.env`.
 - Once you have done that, now you can perform the following `HTTP REQUEST`: `GET`, `POST`, `PATCH` and `DELETE`.
-- In order to use the global variable declared in the `src/custom/global.variables.ts` file, you have to add the following lines in the external file you want to use it:
-  ```typescript
-  import { CustomNodeJSGlobal } from "/direction/to/global.variables/file"
+- In order to use global variables, just add the one you need in the `src/@types/index.d.ts` file, and add a new `var` with its type to the `global` interface, as follows:
+    ```ts
+    // src/@types/index.d.ts
 
-  declare const global: CustomNodeJSGlobal
-  ```
-  Now, your are able to use the global variable.
+    // Some code...
+    declare global {
+      var globalStringVariable: string
+      // Some more code...
+    }
+    // Some more code...
+
+    // another file
+    globalStringVariable = 'Hi mom, I am global'
+    console.log({ globalStringVariable })
+    ```
+
 - The provided project structure is inspired in my personal experience as [`Node.js`](https://nodejs.org/en/) developer and the [`Nest`](https://nestjs.com/) framework.
 - The server is fully tested and has no errors (at least for now), feel free to report one [here](https://github.com/AnthonyLzq/simba.js/issues).
 - Support for windows and linux platforms is available.

@@ -58,6 +58,7 @@
     "radix": [
       "error",
       "as-needed"
-    ]
+    ],
+    "spaced-comment": ["error", "always"]
   }
 }

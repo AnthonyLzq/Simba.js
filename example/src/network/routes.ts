@@ -16,15 +16,17 @@ const applyRoutes = (app: Application): void => {
   app.use((req, res, next) => {
     next(new httpErrors.NotFound('This route does not exists'))
   })
-  app.use((
-    error: httpErrors.HttpError,
-    req  : Request,
-    res  : Response,
-    next : NextFunction
-  ) => {
-    response(true, error.message, res, error.status)
-    next()
-  })
+  app.use(
+    (
+      error: httpErrors.HttpError,
+      req: Request,
+      res: Response,
+      next: NextFunction
+    ) => {
+      response(true, error.message, res, error.status)
+      next()
+    }
+  )
 }
 
 export { applyRoutes }
