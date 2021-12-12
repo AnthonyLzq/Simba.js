@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/AnthonyLzq/simba.js/compare/v1.5.0...v1.6.0) (2021-12-12)
+
+
+### Features
+
+* implemented default mongo connection to local database ([1e66e98](https://github.com/AnthonyLzq/simba.js/commit/1e66e982b03eca5c2c3846a10ad827150683da21))
+
 ## [1.5.0](https://github.com/AnthonyLzq/simba.js/compare/v1.3.1...v1.5.0) (2021-12-12)
 
 
