@@ -211,7 +211,6 @@ Here is the list of the packages that are being installed, as `devDependencies`:
 - [`nodemon`](https://www.npmjs.com/package/nodemon)
 - [`prettier`](https://www.npmjs.com/package/prettier)
 - [`standard-version`](https://www.npmjs.com/package/standard-version)
-- [`swagger-ui-express`](https://www.npmjs.com/package/swagger-ui-express)
 - [`ts-loader`](https://www.npmjs.com/package/ts-loader)
 - [`ts-node`](https://www.npmjs.com/package/ts-node)
 - [`typescript`](https://www.npmjs.com/package/typescript)
@@ -226,6 +225,7 @@ As `dependencies`:
 - [`joi`](https://joi.dev/api/?v=17.4.2)
 - [`mongoose`](https://mongoosejs.com/)
 - [`morgan`](https://www.npmjs.com/package/morgan)
+- [`swagger-ui-express`](https://www.npmjs.com/package/swagger-ui-express)
 
 Feel free to contribute to this project. Every contribution will be appreciated.
 
