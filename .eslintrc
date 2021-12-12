@@ -13,7 +13,6 @@
     "prettier"
   ],
   "rules": {
-    "@typescript-eslint/no-var-requires": "off",
     "arrow-parens": [
       "error",
       "as-needed"

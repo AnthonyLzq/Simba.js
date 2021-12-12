@@ -1,5 +1,7 @@
 # Simba.js
 
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
 Set up a modern backend app by running one command. This project has the goal to create a complete setup for a backend application using `TypeScript` and `Express`. It will create many files that are usually created manually. Currently the following files are being created:
 
 - `.env`
@@ -59,14 +61,14 @@ simba -h
 This will generate the following output:
 
 ```bash
-Usage: npx simba [options] or simba [options] (if you it installed globally) or
-only simba if you want to be asked for the options one by one
+simba [options] (if you it installed globally) or only simba if you want to be
+asked for the options one by one
 
 Options:
-  -a, --author              Author of the project
-  -e, --email               Email of the author
   -N, --projectName         Project name
   -D, --projectDescription  Project description
+  -a, --author              Author of the project
+  -e, --email               Email of the author
   -H, --heroku              Whether or not the project will be deployed using
                             Heroku                    [boolean] [default: false]
   -l, --license             Type of license for the project, it can be one of:
@@ -84,8 +86,8 @@ Options:
   -h, --help                Show help                                  [boolean]
 
 Examples:
-  simba -a Anthony -e sluzquinosa@uni.pe -N "Project Name" -D "Project
-  description"
+  simba  -N "Project Name" -D "Project description -a Anthony -e
+  sluzquinosa@uni.pe"
 
 Developed by AnthonyLzq
 ```
@@ -139,28 +141,28 @@ Regardless of the option chosen, a new folder will be generated with the name of
 Let's suppose you want to build a project that will be deployed to Heroku, so should run:
 
 ```bash
-simba -a myName -e myEmail@email.com -N myProject -D 'This is a test' -H -l mit
+simba -N myProject -D 'This is a test' -l mit -a myName -e myEmail@email.com -H
 ```
 
-Here we are specifying that we want to create a new project called `myProject` using the `MIT` license, and my name and my email are respectively: `myName` and `myEmail@email.com`.
+Here we are specifying that we want to create a new project called `myProject` using the `MIT` license, my name and my email are respectively: `myName` and `myEmail@email.com` and I want to use heroku to deploy this server.
 
-As default, `yarn` is selected as package manager, but you don't want to use it, so you can pass the flag `-n` or `--npm` as follows:
+As default, `yarn` is selected as package manager, but if you don't want to use it, you can pass the flag `-n` or `--npm` as follows:
 
 ```bash
-simba -a myName -e myEmail@email.com -N myProject -D 'This is a test' -H -l mit -n
+simba -N myProject -D 'This is a test' -l mit -a myName -e myEmail@email.com -H -n
 ```
 
 Finally, you may not want to use a license or one of the available licenses, don't worry, just don't pass the flag `-l` neither `--license` as follows:
 
 ```bash
-simba -a myName -e myEmail@email.com -N myProject -D 'This is a test' -H
+simba -N myProject -D 'This is a test' -a myName -e myEmail@email.com -H
 ```
 
 ### Some considerations
 
 - This project is based in other project from my own, [`typescript-project-generator`](https://www.npmjs.com/package/typescript-project-generator), but only considering the `express-mongoose-node` part.
-- You are able to run a server that has one main route, `home` (`/`), and another one, `user` (`/user` or `/user/:userId`).
-- To connect your server with your `MongoDB` database, you need to provide your `uri` in the `.env`. By default, we will try to connect to a local database. The content of the `.env` file is:
+- You are able to run a server that has one main route, `home` (`/`), `user` (`api/user` or `api/user/:userId`) and `docs` (`api/docs`).
+- To connect your server with your `MongoDB` database, you need to provide your `uri` in the `.env`. By default, Simba will try to connect to a local database. The content of the `.env` file is:
 
   ```bash
   MONGO_URI = mongodb://mongo:mongo@mongo:27017/${projectName}
@@ -208,8 +210,8 @@ Here is the list of the packages that are being installed, as `devDependencies`:
 - [`@typescript-eslint/parser`](https://www.npmjs.com/package/@typescript-eslint/parser)
 - [`dotenv`](https://www.npmjs.com/package/dotenv)
 - [`eslint`](https://www.npmjs.com/package/eslint)
-- [`eslint-config-airbnb-typescript`](https://www.npmjs.com/package/eslint-config-airbnb-typescript)
 - [`eslint-config-prettier`](https://www.npmjs.com/package/eslint-config-prettier)
+- [`eslint-config-standard`](https://www.npmjs.com/package/eslint-config-standard)
 - [`eslint-plugin-import`](https://www.npmjs.com/package/eslint-plugin-import)
 - [`eslint-plugin-prettier`](https://www.npmjs.com/package/eslint-plugin-prettier)
 - [`eslint-plugin-sort-keys-fix`](https://www.npmjs.com/package/eslint-plugin-sort-keys-fix)

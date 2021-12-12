@@ -42,8 +42,6 @@ class Server {
     this._connection = mongoose.connection
     const connection = {
       keepAlive: true,
-      useCreateIndex: true,
-      useFindAndModify: false,
       useNewUrlParser: true,
       useUnifiedTopology: true
     }
@@ -80,9 +78,9 @@ class Server {
     })
 
     try {
-    this._mongo()
+      this._mongo()
     } catch (e) {
-    console.error(e)
+      console.error(e)
     }
   }
 }
