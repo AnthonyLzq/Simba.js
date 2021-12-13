@@ -4,11 +4,7 @@ module.exports = {
   },
   root: true,
   parser: '@typescript-eslint/parser',
-  plugins: [
-    '@typescript-eslint',
-    'import',
-    'prettier'
-  ],
+  plugins: ['@typescript-eslint', 'import', 'prettier'],
   extends: [
     'standard',
     'eslint:recommended',
@@ -19,10 +15,7 @@ module.exports = {
   rules: {
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/no-empty-interface': 'off',
-    'arrow-parens': [
-      'error',
-      'as-needed'
-    ],
+    'arrow-parens': ['error', 'as-needed'],
     'import/extensions': [
       2,
       {
@@ -52,28 +45,22 @@ module.exports = {
       }
     ],
     'newline-before-return': 'error',
-    'object-curly-spacing': [
-      'error',
-      'always'
-    ],
+    'object-curly-spacing': ['error', 'always'],
     'prefer-const': 'error',
     'prettier/prettier': [
       'error',
       {
-        'arrowParens': 'avoid',
-        'bracketSpacing': true,
-        'printWidth': 80,
-        'quoteProps': 'as-needed',
-        'semi': false,
-        'singleQuote': true,
-        'tabWidth': 2,
-        'trailingComma': 'none'
+        arrowParens: 'avoid',
+        bracketSpacing: true,
+        printWidth: 80,
+        quoteProps: 'as-needed',
+        semi: false,
+        singleQuote: true,
+        tabWidth: 2,
+        trailingComma: 'none'
       }
     ],
-    radix: [
-      'error',
-      'as-needed'
-    ],
+    radix: ['error', 'as-needed'],
     'spaced-comment': ['error', 'always']
   }
 }
