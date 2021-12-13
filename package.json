@@ -10,7 +10,7 @@
   "scripts": {
     "service": "node ./bin",
     "release": "standard-version",
-    "test": "npm run rm && node ./bin -a AnthonyLzq -e sluzquinosa@uni.pe -N example -D 'This is a test'",
+    "test": "npm run rm && node ./bin -N example -D 'This is a test' -a AnthonyLzq -e sluzquinosa@uni.pe -l mit -H",
     "lint": "eslint --ext js lib/ --fix",
     "rm": "if [ -d \"example\" ]; then rm -rf example; fi"
   },
@@ -37,7 +37,7 @@
     "yargs": "^17.3.0"
   },
   "devDependencies": {
-    "eslint": "^7.32.0",
+    "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.25.3",
