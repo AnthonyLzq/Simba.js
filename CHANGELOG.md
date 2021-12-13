@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/AnthonyLzq/simba.js/compare/v1.8.0...v1.9.0) (2021-12-13)
+
+
+### Features
+
+* updated packages and example folder to include license and heroku config ([7267e7a](https://github.com/AnthonyLzq/simba.js/commit/7267e7ab40bf7333d566d7e90d85ad4f4357b731))
+
+
+### Bug Fixes
+
+* linted eslint.js file ([a47ea79](https://github.com/AnthonyLzq/simba.js/commit/a47ea795e2f6cf4363bd82ed05fc2c31b4fa8a26))
+
 ## [1.8.0](https://github.com/AnthonyLzq/simba.js/compare/v1.7.0...v1.8.0) (2021-12-13)
 
 
