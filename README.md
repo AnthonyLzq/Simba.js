@@ -192,6 +192,7 @@ simba -N myProject -D 'This is a test' -a myName -e myEmail@email.com -H
 - To check the content of the files generated, please check the `example` folder.
 - If you provide a project name that contains spaces, something like 'My awesome Project',  every space will be replaced with a hyphen. So at the end your project name will be 'My-awesome-project', but in its README.md file, the hyphens will be removed and the project name will be parsed to title case (My Awesome Project).
 - Finally, `git` will be initialized and a list of libraries will be installed. Check the [**notes**](#notes).
+- Relative imports is already configured, you do not need to import a file using `../../../some/very/nested/stuff/in/other/folder`, you can use `some/very/nested/stuff/in/other/folder` assuming that your folder is under the `src` folder.
 
 ## What is new?
 
@@ -221,6 +222,8 @@ Here is the list of the packages that are being installed, as `devDependencies`:
 - [`standard-version`](https://www.npmjs.com/package/standard-version)
 - [`ts-loader`](https://www.npmjs.com/package/ts-loader)
 - [`ts-node`](https://www.npmjs.com/package/ts-node)
+- [`tsconfig-paths`](https://www.npmjs.com/package/tsconfig-paths)
+- [`tsconfig-paths-webpack-plugin`](https://www.npmjs.com/package/tsconfig-paths-webpack-plugin)
 - [`typescript`](https://www.npmjs.com/package/typescript)
 - [`webpack`](https://www.npmjs.com/package/webpack)
 - [`webpack-cli`](https://www.npmjs.com/package/webpack-cli)
