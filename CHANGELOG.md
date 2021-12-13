@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/AnthonyLzq/simba.js/compare/v1.7.0...v1.8.0) (2021-12-13)
+
+
+### Features
+
+* implemented baseUrl config with ts and webpack to avoid "../../.. ..." ([9b9e9d2](https://github.com/AnthonyLzq/simba.js/commit/9b9e9d20cae8b4bbdaef58364220512514dac1a4))
+* updated docker file and ignored git folder to be generated manually by docker ([33c1b0d](https://github.com/AnthonyLzq/simba.js/commit/33c1b0df9cfac4e686ece884aa3102e9ad49e6ab))
+* updated docs ([ba72b64](https://github.com/AnthonyLzq/simba.js/commit/ba72b643ea45af7ce7dd7a9adaf8b4f27eacd266))
+
+
+### Bug Fixes
+
+* fixed eslint ignore ([1405884](https://github.com/AnthonyLzq/simba.js/commit/1405884ab10cf869d6811fbf588ba0b0efb04de2))
+* fixed mongo connection ([57f8580](https://github.com/AnthonyLzq/simba.js/commit/57f85803701253be2308b1c45f537db5b59c92d4))
+
 ## [1.7.0](https://github.com/AnthonyLzq/simba.js/compare/v1.6.0...v1.7.0) (2021-12-12)
 
 
