@@ -40,6 +40,7 @@
       "error",
       "always"
     ],
+    "object-shorthand": ["error", "always"],
     "prefer-const": "error",
     "prettier/prettier": [
       "error",
