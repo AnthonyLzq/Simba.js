@@ -46,6 +46,7 @@ module.exports = {
     ],
     'newline-before-return': 'error',
     'object-curly-spacing': ['error', 'always'],
+    "object-shorthand": ["error", "always"],
     'prefer-const': 'error',
     'prettier/prettier': [
       'error',
