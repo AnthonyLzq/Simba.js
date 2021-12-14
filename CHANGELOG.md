@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.9.1](https://github.com/AnthonyLzq/simba.js/compare/v1.9.0...v1.9.1) (2021-12-14)
+
+
+### Features
+
+* updated packages in example folder and .eslint rules ([b7bed74](https://github.com/AnthonyLzq/simba.js/commit/b7bed74fcd58f89abdffb7a06f87e4d808059af8))
+
 ## [1.9.0](https://github.com/AnthonyLzq/simba.js/compare/v1.8.0...v1.9.0) (2021-12-13)
 
 
