@@ -33,7 +33,7 @@
     "cli-progress": "^3.9.1",
     "colors": "^1.4.0",
     "readline-sync": "^1.4.10",
-    "underscore": "^1.13.1",
+    "underscore": "^1.13.2",
     "yargs": "^17.3.0"
   },
   "devDependencies": {
