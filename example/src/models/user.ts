@@ -1,11 +1,4 @@
-/* eslint-disable no-underscore-dangle */
-import { Document, model, Schema } from 'mongoose'
-
-interface IUser extends Document {
-  lastName: string
-  name: string
-  updatedAt: Date
-}
+import { model, Schema } from 'mongoose'
 
 const User = new Schema(
   {
@@ -22,22 +15,20 @@ const User = new Schema(
     timestamps: {
       createdAt: false,
       updatedAt: true
+    },
+    toJSON: {
+      transform(_, ret) {
+        ret.id = ret._id
+        delete ret._id
+        delete ret.__v
+        delete ret.updatedAt
+      },
+      versionKey: false,
+      virtuals: true
     }
   }
 )
 
-User.set('toJSON', {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  transform: function (_: any, ret: any) {
-    ret.id = ret._id
-    delete ret._id
-    delete ret.__v
-    delete ret.updatedAt
-  },
-  versionKey: false,
-  virtuals: true
-})
-
 const UserModel = model<IUser>('users', User)
 
-export { IUser, UserModel }
+export { UserModel }

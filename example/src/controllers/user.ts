@@ -1,6 +1,6 @@
 import httpErrors from 'http-errors'
 
-import { IUser, UserModel } from 'models'
+import { UserModel } from 'models'
 import { EFU, MFU, GE, errorHandling } from './utils'
 
 type Process = {
@@ -14,9 +14,7 @@ class User {
     this._args = args
   }
 
-  public process({
-    type
-  }: Process): Promise<string> | Promise<IUser[]> | Promise<IUser> {
+  public process({ type }: Process): Promise<string | IUser[] | IUser> {
     switch (type) {
       case 'store':
         return this._store()
