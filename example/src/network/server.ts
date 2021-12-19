@@ -35,6 +35,17 @@ class Server {
         next()
       }
     )
+
+    // setting up the global response
+    global.response = ({
+      error,
+      message,
+      res,
+      status
+    }: ResponseProps): void => {
+      res.status(status).send({ error, message })
+    }
+
     applyRoutes(this._app)
   }
 

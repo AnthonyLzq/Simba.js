@@ -5,15 +5,14 @@ import { Request, Response } from 'express'
 import { DtoUser } from 'dto-interfaces'
 
 declare global {
-  // This variable is global, so it will be available everywhere in the code
-  var response = (
-    error: boolean,
-    message: unknown,
-    res: Response,
+  interface ResponseProps {
+    error: boolean
+    message: unknown
+    res: Response
     status: number
-  ): void => {
-    res.status(status).send({ error, message })
   }
+  // This variable is global, so it will be available everywhere in the code
+  var response: ({ error, message, res, status }: ResponseProps) => void
 
   // We can personalize the response and request objects in case we need it by
   // adding new optional attributes to this interface
