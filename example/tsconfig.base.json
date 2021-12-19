@@ -1,13 +1,4 @@
-const writeFile = require('../utils/writeFile')
-
-/**
- * @param {String} projectName
- * @returns {Promise<void>}
- */
-module.exports = async projectName => {
-  const data = {
-    base: {
-      content: `{
+{
   "ts-node": {
     "files": true,
     "require": ["tsconfig-paths/register"]
@@ -89,32 +80,4 @@ module.exports = async projectName => {
   "exclude": [
     "node_modules"
   ]
-}
-`,
-      file: 'tsconfig.base.json'
-    },
-    prod: {
-      content: `{
-  "compilerOptions": {
-    "rootDir": "src"
-  },
-  "extends": "./tsconfig.base.json",
-  "exclude": [
-    "node_modules",
-    "test",
-    "tests",
-    "__test__",
-    "dist"
-  ],
-  "include": [
-    "src"
-  ]
-}
-`,
-      file: 'tsconfig.json'
-    }
-  }
-
-  await writeFile(`${projectName}/${data.base.file}`, data.base.content)
-  await writeFile(`${projectName}/${data.prod.file}`, data.prod.content)
 }

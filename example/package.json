@@ -8,7 +8,7 @@
     "build": "webpack --mode production",
     "lint": "eslint src/* --ext .ts --fix",
     "service": "nodemon",
-    "start": "node dist/index.js",
+    "start": "node -r dotenv/config dist/index.js",
     "release": "standard-version"
   },
   "author": "AnthonyLzq <sluzquinosa@uni.pe>",
