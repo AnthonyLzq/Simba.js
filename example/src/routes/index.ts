@@ -1,4 +1,2 @@
-import { Home } from './home'
-import { User } from './user'
-
-export { Home, User }
+export * from './home'
+export * from './user'

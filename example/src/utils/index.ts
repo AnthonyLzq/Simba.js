@@ -1,3 +1,1 @@
-import docs from './docs.json'
-
-export { docs }
+export { default as docs } from './docs.json'

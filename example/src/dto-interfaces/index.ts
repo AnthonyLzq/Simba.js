@@ -1,3 +1,1 @@
-import { DtoUser } from './user'
-
-export { DtoUser }
+export * from './user'

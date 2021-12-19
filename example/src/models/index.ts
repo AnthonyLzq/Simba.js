@@ -1,3 +1,1 @@
-import { IUser, UserModel } from './user'
-
-export { IUser, UserModel }
+export * from './user'
