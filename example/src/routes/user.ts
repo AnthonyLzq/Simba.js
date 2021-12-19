@@ -3,7 +3,6 @@ import httpErrors from 'http-errors'
 import { ValidationError } from 'joi'
 
 import { User as UserC } from 'controllers/user'
-import { DtoUser } from 'dto-interfaces'
 import { idSchema, userSchema } from 'schemas'
 
 const User = Router()

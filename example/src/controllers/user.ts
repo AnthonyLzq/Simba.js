@@ -1,6 +1,5 @@
 import httpErrors from 'http-errors'
 
-import { DtoUser } from 'dto-interfaces'
 import { IUser, UserModel } from 'models'
 import { EFU, MFU, GE, errorHandling } from './utils'
 

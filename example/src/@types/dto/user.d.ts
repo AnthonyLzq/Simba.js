@@ -1,7 +1,5 @@
 interface DtoUser {
-  id: string
+  id?: string
   lastName?: string
   name?: string
 }
-
-export { DtoUser }

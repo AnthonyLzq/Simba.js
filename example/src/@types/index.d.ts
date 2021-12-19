@@ -2,8 +2,6 @@
 import { IncomingHttpHeaders } from 'http'
 import { Request, Response } from 'express'
 
-import { DtoUser } from 'dto-interfaces'
-
 declare global {
   interface ResponseProps {
     error: boolean
