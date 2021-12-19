@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose'
 
-const User = new Schema(
+const User = new Schema<IUser>(
   {
     lastName: {
       required: true,
