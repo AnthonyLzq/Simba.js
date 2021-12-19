@@ -22,7 +22,7 @@ User.route('/users')
 
       try {
         const result = await u.process({ type: 'store' })
-        response(false, result, res, 201)
+        response({ error: false, message: result, res, status: 201 })
       } catch (e) {
         next(e)
       }
@@ -38,7 +38,7 @@ User.route('/users')
 
       try {
         const result = await u.process({ type: 'getAll' })
-        response(false, result, res, 200)
+        response({ error: false, message: result, res, status: 200 })
       } catch (e) {
         next(e)
       }
@@ -54,7 +54,7 @@ User.route('/users')
 
       try {
         const result = await u.process({ type: 'deleteAll' })
-        response(false, result, res, 200)
+        response({ error: false, message: result, res, status: 200 })
       } catch (e) {
         next(e)
       }
@@ -76,7 +76,7 @@ User.route('/user/:id')
         await idSchema.validateAsync(id)
         const u = new UserC({ id } as DtoUser)
         const result = await u.process({ type: 'getOne' })
-        response(false, result, res, 200)
+        response({ error: false, message: result, res, status: 200 })
       } catch (e) {
         if (e instanceof ValidationError)
           return next(new httpErrors.UnprocessableEntity(e.message))
@@ -104,7 +104,7 @@ User.route('/user/:id')
         await userSchema.validateAsync(user)
         const u = new UserC(user)
         const result = await u.process({ type: 'update' })
-        response(false, result, res, 200)
+        response({ error: false, message: result, res, status: 200 })
       } catch (e) {
         if (e instanceof ValidationError)
           return next(new httpErrors.UnprocessableEntity(e.message))
@@ -127,7 +127,7 @@ User.route('/user/:id')
         await idSchema.validateAsync(id)
         const u = new UserC({ id } as DtoUser)
         const result = await u.process({ type: 'delete' })
-        response(false, result, res, 200)
+        response({ error: false, message: result, res, status: 200 })
       } catch (e) {
         if (e instanceof ValidationError)
           return next(new httpErrors.UnprocessableEntity(e.message))

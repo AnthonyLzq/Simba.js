@@ -1,5 +1,6 @@
 enum ErrorForUser {
-  NOT_FOUND = 'The requested user does not exists'
+  NOT_FOUND = 'The requested user does not exists',
+  NOTHING_TO_DELETE = 'There is no user to be deleted'
 }
 
 enum MessageForUser {

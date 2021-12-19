@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.10.0](https://github.com/AnthonyLzq/simba.js/compare/v1.9.1...v1.10.0) (2021-12-19)
+
+
+### Features
+
+* fixed global response initialization and updated dependencies ([acaf8a1](https://github.com/AnthonyLzq/simba.js/commit/acaf8a19ee55649ad5351fdc69ed316363ca792c))
+* updated files to include ([eea7609](https://github.com/AnthonyLzq/simba.js/commit/eea7609158b67bd47d96fa86ad36b87ff6f8ed9b))
+* updated packages ([46bf266](https://github.com/AnthonyLzq/simba.js/commit/46bf266f8388146c71d8bb75480d4b16ce2f69ed))
+
+
+### Bug Fixes
+
+* fixed error in deleteAll method ([0e3455d](https://github.com/AnthonyLzq/simba.js/commit/0e3455d3bc027199187b1b5c9a0875843f440449))
+
 ### [1.9.1](https://github.com/AnthonyLzq/simba.js/compare/v1.9.0...v1.9.1) (2021-12-14)
 
 

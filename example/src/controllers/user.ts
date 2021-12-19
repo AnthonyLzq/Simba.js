@@ -63,7 +63,10 @@ class User {
     try {
       const usersDeleted = await UserModel.deleteMany({})
 
-      if (usersDeleted.acknowledged) return MFU.ALL_USERS_DELETED
+      if (usersDeleted.deletedCount >= 1) return MFU.ALL_USERS_DELETED
+
+      if (usersDeleted.deletedCount === 0)
+        throw new httpErrors.BadRequest(EFU.NOTHING_TO_DELETE)
 
       throw new httpErrors.InternalServerError(GE.INTERNAL_SERVER_ERROR)
     } catch (e) {

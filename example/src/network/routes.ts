@@ -23,7 +23,12 @@ const applyRoutes = (app: Application): void => {
       res: Response,
       next: NextFunction
     ) => {
-      response(true, error.message, res, error.status)
+      response({
+        error: true,
+        message: error.message,
+        res,
+        status: error.status
+      })
       next()
     }
   )
