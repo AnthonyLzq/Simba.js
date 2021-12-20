@@ -7,7 +7,7 @@ type Process = {
   type: 'store' | 'getAll' | 'deleteAll' | 'getOne' | 'update' | 'delete'
 }
 
-class User {
+class UserService {
   private _args: DtoUser | null
 
   constructor(args: DtoUser | null = null) {
@@ -109,4 +109,4 @@ class User {
   }
 }
 
-export { User }
+export { UserService }
