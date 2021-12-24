@@ -1,23 +1,20 @@
 import httpErrors from 'http-errors'
 
-import { DtoUser } from 'dto-interfaces'
-import { IUser, UserModel } from 'models'
+import { store, remove, get, update } from 'database'
 import { EFU, MFU, GE, errorHandling } from './utils'
 
 type Process = {
   type: 'store' | 'getAll' | 'deleteAll' | 'getOne' | 'update' | 'delete'
 }
 
-class User {
+class UserService {
   private _args: DtoUser | null
 
   constructor(args: DtoUser | null = null) {
     this._args = args
   }
 
-  public process({
-    type
-  }: Process): Promise<string> | Promise<IUser[]> | Promise<IUser> {
+  public process({ type }: Process): Promise<string | IUser[] | IUser> {
     switch (type) {
       case 'store':
         return this._store()
@@ -37,11 +34,8 @@ class User {
   }
 
   private async _store(): Promise<IUser> {
-    const { lastName, name } = this._args as DtoUser
-
     try {
-      const newUser = new UserModel({ lastName, name })
-      const result = await newUser.save()
+      const result = await store(this._args as DtoUser)
 
       return result
     } catch (e) {
@@ -51,7 +45,7 @@ class User {
 
   private async _getAll(): Promise<IUser[]> {
     try {
-      const users = await UserModel.find({})
+      const users = (await get()) as IUser[]
 
       return users
     } catch (e) {
@@ -61,12 +55,12 @@ class User {
 
   private async _deleteAll(): Promise<string> {
     try {
-      const usersDeleted = await UserModel.deleteMany({})
+      const usersDeleted = (await remove()) as number
 
-      if (usersDeleted.deletedCount >= 1) return MFU.ALL_USERS_DELETED
+      if (usersDeleted >= 1) return MFU.ALL_USERS_DELETED
 
-      if (usersDeleted.deletedCount === 0)
-        throw new httpErrors.BadRequest(EFU.NOTHING_TO_DELETE)
+      if (usersDeleted === 0)
+        throw new httpErrors.Conflict(EFU.NOTHING_TO_DELETE)
 
       throw new httpErrors.InternalServerError(GE.INTERNAL_SERVER_ERROR)
     } catch (e) {
@@ -78,7 +72,7 @@ class User {
     const { id } = this._args as DtoUser
 
     try {
-      const user = await UserModel.findById(id)
+      const user = (await get(id as string)) as IUser | null
 
       if (!user) throw new httpErrors.NotFound(EFU.NOT_FOUND)
 
@@ -89,14 +83,8 @@ class User {
   }
 
   private async _update(): Promise<IUser> {
-    const { id, lastName, name } = this._args as DtoUser
-
     try {
-      const updatedUser = await UserModel.findByIdAndUpdate(
-        id,
-        { lastName, name },
-        { new: true }
-      )
+      const updatedUser = await update(this._args as DtoUser)
 
       if (!updatedUser) throw new httpErrors.NotFound(EFU.NOT_FOUND)
 
@@ -110,7 +98,7 @@ class User {
     const { id } = this._args as DtoUser
 
     try {
-      const deletedUser = await UserModel.findByIdAndRemove(id)
+      const deletedUser = await remove(id)
 
       if (!deletedUser) throw new httpErrors.NotFound(EFU.NOT_FOUND)
 
@@ -121,4 +109,4 @@ class User {
   }
 }
 
-export { User }
+export { UserService }

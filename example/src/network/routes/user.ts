@@ -2,9 +2,9 @@ import { Router, NextFunction } from 'express'
 import httpErrors from 'http-errors'
 import { ValidationError } from 'joi'
 
-import { User as UserC } from 'controllers/user'
-import { DtoUser } from 'dto-interfaces'
-import { idSchema, userSchema } from 'schemas'
+import { response } from 'network/response'
+import { UserService } from 'services/user'
+import { idSchema, userSchema } from './schemas'
 
 const User = Router()
 
@@ -18,10 +18,10 @@ User.route('/users')
       const {
         body: { args }
       } = req
-      const u = new UserC(args as DtoUser)
+      const us = new UserService(args as DtoUser)
 
       try {
-        const result = await u.process({ type: 'store' })
+        const result = await us.process({ type: 'store' })
         response({ error: false, message: result, res, status: 201 })
       } catch (e) {
         next(e)
@@ -34,10 +34,10 @@ User.route('/users')
       res: CustomResponse,
       next: NextFunction
     ): Promise<void> => {
-      const u = new UserC()
+      const us = new UserService()
 
       try {
-        const result = await u.process({ type: 'getAll' })
+        const result = await us.process({ type: 'getAll' })
         response({ error: false, message: result, res, status: 200 })
       } catch (e) {
         next(e)
@@ -50,10 +50,10 @@ User.route('/users')
       res: CustomResponse,
       next: NextFunction
     ): Promise<void> => {
-      const u = new UserC()
+      const us = new UserService()
 
       try {
-        const result = await u.process({ type: 'deleteAll' })
+        const result = await us.process({ type: 'deleteAll' })
         response({ error: false, message: result, res, status: 200 })
       } catch (e) {
         next(e)
@@ -74,8 +74,8 @@ User.route('/user/:id')
 
       try {
         await idSchema.validateAsync(id)
-        const u = new UserC({ id } as DtoUser)
-        const result = await u.process({ type: 'getOne' })
+        const us = new UserService({ id } as DtoUser)
+        const result = await us.process({ type: 'getOne' })
         response({ error: false, message: result, res, status: 200 })
       } catch (e) {
         if (e instanceof ValidationError)
@@ -102,8 +102,8 @@ User.route('/user/:id')
 
       try {
         await userSchema.validateAsync(user)
-        const u = new UserC(user)
-        const result = await u.process({ type: 'update' })
+        const us = new UserService(user)
+        const result = await us.process({ type: 'update' })
         response({ error: false, message: result, res, status: 200 })
       } catch (e) {
         if (e instanceof ValidationError)
@@ -125,8 +125,8 @@ User.route('/user/:id')
 
       try {
         await idSchema.validateAsync(id)
-        const u = new UserC({ id } as DtoUser)
-        const result = await u.process({ type: 'delete' })
+        const us = new UserService({ id } as DtoUser)
+        const result = await us.process({ type: 'delete' })
         response({ error: false, message: result, res, status: 200 })
       } catch (e) {
         if (e instanceof ValidationError)

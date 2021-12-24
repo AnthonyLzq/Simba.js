@@ -1,7 +1,5 @@
 import httpErrors from 'http-errors'
 
-import { EFU, MFU, GE } from './messages'
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const errorHandling = (e: any, message?: string): never => {
   console.error(e)
@@ -11,4 +9,5 @@ const errorHandling = (e: any, message?: string): never => {
   throw new httpErrors.InternalServerError(message ?? e.message)
 }
 
-export { EFU, MFU, GE, errorHandling }
+export { errorHandling }
+export * from './messages'

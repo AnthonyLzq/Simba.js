@@ -2,7 +2,7 @@ import express from 'express'
 import mongoose from 'mongoose'
 import morgan from 'morgan'
 
-import { applyRoutes } from './routes'
+import { applyRoutes } from './router'
 
 const PORT = (process.env.PORT as string) || '1996'
 
@@ -35,16 +35,6 @@ class Server {
         next()
       }
     )
-
-    // setting up the global response
-    global.response = ({
-      error,
-      message,
-      res,
-      status
-    }: ResponseProps): void => {
-      res.status(status).send({ error, message })
-    }
 
     applyRoutes(this._app)
   }

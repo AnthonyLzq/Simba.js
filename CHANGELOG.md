@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/AnthonyLzq/simba.js/compare/v1.10.0...v2.0.0) (2021-12-24)
+
+
+### Features
+
+* added a tsconfig.base.json file to allow users to have a "test", "tests" or "__test__" folder ([30569ab](https://github.com/AnthonyLzq/simba.js/commit/30569abd0b10079a438d03f712ecc094c8e0c7d0))
+* configured layered architecture ([5cc9c6d](https://github.com/AnthonyLzq/simba.js/commit/5cc9c6dc9b1b93bd7d92b5881e193f5e8d2eb8da))
+* removed custom request and response from global in favor of its own file ([d1ebdcf](https://github.com/AnthonyLzq/simba.js/commit/d1ebdcf04a44811c5433f3450f39ac51e5fd43cd))
+* removed IUser interface from models folder in favor of a global interface IUser ([50cbe2e](https://github.com/AnthonyLzq/simba.js/commit/50cbe2e65b071c9bd5d0aad27916d98f68a1e650))
+* replaced controllers folder in favor of services folder ([b7428d6](https://github.com/AnthonyLzq/simba.js/commit/b7428d69f22705d645f0b22f3747fca6047bd1ad))
+* replaced dto-interfaces in favor of a global interface ([3ff6e47](https://github.com/AnthonyLzq/simba.js/commit/3ff6e47eae306cbc0a38030357f02d44f9379a89))
+* replaced models folder in favor of a database folder which can contains multiple database connection ([a1a39ed](https://github.com/AnthonyLzq/simba.js/commit/a1a39ed327623474622da65ce9c06a632232f585))
+* udpated exports of index files and changed error code when there is no user to be deleted ([28403d8](https://github.com/AnthonyLzq/simba.js/commit/28403d812eb3a15526e312a860e57a1d0611255f))
+* updated docker file ([b795b85](https://github.com/AnthonyLzq/simba.js/commit/b795b85ca3ee1cd0dac8efb39c9778f7670471e8))
+
+
+### Bug Fixes
+
+* eslint extension ([b953034](https://github.com/AnthonyLzq/simba.js/commit/b953034ff6e77dde155a2adfb28cee78e4b3c2a1))
+
 ## [1.10.0](https://github.com/AnthonyLzq/simba.js/compare/v1.9.1...v1.10.0) (2021-12-19)
 
 
