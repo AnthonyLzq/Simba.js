@@ -88,8 +88,8 @@ Options:
   -h, --help                Show help                                  [boolean]
 
 Examples:
-  simba  -N "Project Name" -D "Project description -a Anthony -e
-  sluzquinosa@uni.pe"
+  simba -N 'Project Name' -D 'Project description' -a Anthony -e
+  sluzquinosa@uni.pe
 
 Developed by AnthonyLzq
 ```
