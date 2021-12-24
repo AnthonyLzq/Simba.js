@@ -6,7 +6,7 @@ Set up a modern backend app by running one command. This project has the goal to
 
 - `.env`
 - `.eslintignore`
-- `.eslintrc.js`
+- `.eslintrc`
 - `.gitignore`
 - `CHANGELOG.md`
 - `Dockerfile`
@@ -15,8 +15,10 @@ Set up a modern backend app by running one command. This project has the goal to
 - `nodemon.json`
 - `package.json`
 - `README.md`
+- `tsconfig.base.json`
 - `tsconfig.json`
 - `webpack.config.js`
+- `yarn.lock`  (or `package-lock.json`)
 
 ## Installation
 
@@ -95,34 +97,56 @@ Developed by AnthonyLzq
 Regardless of the option chosen, a new folder will be generated with the name of the project, it will contain the following structure:
 
 ```
-📦node_modules
-📦src
+📂node_modules
+📂src
  ┣ 📂@types
- ┃ ┣ 📜index.d.ts
- ┣ 📂controllers
- ┃ ┣ 📜index.ts
- ┃ ┗ 📜user.ts
- ┣ 📂dto-interfaces
- ┃ ┣ 📜index.ts
- ┃ ┗ 📜user.dto.ts
- ┣ 📂models
- ┃ ┣ 📜index.ts
- ┃ ┗ 📜user.ts
+ ┃ ┣ 📂custom
+ ┃ ┃ ┣ 📜request.d.ts
+ ┃ ┃ ┗ 📜response.d.ts
+ ┃ ┣ 📂dto
+ ┃ ┃ ┗ 📜user.d.ts
+ ┃ ┣ 📂models
+ ┃ ┃ ┗ 📜user.d.ts
+ ┃ ┗ 📜index.d.ts
+ ┣ 📂database
+ ┃ ┣ 📂mongo
+ ┃ ┃ ┣ 📂models
+ ┃ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┃ ┗ 📜user.ts
+ ┃ ┃ ┣ 📂queries
+ ┃ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┃ ┗ 📜user.ts
+ ┃ ┃ ┗ 📜index.ts
+ ┃ ┗ 📜index.ts
  ┣ 📂network
+ ┃ ┣ 📂routes
+ ┃ ┃ ┣ 📂schemas
+ ┃ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┃ ┗ 📜user.ts
+ ┃ ┃ ┣ 📜home.ts
+ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┗ 📜user.ts
  ┃ ┣ 📜index.ts
+ ┃ ┣ 📜response.ts
  ┃ ┣ 📜routes.ts
  ┃ ┗ 📜server.ts
- ┣ 📂routes
- ┃ ┣ 📜home.ts
+ ┣ 📂services
+ ┃ ┣ 📂utils
+ ┃ ┃ ┣ 📂messages
+ ┃ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┃ ┗ 📜user.ts
+ ┃ ┃ ┗ 📜index.ts
  ┃ ┣ 📜index.ts
  ┃ ┗ 📜user.ts
+ ┣ 📂test
+ ┃ ┗ 📜test.http
  ┣ 📂utils
- ┃ ┣ 📜index.ts
- ┃ ┗ 📜response.ts
+ ┃ ┣ 📜docs.json
+ ┃ ┗ 📜index.ts
  ┗ 📜index.ts
 📜.env
 📜.eslintignore
-📜.eslintrc.js
+📜.eslintrc
 📜.gitignore
 📜CHANGELOG.md
 📜Dockerfile
@@ -131,6 +155,7 @@ Regardless of the option chosen, a new folder will be generated with the name of
 📜nodemon.json
 📜package.json
 📜README.md
+📜tsconfig.base.json
 📜tsconfig.json
 📜webpack.config.js
 📜yarn.lock (or package-lock.json)
@@ -160,8 +185,8 @@ simba -N myProject -D 'This is a test' -a myName -e myEmail@email.com -H
 
 ### Some considerations
 
-- This project is based in other project from my own, [`typescript-project-generator`](https://www.npmjs.com/package/typescript-project-generator), but only considering the `express-mongoose-node` part.
-- You are able to run a server that has one main route, `home` (`/`), `user` (`api/user` or `api/user/:userId`) and `docs` (`api/docs`).
+- This project was based in other project from my own, [`typescript-project-generator`](https://www.npmjs.com/package/typescript-project-generator), but only considering the `express-mongoose` part.
+- You are able to run a server that has one main route, `home` (`/`), `user` (`api/user` or `api/user/:id`) and `docs` (`api/docs`).
 - To connect your server with your `MongoDB` database, you need to provide your `uri` in the `.env`. By default, Simba will try to connect to a local database. The content of the `.env` file is:
 
   ```bash
@@ -182,11 +207,16 @@ simba -N myProject -D 'This is a test' -a myName -e myEmail@email.com -H
     // Some more code...
 
     // another file
-    globalStringVariable = 'Hi mom, I am global'
+    global.globalStringVariable = 'Hi mom, I am global'
     console.log({ globalStringVariable })
     ```
 
-- The provided project structure is inspired in my personal experience as [`Node.js`](https://nodejs.org/en/) developer and the [`Nest`](https://nestjs.com/) framework.
+- The provided project structure is inspired in my personal experience as [`Node.js`](https://nodejs.org/en/) developer and the [`Nest`](https://nestjs.com/) framework. It follows a layered architecture:
+
+  1. Presentation layer (network layer): it is represented by the network folder, which contains the routes and the necessary schemas for each route.
+  2. Business layer (services layer): it is represented by the services folder, which contains all the code related to the business logic of your application.
+  3. Persistance layer (database layer): it is represented by the database folder, which contains the database connection, models and queries (that will be used by the services). Multiple database connection are possible and should be implemented here.
+
 - The server is fully tested and has no errors (at least for now), feel free to report one [here](https://github.com/AnthonyLzq/simba.js/issues).
 - Support for windows and linux platforms is available.
 - To check the content of the files generated, please check the `example` folder.
@@ -215,8 +245,6 @@ Here is the list of the packages that are being installed, as `devDependencies`:
 - [`eslint-config-standard`](https://www.npmjs.com/package/eslint-config-standard)
 - [`eslint-plugin-import`](https://www.npmjs.com/package/eslint-plugin-import)
 - [`eslint-plugin-prettier`](https://www.npmjs.com/package/eslint-plugin-prettier)
-- [`eslint-plugin-sort-keys-fix`](https://www.npmjs.com/package/eslint-plugin-sort-keys-fix)
-- [`eslint-plugin-typescript-sort-keys`](https://www.npmjs.com/package/eslint-plugin-typescript-sort-keys)
 - [`nodemon`](https://www.npmjs.com/package/nodemon)
 - [`prettier`](https://www.npmjs.com/package/prettier)
 - [`standard-version`](https://www.npmjs.com/package/standard-version)
