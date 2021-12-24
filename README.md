@@ -25,7 +25,7 @@ Set up a modern backend app by running one command. This project has the goal to
 This package is meant to be installed globally in your computer by using:
 
 ```bash
-npm i -g simba.js
+npm i -g @anthonylzq/simba.js
 ```
 
 ## Usage
