@@ -138,8 +138,6 @@ Regardless of the option chosen, a new folder will be generated with the name of
  ┃ ┃ ┗ 📜index.ts
  ┃ ┣ 📜index.ts
  ┃ ┗ 📜user.ts
- ┣ 📂test
- ┃ ┗ 📜test.http
  ┣ 📂utils
  ┃ ┣ 📜docs.json
  ┃ ┗ 📜index.ts
@@ -155,6 +153,7 @@ Regardless of the option chosen, a new folder will be generated with the name of
 📜nodemon.json
 📜package.json
 📜README.md
+📜index.http
 📜tsconfig.base.json
 📜tsconfig.json
 📜webpack.config.js
