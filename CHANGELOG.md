@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.4](https://github.com/AnthonyLzq/simba.js/compare/v2.0.3...v2.0.4) (2021-12-26)
+
+
+### Features
+
+* changed project structure ([9c84b06](https://github.com/AnthonyLzq/simba.js/commit/9c84b06fc748fa1471db4ed6094f92d322930891))
+* updated docs ([6aeead7](https://github.com/AnthonyLzq/simba.js/commit/6aeead702b82bd4fc221298073b59f4992bf7867))
+
+
+### Bug Fixes
+
+* fixed eslint file content ([85d4eb0](https://github.com/AnthonyLzq/simba.js/commit/85d4eb0f98ea0ac5a77bc33b96fa83b3c7fc6cbe))
+
 ### [2.0.3](https://github.com/AnthonyLzq/simba.js/compare/v2.0.2...v2.0.3) (2021-12-24)
 
 
