@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.5](https://github.com/AnthonyLzq/simba.js/compare/v2.0.4...v2.0.5) (2021-12-27)
+
+
+### Features
+
+* added npx for windows compatibility ([a9938a8](https://github.com/AnthonyLzq/simba.js/commit/a9938a8af32c0ae459870c1efcf3e42333ce5082))
+
 ### [2.0.4](https://github.com/AnthonyLzq/simba.js/compare/v2.0.3...v2.0.4) (2021-12-26)
 
 

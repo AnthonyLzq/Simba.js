@@ -7,5 +7,5 @@
   "ignore": [
     "src/**/*.test.ts"
   ],
-  "exec": "ts-node -r dotenv/config ./src/index"
+  "exec": "npx ts-node -r dotenv/config ./src/index"
 }
