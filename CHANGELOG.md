@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.6](https://github.com/AnthonyLzq/simba.js/compare/v2.0.5...v2.0.6) (2022-01-26)
+
+
+### Features
+
+* added eslint missing dependencies ([d04e86a](https://github.com/AnthonyLzq/simba.js/commit/d04e86a5a5134fc458a0b1e671bfa74dabce1cc2))
+* attempt to prevent committing in the lint workflow ([71049d1](https://github.com/AnthonyLzq/simba.js/commit/71049d12efcd4c89726eb29280f691c0ce7417b0))
+* implemented lint action ([d9633da](https://github.com/AnthonyLzq/simba.js/commit/d9633da91ba2ee9bcc44a89d9da42f8b944e07f0))
+* updated lint workflow ([05798d7](https://github.com/AnthonyLzq/simba.js/commit/05798d7f7dfb8a0ceae7ffb21049e11f079f8d63))
+
 ### [2.0.5](https://github.com/AnthonyLzq/simba.js/compare/v2.0.4...v2.0.5) (2021-12-27)
 
 
