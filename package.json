@@ -10,7 +10,7 @@
   "scripts": {
     "service": "node ./bin",
     "release": "standard-version",
-    "test": "npm run rm && node ./bin -N example -D 'This is a test' -a AnthonyLzq -e sluzquinosa@uni.pe -l mit -H && npm run rm-git-example",
+    "test": "npm run rm && node -r dotenv/config ./bin -N example -D 'This is a test' -a AnthonyLzq -e sluzquinosa@uni.pe -l mit -H && npm run rm-git-example",
     "lint": "eslint --ext js lib/ --fix",
     "rm": "if [ -d \"example\" ]; then rm -rf example; fi",
     "rm-git-example": "if [ -d \"example/.git\" ]; then rm -rf example/.git; fi"
@@ -33,12 +33,12 @@
   "dependencies": {
     "cli-progress": "^3.9.1",
     "colors": "^1.4.0",
-    "dotenv": "^14.3.2",
     "readline-sync": "^1.4.10",
     "underscore": "^1.13.2",
     "yargs": "^17.3.1"
   },
   "devDependencies": {
+    "dotenv": "^14.3.2",
     "eslint": "^8.5.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-standard": "^16.0.3",

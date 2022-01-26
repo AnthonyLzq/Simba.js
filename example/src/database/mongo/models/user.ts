@@ -16,14 +16,14 @@ const User = new Schema<IUser>(
       createdAt: false,
       updatedAt: true
     },
+    versionKey: false,
     toJSON: {
       transform(_, ret) {
-        ret.id = ret._id
+        ret.id = ret._id.toString()
+        ret.updatedAt = ret.updatedAt.toISOString()
         delete ret._id
         delete ret.__v
-        delete ret.updatedAt
       },
-      versionKey: false,
       virtuals: true
     }
   }
