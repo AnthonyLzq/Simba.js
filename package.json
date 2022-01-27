@@ -1,6 +1,6 @@
 {
   "name": "@anthonylzq/simba.js",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "set up a modern backend app by running one command",
   "main": "lib/index.js",
   "directories": {
@@ -31,7 +31,7 @@
   "author": "AnthonyLzq",
   "license": "MIT",
   "dependencies": {
-    "cli-progress": "^3.9.1",
+    "cli-progress": "^3.10.0",
     "colors": "^1.4.0",
     "readline-sync": "^1.4.10",
     "underscore": "^1.13.2",
@@ -39,10 +39,10 @@
   },
   "devDependencies": {
     "dotenv": "^14.3.2",
-    "eslint": "^8.5.0",
+    "eslint": "^8.7.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
     "standard-version": "^9.3.2"
