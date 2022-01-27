@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/AnthonyLzq/simba.js/compare/v2.1.1...v3.0.0) (2022-01-27)
+
+
+### Features
+
+* implemented support for fastify ([2a9c939](https://github.com/AnthonyLzq/simba.js/commit/2a9c9399493dbdb0db31f63688c29b116eb07578))
+* link the example with docs ([f8b0d04](https://github.com/AnthonyLzq/simba.js/commit/f8b0d043baa9d8289c450298202919c6269827ac))
+* updated docs ([d880961](https://github.com/AnthonyLzq/simba.js/commit/d880961575d7401fab18aca3d0923411927d742e))
+
 ### [2.1.1](https://github.com/AnthonyLzq/simba.js/compare/v2.1.0...v2.1.1) (2022-01-27)
 
 

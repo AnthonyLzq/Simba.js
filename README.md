@@ -1,24 +1,9 @@
 # Simba.js
 
+[![NPM version](https://img.shields.io/npm/v/@anthonylzq/simba.js.svg?style=flat)](https://www.npmjs.com/package/@anthonylzq/simba.js)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-Set up a modern backend app by running one command. This project has the goal to create a complete setup for a backend application using `TypeScript` and `Express`. It will create many files that are usually created manually. Currently the following files are being created:
-
-- `.env`
-- `.eslintignore`
-- `.eslintrc`
-- `.gitignore`
-- `CHANGELOG.md`
-- `Dockerfile`
-- `heroku.yml` (optional)
-- `LICENSE` (optional, `MIT` as example)
-- `nodemon.json`
-- `package.json`
-- `README.md`
-- `tsconfig.base.json`
-- `tsconfig.json`
-- `webpack.config.js`
-- `yarn.lock`  (or `package-lock.json`)
+Set up a modern backend app by running one command. This project has the goal to create a complete setup for a backend application using `TypeScript` and `Express` or `Fastify`. It will create many files that are usually created manually. Think about Simba.js like a [CRA](https://create-react-app.dev/), but for backend development. Check the [**project structure**](#project-structure) for more information.
 
 ## Installation
 
@@ -38,7 +23,8 @@ simba -q
 
 By doing this your prompt will ask you the following questions:
 
-- `Yarn or npm?`, only one of them is valid.
+- `Yarn or npm?`, only one of them is valid (lowercase).
+- `Express or Fastify?`, only one of them is valid (lowercase).
 - `Project name:`, at least one character must be provided.
 - `Project description:`, at least one character must be provided.
 - `Author:`, at least one character must be provided.
@@ -57,8 +43,8 @@ simba -h
 This will generate the following output:
 
 ```bash
-simba [options] (if you it installed globally) or only simba if you want to be
-asked for the options one by one
+"simba [options]" (if you it installed globally) or only "simba -q" if you want
+to be asked for the options one by one
 
 Options:
   -N, --projectName         Project name
@@ -72,13 +58,15 @@ Options:
                             3.0, in lowercase without its version
                                                          [default: "unlicensed"]
   -v, --version             Project initial version           [default: "0.1.0"]
-  -y, --licenseYear         Year when the license starts       [default: "2021"]
+  -y, --licenseYear         Year when the license starts       [default: "2022"]
   -n, --npm                 Whether or not the project should use npm as package
                             manager                   [boolean] [default: false]
   -f, --mainFile            Main file of the project   [default: "src/index.ts"]
   -q, --questions           Whether or not you want to be asked to answer the
                             questions related to the project one by one
                                                       [boolean] [default: false]
+  -F, --fastify             Whether or not you want to use Fastify for your
+                            project                   [boolean] [default: false]
   -h, --help                Show help                                  [boolean]
 
 Examples:
@@ -88,7 +76,39 @@ Examples:
 Developed by AnthonyLzq
 ```
 
-Regardless of the option chosen, a new folder will be generated with the name of the project, it will contain the following structure:
+### Examples
+
+Let's suppose you want to build a project that will be deployed to Heroku, so should run:
+
+```bash
+simba -N myProject -D 'This is a test' -l mit -a myName -e myEmail@email.com -H
+```
+
+Here we are specifying that we want to create a new project called `myProject` using the `MIT` license, my name and my email are respectively: `myName` and `myEmail@email.com` and I want to use heroku to deploy this server.
+
+As default, `yarn` is selected as package manager, but if you don't want to use it, you can pass the flag `-n` or `--npm` as follows:
+
+```bash
+simba -N myProject -D 'This is a test' -l mit -a myName -e myEmail@email.com -H -n
+```
+
+And what if I want to use Fastify instead Express? Well, you only have to pass the `-F` flag:
+
+```bash
+simba -N myProject -D 'This is a test' -l mit -a myName -e myEmail@email.com -H -F
+```
+
+Finally, you may not want to use a license or one of the available licenses, don't worry, just don't pass the flag `-l` neither `--license` as follows:
+
+```bash
+simba -N myProject -D 'This is a test' -a myName -e myEmail@email.com -H
+```
+
+## <a name="project-structure"></a>Project structure
+
+Regardless of the option chosen, a new folder will be generated with the name of the project, it will contain the following structure, depending if you have chosen Express or Fastify:
+
+### Express case
 
 ```
 📂node_modules
@@ -143,6 +163,7 @@ Regardless of the option chosen, a new folder will be generated with the name of
 📜CHANGELOG.md
 📜Dockerfile
 📜heroku.yml
+📜index.http
 📜LICENSE
 📜nodemon.json
 📜package.json
@@ -154,27 +175,69 @@ Regardless of the option chosen, a new folder will be generated with the name of
 📜yarn.lock (or package-lock.json)
 ```
 
-### Examples
+### Fastify case
 
-Let's suppose you want to build a project that will be deployed to Heroku, so should run:
-
-```bash
-simba -N myProject -D 'This is a test' -l mit -a myName -e myEmail@email.com -H
+```
+📂node_modules
+📂src
+ ┣ 📂@types
+ ┃ ┣ 📂dto
+ ┃ ┃ ┗ 📜user.d.ts
+ ┃ ┣ 📂models
+ ┃ ┃ ┗ 📜user.d.ts
+ ┃ ┗ 📜index.d.ts
+ ┣ 📂database
+ ┃ ┣ 📂mongo
+ ┃ ┃ ┣ 📂models
+ ┃ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┃ ┗ 📜user.ts
+ ┃ ┃ ┣ 📂queries
+ ┃ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┃ ┗ 📜user.ts
+ ┃ ┃ ┗ 📜index.ts
+ ┃ ┗ 📜index.ts
+ ┣ 📂network
+ ┃ ┣ 📂routes
+ ┃ ┃ ┣ 📂schemas
+ ┃ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┃ ┗ 📜user.ts
+ ┃ ┃ ┣ 📜docs.ts
+ ┃ ┃ ┣ 📜home.ts
+ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┗ 📜user.ts
+ ┃ ┣ 📜index.ts
+ ┃ ┣ 📜response.ts
+ ┃ ┣ 📜routes.ts
+ ┃ ┗ 📜server.ts
+ ┣ 📂services
+ ┃ ┣ 📂utils
+ ┃ ┃ ┣ 📂messages
+ ┃ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┃ ┗ 📜user.ts
+ ┃ ┃ ┗ 📜index.ts
+ ┃ ┣ 📜index.ts
+ ┃ ┗ 📜user.ts
+ ┗ 📜index.ts
+📜.env
+📜.eslintignore
+📜.eslintrc
+📜.gitignore
+📜CHANGELOG.md
+📜Dockerfile
+📜heroku.yml
+📜index.http
+📜LICENSE
+📜nodemon.json
+📜package.json
+📜README.md
+📜index.http
+📜tsconfig.base.json
+📜tsconfig.json
+📜webpack.config.js
+📜yarn.lock (or package-lock.json)
 ```
 
-Here we are specifying that we want to create a new project called `myProject` using the `MIT` license, my name and my email are respectively: `myName` and `myEmail@email.com` and I want to use heroku to deploy this server.
-
-As default, `yarn` is selected as package manager, but if you don't want to use it, you can pass the flag `-n` or `--npm` as follows:
-
-```bash
-simba -N myProject -D 'This is a test' -l mit -a myName -e myEmail@email.com -H -n
-```
-
-Finally, you may not want to use a license or one of the available licenses, don't worry, just don't pass the flag `-l` neither `--license` as follows:
-
-```bash
-simba -N myProject -D 'This is a test' -a myName -e myEmail@email.com -H
-```
+If you want to check the content of the files, please check the [example](https://github.com/AnthonyLzq/simba.js/tree/master/example) folder, there you will an example for both, Express and Fastify.
 
 ### Some considerations
 
@@ -219,17 +282,14 @@ simba -N myProject -D 'This is a test' -a myName -e myEmail@email.com -H
 
 ## What is new?
 
-Please check the `changelog.md` file.
+Please check the [`changelog.md`](https://github.com/AnthonyLzq/simba.js/blob/master/CHANGELOG.md) file.
 
 ## <a name="notes"></a>Notes
 
 Here is the list of the packages that are being installed, as `devDependencies`:
 
-- [`@types/express`](https://www.npmjs.com/package/@types/express)
 - [`@types/http-errors`](https://www.npmjs.com/package/@types/http-errors)
-- [`@types/morgan`](https://www.npmjs.com/package/@types/morgan)
-- [`@types/node`](https://www.npmjs.com/package/@types/node/v/14.17.5)
-- [`@types/swagger-ui-express`](https://www.npmjs.com/package/@types/swagger-ui-express)
+- [`@types/node`](https://www.npmjs.com/package/@types/node)
 - [`@typescript-eslint/eslint-plugin`](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin)
 - [`@typescript-eslint/parser`](https://www.npmjs.com/package/@typescript-eslint/parser)
 - [`dotenv`](https://www.npmjs.com/package/dotenv)
@@ -252,15 +312,38 @@ Here is the list of the packages that are being installed, as `devDependencies`:
 
 As `dependencies`:
 
-- [`express`](https://expressjs.com/)
 - [`http-errors`](https://www.npmjs.com/package/http-errors)
-- [`joi`](https://joi.dev/api/?v=17.4.2)
 - [`mongoose`](https://mongoosejs.com/)
+
+### Express case
+
+As `devDependencies`:
+
+- [`@types/express`](https://www.npmjs.com/package/@types/express)
+- [`@types/morgan`](https://www.npmjs.com/package/@types/morgan)
+- [`@types/swagger-ui-express`](https://www.npmjs.com/package/@types/swagger-ui-express)
+
+As `dependencies`:
+
+- [`express`](https://expressjs.com/)
+- [`joi`](https://joi.dev/api/?v=17.4.2)
 - [`morgan`](https://www.npmjs.com/package/morgan)
 - [`swagger-ui-express`](https://www.npmjs.com/package/swagger-ui-express)
+
+### Fastify case
+
+As `dependencies`:
+
+- [`@sinclair/typebox`](https://www.npmjs.com/package/@sinclair/typebox)
+- [`fastify`](https://www.npmjs.com/package/fastify)
+- [`fastify-swagger`](https://www.npmjs.com/package/fastify-swagger)
 
 Feel free to contribute to this project. Every contribution will be appreciated.
 
 ## Author
 
 - **Anthony Luzquiños** - _Initial Work_ - _Documentation_ - [AnthonyLzq](https://github.com/AnthonyLzq).
+
+## Contributors
+
+- **Andree Anchi** - _Bug reports_ - [andreewaD](https://github.com/andreewD).
