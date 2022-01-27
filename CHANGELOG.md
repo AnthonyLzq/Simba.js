@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/AnthonyLzq/simba.js/compare/v2.0.6...v2.1.0) (2022-01-27)
+
+
+### Features
+
+* added dotenv ([e29758f](https://github.com/AnthonyLzq/simba.js/commit/e29758f2b4604b0c20aa17a96248315225b95222))
+* isolated express folders (preparing simba for fastify support) ([cf38383](https://github.com/AnthonyLzq/simba.js/commit/cf383830edcb3fe7469ef0c7e189f240bd85dfec))
+* isolated express packages (preparing simba for fastify support) ([406535b](https://github.com/AnthonyLzq/simba.js/commit/406535b30b25da412873ac5924f486a9ff57ff46))
+* replacing express by a generic file name, api (preparing simba for fastify support) ([51cc0d9](https://github.com/AnthonyLzq/simba.js/commit/51cc0d9b10047d23937e21f9d55aeabc38d1bf4f))
+* simplifying files names ([782d07c](https://github.com/AnthonyLzq/simba.js/commit/782d07c7baec6ffa4790a2c99fda65fff70964d4))
+* some code improvements: modified user model, user endpoints, user dto, user queries and user schemas. Also the example packages where updated ([5ddbd28](https://github.com/AnthonyLzq/simba.js/commit/5ddbd2818235dc479573a064320afa741b8a6c81))
+
 ### [2.0.6](https://github.com/AnthonyLzq/simba.js/compare/v2.0.5...v2.0.6) (2022-01-26)
 
 

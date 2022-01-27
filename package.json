@@ -1,6 +1,6 @@
 {
   "name": "@anthonylzq/simba.js",
-  "version": "2.0.6",
+  "version": "2.1.0",
   "description": "set up a modern backend app by running one command",
   "main": "lib/index.js",
   "directories": {
