@@ -237,6 +237,8 @@ Regardless of the option chosen, a new folder will be generated with the name of
 📜yarn.lock (or package-lock.json)
 ```
 
+If you want to check the content of the files, please check the [example](https://github.com/AnthonyLzq/simba.js/tree/master/example) folder, there you will an example for both, Express and Fastify.
+
 ### Some considerations
 
 - This project was based in other project from my own, [`typescript-project-generator`](https://www.npmjs.com/package/typescript-project-generator), but only considering the `express-mongoose` part.
