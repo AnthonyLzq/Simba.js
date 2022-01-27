@@ -30,12 +30,6 @@ npm i -g @anthonylzq/simba.js
 
 ## Usage
 
-<!-- Also, if you don't want to install it globally, you can use npx as follows:
-
-```bash
-npx simba.js
-``` -->
-
 As developer you have two main options to create your new project, one is by running:
 
 ```bash
