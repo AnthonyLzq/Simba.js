@@ -1,9 +1,10 @@
-import { UserModel } from '../models'
+import { UserModel } from '..'
 
 const store = async (userData: DtoUser): Promise<IUser> => {
   const user = new UserModel(userData)
+  await user.save()
 
-  return await user.save()
+  return user.toJSON()
 }
 
 const remove = async (
@@ -17,15 +18,22 @@ const remove = async (
 const get = async (
   id: string | null = null
 ): Promise<IUser[] | IUser | null> => {
-  if (id) return await UserModel.findById(id)
+  if (id) {
+    const user = await UserModel.findById(id)
 
-  return await UserModel.find({})
+    return user ? user.toJSON() : null
+  }
+
+  const users = await UserModel.find({})
+
+  return users.map(u => u.toJSON())
 }
 
 const update = async (userData: DtoUser): Promise<IUser | null> => {
   const { id, ...rest } = userData
+  const user = await UserModel.findByIdAndUpdate(id, rest, { new: true })
 
-  return await UserModel.findByIdAndUpdate(id, rest, { new: true })
+  return user ? user.toJSON() : null
 }
 
 export { store, remove, get, update }

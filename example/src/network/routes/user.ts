@@ -4,7 +4,7 @@ import { ValidationError } from 'joi'
 
 import { response } from 'network/response'
 import { UserService } from 'services/user'
-import { idSchema, userSchema } from './schemas'
+import { idSchema, userSchema, storeUserSchema } from './schemas'
 
 const User = Router()
 
@@ -18,12 +18,16 @@ User.route('/users')
       const {
         body: { args }
       } = req
-      const us = new UserService(args as DtoUser)
 
       try {
+        await storeUserSchema.validateAsync(args)
+        const us = new UserService(args)
         const result = await us.process({ type: 'store' })
         response({ error: false, message: result, res, status: 201 })
       } catch (e) {
+        if (e instanceof ValidationError)
+          return next(new httpErrors.UnprocessableEntity(e.message))
+
         next(e)
       }
     }
@@ -74,7 +78,7 @@ User.route('/user/:id')
 
       try {
         await idSchema.validateAsync(id)
-        const us = new UserService({ id } as DtoUser)
+        const us = new UserService({ id })
         const result = await us.process({ type: 'getOne' })
         response({ error: false, message: result, res, status: 200 })
       } catch (e) {
@@ -95,7 +99,7 @@ User.route('/user/:id')
         body: { args },
         params: { id }
       } = req
-      const user: DtoUser = {
+      const user = {
         id,
         ...args
       }
@@ -125,7 +129,7 @@ User.route('/user/:id')
 
       try {
         await idSchema.validateAsync(id)
-        const us = new UserService({ id } as DtoUser)
+        const us = new UserService({ id })
         const result = await us.process({ type: 'delete' })
         response({ error: false, message: result, res, status: 200 })
       } catch (e) {

@@ -1,5 +1,5 @@
 interface IUser {
-  _id: import('mongoose').Types.ObjectId
+  id: string
   name: string
   lastName: string
   updatedAt: Date

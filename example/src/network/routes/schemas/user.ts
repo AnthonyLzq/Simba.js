@@ -6,4 +6,9 @@ const userSchema = Joi.object().keys({
   name: Joi.string().required()
 })
 
-export { userSchema }
+const storeUserSchema = Joi.object().keys({
+  lastName: Joi.string().required(),
+  name: Joi.string().required()
+})
+
+export { userSchema, storeUserSchema }

@@ -8,9 +8,9 @@ type Process = {
 }
 
 class UserService {
-  private _args: DtoUser | null
+  private _args: Partial<DtoUser> | null
 
-  constructor(args: DtoUser | null = null) {
+  constructor(args: Partial<DtoUser> | null = null) {
     this._args = args
   }
 
