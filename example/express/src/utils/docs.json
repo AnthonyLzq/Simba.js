@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "example",
+    "title": "example/express",
     "description": "Documentation of the test",
     "contact": {
       "email": "sluzquinosa@uni.pe"
@@ -10,12 +10,12 @@
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
     },
-    "version": "0.1.0"
+    "version": "undefined"
   },
   "servers": [
     {
       "url": "http://localhost:1996/api",
-      "description": "example local API"
+      "description": "example/express local API"
     }
   ],
   "tags": [
