@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.1](https://github.com/AnthonyLzq/simba.js/compare/v3.0.0...v3.0.1) (2022-01-28)
+
+
+### Bug Fixes
+
+* question for express or fastify ([5c9fab7](https://github.com/AnthonyLzq/simba.js/commit/5c9fab7c6fea2aae5d713c41537966684a17997f))
+
 ## [3.0.0](https://github.com/AnthonyLzq/simba.js/compare/v2.1.1...v3.0.0) (2022-01-27)
 
 
