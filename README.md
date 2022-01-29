@@ -282,7 +282,7 @@ If you want to check the content of the files, please check the [example](https:
 
 ## What is new?
 
-Please check the [`changelog.md`](https://github.com/AnthonyLzq/simba.js/blob/master/CHANGELOG.md) file.
+Please check the [`changelog.md`](https://github.com/AnthonyLzq/simba.js/blob/master/CHANGELOG.md) file. Also, if you want to check what is coming, check the [road map](https://simbajs.notion.site/simbajs/783092dc7d444067b4c56a25d671f658?v=31060f3d17524ca58870e86c2960a6df). 
 
 ## <a name="notes"></a>Notes
 
