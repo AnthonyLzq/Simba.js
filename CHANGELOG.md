@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.0](https://github.com/AnthonyLzq/simba.js/compare/v3.0.1...v3.1.0) (2022-01-29)
+
+
+### Features
+
+* added road map to docs ([6f00b1a](https://github.com/AnthonyLzq/simba.js/commit/6f00b1a5d70518fe5937ecfe4df326576dd855a0))
+
 ### [3.0.1](https://github.com/AnthonyLzq/simba.js/compare/v3.0.0...v3.0.1) (2022-01-28)
 
 
