@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.0](https://github.com/AnthonyLzq/simba.js/compare/v3.1.0...v3.2.0) (2022-02-13)
+
+
+### Features
+
+* added new badgets ([969f9c7](https://github.com/AnthonyLzq/simba.js/commit/969f9c74d80ae7174bf0fae63f3dd4a71feb3f88))
+* contributing guidelines ([2b98fa5](https://github.com/AnthonyLzq/simba.js/commit/2b98fa567378ad6da4321ac2594b4cb1a008b922))
+
+
+### Bug Fixes
+
+* fastify docs ([e0e5518](https://github.com/AnthonyLzq/simba.js/commit/e0e5518daae8f5c862cdf90d96a73f13a551a00d))
+
 ## [3.1.0](https://github.com/AnthonyLzq/simba.js/compare/v3.0.1...v3.1.0) (2022-01-29)
 
 
