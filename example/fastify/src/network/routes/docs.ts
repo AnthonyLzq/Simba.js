@@ -35,4 +35,3 @@ const Docs = (app: FastifyInstance, prefix = '/api'): void => {
 }
 
 export { Docs }
-        
