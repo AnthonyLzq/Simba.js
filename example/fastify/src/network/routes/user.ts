@@ -1,28 +1,35 @@
 import { FastifyInstance } from 'fastify'
+import { Type } from '@sinclair/typebox'
 
 import { response } from 'network/response'
-import { userSchema, idSchema, storeUserSchema } from './schemas'
+import {
+  userDto,
+  idSchema,
+  IdSchema,
+  storeUserSchema,
+  StoreUser
+} from 'schemas'
 import { UserService } from 'services'
+import { validatorCompiler } from './utils'
 
 const User = (app: FastifyInstance, prefix = '/api'): void => {
   app
-    .post<{ Body: { args: Omit<DtoUser, 'id'> } }>(
+    .post<{ Body: StoreUser }>(
       `${prefix}/users`,
       {
         schema: {
-          body: {
-            args: storeUserSchema
-          },
+          body: storeUserSchema,
           response: {
             200: {
               error: {
                 type: 'boolean'
               },
-              message: userSchema
+              message: userDto
             }
           },
           tags: ['user']
-        }
+        },
+        validatorCompiler
       },
       async (request, reply) => {
         const {
@@ -30,14 +37,16 @@ const User = (app: FastifyInstance, prefix = '/api'): void => {
             args: { lastName, name }
           }
         } = request
-        const us = new UserService({ lastName, name })
+        const us = new UserService({
+          userDtoWithoutId: { lastName, name }
+        })
         const user = await us.process({ type: 'store' })
 
         response({
           error: false,
           message: user,
           reply,
-          status: 200
+          status: 201
         })
       }
     )
@@ -50,10 +59,7 @@ const User = (app: FastifyInstance, prefix = '/api'): void => {
               error: {
                 type: 'boolean'
               },
-              message: {
-                type: 'array',
-                items: userSchema
-              }
+              message: Type.Array(userDto)
             }
           },
           tags: ['user']
@@ -100,23 +106,22 @@ const User = (app: FastifyInstance, prefix = '/api'): void => {
         })
       }
     )
-    .get<{ Params: { id: string } }>(
+    .get<{ Params: IdSchema }>(
       `${prefix}/user/:id`,
       {
         schema: {
-          params: {
-            id: idSchema
-          },
+          params: idSchema,
           response: {
             200: {
               error: {
                 type: 'boolean'
               },
-              message: userSchema
+              message: userDto
             }
           },
           tags: ['user']
-        }
+        },
+        validatorCompiler
       },
       async (request, reply) => {
         const {
@@ -133,22 +138,18 @@ const User = (app: FastifyInstance, prefix = '/api'): void => {
         })
       }
     )
-    .patch<{ Body: { args: Omit<DtoUser, 'id'> }; Params: { id: string } }>(
+    .patch<{ Body: StoreUser; Params: IdSchema }>(
       `${prefix}/user/:id`,
       {
         schema: {
-          body: {
-            args: userSchema
-          },
-          params: {
-            id: idSchema
-          },
+          body: storeUserSchema,
+          params: idSchema,
           response: {
             200: {
               error: {
                 type: 'boolean'
               },
-              message: userSchema
+              message: userDto
             }
           },
           tags: ['user']
@@ -161,7 +162,9 @@ const User = (app: FastifyInstance, prefix = '/api'): void => {
           },
           params: { id }
         } = request
-        const us = new UserService({ name, lastName, id })
+        const us = new UserService({
+          userDto: { name, lastName, id }
+        })
         const user = await us.process({ type: 'update' })
 
         response({
@@ -172,13 +175,11 @@ const User = (app: FastifyInstance, prefix = '/api'): void => {
         })
       }
     )
-    .delete<{ Params: { id: string } }>(
+    .delete<{ Params: IdSchema }>(
       `${prefix}/user/:id`,
       {
         schema: {
-          params: {
-            id: idSchema
-          },
+          params: idSchema,
           response: {
             200: {
               error: {

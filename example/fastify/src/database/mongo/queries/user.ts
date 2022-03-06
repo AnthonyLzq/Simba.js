@@ -1,39 +1,60 @@
-import { UserModel } from '..'
+import { Document, Types } from 'mongoose'
 
-const store = async (userData: DtoUser): Promise<IUser> => {
+import { UserModel } from '..'
+import { UserDTO } from 'schemas'
+
+const userDBOtoDTO = (
+  userDBO: Document<unknown, unknown, UserDBO> &
+    UserDBO & {
+      _id: Types.ObjectId
+    }
+): UserDTO => ({
+  ...userDBO.toObject(),
+  createdAt: userDBO.createdAt.toISOString(),
+  updatedAt: userDBO.updatedAt.toISOString()
+})
+
+const store = async (userData: UserDTO): Promise<UserDTO> => {
   const user = new UserModel(userData)
+
   await user.save()
 
-  return user.toJSON()
+  return userDBOtoDTO(user)
 }
 
 const remove = async (
   id: string | null = null
-): Promise<IUser | number | null> => {
-  if (id) return await UserModel.findByIdAndRemove(id)
+): Promise<UserDTO | number | null> => {
+  if (id) {
+    const removedUser = await UserModel.findByIdAndRemove(id)
+
+    if (!removedUser) return null
+
+    return userDBOtoDTO(removedUser)
+  }
 
   return (await UserModel.deleteMany({})).deletedCount
 }
 
 const get = async (
   id: string | null = null
-): Promise<IUser[] | IUser | null> => {
+): Promise<UserDTO[] | UserDTO | null> => {
   if (id) {
     const user = await UserModel.findById(id)
 
-    return user ? user.toJSON() : null
+    return user ? userDBOtoDTO(user) : null
   }
 
   const users = await UserModel.find({})
 
-  return users.map(u => u.toJSON())
+  return users.map(u => userDBOtoDTO(u))
 }
 
-const update = async (userData: DtoUser): Promise<IUser | null> => {
+const update = async (userData: UserDTO): Promise<UserDTO | null> => {
   const { id, ...rest } = userData
   const user = await UserModel.findByIdAndUpdate(id, rest, { new: true })
 
-  return user ? user.toJSON() : null
+  return user ? userDBOtoDTO(user) : null
 }
 
 export { store, remove, get, update }

@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose'
 
-const User = new Schema<IUser>(
+const UserSchema = new Schema<UserDBO>(
   {
     lastName: {
       required: true,
@@ -12,23 +12,17 @@ const User = new Schema<IUser>(
     }
   },
   {
-    timestamps: {
-      createdAt: false,
-      updatedAt: true
-    },
+    timestamps: true,
     versionKey: false,
-    toJSON: {
-      transform(_, ret) {
+    toObject: {
+      transform: (_, ret) => {
         ret.id = ret._id.toString()
-        ret.updatedAt = ret.updatedAt.toISOString()
         delete ret._id
-        delete ret.__v
-      },
-      virtuals: true
+      }
     }
   }
 )
 
-const UserModel = model<IUser>('users', User)
+const UserModel = model<UserDBO>('users', UserSchema)
 
 export { UserModel }

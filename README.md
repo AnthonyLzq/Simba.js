@@ -271,7 +271,7 @@ If you want to check the content of the files, please check the [example](https:
 
 - The provided project structure is inspired in my personal experience as [`Node.js`](https://nodejs.org/en/) developer and the [`Nest`](https://nestjs.com/) framework. It follows a layered architecture:
 
-  1. Presentation layer (network layer): it is represented by the network folder, which contains the routes and the necessary schemas for each route.
+  1. Presentation layer (network layer): it is represented by the network and schemas folders, which contains the routes and the schemas necessary for each route.
   2. Business layer (services layer): it is represented by the services folder, which contains all the code related to the business logic of your application.
   3. Persistance layer (database layer): it is represented by the database folder, which contains the database connection, models and queries (that will be used by the services). Multiple database connection are possible and should be implemented here.
 
@@ -284,7 +284,14 @@ If you want to check the content of the files, please check the [example](https:
 
 ## What is new?
 
-Please check the [`changelog.md`](https://github.com/AnthonyLzq/simba.js/blob/master/CHANGELOG.md) file. Also, if you want to check what is coming, check the [road map](https://simbajs.notion.site/simbajs/783092dc7d444067b4c56a25d671f658?v=31060f3d17524ca58870e86c2960a6df). 
+Please check the [`changelog.md`](https://github.com/AnthonyLzq/simba.js/blob/master/CHANGELOG.md) file. Also, if you want to check what is coming, check the [road map](https://simbajs.notion.site/simbajs/783092dc7d444067b4c56a25d671f658?v=31060f3d17524ca58870e86c2960a6df).
+
+### Version 4.x.x
+
+In this major version I would be focusing on adding new possible configurations according to the road map. The major changes of this version will be described here:
+
+- Replaced [`joi`](https://www.npmjs.com/package/joi) in favor of [`ajv`](https://www.npmjs.com/package/ajv) + [`@sinclair/typebox`](https://www.npmjs.com/package/@sinclair/typebox) in the Express case. [Why did I do this?](https://simbajs.notion.site/TypeBox-support-for-Express-f4e3cf8dd06f4c7ba4d8e4051a52688c)
+- Using more descriptive nouns, now every database object is represented with a DBO at the end, like: _UserDBO_. Also the objects that are sent and received will have a DTO at the end, like: _UserDTO_.
 
 ## <a name="notes"></a>Notes
 
@@ -314,6 +321,8 @@ Here is the list of the packages that are being installed, as `devDependencies`:
 
 As `dependencies`:
 
+- [`@sinclair/typebox`](https://www.npmjs.com/package/@sinclair/typebox)
+- [`ajv`](https://www.npmjs.com/package/ajv)
 - [`http-errors`](https://www.npmjs.com/package/http-errors)
 - [`mongoose`](https://mongoosejs.com/)
 
@@ -328,7 +337,6 @@ As `devDependencies`:
 As `dependencies`:
 
 - [`express`](https://expressjs.com/)
-- [`joi`](https://joi.dev/api/?v=17.4.2)
 - [`morgan`](https://www.npmjs.com/package/morgan)
 - [`swagger-ui-express`](https://www.npmjs.com/package/swagger-ui-express)
 
@@ -336,7 +344,6 @@ As `dependencies`:
 
 As `dependencies`:
 
-- [`@sinclair/typebox`](https://www.npmjs.com/package/@sinclair/typebox)
 - [`fastify`](https://www.npmjs.com/package/fastify)
 - [`fastify-swagger`](https://www.npmjs.com/package/fastify-swagger)
 
