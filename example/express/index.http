@@ -16,10 +16,10 @@ GET http://localhost:1996/api/users
 DELETE http://localhost:1996/api/users
 
 ### Testing getOne user
-GET http://localhost:1996/api/user/622545884323007959a35dfc
+GET http://localhost:1996/api/user/60e7e3b93b01c1a7aa74cd6b
 
 ### Testing update user
-PATCH http://localhost:1996/api/user/622545884323007959a35dfc
+PATCH http://localhost:1996/api/user/60e7e3b93b01c1a7aa74cd6b
 Content-Type: application/json
 
 {
@@ -30,4 +30,4 @@ Content-Type: application/json
 }
 
 ### Testing delete user
-DELETE http://localhost:1996/api/user/622545884323007959a35dfc
+DELETE http://localhost:1996/api/user/60e7e3b93b01c1a7aa74cd6b
