@@ -17,7 +17,8 @@
     "@sinclair/typebox": "^0.23.4",
     "ajv": "^6",
     "fastify": "^3.27.2",
-    "fastify-swagger": "^4.17.0",
+    "fastify-cors": "^6.0.3",
+    "fastify-swagger": "^4.17.1",
     "http-errors": "^2.0.0",
     "mongoose": "^6.2.4"
   },

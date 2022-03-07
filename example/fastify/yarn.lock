@@ -1640,6 +1640,14 @@ fastest-levenshtein@^1.0.12:
   resolved "https://registry.yarnpkg.com/fastest-levenshtein/-/fastest-levenshtein-1.0.12.tgz#9990f7d3a88cc5a9ffd1f1745745251700d497e2"
   integrity sha512-On2N+BpYJ15xIC974QNVuYGMOlEVt4s0EOI3wwMqOmK1fdDY+FN/zltPV8vosq4ad4c/gJ1KHScUn/6AWIgiow==
 
+fastify-cors@^6.0.3:
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/fastify-cors/-/fastify-cors-6.0.3.tgz#1907f92c3f855a18ef6fb6213186c73cf0bbf9e4"
+  integrity sha512-fMbXubKKyBHHCfSBtsCi3+7VyVRdhJQmGes5gM+eGKkRErCdm0NaYO0ozd31BQBL1ycoTIjbqOZhJo4RTF/Vlg==
+  dependencies:
+    fastify-plugin "^3.0.0"
+    vary "^1.1.2"
+
 fastify-error@^0.3.0:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/fastify-error/-/fastify-error-0.3.1.tgz#8eb993e15e3cf57f0357fc452af9290f1c1278d2"
@@ -1663,10 +1671,10 @@ fastify-static@^4.0.0:
     readable-stream "^3.4.0"
     send "^0.17.1"
 
-fastify-swagger@^4.17.0:
-  version "4.17.0"
-  resolved "https://registry.yarnpkg.com/fastify-swagger/-/fastify-swagger-4.17.0.tgz#4f7f24102175dd766e77d3dc00e040d8b465de3b"
-  integrity sha512-xXngJ3FXZ6IOjRbSscSVnV9Cb9AlIQTwSzOi/CBkaCsurYFMivb1Y8/O/DSZIHpJg0BXJeqcC0QyKhXMEVbpBA==
+fastify-swagger@^4.17.1:
+  version "4.17.1"
+  resolved "https://registry.yarnpkg.com/fastify-swagger/-/fastify-swagger-4.17.1.tgz#bf256a53ed8974a17e25eaa3b98d14362b72c023"
+  integrity sha512-VUo8W7C+YIw/e+YbNTc15Nhl5xa9MpRMPFDKkRgwvgh0cn1mvGgT34sk77mlDclKwiEO471ayW+EFSL0OYXE1A==
   dependencies:
     fastify-plugin "^3.0.0"
     fastify-static "^4.0.0"
@@ -4016,6 +4024,11 @@ validate-npm-package-license@^3.0.1:
   dependencies:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
+
+vary@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
+  integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
 
 watchpack@^2.3.1:
   version "2.3.1"
