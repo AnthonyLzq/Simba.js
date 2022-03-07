@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.2.0](https://github.com/AnthonyLzq/simba.js/compare/v4.1.0...v4.2.0) (2022-03-07)
+
+
+### Features
+
+* udpated docs ([e63b361](https://github.com/AnthonyLzq/simba.js/commit/e63b361198b1cbde7e3472ddf3913d78f1b5d5c8))
+
 ## [4.1.0](https://github.com/AnthonyLzq/simba.js/compare/v4.0.0...v4.1.0) (2022-03-07)
 
 
