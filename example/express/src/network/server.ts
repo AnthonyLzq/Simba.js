@@ -1,6 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import morgan from 'morgan'
+import cors from 'cors'
 
 import { applyRoutes } from './router'
 
@@ -16,7 +17,7 @@ class Server {
   }
 
   private _config() {
-    this._app.set('port', PORT)
+    this._app.use(cors())
     this._app.use(morgan('dev'))
     this._app.use(express.json())
     this._app.use(express.urlencoded({ extended: false }))
