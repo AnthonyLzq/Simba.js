@@ -1,41 +1,53 @@
 import httpErrors from 'http-errors'
 
 import { store, remove, get, update } from 'database'
+import { UserDTO } from 'schemas'
 import { EFU, MFU, GE, errorHandling } from './utils'
 
 type Process = {
   type: 'store' | 'getAll' | 'deleteAll' | 'getOne' | 'update' | 'delete'
 }
 
-class UserService {
-  private _args: Partial<DtoUser> | null
+type Arguments = {
+  id?: string
+  userDto?: UserDTO
+  userDtoWithoutId?: Omit<UserDTO, 'id'>
+}
 
-  constructor(args: Partial<DtoUser> | null = null) {
-    this._args = args
+class UserService {
+  #args: Arguments
+
+  constructor(args: Arguments = {}) {
+    this.#args = args
   }
 
-  public process({ type }: Process): Promise<string | IUser[] | IUser> {
+  public process({ type }: Process): Promise<string | UserDTO | UserDTO[]> {
     switch (type) {
       case 'store':
-        return this._store()
+        return this.#store()
       case 'getAll':
-        return this._getAll()
+        return this.#getAll()
       case 'deleteAll':
-        return this._deleteAll()
+        return this.#deleteAll()
       case 'getOne':
-        return this._getOne()
+        return this.#getOne()
       case 'update':
-        return this._update()
+        return this.#update()
       case 'delete':
-        return this._delete()
+        return this.#delete()
       default:
         throw new httpErrors.InternalServerError(GE.INTERNAL_SERVER_ERROR)
     }
   }
 
-  private async _store(): Promise<IUser> {
+  async #store(): Promise<UserDTO> {
     try {
-      const result = await store(this._args as DtoUser)
+      if (!this.#args.userDtoWithoutId)
+        throw new httpErrors.UnprocessableEntity(GE.INTERNAL_SERVER_ERROR)
+
+      const result = await store({
+        ...this.#args.userDtoWithoutId
+      })
 
       return result
     } catch (e) {
@@ -43,9 +55,9 @@ class UserService {
     }
   }
 
-  private async _getAll(): Promise<IUser[]> {
+  async #getAll(): Promise<UserDTO[]> {
     try {
-      const users = (await get()) as IUser[]
+      const users = (await get()) as UserDTO[]
 
       return users
     } catch (e) {
@@ -53,7 +65,7 @@ class UserService {
     }
   }
 
-  private async _deleteAll(): Promise<string> {
+  async #deleteAll(): Promise<string> {
     try {
       const usersDeleted = (await remove()) as number
 
@@ -68,11 +80,13 @@ class UserService {
     }
   }
 
-  private async _getOne(): Promise<IUser> {
-    const { id } = this._args as DtoUser
-
+  async #getOne(): Promise<UserDTO> {
     try {
-      const user = (await get(id as string)) as IUser | null
+      if (!this.#args.id)
+        throw new httpErrors.UnprocessableEntity(GE.INTERNAL_SERVER_ERROR)
+
+      const { id } = this.#args
+      const user = (await get(id)) as UserDTO | null
 
       if (!user) throw new httpErrors.NotFound(EFU.NOT_FOUND)
 
@@ -82,9 +96,12 @@ class UserService {
     }
   }
 
-  private async _update(): Promise<IUser> {
+  async #update(): Promise<UserDTO> {
     try {
-      const updatedUser = await update(this._args as DtoUser)
+      if (!this.#args.userDto || !this.#args.userDto.id)
+        throw new httpErrors.UnprocessableEntity(GE.INTERNAL_SERVER_ERROR)
+
+      const updatedUser = await update(this.#args.userDto)
 
       if (!updatedUser) throw new httpErrors.NotFound(EFU.NOT_FOUND)
 
@@ -94,10 +111,12 @@ class UserService {
     }
   }
 
-  private async _delete(): Promise<string> {
-    const { id } = this._args as DtoUser
-
+  async #delete(): Promise<string> {
     try {
+      if (!this.#args.id)
+        throw new httpErrors.UnprocessableEntity(GE.INTERNAL_SERVER_ERROR)
+
+      const { id } = this.#args
       const deletedUser = await remove(id)
 
       if (!deletedUser) throw new httpErrors.NotFound(EFU.NOT_FOUND)
