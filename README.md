@@ -136,9 +136,8 @@ Regardless of the option chosen, a new folder will be generated with the name of
  ┃ ┗ 📜index.ts
  ┣ 📂network
  ┃ ┣ 📂routes
- ┃ ┃ ┣ 📂schemas
- ┃ ┃ ┃ ┣ 📜index.ts
- ┃ ┃ ┃ ┗ 📜user.ts
+ ┃ ┃ ┣ 📂utils
+ ┃ ┃ ┃ ┗ 📜docs.ts
  ┃ ┃ ┣ 📜home.ts
  ┃ ┃ ┣ 📜index.ts
  ┃ ┃ ┗ 📜user.ts
@@ -146,6 +145,9 @@ Regardless of the option chosen, a new folder will be generated with the name of
  ┃ ┣ 📜response.ts
  ┃ ┣ 📜routes.ts
  ┃ ┗ 📜server.ts
+ ┣ 📂schemas
+ ┃ ┣ 📜index.ts
+ ┃ ┗ 📜user.ts
  ┣ 📂services
  ┃ ┣ 📂utils
  ┃ ┃ ┣ 📂messages
@@ -183,8 +185,6 @@ Regardless of the option chosen, a new folder will be generated with the name of
 📂node_modules
 📂src
  ┣ 📂@types
- ┃ ┣ 📂dto
- ┃ ┃ ┗ 📜user.d.ts
  ┃ ┣ 📂models
  ┃ ┃ ┗ 📜user.d.ts
  ┃ ┗ 📜index.d.ts
@@ -200,9 +200,8 @@ Regardless of the option chosen, a new folder will be generated with the name of
  ┃ ┗ 📜index.ts
  ┣ 📂network
  ┃ ┣ 📂routes
- ┃ ┃ ┣ 📂schemas
- ┃ ┃ ┃ ┣ 📜index.ts
- ┃ ┃ ┃ ┗ 📜user.ts
+ ┃ ┃ ┣ 📂utils
+ ┃ ┃ ┃ ┗ 📜docs.ts
  ┃ ┃ ┣ 📜docs.ts
  ┃ ┃ ┣ 📜home.ts
  ┃ ┃ ┣ 📜index.ts
@@ -211,6 +210,9 @@ Regardless of the option chosen, a new folder will be generated with the name of
  ┃ ┣ 📜response.ts
  ┃ ┣ 📜routes.ts
  ┃ ┗ 📜server.ts
+ ┣ 📂schemas
+ ┃ ┣ 📜index.ts
+ ┃ ┗ 📜user.ts
  ┣ 📂services
  ┃ ┣ 📂utils
  ┃ ┃ ┣ 📂messages
@@ -331,12 +333,14 @@ As `dependencies`:
 As `devDependencies`:
 
 - [`@types/express`](https://www.npmjs.com/package/@types/express)
+- [`@types/cors`](https://www.npmjs.com/package/@types/cors)
 - [`@types/morgan`](https://www.npmjs.com/package/@types/morgan)
 - [`@types/swagger-ui-express`](https://www.npmjs.com/package/@types/swagger-ui-express)
 
 As `dependencies`:
 
-- [`express`](https://expressjs.com/)
+- [`cors`](https://www.npmjs.com/package/cors)
+- [`express`](https://www.npmjs.com/package/express)
 - [`morgan`](https://www.npmjs.com/package/morgan)
 - [`swagger-ui-express`](https://www.npmjs.com/package/swagger-ui-express)
 
@@ -345,6 +349,7 @@ As `dependencies`:
 As `dependencies`:
 
 - [`fastify`](https://www.npmjs.com/package/fastify)
+- [`fastify-cors`](https://www.npmjs.com/package/fastify-cors)
 - [`fastify-swagger`](https://www.npmjs.com/package/fastify-swagger)
 
 Feel free to contribute to this project. Every contribution will be appreciated.
