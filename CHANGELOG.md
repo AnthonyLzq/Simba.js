@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.1.0](https://github.com/AnthonyLzq/simba.js/compare/v4.0.0...v4.1.0) (2022-03-07)
+
+
+### Features
+
+* added cors to express ([cfd78b1](https://github.com/AnthonyLzq/simba.js/commit/cfd78b1658601d36ab8e9cbb7c0484a4676dff49))
+* implemented cors in fastify ([3e582ac](https://github.com/AnthonyLzq/simba.js/commit/3e582ac02bbbd18b72928286f57638a131ba5812))
+* updated private fields in express ([73929a1](https://github.com/AnthonyLzq/simba.js/commit/73929a18d9aae58e62b476aae5b25ffbea0fa9de))
+* updated private fields in fastify ([efea85b](https://github.com/AnthonyLzq/simba.js/commit/efea85b6c04e48c8aae1a89ab3be9cba725d3401))
+
 ## [4.0.0](https://github.com/AnthonyLzq/simba.js/compare/v3.2.0...v4.0.0) (2022-03-07)
 
 
