@@ -33,7 +33,7 @@
         "summary": "Save a user in the database",
         "operationId": "store",
         "requestBody": {
-          "$ref": "#/components/requestBodies/DtoUser"
+          "$ref": "#/components/requestBodies/UserDTO"
         },
         "responses": {
           "201": {
@@ -227,7 +227,7 @@
           }
         ],
         "requestBody": {
-          "$ref": "#/components/requestBodies/DtoUser"
+          "$ref": "#/components/requestBodies/UserDTO"
         },
         "responses": {
           "200": {
@@ -388,7 +388,7 @@
       }
     },
     "requestBodies": {
-      "DtoUser": {
+      "UserDTO": {
         "description": "User name and last name",
         "content": {
           "application/json": {
