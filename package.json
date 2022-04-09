@@ -41,16 +41,18 @@
     "colors": "^1.4.0",
     "readline-sync": "^1.4.10",
     "underscore": "^1.13.2",
-    "yargs": "^17.3.1"
+    "yargs": "^17.4.1"
   },
   "devDependencies": {
     "dotenv": "^16.0.0",
-    "eslint": "^8.10.0",
+    "eslint": "^8.13.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "prettier": "^2.6.2",
     "standard-version": "^9.3.2"
   },
   "repository": {
