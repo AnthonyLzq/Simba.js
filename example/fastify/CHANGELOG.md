@@ -1,1 +1,1 @@
-# Example/fastify 
+# Example/fastify
