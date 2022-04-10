@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.3.1](https://github.com/AnthonyLzq/simba.js/compare/v4.3.0...v4.3.1) (2022-04-10)
+
+
+### Features
+
+* added version script ([a7c7ae3](https://github.com/AnthonyLzq/simba.js/commit/a7c7ae3e50e784cc45f4e69ba998fc27dacc1c28))
+
+
+### Bug Fixes
+
+* stopping the server when a request failed ([bf3eef3](https://github.com/AnthonyLzq/simba.js/commit/bf3eef386193e92f6d394194534e926fdba03bc6))
+* updated changelog ([535cef8](https://github.com/AnthonyLzq/simba.js/commit/535cef8cdd293d9820d09a523a05f7a5d255ad82))
+
 ### [4.3.0](https://github.com/AnthonyLzq/simba.js/compare/v4.2.0...v4.3.0) (2022-04-10)
 
 ### Features
