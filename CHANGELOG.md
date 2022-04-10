@@ -2,12 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.3.0](https://github.com/AnthonyLzq/simba.js/compare/v4.2.0...v4.3.0) (2022-04-10)
+
+### Features
+
+* updated packages ([3a160f0](https://github.com/AnthonyLzq/simba.js/commit/3a160f0da353d101e42754d6031e85c0677c392a))
+* improved validator schema ([a76a6a8](https://github.com/AnthonyLzq/simba.js/commit/a76a6a8d030583fe96c5b2056af6ddafc578fd70))
+* implemented pino-pretty ([0af8b2e](https://github.com/AnthonyLzq/simba.js/commit/0af8b2edef6bd1f40642684fae11f987bbfa166f))
+
+### Bug Fixes
+
+* title case bug ([a34dcec](https://github.com/AnthonyLzq/simba.js/commit/a34dcec1ada0567618090128b5bf6a4b90763d1c))
+
 ## [4.2.0](https://github.com/AnthonyLzq/simba.js/compare/v4.1.0...v4.2.0) (2022-03-07)
 
 
 ### Features
 
-* udpated docs ([e63b361](https://github.com/AnthonyLzq/simba.js/commit/e63b361198b1cbde7e3472ddf3913d78f1b5d5c8))
+* updated docs ([e63b361](https://github.com/AnthonyLzq/simba.js/commit/e63b361198b1cbde7e3472ddf3913d78f1b5d5c8))
 
 ## [4.1.0](https://github.com/AnthonyLzq/simba.js/compare/v4.0.0...v4.1.0) (2022-03-07)
 
