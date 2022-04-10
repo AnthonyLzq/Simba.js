@@ -1,7 +1,8 @@
-import Fastify, { FastifyInstance } from 'fastify'
+import fastify, { FastifyInstance } from 'fastify'
 import mongoose from 'mongoose'
 
 import { applyRoutes } from './router'
+import { validatorCompiler } from './utils'
 
 const PORT = process.env.PORT ?? '1996'
 
@@ -10,7 +11,7 @@ class Server {
   #connection: mongoose.Connection | undefined
 
   constructor() {
-    this.#app = Fastify({ logger: true })
+    this.#app = fastify({ logger: { prettyPrint: true } })
     this.#config()
   }
 
@@ -25,6 +26,7 @@ class Server {
       )
       done()
     })
+    this.#app.setValidatorCompiler(validatorCompiler)
     applyRoutes(this.#app)
   }
 
