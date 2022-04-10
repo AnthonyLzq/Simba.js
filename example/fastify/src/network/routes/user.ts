@@ -10,7 +10,6 @@ import {
   StoreUser
 } from 'schemas'
 import { UserService } from 'services'
-import { validatorCompiler } from './utils'
 
 const User = (app: FastifyInstance, prefix = '/api'): void => {
   app
@@ -28,8 +27,7 @@ const User = (app: FastifyInstance, prefix = '/api'): void => {
             }
           },
           tags: ['user']
-        },
-        validatorCompiler
+        }
       },
       async (request, reply) => {
         const {
@@ -120,8 +118,7 @@ const User = (app: FastifyInstance, prefix = '/api'): void => {
             }
           },
           tags: ['user']
-        },
-        validatorCompiler
+        }
       },
       async (request, reply) => {
         const {
