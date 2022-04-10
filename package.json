@@ -19,7 +19,8 @@
     "rm-fastify": "if [ -d \"example/fastify\" ]; then rm -rf example/fastify; fi",
     "rm-git-express": "if [ -d \"example/express/.git\" ]; then rm -rf example/express/.git; fi",
     "rm-git-fastify": "if [ -d \"example/fastify/.git\" ]; then rm -rf example/fastify/.git; fi",
-    "cd-mv-example": "if [ ! -d \"example\" ]; then mkdir example && cd example; fi"
+    "cd-mv-example": "if [ ! -d \"example\" ]; then mkdir example && cd example; fi",
+    "version": "npm run release && git add CHANGELOG.md"
   },
   "bin": {
     "simba": "./bin/index.js"
