@@ -66,5 +66,12 @@
   "files": [
     "lib",
     "bin"
-  ]
+  ],
+  "standard-version": {
+    "skip": {
+      "tag": true,
+      "commit": true,
+      "bump": true
+    }
+  }
 }
