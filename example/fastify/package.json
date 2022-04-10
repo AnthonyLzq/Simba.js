@@ -20,7 +20,8 @@
     "fastify-cors": "^6.0.3",
     "fastify-swagger": "^5.1.0",
     "http-errors": "^2.0.0",
-    "mongoose": "^6.2.10"
+    "mongoose": "^6.2.10",
+    "pino-pretty": "^7.6.1"
   },
   "devDependencies": {
     "@types/http-errors": "^1.8.2",

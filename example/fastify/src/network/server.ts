@@ -1,4 +1,4 @@
-import Fastify, { FastifyInstance } from 'fastify'
+import fastify, { FastifyInstance } from 'fastify'
 import mongoose from 'mongoose'
 
 import { applyRoutes } from './router'
@@ -11,7 +11,7 @@ class Server {
   #connection: mongoose.Connection | undefined
 
   constructor() {
-    this.#app = Fastify({ logger: true })
+    this.#app = fastify({ logger: { prettyPrint: true } })
     this.#config()
   }
 
