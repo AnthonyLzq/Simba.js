@@ -7,7 +7,6 @@ import { Home, User } from './routes'
 import { docs } from 'utils'
 
 const routers = [User]
-
 const applyRoutes = (app: Application): void => {
   app.use('/', Home)
   app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(docs))
