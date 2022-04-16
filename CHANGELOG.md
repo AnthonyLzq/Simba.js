@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.4.0](https://github.com/AnthonyLzq/simba.js/compare/v4.3.1...v4.4.0) (2022-04-16)
+
+
+### Features
+
+* isolated the data layer creation logic and updated packages ([082ced1](https://github.com/AnthonyLzq/simba.js/commit/082ced1de71dad55d684ca35366d5f6f9c338687))
+* isolated the network layer creation logic ([607ff06](https://github.com/AnthonyLzq/simba.js/commit/607ff0654e0db9f31c337dbd527ae162548c491b))
+* isolated the schemas creation logic ([4150c5e](https://github.com/AnthonyLzq/simba.js/commit/4150c5ecabae3b661827758e4802d5dc65ac81c0))
+* isolated the service layer creation logic ([fd1a910](https://github.com/AnthonyLzq/simba.js/commit/fd1a910707f32cd8f39043476ef40717338d7b89))
+* isolated the types creation logic ([09a655f](https://github.com/AnthonyLzq/simba.js/commit/09a655f150098e295c78822e7cdbe7a9dbb7217d))
+* isolated utils creation logic ([876e9e6](https://github.com/AnthonyLzq/simba.js/commit/876e9e64ce4cc51c27d4e96ed76312b3248f579f))
+
+
+### Bug Fixes
+
+* isolated mongo database logic to its own function ([4e832a4](https://github.com/AnthonyLzq/simba.js/commit/4e832a40a28a55b7e474f3cf673281b5cbcc9146))
+
 ### [4.3.1](https://github.com/AnthonyLzq/simba.js/compare/v4.3.0...v4.3.1) (2022-04-10)
 
 
