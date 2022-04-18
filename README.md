@@ -97,10 +97,16 @@ As default, `yarn` is selected as package manager, but if you don't want to use 
 simba -N myProject -D 'This is a test' -l mit -a myName -e myEmail@email.com -H -n
 ```
 
-And what if I want to use Fastify instead Express? Well, you only have to pass the `-F` flag:
+What if I want to use Fastify instead Express? Well, you only have to pass the `-F` flag:
 
 ```bash
 simba -N myProject -D 'This is a test' -l mit -a myName -e myEmail@email.com -H -F
+```
+
+And how can I use GraphQL? Well, you only have to pass the `-g` flag:
+
+```bash
+simba -N myProject -D 'This is a test' -l mit -a myName -e myEmail@email.com -H -F -g
 ```
 
 Finally, you may not want to use a license or one of the available licenses, don't worry, just don't pass the flag `-l` neither `--license` as follows:
@@ -108,6 +114,10 @@ Finally, you may not want to use a license or one of the available licenses, don
 ```bash
 simba -N myProject -D 'This is a test' -a myName -e myEmail@email.com -H
 ```
+
+#### Why didn't you use [`TypeGraphQL`](https://typegraphql.com/)?
+
+[They don't support GraphQL v16.x.x](https://github.com/MichalLytek/type-graphql/issues/1100), until then.
 
 ## <a name="project-structure"></a>Project structure
 
@@ -385,13 +395,14 @@ Regardless of the option chosen, a new folder will be generated with the name of
 📜tsconfig.json
 📜webpack.config.js
 📜yarn.lock (or package-lock.json)
-
+```
 
 If you want to check the content of the files, please check the [example](https://github.com/AnthonyLzq/simba.js/tree/master/example) folder, there you will an example for both, Express and Fastify.
 
 ### Some considerations
 
 - You are able to run a server that has one main route, `home` (`/`), `user` (`api/user` or `api/user/:id`) and `docs` (`api/docs`), in case you are not using GraphQL.
+- In case you are using GraphQL, there are 4 mutations (`storeUser`, `updateUser`, `deleteAllUsers` and `deleteUser`) and 2 queries available (`getUsers` and `getUser`), you can find them in the playground under the route `/api`.
 - To connect your server with your `MongoDB` database, you need to provide your `uri` in the `.env`. By default, Simba will try to connect to a local database. The content of the `.env` file is:
 
   ```bash
