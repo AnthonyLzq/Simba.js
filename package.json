@@ -9,6 +9,7 @@
   },
   "scripts": {
     "service": "node ./bin",
+    "help": "node ./bin --help",
     "release": "standard-version",
     "test": "npm run rm && npm run test-express && npm run test-fastify && npm run test-express-graphql && npm run test-fastify-graphql",
     "test-express": "npm run rm-express && npm run cd-mv-example && node -r dotenv/config ./bin -N example/express -D 'This is a test using express' -a AnthonyLzq -e sluzquinosa@uni.pe -l mit -H && npm run rm-git-express",
