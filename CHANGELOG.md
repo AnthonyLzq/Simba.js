@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.0.0](https://github.com/AnthonyLzq/simba.js/compare/v4.4.0...v5.0.0) (2022-04-18)
+
+
+### Features
+
+* added graphql support for express and added some code improvements ([d618ef1](https://github.com/AnthonyLzq/simba.js/commit/d618ef1242e368911ad2ababb32a43550b8f8a18))
+* added graphql support for fastify and added some code improvements ([3293f17](https://github.com/AnthonyLzq/simba.js/commit/3293f17bf4e2e73236415b7b653b4f0de6fe4dd1))
+* improved examples ([be46008](https://github.com/AnthonyLzq/simba.js/commit/be460089255aa29c2a674b7857efdbd128325c3a))
+* updated docs ([56248c7](https://github.com/AnthonyLzq/simba.js/commit/56248c7976f9ed30c4fa7ca5b502eb59824a75f9))
+
 ## [4.4.0](https://github.com/AnthonyLzq/simba.js/compare/v4.3.1...v4.4.0) (2022-04-16)
 
 
