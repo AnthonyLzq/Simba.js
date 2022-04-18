@@ -1,24 +1,32 @@
 import express from 'express'
 import mongoose from 'mongoose'
-import morgan from 'morgan'
 import cors from 'cors'
+import pino, { HttpLogger } from 'express-pino-logger'
 
 import { applyRoutes } from './router'
 
-const PORT = (process.env.PORT as string) || '1996'
+const PORT = (process.env.PORT as string) || 1996
 
 class Server {
   #app: express.Application
   #connection: mongoose.Connection | undefined
+  #log: HttpLogger
 
   constructor() {
     this.#app = express()
+    this.#log = pino({
+      transport: {
+        target: 'pino-pretty',
+        options: {
+          colorize: true
+        }
+      }
+    })
     this.#config()
   }
 
   #config() {
     this.#app.use(cors())
-    this.#app.use(morgan('dev'))
     this.#app.use(express.json())
     this.#app.use(express.urlencoded({ extended: false }))
     this.#app.use(
@@ -33,10 +41,10 @@ class Server {
           'Access-Control-Allow-Headers',
           'Authorization, Content-Type'
         )
+        res.header('x-powered-by', 'Simba.js')
         next()
       }
     )
-
     applyRoutes(this.#app)
   }
 
@@ -48,14 +56,14 @@ class Server {
       useUnifiedTopology: true
     }
     this.#connection.on('connected', () => {
-      console.log('Mongo connection established.')
+      this.#log.logger.info('Mongo connection established.')
     })
     this.#connection.on('reconnected', () => {
-      console.log('Mongo connection reestablished')
+      this.#log.logger.info('Mongo connection reestablished')
     })
     this.#connection.on('disconnected', () => {
-      console.log('Mongo connection disconnected')
-      console.log('Trying to reconnected to Mongo...')
+      this.#log.logger.info('Mongo connection disconnected')
+      this.#log.logger.info('Trying to reconnected to Mongo...')
       setTimeout(() => {
         mongoose.connect(process.env.MONGO_URI as string, {
           ...connection,
@@ -65,24 +73,24 @@ class Server {
       }, 3000)
     })
     this.#connection.on('close', () => {
-      console.log('Mongo connection closed')
+      this.#log.logger.info('Mongo connection closed')
     })
     this.#connection.on('error', (e: Error) => {
-      console.log('Mongo connection error:')
-      console.error(e)
+      this.#log.logger.info('Mongo connection error:')
+      this.#log.logger.error(e)
     })
     await mongoose.connect(process.env.MONGO_URI as string, connection)
   }
 
   public start(): void {
     this.#app.listen(PORT, () => {
-      console.log(`Server running at port ${PORT}`)
+      this.#log.logger.info(`Server running at port ${PORT}`)
     })
 
     try {
       this.#mongo()
     } catch (e) {
-      console.error(e)
+      this.#log.logger.error(e)
     }
   }
 }

@@ -4,7 +4,7 @@ import mongoose from 'mongoose'
 import { applyRoutes } from './router'
 import { validatorCompiler } from './utils'
 
-const PORT = process.env.PORT ?? '1996'
+const PORT = process.env.PORT ?? 1996
 
 class Server {
   #app: FastifyInstance
@@ -24,6 +24,7 @@ class Server {
         'Access-Control-Allow-Headers',
         'Authorization, Content-Type'
       )
+      reply.header('x-powered-by', 'Simba.js')
       done()
     })
     this.#app.setValidatorCompiler(validatorCompiler)
