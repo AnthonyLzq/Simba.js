@@ -14,17 +14,11 @@
   "author": "AnthonyLzq <sluzquinosa@uni.pe>",
   "license": "MIT",
   "dependencies": {
-    "@graphql-tools/schema": "^8.3.9",
     "@sinclair/typebox": "^0.23.4",
-    "ajv": "^8.11.0",
-    "ajv-formats": "^2.1.1",
-    "apollo-server-core": "^3.6.7",
-    "apollo-server-fastify": "^3.6.7",
-    "apollo-server-plugin-base": "^3.5.2",
+    "ajv": "^6",
     "fastify": "^3.28.0",
     "fastify-cors": "^6.0.3",
     "fastify-swagger": "^5.1.1",
-    "graphql": "^16.3.0",
     "http-errors": "^2.0.0",
     "mongoose": "^6.3.0",
     "pino-pretty": "^7.6.1"

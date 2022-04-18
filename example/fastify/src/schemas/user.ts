@@ -19,4 +19,10 @@ const userDto = Type.Object({
 
 type UserDTO = Static<typeof userDto>
 
-export { userDto, UserDTO, user, User }
+const storeUserSchema = Type.Object({
+  args: user
+})
+
+type StoreUser = Static<typeof storeUserSchema>
+
+export { userDto, UserDTO, user, User, storeUserSchema, StoreUser }

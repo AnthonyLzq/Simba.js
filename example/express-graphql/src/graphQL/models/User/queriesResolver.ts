@@ -15,7 +15,7 @@ const Query = {
     const validate = ajv.compile(idSchema)
 
     try {
-      const ok = validate(id)
+      const ok = validate({ id })
 
       if (!ok)
         throw new ApolloError(

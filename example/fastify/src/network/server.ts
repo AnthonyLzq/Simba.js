@@ -1,15 +1,8 @@
 import fastify, { FastifyInstance } from 'fastify'
-import { ApolloServer } from 'apollo-server-fastify'
-import {
-  ApolloServerPluginDrainHttpServer,
-  ApolloServerPluginLandingPageGraphQLPlayground,
-  ApolloServerPluginLandingPageDisabled
-} from 'apollo-server-core'
-import { ApolloServerPlugin } from 'apollo-server-plugin-base'
 import mongoose from 'mongoose'
 
-import { mergedSchema as schema } from 'graphQL'
 import { applyRoutes } from './router'
+import { validatorCompiler } from './utils'
 
 const PORT = process.env.PORT ?? 1996
 
@@ -23,6 +16,7 @@ class Server {
   }
 
   #config() {
+    this.#app.register(require('fastify-cors'), {})
     this.#app.addHook('preHandler', (req, reply, done) => {
       reply.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE')
       reply.header('Access-Control-Allow-Origin', '*')
@@ -30,8 +24,10 @@ class Server {
         'Access-Control-Allow-Headers',
         'Authorization, Content-Type'
       )
+      reply.header('x-powered-by', 'Simba.js')
       done()
     })
+    this.#app.setValidatorCompiler(validatorCompiler)
     applyRoutes(this.#app)
   }
 
@@ -69,47 +65,10 @@ class Server {
     await mongoose.connect(process.env.MONGO_URI as string, connection)
   }
 
-  #fastifyAppClosePlugin(): ApolloServerPlugin {
-    const app = this.#app
-
-    return {
-      async serverWillStart() {
-        return {
-          async drainServer() {
-            await app.close()
-          }
-        }
-      }
-    }
-  }
-
   public async start(): Promise<void> {
-    const server = new ApolloServer({
-      schema,
-      plugins: [
-        this.#fastifyAppClosePlugin(),
-        ApolloServerPluginDrainHttpServer({ httpServer: this.#app.server }),
-        process.env.NODE_ENV === 'production'
-          ? ApolloServerPluginLandingPageDisabled()
-          : ApolloServerPluginLandingPageGraphQLPlayground()
-      ],
-      context: (): Context => ({
-        log: this.#app.log
-      })
-    })
-
     try {
-      await server.start()
-      this.#app.register(
-        server.createHandler({
-          path: '/api'
-        })
-      )
-      await this.#mongo()
       await this.#app.listen(PORT)
-      this.#app.log.info(
-        `GraphQL server listening at port: http://localhost:${PORT}${server.graphqlPath}`
-      )
+      this.#mongo()
     } catch (e) {
       console.error(e)
     }

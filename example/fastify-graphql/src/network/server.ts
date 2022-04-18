@@ -30,6 +30,7 @@ class Server {
         'Access-Control-Allow-Headers',
         'Authorization, Content-Type'
       )
+      reply.header('x-powered-by', 'Simba.js')
       done()
     })
     applyRoutes(this.#app)
@@ -108,7 +109,7 @@ class Server {
       await this.#mongo()
       await this.#app.listen(PORT)
       this.#app.log.info(
-        `GraphQL server listening at port: http://localhost:${PORT}${server.graphqlPath}`
+        `GraphQL server listening at: http://localhost:${PORT}${server.graphqlPath}`
       )
     } catch (e) {
       console.error(e)

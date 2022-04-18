@@ -80,7 +80,7 @@ const Mutation = {
     const { log } = context
 
     try {
-      const ok = validate(id)
+      const ok = validate({ id })
 
       if (!ok)
         throw new ApolloError(
