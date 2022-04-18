@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.1.0](https://github.com/AnthonyLzq/simba.js/compare/v5.0.0...v5.1.0) (2022-04-18)
+
+
+### Features
+
+* implemented logo ([d110120](https://github.com/AnthonyLzq/simba.js/commit/d110120fb912e5db16d1fb0b8e161d0c7e014532))
+
 ## [5.0.0](https://github.com/AnthonyLzq/simba.js/compare/v4.4.0...v5.0.0) (2022-04-18)
 
 
