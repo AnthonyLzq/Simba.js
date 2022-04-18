@@ -34,6 +34,7 @@ By doing this your prompt will ask you the following questions:
 - `Project version (0.1.0):` the initial version of the project, `0.1.0` as default.
 - `Select your license [1...7]:`, the license you have chosen for the project.
 - `License year (current year):`, the year where your license starts, current year as default.
+- `Will this project use GraphQL?  [y/n]:`, yes or no question, only **y** or **n** is accepted. This is not case sensitive.
 - `Will this project be deployed with Heroku? [y/n]:`, yes or no question, only **y** or **n** is accepted. This is not case sensitive.
 
 The second option you have is by passing flags in one single command. If you need help, please run:
@@ -68,6 +69,8 @@ Options:
                             questions related to the project one by one
                                                       [boolean] [default: false]
   -F, --fastify             Whether or not you want to use Fastify for your
+                            project                   [boolean] [default: false]
+  -g, --graphql             Whether or not you want to use GraphQL for your
                             project                   [boolean] [default: false]
   -h, --help                Show help                                  [boolean]
 
@@ -119,8 +122,6 @@ Regardless of the option chosen, a new folder will be generated with the name of
  ┃ ┣ 📂custom
  ┃ ┃ ┣ 📜request.d.ts
  ┃ ┃ ┗ 📜response.d.ts
- ┃ ┣ 📂dto
- ┃ ┃ ┗ 📜user.d.ts
  ┃ ┣ 📂models
  ┃ ┃ ┗ 📜user.d.ts
  ┃ ┗ 📜index.d.ts
@@ -137,7 +138,7 @@ Regardless of the option chosen, a new folder will be generated with the name of
  ┣ 📂network
  ┃ ┣ 📂routes
  ┃ ┃ ┣ 📂utils
- ┃ ┃ ┃ ┗ 📜docs.ts
+ ┃ ┃ ┃ ┗ 📜index.ts
  ┃ ┃ ┣ 📜home.ts
  ┃ ┃ ┣ 📜index.ts
  ┃ ┃ ┗ 📜user.ts
@@ -173,6 +174,81 @@ Regardless of the option chosen, a new folder will be generated with the name of
 📜package.json
 📜README.md
 📜index.http
+📜tsconfig.base.json
+📜tsconfig.json
+📜webpack.config.js
+📜yarn.lock (or package-lock.json)
+```
+
+### Express-GraphQL case
+
+```
+📂node_modules
+📂src
+ ┣ 📂@types
+ ┃ ┣ 📂custom
+ ┃ ┃ ┣ 📜request.d.ts
+ ┃ ┃ ┗ 📜response.d.ts
+ ┃ ┣ 📂graphQL
+ ┃ ┃ ┗ 📜context.d.ts
+ ┃ ┣ 📂models
+ ┃ ┃ ┗ 📜user.d.ts
+ ┃ ┗ 📜index.d.ts
+ ┣ 📂database
+ ┃ ┣ 📂mongo
+ ┃ ┃ ┣ 📂models
+ ┃ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┃ ┗ 📜user.ts
+ ┃ ┃ ┣ 📂queries
+ ┃ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┃ ┗ 📜user.ts
+ ┃ ┃ ┗ 📜index.ts
+ ┃ ┗ 📜index.ts
+ ┣ 📂graphQL
+ ┃ ┣ 📂models
+ ┃ ┃ ┣ 📂User
+ ┃ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┃ ┣ 📜mutations.ts
+ ┃ ┃ ┃ ┣ 📜mutationsResolver.ts
+ ┃ ┃ ┃ ┣ 📜queries.ts
+ ┃ ┃ ┃ ┣ 📜queriesResolver.ts
+ ┃ ┃ ┃ ┣ 📜schemas.ts
+ ┃ ┃ ┃ ┗ 📜typeDefs.ts
+ ┃ ┃ ┣ 📂utils
+ ┃ ┃ ┃ ┣ 📂messages
+ ┃ ┃ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┃ ┃ ┗ 📜user.ts
+ ┃ ┃ ┃ ┗ 📜index.ts
+ ┃ ┃ ┗ 📜index.ts
+ ┃ ┗ 📜index.ts
+ ┣ 📂network
+ ┃ ┣ 📂routes
+ ┃ ┃ ┣ 📂utils
+ ┃ ┃ ┃ ┗ 📜index.ts
+ ┃ ┃ ┣ 📜home.ts
+ ┃ ┃ ┣ 📜index.ts
+ ┃ ┣ 📜index.ts
+ ┃ ┣ 📜response.ts
+ ┃ ┣ 📜routes.ts
+ ┃ ┗ 📜server.ts
+ ┣ 📂schemas
+ ┃ ┣ 📜index.ts
+ ┃ ┗ 📜user.ts
+ ┣ 📂utils
+ ┃ ┣ 📜docs.json
+ ┃ ┗ 📜index.ts
+ ┗ 📜index.ts
+📜.env
+📜.eslintignore
+📜.eslintrc
+📜.gitignore
+📜CHANGELOG.md
+📜Dockerfile
+📜heroku.yml
+📜LICENSE
+📜nodemon.json
+📜package.json
+📜README.md
 📜tsconfig.base.json
 📜tsconfig.json
 📜webpack.config.js
@@ -241,12 +317,81 @@ Regardless of the option chosen, a new folder will be generated with the name of
 📜yarn.lock (or package-lock.json)
 ```
 
+### Fastify-GraphQL case
+
+```
+📂node_modules
+📂src
+ ┣ 📂@types
+ ┃ ┣ 📂graphQL
+ ┃ ┃ ┗ 📜context.d.ts
+ ┃ ┣ 📂dto
+ ┃ ┃ ┗ 📜user.d.ts
+ ┃ ┣ 📂models
+ ┃ ┃ ┗ 📜user.d.ts
+ ┃ ┗ 📜index.d.ts
+ ┣ 📂database
+ ┃ ┣ 📂mongo
+ ┃ ┃ ┣ 📂models
+ ┃ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┃ ┗ 📜user.ts
+ ┃ ┃ ┣ 📂queries
+ ┃ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┃ ┗ 📜user.ts
+ ┃ ┃ ┗ 📜index.ts
+ ┃ ┗ 📜index.ts
+ ┣ 📂graphQL
+ ┃ ┣ 📂models
+ ┃ ┃ ┣ 📂User
+ ┃ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┃ ┣ 📜mutations.ts
+ ┃ ┃ ┃ ┣ 📜mutationsResolver.ts
+ ┃ ┃ ┃ ┣ 📜queries.ts
+ ┃ ┃ ┃ ┣ 📜queriesResolver.ts
+ ┃ ┃ ┃ ┣ 📜schemas.ts
+ ┃ ┃ ┃ ┗ 📜typeDefs.ts
+ ┃ ┃ ┣ 📂utils
+ ┃ ┃ ┃ ┣ 📂messages
+ ┃ ┃ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┃ ┃ ┗ 📜user.ts
+ ┃ ┃ ┃ ┗ 📜index.ts
+ ┃ ┃ ┗ 📜index.ts
+ ┃ ┗ 📜index.ts
+ ┣ 📂network
+ ┃ ┣ 📂routes
+ ┃ ┃ ┣ 📜docs.ts
+ ┃ ┃ ┣ 📜home.ts
+ ┃ ┃ ┣ 📜index.ts
+ ┃ ┣ 📜index.ts
+ ┃ ┣ 📜response.ts
+ ┃ ┣ 📜routes.ts
+ ┃ ┗ 📜server.ts
+ ┣ 📂schemas
+ ┃ ┣ 📜index.ts
+ ┃ ┗ 📜user.ts
+ ┗ 📜index.ts
+📜.env
+📜.eslintignore
+📜.eslintrc
+📜.gitignore
+📜CHANGELOG.md
+📜Dockerfile
+📜heroku.yml
+📜LICENSE
+📜nodemon.json
+📜package.json
+📜README.md
+📜tsconfig.base.json
+📜tsconfig.json
+📜webpack.config.js
+📜yarn.lock (or package-lock.json)
+
+
 If you want to check the content of the files, please check the [example](https://github.com/AnthonyLzq/simba.js/tree/master/example) folder, there you will an example for both, Express and Fastify.
 
 ### Some considerations
 
-- This project was based in other project from my own, [`typescript-project-generator`](https://www.npmjs.com/package/typescript-project-generator), but only considering the `express-mongoose` part.
-- You are able to run a server that has one main route, `home` (`/`), `user` (`api/user` or `api/user/:id`) and `docs` (`api/docs`).
+- You are able to run a server that has one main route, `home` (`/`), `user` (`api/user` or `api/user/:id`) and `docs` (`api/docs`), in case you are not using GraphQL.
 - To connect your server with your `MongoDB` database, you need to provide your `uri` in the `.env`. By default, Simba will try to connect to a local database. The content of the `.env` file is:
 
   ```bash
@@ -288,16 +433,24 @@ If you want to check the content of the files, please check the [example](https:
 
 Please check the [`changelog.md`](https://github.com/AnthonyLzq/simba.js/blob/master/CHANGELOG.md) file. Also, if you want to check what is coming, check the [road map](https://simbajs.notion.site/simbajs/783092dc7d444067b4c56a25d671f658?v=31060f3d17524ca58870e86c2960a6df).
 
-### Version 4.x.x
+### Version 5.x.x
 
 In this major version I would be focusing on adding new possible configurations according to the road map. The major changes of this version will be described here:
 
-- Replaced [`joi`](https://www.npmjs.com/package/joi) in favor of [`ajv`](https://www.npmjs.com/package/ajv) + [`@sinclair/typebox`](https://www.npmjs.com/package/@sinclair/typebox) in the Express case. [Why did I do this?](https://simbajs.notion.site/TypeBox-support-for-Express-f4e3cf8dd06f4c7ba4d8e4051a52688c)
-- Using more descriptive nouns, now every database object is represented with a DBO at the end, like: _UserDBO_. Also the objects that are sent and received will have a DTO at the end, like: _UserDTO_.
+- API creation logic was split to improve scalability.
+- Added support for GraphQL in both, Express and Fastify.
 
 ## <a name="notes"></a>Notes
 
-Here is the list of the packages that are being installed, as `devDependencies`:
+Here is the list of the packages that are being installed, as `dependencies`:
+
+- [`@sinclair/typebox`](https://www.npmjs.com/package/@sinclair/typebox)
+- [`ajv`](https://www.npmjs.com/package/ajv)
+- [`http-errors`](https://www.npmjs.com/package/http-errors)
+- [`mongoose`](https://mongoosejs.com/)
+- [`pino-pretty`](https://www.npmjs.com/package/pino-pretty)
+
+As `devDependencies`:
 
 - [`@types/http-errors`](https://www.npmjs.com/package/@types/http-errors)
 - [`@types/node`](https://www.npmjs.com/package/@types/node)
@@ -321,28 +474,35 @@ Here is the list of the packages that are being installed, as `devDependencies`:
 - [`webpack-cli`](https://www.npmjs.com/package/webpack-cli)
 - [`webpack-node-externals`](https://www.npmjs.com/package/webpack-node-externals)
 
-As `dependencies`:
+### In case you are using GraphQL
 
-- [`@sinclair/typebox`](https://www.npmjs.com/package/@sinclair/typebox)
+As `dependencies`:
+- [`@graphql-tools/schema`](https://www.npmjs.com/package/@graphql-tools/schema)
 - [`ajv`](https://www.npmjs.com/package/ajv)
-- [`http-errors`](https://www.npmjs.com/package/http-errors)
-- [`mongoose`](https://mongoosejs.com/)
+- [`ajv-formats`](https://www.npmjs.com/package/ajv-formats)
+- [`apollo-server-core`](https://www.npmjs.com/package/apollo-server-core)
+- [`graphql`](https://www.npmjs.com/package/graphql)
 
 ### Express case
-
-As `devDependencies`:
-
-- [`@types/express`](https://www.npmjs.com/package/@types/express)
-- [`@types/cors`](https://www.npmjs.com/package/@types/cors)
-- [`@types/morgan`](https://www.npmjs.com/package/@types/morgan)
-- [`@types/swagger-ui-express`](https://www.npmjs.com/package/@types/swagger-ui-express)
 
 As `dependencies`:
 
 - [`cors`](https://www.npmjs.com/package/cors)
 - [`express`](https://www.npmjs.com/package/express)
-- [`morgan`](https://www.npmjs.com/package/morgan)
+- [`express-pino-logger`](https://www.npmjs.com/package/express-pino-logger)
 - [`swagger-ui-express`](https://www.npmjs.com/package/swagger-ui-express)
+
+As `devDependencies`:
+
+- [`@types/express`](https://www.npmjs.com/package/@types/express)
+- [`@types/cors`](https://www.npmjs.com/package/@types/cors)
+- [`@types/express-pino-logger`](https://www.npmjs.com/package/@types/express-pino-logger)
+- [`@types/swagger-ui-express`](https://www.npmjs.com/package/@types/swagger-ui-express)
+
+#### In case you are using GraphQL
+
+As `dependencies`:
+- [`apollo-server-express`](https://www.npmjs.com/package/apollo-server-express)
 
 ### Fastify case
 
@@ -351,6 +511,12 @@ As `dependencies`:
 - [`fastify`](https://www.npmjs.com/package/fastify)
 - [`fastify-cors`](https://www.npmjs.com/package/fastify-cors)
 - [`fastify-swagger`](https://www.npmjs.com/package/fastify-swagger)
+
+#### In case you are using GraphQL
+
+As `dependencies`:
+- [`apollo-server-fastify`](https://www.npmjs.com/package/apollo-server-fastify)
+- [`apollo-server-plugin-base`](https://www.npmjs.com/package/apollo-server-plugin-base)
 
 Feel free to contribute to this project. Every contribution will be appreciated.
 
