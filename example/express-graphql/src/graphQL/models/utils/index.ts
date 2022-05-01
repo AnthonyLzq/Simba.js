@@ -1,5 +1,5 @@
 import { ApolloError } from 'apollo-server-core'
-import { FastifyLoggerInstance } from 'fastify'
+import { HttpLogger } from 'express-pino-logger'
 
 const errorHandling = ({
   e,
@@ -11,7 +11,7 @@ const errorHandling = ({
   e: any
   message: string
   code: string
-  log: FastifyLoggerInstance
+  log: HttpLogger['logger']
 }): never => {
   log.error(e)
 

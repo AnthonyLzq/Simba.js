@@ -1,5 +1,5 @@
 import { FastifyInstance } from 'fastify'
-import fastifySwagger from 'fastify-swagger'
+import fastifySwagger from '@fastify/swagger'
 
 const Docs = (app: FastifyInstance, prefix = '/api'): void => {
   app.register(fastifySwagger, {
