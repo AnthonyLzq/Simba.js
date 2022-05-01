@@ -1,6 +1,6 @@
 <h1 align="center">
   <!-- <p align="center">Simba.js</p> -->
-  <a href="https://simbajs.notion.site/783092dc7d444067b4c56a25d671f658?v=31060f3d17524ca58870e86c2960a6df"><img src="https://i.ibb.co/QHxn7kP/Gatonowww.png" alt="Simba.js"></a>
+  <a href="https://simbajs.notion.site/783092dc7d444067b4c56a25d671f658?v=31060f3d17524ca58870e86c2960a6df"><img src="https://i.ibb.co/QFX0WnH/simba-pink.png" alt="Simba.js"></a>
 </h1>
 
 [![NPM version](https://img.shields.io/npm/v/@anthonylzq/simba.js.svg?style=flat)](https://www.npmjs.com/package/@anthonylzq/simba.js)
