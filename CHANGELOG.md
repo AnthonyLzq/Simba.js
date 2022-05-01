@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.1.1](https://github.com/AnthonyLzq/simba.js/compare/v5.1.0...v5.1.1) (2022-05-01)
+
+
+### Features
+
+* updated examples ([68a39c5](https://github.com/AnthonyLzq/simba.js/commit/68a39c5b940cade0fc9b03d813a32ebdef517ec9))
+* updated readme ([63e21d5](https://github.com/AnthonyLzq/simba.js/commit/63e21d5a70a731536568ea4ccf7a9bc73de4053b))
+
+
+### Bug Fixes
+
+* removed fastify old libraries ([2ae652e](https://github.com/AnthonyLzq/simba.js/commit/2ae652eb6ca416b5aac94b9589f82df469cd2333))
+
 ## [5.1.0](https://github.com/AnthonyLzq/simba.js/compare/v5.0.0...v5.1.0) (2022-04-18)
 
 
