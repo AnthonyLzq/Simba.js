@@ -1,4 +1,5 @@
-import { model, Schema } from 'mongoose'
+/* eslint-disable @typescript-eslint/ban-types */
+import { Model, model, Schema } from 'mongoose'
 
 const UserSchema = new Schema<UserDBO>(
   {
@@ -23,6 +24,8 @@ const UserSchema = new Schema<UserDBO>(
   }
 )
 
-const UserModel = model<UserDBO>('users', UserSchema)
+type UserModelType = Model<UserDBO, {}, {}>
 
-export { UserModel }
+const UserModel = model<UserDBO, UserModelType>('users', UserSchema)
+
+export { UserModel, UserModelType }

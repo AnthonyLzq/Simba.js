@@ -6,18 +6,18 @@ import {
   userDto,
   idSchema,
   IdSchema,
-  storeUserSchema,
-  StoreUser
+  storeUserDto,
+  StoreUserDTO
 } from 'schemas'
 import { UserService } from 'services'
 
 const User = (app: FastifyInstance, prefix = '/api'): void => {
   app
-    .post<{ Body: StoreUser }>(
+    .post<{ Body: StoreUserDTO }>(
       `${prefix}/users`,
       {
         schema: {
-          body: storeUserSchema,
+          body: storeUserDto,
           response: {
             200: {
               error: {
@@ -36,7 +36,7 @@ const User = (app: FastifyInstance, prefix = '/api'): void => {
           }
         } = request
         const us = new UserService({
-          userDtoWithoutId: { lastName, name }
+          user: { lastName, name }
         })
         const user = await us.process({ type: 'store' })
 
@@ -135,11 +135,11 @@ const User = (app: FastifyInstance, prefix = '/api'): void => {
         })
       }
     )
-    .patch<{ Body: StoreUser; Params: IdSchema }>(
+    .patch<{ Body: StoreUserDTO; Params: IdSchema }>(
       `${prefix}/user/:id`,
       {
         schema: {
-          body: storeUserSchema,
+          body: storeUserDto,
           params: idSchema,
           response: {
             200: {
@@ -160,7 +160,7 @@ const User = (app: FastifyInstance, prefix = '/api'): void => {
           params: { id }
         } = request
         const us = new UserService({
-          userDto: { name, lastName, id }
+          userWithId: { name, lastName, id }
         })
         const user = await us.process({ type: 'update' })
 

@@ -4,14 +4,27 @@ import mongoose from 'mongoose'
 import { applyRoutes } from './router'
 import { validatorCompiler } from './utils'
 
-const PORT = process.env.PORT ?? 1996
+const PORT = process.env.PORT ? parseInt(process.env.PORT) : 1996
 
 class Server {
   #app: FastifyInstance
   #connection: mongoose.Connection | undefined
 
   constructor() {
-    this.#app = fastify({ logger: { prettyPrint: true } })
+    this.#app = fastify({
+      logger: {
+        transport:
+          process.env.ENVIRONMENT !== 'production'
+            ? {
+                target: 'pino-pretty',
+                options: {
+                  translateTime: 'HH:MM:ss Z',
+                  ignore: 'pid,hostname'
+                }
+              }
+            : undefined
+      }
+    })
     this.#config()
   }
 
@@ -67,7 +80,7 @@ class Server {
 
   public async start(): Promise<void> {
     try {
-      await this.#app.listen(PORT)
+      await this.#app.listen({ port: PORT })
       this.#mongo()
     } catch (e) {
       console.error(e)

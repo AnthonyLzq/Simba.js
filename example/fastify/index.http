@@ -16,18 +16,18 @@ GET http://localhost:1996/api/users
 DELETE http://localhost:1996/api/users
 
 ### Testing getOne user
-GET http://localhost:1996/api/user/60e7e3b93b01c1a7aa74cd6b
+GET http://localhost:1996/api/user/625cd71331fecdf2082b0269
 
 ### Testing update user
-PATCH http://localhost:1996/api/user/60e7e3b93b01c1a7aa74cd6b
+PATCH http://localhost:1996/api/user/625cd71331fecdf2082b0269
 Content-Type: application/json
 
 {
   "args": {
     "name": "Anthony",
-    "lastName": "Luzquiños"
+    "lastName": "Lzq"
   }
 }
 
 ### Testing delete user
-DELETE http://localhost:1996/api/user/60e7e3b93b01c1a7aa74cd6b
+DELETE http://localhost:1996/api/user/625cd71331fecdf2082b0269
