@@ -7,6 +7,7 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/AnthonyLzq/simba.js/blob/master/LICENSE)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://reactjs.org/docs/how-to-contribute.html#your-first-pull-request)
+[![Lint](https://github.com/AnthonyLzq/simba.js/actions/workflows/lint.yml/badge.svg)](https://github.com/AnthonyLzq/simba.js/actions/workflows/lint.yml)
 
 Set up a modern backend app by running one command. This project has the goal to create a complete setup for a backend application using `TypeScript` and `Express` or `Fastify`. It will create many files that are usually created manually. Think about Simba.js like a [CRA](https://create-react-app.dev/), but for backend development. Check the [**project structure**](#project-structure) for more information.
 
