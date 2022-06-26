@@ -1,6 +1,6 @@
 name: Lint
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   run-linters:
@@ -17,7 +17,7 @@ jobs:
           node-version: 16.x
 
       - name: Install Node.js dependencies
-        run: npm install
+        run: npm ci
 
       - name: Revert changes into the package-lock.json file
         run: git checkout -- package-lock.json
@@ -27,5 +27,4 @@ jobs:
         with:
           auto_fix: true
           eslint: true
-          eslint_dir: lib
           eslint_extensions: js
