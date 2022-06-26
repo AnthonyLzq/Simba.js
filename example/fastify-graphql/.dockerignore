@@ -1,0 +1,10 @@
+.eslintignore
+.eslintrc
+.gitignore
+CHANGELOG.md
+Dockerfile
+heroku.yml
+*.http
+LICENSE
+nodemon.json
+README.md

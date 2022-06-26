@@ -1,11 +1,11 @@
 import { ApolloError } from 'apollo-server-core'
 
 import { store, remove, update } from 'database'
-import { UserDTO } from 'schemas'
+import { User, UserDTO, UserWithId } from 'schemas'
 import { EFU, MFU, GE, errorHandling } from '../utils'
 
 const storeUser = async (
-  { user }: { user: UserDTO },
+  { user }: { user: User },
   { log }: Context
 ): Promise<UserDTO> => {
   try {
@@ -43,7 +43,7 @@ const deleteAllUsers = async ({ log }: Context): Promise<string> => {
 }
 
 const updateUser = async (
-  { user }: { user: UserDTO },
+  { user }: { user: UserWithId },
   { log }: Context
 ): Promise<UserDTO> => {
   try {
