@@ -14,11 +14,11 @@
   "author": "AnthonyLzq <sluzquinosa@uni.pe>",
   "license": "MIT",
   "dependencies": {
-    "@fastify/cors": "^8.0.0",
-    "@fastify/swagger": "^7.4.0",
+    "@fastify/cors": "^7",
+    "@fastify/swagger": "^6",
     "@sinclair/typebox": "^0.23.5",
     "ajv": "^6",
-    "fastify": "^3.x.x",
+    "fastify": "^3",
     "http-errors": "^2.0.0",
     "mongoose": "^6.4.0",
     "pino-pretty": "^8.1.0"
