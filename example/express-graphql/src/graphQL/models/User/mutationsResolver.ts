@@ -1,15 +1,22 @@
 import { DefinedError } from 'ajv'
 import { ApolloError } from 'apollo-server-core'
 
-import { ajv, idSchema, UserDTO } from 'schemas'
-import { storeUserSchema, updateUserSchema } from './schemas'
+import {
+  ajv,
+  idSchema,
+  User,
+  user as storeUserSchema,
+  UserDTO,
+  UserWithId,
+  userWithId as updateUserSchema
+} from 'schemas'
 import { storeUser, updateUser, deleteUser, deleteAllUsers } from './mutations'
 import { errorHandling, GE } from '../utils'
 
 const Mutation = {
   storeUser: async (
     parent: unknown,
-    { user }: { user: UserDTO },
+    { user }: { user: User },
     context: Context
   ): Promise<UserDTO> => {
     const { log } = context
@@ -41,7 +48,7 @@ const Mutation = {
   },
   updateUser: async (
     parent: unknown,
-    { user }: { user: UserDTO },
+    { user }: { user: UserWithId },
     context: Context
   ): Promise<UserDTO> => {
     const validate = ajv.compile(updateUserSchema)

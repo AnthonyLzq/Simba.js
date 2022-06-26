@@ -12,6 +12,4 @@ RUN yarn build
 
 RUN yarn remove webpack webpack-node-externals tsconfig-paths-webpack-plugin
 
-COPY dist /app/dist
-
 CMD [ "yarn", "start" ]

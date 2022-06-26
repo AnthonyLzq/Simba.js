@@ -5,6 +5,7 @@ const User = gql`
     id: ID!
     name: String!
     lastName: String!
+    createdAt: String!
     updatedAt: String!
   }
 
