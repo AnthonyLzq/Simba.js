@@ -3,10 +3,6 @@
   "version": "5.1.1",
   "description": "set up a modern backend app by running one command",
   "main": "lib/index.js",
-  "directories": {
-    "example": "example",
-    "lib": "lib"
-  },
   "scripts": {
     "service": "node ./bin",
     "help": "node ./bin --help",
@@ -81,5 +77,9 @@
       "commit": true,
       "bump": true
     }
+  },
+  "engines" : {
+    "npm" : ">=8.0.0",
+    "node" : ">=16.0.0"
   }
 }
