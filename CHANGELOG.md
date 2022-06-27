@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.2.0](https://github.com/AnthonyLzq/simba.js/compare/v5.1.1...v5.2.0) (2022-06-27)
+
+
+### Features
+
+* added lint badge ([c91f25c](https://github.com/AnthonyLzq/simba.js/commit/c91f25c01438db24eb5a3663652344ae9020d027))
+* fixed engines of npm and node ([35f147e](https://github.com/AnthonyLzq/simba.js/commit/35f147ed414eb4eb1168a8ca34403ec9482c26f3))
+* fixing fastify versions because apollo does not support fastify v4 ([a5f478b](https://github.com/AnthonyLzq/simba.js/commit/a5f478bc3d790bd02d8a622c7c6fab5883bf2dfb))
+* implemented dockerignore file, pending to test ([d2b60ef](https://github.com/AnthonyLzq/simba.js/commit/d2b60ef55e4fdfe6cc3596404d8f693a1af39886))
+* improved express and express-graphql versions, pending to test ([a7f5d92](https://github.com/AnthonyLzq/simba.js/commit/a7f5d92e6cdf2d96cf30b0ca7287b3edda0bdf7d))
+* improved fastify rest version ([a8216a4](https://github.com/AnthonyLzq/simba.js/commit/a8216a4123bef082b2c9d4bd219c90a738d10ed4))
+* improved fastify-graphql version ([9662720](https://github.com/AnthonyLzq/simba.js/commit/966272036a4658e77e6b992af67dda50342a83fd))
+* lint improvements ([065ad52](https://github.com/AnthonyLzq/simba.js/commit/065ad52bbeac95280772f00a831990f3752d1687))
+* updated docker file and dockerignore file ([fca670d](https://github.com/AnthonyLzq/simba.js/commit/fca670d2dd05de964af8d08a6a07199fde8f8822))
+* updated lint ga ([a6a0611](https://github.com/AnthonyLzq/simba.js/commit/a6a061166d4d63c9906a1e16f0b541254f71f2fa))
+* updated packages ([0cb01b4](https://github.com/AnthonyLzq/simba.js/commit/0cb01b4562906a9a1b64de66730e0957c04f2977))
+* updated readme ([34db399](https://github.com/AnthonyLzq/simba.js/commit/34db3990d940d6d469de05f074d2f18872f2a430))
+
+
+### Bug Fixes
+
+* error in installing syntax for swagger and cors ([cdfed60](https://github.com/AnthonyLzq/simba.js/commit/cdfed60632a1db46a1afadf9d32601b5dd3de9a0))
+* express graphql example ([0daf02c](https://github.com/AnthonyLzq/simba.js/commit/0daf02c1b950e3297bbdaba39d8a32ff8479a486))
+
 ### [5.1.1](https://github.com/AnthonyLzq/simba.js/compare/v5.1.0...v5.1.1) (2022-05-01)
 
 
