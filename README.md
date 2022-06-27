@@ -443,6 +443,7 @@ If you want to check the content of the files, please check the [example](https:
 - If you provide a project name that contains spaces, something like 'My awesome Project',  every space will be replaced with a hyphen. So at the end your project name will be 'My-awesome-project', but in its README.md file, the hyphens will be removed and the project name will be parsed to title case (My Awesome Project).
 - Finally, `git` will be initialized and a list of libraries will be installed. Check the [**notes**](#notes).
 - Relative imports is already configured, you do not need to import a file using `../../../some/very/nested/stuff/in/other/folder`, you can use `some/very/nested/stuff/in/other/folder` assuming that your folder is under the `src` folder.
+- The Fastify version is set to v3 because Apollo Server has not yet provided support for Fastify v4 yet, and it is difficult to have support for two different major versions of Fastify, so until Apollo Server supports Fastify v4, this package will use Fastify v3.
 
 ## What is new?
 
