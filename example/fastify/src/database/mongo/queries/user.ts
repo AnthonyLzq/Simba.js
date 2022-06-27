@@ -1,10 +1,11 @@
-import { Document, Types } from 'mongoose'
+import { Document, MergeType, Types } from 'mongoose'
 
 import { UserModel } from '..'
-import { UserDTO } from 'schemas'
+import { User, UserDTO, UserWithId } from 'schemas'
 
 const userDBOtoDTO = (
-  userDBO: Document<unknown, unknown, UserDBO> &
+  userDBO: Document<unknown, unknown, MergeType<UserDBO, UserDBO>> &
+    Omit<UserDBO, keyof UserDBO> &
     UserDBO & {
       _id: Types.ObjectId
     }
@@ -14,7 +15,7 @@ const userDBOtoDTO = (
   updatedAt: userDBO.updatedAt.toISOString()
 })
 
-const store = async (userData: UserDTO): Promise<UserDTO> => {
+const store = async (userData: User): Promise<UserDTO> => {
   const user = new UserModel(userData)
 
   await user.save()
@@ -50,7 +51,7 @@ const get = async (
   return users.map(u => userDBOtoDTO(u))
 }
 
-const update = async (userData: UserDTO): Promise<UserDTO | null> => {
+const update = async (userData: UserWithId): Promise<UserDTO | null> => {
   const { id, ...rest } = userData
   const user = await UserModel.findByIdAndUpdate(id, rest, { new: true })
 

@@ -1,3 +1,4 @@
+import { Server as HttpServer } from 'http'
 import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
@@ -11,16 +12,21 @@ class Server {
   #app: express.Application
   #connection: mongoose.Connection | undefined
   #log: HttpLogger
+  #server: HttpServer | undefined
 
   constructor() {
     this.#app = express()
     this.#log = pino({
-      transport: {
-        target: 'pino-pretty',
-        options: {
-          colorize: true
-        }
-      }
+      transport:
+        process.env.ENVIRONMENT !== 'production'
+          ? {
+              target: 'pino-pretty',
+              options: {
+                translateTime: 'HH:MM:ss Z',
+                ignore: 'pid,hostname'
+              }
+            }
+          : undefined
     })
     this.#config()
   }
@@ -29,6 +35,7 @@ class Server {
     this.#app.use(cors())
     this.#app.use(express.json())
     this.#app.use(express.urlencoded({ extended: false }))
+    this.#app.use(this.#log)
     this.#app.use(
       (
         req: express.Request,
@@ -83,12 +90,22 @@ class Server {
   }
 
   public start(): void {
-    this.#app.listen(PORT, () => {
+    this.#server = this.#app.listen(PORT, () => {
       this.#log.logger.info(`Server running at port ${PORT}`)
     })
 
     try {
       this.#mongo()
+    } catch (e) {
+      this.#log.logger.error(e)
+    }
+  }
+
+  public stop(): void {
+    try {
+      if (this.#server) this.#server.close()
+
+      process.exit(0)
     } catch (e) {
       this.#log.logger.error(e)
     }

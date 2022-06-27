@@ -2,14 +2,14 @@ import { NextFunction, Router } from 'express'
 
 import { response } from 'network/response'
 import { UserService } from 'services'
-import { idSchema, storeUserSchema, UserDTO } from 'schemas'
+import { idSchema, storeUserDto, UserWithId } from 'schemas'
 import { validatorCompiler } from './utils'
 
 const User = Router()
 
 User.route('/users')
   .post(
-    validatorCompiler(storeUserSchema, 'body'),
+    validatorCompiler(storeUserDto, 'body'),
     async (
       req: CustomRequest,
       res: CustomResponse,
@@ -17,9 +17,9 @@ User.route('/users')
     ): Promise<void> => {
       try {
         const {
-          body: { args }
+          body: { args: user }
         } = req
-        const us = new UserService({ userDtoWithoutId: args })
+        const us = new UserService({ user })
         const result = await us.process({ type: 'store' })
 
         response({ error: false, message: result, res, status: 201 })
@@ -84,7 +84,7 @@ User.route('/user/:id')
   )
   .patch(
     validatorCompiler(idSchema, 'params'),
-    validatorCompiler(storeUserSchema, 'body'),
+    validatorCompiler(storeUserDto, 'body'),
     async (
       req: CustomRequest,
       res: CustomResponse,
@@ -95,11 +95,11 @@ User.route('/user/:id')
           body: { args },
           params: { id }
         } = req
-        const userDto = {
+        const userWithId = {
           id,
           ...args
-        } as UserDTO
-        const us = new UserService({ userDto })
+        } as UserWithId
+        const us = new UserService({ userWithId })
         const result = await us.process({ type: 'update' })
 
         response({ error: false, message: result, res, status: 200 })

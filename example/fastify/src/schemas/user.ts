@@ -9,6 +9,10 @@ const user = Type.Object({
 
 type User = Static<typeof user>
 
+const userWithId = Type.Intersect([user, Type.Object({ id })])
+
+type UserWithId = Static<typeof userWithId>
+
 const userDto = Type.Object({
   id: Type.Optional(id),
   lastName: Type.String(),
@@ -19,10 +23,19 @@ const userDto = Type.Object({
 
 type UserDTO = Static<typeof userDto>
 
-const storeUserSchema = Type.Object({
+const storeUserDto = Type.Object({
   args: user
 })
 
-type StoreUser = Static<typeof storeUserSchema>
+type StoreUserDTO = Static<typeof storeUserDto>
 
-export { userDto, UserDTO, user, User, storeUserSchema, StoreUser }
+export {
+  userDto,
+  UserDTO,
+  userWithId,
+  UserWithId,
+  user,
+  User,
+  storeUserDto,
+  StoreUserDTO
+}

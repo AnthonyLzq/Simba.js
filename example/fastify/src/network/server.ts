@@ -11,7 +11,9 @@ class Server {
   #connection: mongoose.Connection | undefined
 
   constructor() {
-    this.#app = fastify({ logger: { prettyPrint: true } })
+    this.#app = fastify({
+      logger: { prettyPrint: process.env.NODE_ENV !== 'production' }
+    })
     this.#config()
   }
 
@@ -69,6 +71,15 @@ class Server {
     try {
       await this.#app.listen(PORT)
       this.#mongo()
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  public async stop(): Promise<void> {
+    try {
+      await this.#app.close()
+      process.exit(0)
     } catch (e) {
       console.error(e)
     }

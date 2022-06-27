@@ -1,6 +1,6 @@
 name: Lint
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   run-linters:
@@ -9,15 +9,17 @@ jobs:
 
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Set up Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: 16.x
 
       - name: Install Node.js dependencies
-        run: npm install
+        run: npm ci
 
       - name: Revert changes into the package-lock.json file
         run: git checkout -- package-lock.json
@@ -27,5 +29,4 @@ jobs:
         with:
           auto_fix: true
           eslint: true
-          eslint_dir: lib
           eslint_extensions: js

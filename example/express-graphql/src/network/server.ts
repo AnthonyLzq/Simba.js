@@ -1,4 +1,4 @@
-import http from 'http'
+import { createServer, Server as HttpServer } from 'http'
 import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
@@ -18,28 +18,32 @@ const PORT = (process.env.PORT as string) || 1996
 class Server {
   #app: express.Application
   #connection: mongoose.Connection | undefined
-  #httpServer: http.Server
+  #server: HttpServer
   #log: HttpLogger
 
   constructor() {
     this.#app = express()
-    this.#httpServer = http.createServer(this.#app)
+    this.#server = createServer(this.#app)
     this.#log = pino({
-      transport: {
-        target: 'pino-pretty',
-        options: {
-          colorize: true
-        }
-      }
+      transport:
+        process.env.ENVIRONMENT !== 'production'
+          ? {
+              target: 'pino-pretty',
+              options: {
+                translateTime: 'HH:MM:ss Z',
+                ignore: 'pid,hostname'
+              }
+            }
+          : undefined
     })
     this.#config()
   }
 
   #config() {
     this.#app.use(cors())
-    this.#app.use(this.#log)
     this.#app.use(express.json())
     this.#app.use(express.urlencoded({ extended: false }))
+    this.#app.use(this.#log)
     this.#app.use(
       (
         req: express.Request,
@@ -96,7 +100,7 @@ class Server {
     const server = new ApolloServer({
       schema,
       plugins: [
-        ApolloServerPluginDrainHttpServer({ httpServer: this.#httpServer }),
+        ApolloServerPluginDrainHttpServer({ httpServer: this.#server }),
         process.env.NODE_ENV === 'production'
           ? ApolloServerPluginLandingPageDisabled()
           : ApolloServerPluginLandingPageGraphQLPlayground()
@@ -114,7 +118,7 @@ class Server {
       })
       applyRoutes(this.#app)
       await this.#mongo()
-      this.#httpServer.listen(PORT, () => {
+      this.#server.listen(PORT, () => {
         this.#log.logger.info(`Server listening at port: ${PORT}`)
         this.#log.logger.info(
           `GraphQL server listening at: http://localhost:${PORT}${server.graphqlPath}`
@@ -122,6 +126,16 @@ class Server {
       })
     } catch (e) {
       console.error(e)
+    }
+  }
+
+  public stop(): void {
+    try {
+      if (this.#server) this.#server.close()
+
+      process.exit(0)
+    } catch (e) {
+      this.#log.logger.error(e)
     }
   }
 }

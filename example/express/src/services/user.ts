@@ -1,7 +1,7 @@
 import httpErrors from 'http-errors'
 
 import { store, remove, get, update } from 'database'
-import { UserDTO } from 'schemas'
+import { User, UserDTO, UserWithId } from 'schemas'
 import { EFU, MFU, GE, errorHandling } from './utils'
 
 type Process = {
@@ -10,8 +10,8 @@ type Process = {
 
 type Arguments = {
   id?: string
-  userDto?: UserDTO
-  userDtoWithoutId?: Omit<UserDTO, 'id'>
+  user?: User
+  userWithId?: UserWithId
 }
 
 class UserService {
@@ -42,12 +42,10 @@ class UserService {
 
   async #store(): Promise<UserDTO> {
     try {
-      if (!this.#args.userDtoWithoutId)
+      if (!this.#args.user)
         throw new httpErrors.UnprocessableEntity(GE.INTERNAL_SERVER_ERROR)
 
-      const result = await store({
-        ...this.#args.userDtoWithoutId
-      })
+      const result = await store(this.#args.user)
 
       return result
     } catch (e) {
@@ -98,10 +96,10 @@ class UserService {
 
   async #update(): Promise<UserDTO> {
     try {
-      if (!this.#args.userDto || !this.#args.userDto.id)
+      if (!this.#args.userWithId || !this.#args.userWithId.id)
         throw new httpErrors.UnprocessableEntity(GE.INTERNAL_SERVER_ERROR)
 
-      const updatedUser = await update(this.#args.userDto)
+      const updatedUser = await update(this.#args.userWithId)
 
       if (!updatedUser) throw new httpErrors.NotFound(EFU.NOT_FOUND)
 
