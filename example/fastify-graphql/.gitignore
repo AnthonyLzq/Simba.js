@@ -126,3 +126,4 @@ typings/
 # End of https://www.toptal.com/developers/gitignore/api/node,yarn
 
 dist
+test/setEnvVars.ts
