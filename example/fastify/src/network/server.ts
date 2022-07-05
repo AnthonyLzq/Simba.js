@@ -12,7 +12,11 @@ class Server {
 
   constructor() {
     this.#app = fastify({
-      logger: { prettyPrint: process.env.NODE_ENV !== 'production' }
+      logger: {
+        prettyPrint: !['production', 'ci'].includes(
+          process.env.NODE_ENV as string
+        )
+      }
     })
     this.#config()
   }
@@ -47,15 +51,18 @@ class Server {
       this.#app.log.info('Mongo connection reestablished')
     })
     this.#connection.on('disconnected', () => {
-      this.#app.log.info('Mongo connection disconnected')
-      this.#app.log.info('Trying to reconnected to Mongo...')
-      setTimeout(() => {
-        mongoose.connect(process.env.MONGO_URI as string, {
-          ...connection,
-          connectTimeoutMS: 3000,
-          socketTimeoutMS: 3000
-        })
-      }, 3000)
+      if (!['ci', 'local'].includes(process.env.NODE_ENV as string)) {
+        this.#app.log.info(
+          'Mongo connection disconnected. Trying to reconnected to Mongo...'
+        )
+        setTimeout(() => {
+          mongoose.connect(process.env.MONGO_URI as string, {
+            ...connection,
+            connectTimeoutMS: 3000,
+            socketTimeoutMS: 3000
+          })
+        }, 3000)
+      }
     })
     this.#connection.on('close', () => {
       this.#app.log.info('Mongo connection closed')
@@ -69,8 +76,8 @@ class Server {
 
   public async start(): Promise<void> {
     try {
+      await this.#mongo()
       await this.#app.listen(PORT)
-      this.#mongo()
     } catch (e) {
       console.error(e)
     }
@@ -78,8 +85,9 @@ class Server {
 
   public async stop(): Promise<void> {
     try {
+      if (this.#connection) await this.#connection.close()
+
       await this.#app.close()
-      process.exit(0)
     } catch (e) {
       console.error(e)
     }
