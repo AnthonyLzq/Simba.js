@@ -23,6 +23,7 @@
     "rm-git-fastify": "if [ -d \"example/fastify/.git\" ]; then rm -rf example/fastify/.git; fi",
     "rm-git-express-graphql": "if [ -d \"example/express-graphql/.git\" ]; then rm -rf example/express-graphql/.git; fi",
     "rm-git-fastify-graphql": "if [ -d \"example/fastify-graphql/.git\" ]; then rm -rf example/fastify-graphql/.git; fi",
+    "test-express": "if [ -d \"example/express\" ]; then npm run test:local --prefix example/express; fi",
     "test-fastify": "if [ -d \"example/fastify\" ]; then npm run test:local --prefix example/fastify; fi",
     "cd-mv-example": "if [ ! -d \"example\" ]; then mkdir example && cd example; fi",
     "version": "npm run release && git add CHANGELOG.md"
