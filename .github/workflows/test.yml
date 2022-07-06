@@ -4,6 +4,7 @@ on: [push]
 
 jobs:
   test:
+    environment: Test
     name: Tests for Simba APIs
     runs-on: ubuntu-latest
 
