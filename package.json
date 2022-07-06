@@ -8,7 +8,7 @@
     "help": "node ./bin --help",
     "release": "standard-version",
     "test:local": "if [ ! -d \"example/fastify/node_modules\" ]; then npm run build; fi && npm run test:express:local && npm run test:fastify:local",
-    "test:ci": "if [ ! -d \"example/fastify/node_modules\" ]; then npm run build; fi && npm run test:express:ci && npm run test:fastify:ci",
+    "build:ci": "if [ ! -d \"example/fastify/node_modules\" ]; then npm run build; fi",
     "build": "npm run rm && npm run build:express && npm run build:fastify && npm run build:express:graphql && npm run build:fastify:graphql",
     "build:express": "npm run rm:express && npm run cd:mv:example && node -r dotenv/config ./bin -N example/express -D 'This is a test using express' -a AnthonyLzq -e sluzquinosa@uni.pe -l mit -H --tests --ghat && npm run rm:git:express",
     "build:fastify": "npm run rm:fastify && npm run cd:mv:example && node -r dotenv/config ./bin -N example/fastify -D 'This is a test using fastify' -a AnthonyLzq -e sluzquinosa@uni.pe -l mit -H -F --tests --ghat && npm run rm:git:fastify",

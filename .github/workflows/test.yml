@@ -25,7 +25,7 @@ jobs:
         run: git checkout -- package-lock.json
 
       - name: Run test
-        run: npm run test:ci
+        run: npm run build
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
           NODE_ENV: ci
