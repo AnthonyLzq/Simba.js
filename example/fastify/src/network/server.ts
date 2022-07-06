@@ -1,20 +1,19 @@
 import fastify, { FastifyInstance } from 'fastify'
+import mongoose from 'mongoose'
 
-import { dbConnection } from 'database'
 import { applyRoutes } from './router'
 import { validatorCompiler } from './utils'
 
 const PORT = process.env.PORT ?? 1996
-const ENVIRONMENTS_WITHOUT_PRETTY_PRINT = ['production', 'ci']
 
 class Server {
   #app: FastifyInstance
-  #connection: Awaited<ReturnType<typeof dbConnection>> | undefined
+  #connection: mongoose.Connection | undefined
 
   constructor() {
     this.#app = fastify({
       logger: {
-        prettyPrint: !ENVIRONMENTS_WITHOUT_PRETTY_PRINT.includes(
+        prettyPrint: !['production', 'ci'].includes(
           process.env.NODE_ENV as string
         )
       }
@@ -38,14 +37,46 @@ class Server {
     applyRoutes(this.#app)
   }
 
-  async #dbConnection() {
-    this.#connection = await dbConnection(this.#app.log)
+  async #mongo(): Promise<void> {
+    this.#connection = mongoose.connection
+    const connection = {
+      keepAlive: true,
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    }
+    this.#connection.on('connected', () => {
+      this.#app.log.info('Mongo connection established.')
+    })
+    this.#connection.on('reconnected', () => {
+      this.#app.log.info('Mongo connection reestablished')
+    })
+    this.#connection.on('disconnected', () => {
+      if (!['ci', 'local'].includes(process.env.NODE_ENV as string)) {
+        this.#app.log.info(
+          'Mongo connection disconnected. Trying to reconnected to Mongo...'
+        )
+        setTimeout(() => {
+          mongoose.connect(process.env.MONGO_URI as string, {
+            ...connection,
+            connectTimeoutMS: 3000,
+            socketTimeoutMS: 3000
+          })
+        }, 3000)
+      }
+    })
+    this.#connection.on('close', () => {
+      this.#app.log.info('Mongo connection closed')
+    })
+    this.#connection.on('error', (e: Error) => {
+      this.#app.log.info('Mongo connection error:')
+      this.#app.log.error(e)
+    })
+    await mongoose.connect(process.env.MONGO_URI as string, connection)
   }
 
   public async start(): Promise<void> {
     try {
-      await this.#dbConnection()
-      await this.#connection?.connect()
+      await this.#mongo()
       await this.#app.listen(PORT)
     } catch (e) {
       console.error(e)
@@ -54,7 +85,8 @@ class Server {
 
   public async stop(): Promise<void> {
     try {
-      await this.#connection?.disconnect()
+      if (this.#connection) await this.#connection.close()
+
       await this.#app.close()
     } catch (e) {
       console.error(e)

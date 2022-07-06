@@ -1,4 +1,4 @@
-name: Tests - example/fastify
+name: Tests - example/express-graphql
 
 on: [push]
 

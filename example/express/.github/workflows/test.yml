@@ -19,13 +19,13 @@ jobs:
           node-version: 16.x
 
       - name: Install Node.js dependencies
-        run: yarn
+        run: npm ci
 
-      - name: Revert changes into the yarn.lock file
-        run: git checkout -- yarn.lock
+      - name: Revert changes into the package-lock.json file
+        run: git checkout -- package-lock.json
 
       - name: Run test
-        run: yarn test:ci
+        run: npm run test:ci
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
           NODE_ENV: ci
