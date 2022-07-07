@@ -3,6 +3,7 @@
   <a href="https://simbajs.notion.site/783092dc7d444067b4c56a25d671f658?v=31060f3d17524ca58870e86c2960a6df"><img src="https://i.ibb.co/QFX0WnH/simba-pink.png" alt="Simba.js"></a>
 </h1>
 
+
 [![NPM version](https://img.shields.io/npm/v/@anthonylzq/simba.js.svg?style=flat)](https://www.npmjs.com/package/@anthonylzq/simba.js)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/AnthonyLzq/simba.js/blob/master/LICENSE)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
@@ -129,15 +130,15 @@ Finally, you may not want to use a license or one of the available licenses, don
 simba -N myProject -D 'This is a test' -a myName -e myEmail@email.com -H
 ```
 
-#### Why didn't you use [`TypeGraphQL`](https://typegraphql.com/)?
+#### Why I didn't you use [`TypeGraphQL`](https://typegraphql.com/)?
 
 [They don't support GraphQL v16.x.x](https://github.com/MichalLytek/type-graphql/issues/1100), until then.
 
 ## <a name="project-structure"></a>Project structure
 
-Regardless of the option chosen, a new folder will be generated with the name of the project, it will contain the following structure, depending if you have chosen Express or Fastify:
-
-### Express case
+If you want to check the content of the files, please check the [example](https://github.com/AnthonyLzq/simba.js/tree/master/example) folder, there you will an example for both, Express and Fastify.
+Regardless of the option chosen, a new folder will be generated with the name of the project. 
+<!-- ### Express case
 
 ```
 📂.github
@@ -438,9 +439,8 @@ Regardless of the option chosen, a new folder will be generated with the name of
 📜tsconfig.json
 📜webpack.config.js
 📜yarn.lock (or package-lock.json)
-```
+``` -->
 
-If you want to check the content of the files, please check the [example](https://github.com/AnthonyLzq/simba.js/tree/master/example) folder, there you will an example for both, Express and Fastify.
 
 ### Some considerations
 
@@ -483,6 +483,17 @@ If you want to check the content of the files, please check the [example](https:
 - Finally, `git` will be initialized and a list of libraries will be installed. Check the [**notes**](#notes).
 - Relative imports is already configured, you do not need to import a file using `../../../some/very/nested/stuff/in/other/folder`, you can use `some/very/nested/stuff/in/other/folder` assuming that your folder is under the `src` folder.
 - The Fastify version is set to v3 because Apollo Server has not yet provided support for Fastify v4 yet, and it is difficult to have support for two different major versions of Fastify, so until Apollo Server supports Fastify v4, this package will use Fastify v3.
+
+## Who uses Simba.js?
+
+<section style="display: flex; align-items: center; justify-content: center">
+  <div style="width: 45%">
+    <a href="https://chazki.com/"><img src="https://images.squarespace-cdn.com/content/5beb6423aa49a118ca9e258b/39f86b41-e094-4c38-8d92-49bbd54bccca/logo-chazki-blanco-2000px.png?format=1000w&content-type=image%2Fpng" alt="Simba.js"></a>
+  </div>
+  <div style="margin-top: 12px">
+    <a href="https://www.mein.ai"><img src="https://static.wixstatic.com/media/e61b06_ed2d347ea1a44effa5a912e7d4fdd9a2~mv2.png/v1/fill/w_269,h_64,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/logoMein.png" alt="Simba.js"></a>
+  </div>
+</section>
 
 ## What is new?
 
