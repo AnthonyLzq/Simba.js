@@ -39,8 +39,10 @@ By doing this your prompt will ask you the following questions:
 - `Project version (0.1.0):` the initial version of the project, `0.1.0` as default.
 - `Select your license [1...7]:`, the license you have chosen for the project.
 - `License year (current year):`, the year where your license starts, current year as default.
-- `Will this project use GraphQL?  [y/n]:`, yes or no question, only **y** or **n** is accepted. This is not case sensitive.
+- `Will this project use GraphQL? [y/n]:`, yes or no question, only **y** or **n** is accepted. This is not case sensitive.
 - `Will this project be deployed with Heroku? [y/n]:`, yes or no question, only **y** or **n** is accepted. This is not case sensitive.
+- `Would you want to have a basic suit of tests with Jest? [y/n]:`, yes or no question, only **y** or **n** is accepted. This is not case sensitive.
+- `Would you want to have a basic GitHub Action for the suit of tests? [y/n]:`, yes or no question, only **y** or **n** is accepted. This is not case sensitive.
 
 The second option you have is by passing flags in one single command. If you need help, please run:
 
@@ -55,33 +57,40 @@ This will generate the following output:
 to be asked for the options one by one
 
 Options:
-  -N, --projectName         Project name
-  -D, --projectDescription  Project description
-  -a, --author              Author of the project
-  -e, --email               Email of the author
-  -H, --heroku              Whether or not the project will be deployed using
-                            Heroku                    [boolean] [default: false]
-  -l, --license             Type of license for the project, it can be one of:
-                            MIT, Apache 2.0, MPL 2.0, LGPL 3.0, GPL 3.0 and AGPL
-                            3.0, in lowercase without its version
+  -N, --projectName              Project name
+  -D, --projectDescription       Project description
+  -a, --author                   Author of the project
+  -e, --email                    Email of the author
+  -H, --heroku                   Whether or not the project will be deployed
+                                 using Heroku         [boolean] [default: false]
+  -l, --license                  Type of license for the project, it can be one
+                                 of: MIT, Apache 2.0, MPL 2.0, LGPL 3.0, GPL 3.0
+                                 and AGPL 3.0, in lowercase without its version
                                                          [default: "unlicensed"]
-  -v, --version             Project initial version           [default: "0.1.0"]
-  -y, --licenseYear         Year when the license starts       [default: "2022"]
-  -n, --npm                 Whether or not the project should use npm as package
-                            manager                   [boolean] [default: false]
-  -f, --mainFile            Main file of the project   [default: "src/index.ts"]
-  -q, --questions           Whether or not you want to be asked to answer the
-                            questions related to the project one by one
+  -v, --version                  Project initial version      [default: "0.1.0"]
+  -y, --licenseYear              Year when the license starts  [default: "2022"]
+  -n, --npm                      Whether or not the project should use npm as
+                                 package manager      [boolean] [default: false]
+  -f, --mainFile                 Main file of the project
+                                                       [default: "src/index.ts"]
+  -q, --questions                Whether or not you want to be asked to answer
+                                 the questions related to the project one by one
                                                       [boolean] [default: false]
-  -F, --fastify             Whether or not you want to use Fastify for your
-                            project                   [boolean] [default: false]
-  -g, --graphql             Whether or not you want to use GraphQL for your
-                            project                   [boolean] [default: false]
-  -h, --help                Show help                                  [boolean]
+  -F, --fastify                  Whether or not you want to use Fastify for your
+                                 project              [boolean] [default: false]
+  -g, --graphql                  Whether or not you want to use GraphQL for your
+                                 project              [boolean] [default: false]
+  -t, --tests                    Whether or not you want to have a basic suit of
+                                 unit tests with Jest [boolean] [default: false]
+      --ghat, --gh-action-tests  Whether or not you want to have a GitHub Action
+                                 with a CI for your tests. If this option is set
+                                 to true, the tests flag must be set to true.
+                                                                [default: false]
+  -h, --help                     Show help                             [boolean]
 
 Examples:
   simba -N 'Project Name' -D 'Project description' -a Anthony -e
-  sluzquinosa@uni.pe
+  sluzquinosa@uni.pe -l mit -F --tests --ghat
 
 Developed by AnthonyLzq
 ```
@@ -131,51 +140,59 @@ Regardless of the option chosen, a new folder will be generated with the name of
 ### Express case
 
 ```
+📂.github
+┣ 📂workflows
+┃ ┣ 📜test.yml
 📂node_modules
 📂src
- ┣ 📂@types
- ┃ ┣ 📂custom
- ┃ ┃ ┣ 📜request.d.ts
- ┃ ┃ ┗ 📜response.d.ts
- ┃ ┣ 📂models
- ┃ ┃ ┗ 📜user.d.ts
- ┃ ┗ 📜index.d.ts
- ┣ 📂database
- ┃ ┣ 📂mongo
- ┃ ┃ ┣ 📂models
- ┃ ┃ ┃ ┣ 📜index.ts
- ┃ ┃ ┃ ┗ 📜user.ts
- ┃ ┃ ┣ 📂queries
- ┃ ┃ ┃ ┣ 📜index.ts
- ┃ ┃ ┃ ┗ 📜user.ts
- ┃ ┃ ┗ 📜index.ts
- ┃ ┗ 📜index.ts
- ┣ 📂network
- ┃ ┣ 📂routes
- ┃ ┃ ┣ 📂utils
- ┃ ┃ ┃ ┗ 📜index.ts
- ┃ ┃ ┣ 📜home.ts
- ┃ ┃ ┣ 📜index.ts
- ┃ ┃ ┗ 📜user.ts
- ┃ ┣ 📜index.ts
- ┃ ┣ 📜response.ts
- ┃ ┣ 📜routes.ts
- ┃ ┗ 📜server.ts
- ┣ 📂schemas
- ┃ ┣ 📜index.ts
- ┃ ┗ 📜user.ts
- ┣ 📂services
- ┃ ┣ 📂utils
- ┃ ┃ ┣ 📂messages
- ┃ ┃ ┃ ┣ 📜index.ts
- ┃ ┃ ┃ ┗ 📜user.ts
- ┃ ┃ ┗ 📜index.ts
- ┃ ┣ 📜index.ts
- ┃ ┗ 📜user.ts
- ┣ 📂utils
- ┃ ┣ 📜docs.json
- ┃ ┗ 📜index.ts
- ┗ 📜index.ts
+┣ 📂@types
+┃ ┣ 📂custom
+┃ ┃ ┣ 📜request.d.ts
+┃ ┃ ┗ 📜response.d.ts
+┃ ┣ 📂models
+┃ ┃ ┗ 📜user.d.ts
+┃ ┗ 📜index.d.ts
+┣ 📂database
+┃ ┣ 📂mongo
+┃ ┃ ┣ 📂models
+┃ ┃ ┃ ┣ 📜index.ts
+┃ ┃ ┃ ┗ 📜user.ts
+┃ ┃ ┣ 📂queries
+┃ ┃ ┃ ┣ 📜index.ts
+┃ ┃ ┃ ┗ 📜user.ts
+┃ ┃ ┣ 📜connection.ts
+┃ ┃ ┗ 📜index.ts
+┃ ┗ 📜index.ts
+┣ 📂network
+┃ ┣ 📂routes
+┃ ┃ ┣ 📂utils
+┃ ┃ ┃ ┗ 📜index.ts
+┃ ┃ ┣ 📜home.ts
+┃ ┃ ┣ 📜index.ts
+┃ ┃ ┗ 📜user.ts
+┃ ┣ 📜index.ts
+┃ ┣ 📜response.ts
+┃ ┣ 📜routes.ts
+┃ ┗ 📜server.ts
+┣ 📂schemas
+┃ ┣ 📜index.ts
+┃ ┗ 📜user.ts
+┣ 📂services
+┃ ┣ 📂utils
+┃ ┃ ┣ 📂messages
+┃ ┃ ┃ ┣ 📜index.ts
+┃ ┃ ┃ ┗ 📜user.ts
+┃ ┃ ┗ 📜index.ts
+┃ ┣ 📜index.ts
+┃ ┗ 📜user.ts
+┣ 📂utils
+┃ ┣ 📜docs.json
+┃ ┗ 📜index.ts
+┣ 📜index.ts
+📂test
+┣ 📜index.test.ts
+┣ 📜jestGlobalSetup.ts
+┗ 📜setEnvVars.ts
 📜.env
 📜.eslintignore
 📜.eslintrc
@@ -198,61 +215,69 @@ Regardless of the option chosen, a new folder will be generated with the name of
 ### Express-GraphQL case
 
 ```
+📂.github
+┣ 📂workflows
+┃ ┣ 📜test.yml
 📂node_modules
 📂src
- ┣ 📂@types
- ┃ ┣ 📂custom
- ┃ ┃ ┣ 📜request.d.ts
- ┃ ┃ ┗ 📜response.d.ts
- ┃ ┣ 📂graphQL
- ┃ ┃ ┗ 📜context.d.ts
- ┃ ┣ 📂models
- ┃ ┃ ┗ 📜user.d.ts
- ┃ ┗ 📜index.d.ts
- ┣ 📂database
- ┃ ┣ 📂mongo
- ┃ ┃ ┣ 📂models
- ┃ ┃ ┃ ┣ 📜index.ts
- ┃ ┃ ┃ ┗ 📜user.ts
- ┃ ┃ ┣ 📂queries
- ┃ ┃ ┃ ┣ 📜index.ts
- ┃ ┃ ┃ ┗ 📜user.ts
- ┃ ┃ ┗ 📜index.ts
- ┃ ┗ 📜index.ts
- ┣ 📂graphQL
- ┃ ┣ 📂models
- ┃ ┃ ┣ 📂User
- ┃ ┃ ┃ ┣ 📜index.ts
- ┃ ┃ ┃ ┣ 📜mutations.ts
- ┃ ┃ ┃ ┣ 📜mutationsResolver.ts
- ┃ ┃ ┃ ┣ 📜queries.ts
- ┃ ┃ ┃ ┣ 📜queriesResolver.ts
- ┃ ┃ ┃ ┣ 📜schemas.ts
- ┃ ┃ ┃ ┗ 📜typeDefs.ts
- ┃ ┃ ┣ 📂utils
- ┃ ┃ ┃ ┣ 📂messages
- ┃ ┃ ┃ ┃ ┣ 📜index.ts
- ┃ ┃ ┃ ┃ ┗ 📜user.ts
- ┃ ┃ ┃ ┗ 📜index.ts
- ┃ ┃ ┗ 📜index.ts
- ┃ ┗ 📜index.ts
- ┣ 📂network
- ┃ ┣ 📂routes
- ┃ ┃ ┣ 📂utils
- ┃ ┃ ┃ ┗ 📜index.ts
- ┃ ┃ ┣ 📜home.ts
- ┃ ┃ ┣ 📜index.ts
- ┃ ┣ 📜index.ts
- ┃ ┣ 📜response.ts
- ┃ ┣ 📜routes.ts
- ┃ ┗ 📜server.ts
- ┣ 📂schemas
- ┃ ┣ 📜index.ts
- ┃ ┗ 📜user.ts
- ┣ 📂utils
- ┃ ┣ 📜docs.json
- ┃ ┗ 📜index.ts
- ┗ 📜index.ts
+┣ 📂@types
+┃ ┣ 📂custom
+┃ ┃ ┣ 📜request.d.ts
+┃ ┃ ┗ 📜response.d.ts
+┃ ┣ 📂graphQL
+┃ ┃ ┗ 📜context.d.ts
+┃ ┣ 📂models
+┃ ┃ ┗ 📜user.d.ts
+┃ ┗ 📜index.d.ts
+┣ 📂database
+┃ ┣ 📂mongo
+┃ ┃ ┣ 📂models
+┃ ┃ ┃ ┣ 📜index.ts
+┃ ┃ ┃ ┗ 📜user.ts
+┃ ┃ ┣ 📂queries
+┃ ┃ ┃ ┣ 📜index.ts
+┃ ┃ ┃ ┗ 📜user.ts
+┃ ┃ ┣ 📜connection.ts
+┃ ┃ ┗ 📜index.ts
+┃ ┗ 📜index.ts
+┣ 📂graphQL
+┃ ┣ 📂models
+┃ ┃ ┣ 📂User
+┃ ┃ ┃ ┣ 📜index.ts
+┃ ┃ ┃ ┣ 📜mutations.ts
+┃ ┃ ┃ ┣ 📜mutationsResolver.ts
+┃ ┃ ┃ ┣ 📜queries.ts
+┃ ┃ ┃ ┣ 📜queriesResolver.ts
+┃ ┃ ┃ ┣ 📜schemas.ts
+┃ ┃ ┃ ┗ 📜typeDefs.ts
+┃ ┃ ┣ 📂utils
+┃ ┃ ┃ ┣ 📂messages
+┃ ┃ ┃ ┃ ┣ 📜index.ts
+┃ ┃ ┃ ┃ ┗ 📜user.ts
+┃ ┃ ┃ ┗ 📜index.ts
+┃ ┃ ┗ 📜index.ts
+┃ ┗ 📜index.ts
+┣ 📂network
+┃ ┣ 📂routes
+┃ ┃ ┣ 📂utils
+┃ ┃ ┃ ┗ 📜index.ts
+┃ ┃ ┣ 📜home.ts
+┃ ┃ ┣ 📜index.ts
+┃ ┣ 📜index.ts
+┃ ┣ 📜response.ts
+┃ ┣ 📜routes.ts
+┃ ┗ 📜server.ts
+┣ 📂schemas
+┃ ┣ 📜index.ts
+┃ ┗ 📜user.ts
+┣ 📂utils
+┃ ┣ 📜docs.json
+┃ ┗ 📜index.ts
+┣ 📜index.ts
+📂test
+┣ 📜index.test.ts
+┣ 📜jestGlobalSetup.ts
+┗ 📜setEnvVars.ts
 📜.env
 📜.eslintignore
 📜.eslintrc
@@ -275,44 +300,49 @@ Regardless of the option chosen, a new folder will be generated with the name of
 ```
 📂node_modules
 📂src
- ┣ 📂@types
- ┃ ┣ 📂models
- ┃ ┃ ┗ 📜user.d.ts
- ┃ ┗ 📜index.d.ts
- ┣ 📂database
- ┃ ┣ 📂mongo
- ┃ ┃ ┣ 📂models
- ┃ ┃ ┃ ┣ 📜index.ts
- ┃ ┃ ┃ ┗ 📜user.ts
- ┃ ┃ ┣ 📂queries
- ┃ ┃ ┃ ┣ 📜index.ts
- ┃ ┃ ┃ ┗ 📜user.ts
- ┃ ┃ ┗ 📜index.ts
- ┃ ┗ 📜index.ts
- ┣ 📂network
- ┃ ┣ 📂routes
- ┃ ┃ ┣ 📂utils
- ┃ ┃ ┃ ┗ 📜docs.ts
- ┃ ┃ ┣ 📜docs.ts
- ┃ ┃ ┣ 📜home.ts
- ┃ ┃ ┣ 📜index.ts
- ┃ ┃ ┗ 📜user.ts
- ┃ ┣ 📜index.ts
- ┃ ┣ 📜response.ts
- ┃ ┣ 📜routes.ts
- ┃ ┗ 📜server.ts
- ┣ 📂schemas
- ┃ ┣ 📜index.ts
- ┃ ┗ 📜user.ts
- ┣ 📂services
- ┃ ┣ 📂utils
- ┃ ┃ ┣ 📂messages
- ┃ ┃ ┃ ┣ 📜index.ts
- ┃ ┃ ┃ ┗ 📜user.ts
- ┃ ┃ ┗ 📜index.ts
- ┃ ┣ 📜index.ts
- ┃ ┗ 📜user.ts
- ┗ 📜index.ts
+┣ 📂@types
+┃ ┣ 📂models
+┃ ┃ ┗ 📜user.d.ts
+┃ ┗ 📜index.d.ts
+┣ 📂database
+┃ ┣ 📂mongo
+┃ ┃ ┣ 📂models
+┃ ┃ ┃ ┣ 📜index.ts
+┃ ┃ ┃ ┗ 📜user.ts
+┃ ┃ ┣ 📂queries
+┃ ┃ ┃ ┣ 📜index.ts
+┃ ┃ ┃ ┗ 📜user.ts
+┃ ┃ ┣ 📜connection.ts
+┃ ┃ ┗ 📜index.ts
+┃ ┗ 📜index.ts
+┣ 📂network
+┃ ┣ 📂routes
+┃ ┃ ┣ 📂utils
+┃ ┃ ┃ ┗ 📜docs.ts
+┃ ┃ ┣ 📜docs.ts
+┃ ┃ ┣ 📜home.ts
+┃ ┃ ┣ 📜index.ts
+┃ ┃ ┗ 📜user.ts
+┃ ┣ 📜index.ts
+┃ ┣ 📜response.ts
+┃ ┣ 📜routes.ts
+┃ ┗ 📜server.ts
+┣ 📂schemas
+┃ ┣ 📜index.ts
+┃ ┗ 📜user.ts
+┣ 📂services
+┃ ┣ 📂utils
+┃ ┃ ┣ 📂messages
+┃ ┃ ┃ ┣ 📜index.ts
+┃ ┃ ┃ ┗ 📜user.ts
+┃ ┃ ┗ 📜index.ts
+┃ ┣ 📜index.ts
+┃ ┗ 📜user.ts
+┣ 📜index.ts
+📂test
+┣ 📜index.test.ts
+┣ 📜jestGlobalSetup.ts
+┗ 📜setEnvVars.ts
 📜.env
 📜.eslintignore
 📜.eslintrc
@@ -335,56 +365,64 @@ Regardless of the option chosen, a new folder will be generated with the name of
 ### Fastify-GraphQL case
 
 ```
+📂.github
+┣ 📂workflows
+┃ ┣ 📜test.yml
 📂node_modules
 📂src
- ┣ 📂@types
- ┃ ┣ 📂graphQL
- ┃ ┃ ┗ 📜context.d.ts
- ┃ ┣ 📂dto
- ┃ ┃ ┗ 📜user.d.ts
- ┃ ┣ 📂models
- ┃ ┃ ┗ 📜user.d.ts
- ┃ ┗ 📜index.d.ts
- ┣ 📂database
- ┃ ┣ 📂mongo
- ┃ ┃ ┣ 📂models
- ┃ ┃ ┃ ┣ 📜index.ts
- ┃ ┃ ┃ ┗ 📜user.ts
- ┃ ┃ ┣ 📂queries
- ┃ ┃ ┃ ┣ 📜index.ts
- ┃ ┃ ┃ ┗ 📜user.ts
- ┃ ┃ ┗ 📜index.ts
- ┃ ┗ 📜index.ts
- ┣ 📂graphQL
- ┃ ┣ 📂models
- ┃ ┃ ┣ 📂User
- ┃ ┃ ┃ ┣ 📜index.ts
- ┃ ┃ ┃ ┣ 📜mutations.ts
- ┃ ┃ ┃ ┣ 📜mutationsResolver.ts
- ┃ ┃ ┃ ┣ 📜queries.ts
- ┃ ┃ ┃ ┣ 📜queriesResolver.ts
- ┃ ┃ ┃ ┣ 📜schemas.ts
- ┃ ┃ ┃ ┗ 📜typeDefs.ts
- ┃ ┃ ┣ 📂utils
- ┃ ┃ ┃ ┣ 📂messages
- ┃ ┃ ┃ ┃ ┣ 📜index.ts
- ┃ ┃ ┃ ┃ ┗ 📜user.ts
- ┃ ┃ ┃ ┗ 📜index.ts
- ┃ ┃ ┗ 📜index.ts
- ┃ ┗ 📜index.ts
- ┣ 📂network
- ┃ ┣ 📂routes
- ┃ ┃ ┣ 📜docs.ts
- ┃ ┃ ┣ 📜home.ts
- ┃ ┃ ┣ 📜index.ts
- ┃ ┣ 📜index.ts
- ┃ ┣ 📜response.ts
- ┃ ┣ 📜routes.ts
- ┃ ┗ 📜server.ts
- ┣ 📂schemas
- ┃ ┣ 📜index.ts
- ┃ ┗ 📜user.ts
- ┗ 📜index.ts
+┣ 📂@types
+┃ ┣ 📂graphQL
+┃ ┃ ┗ 📜context.d.ts
+┃ ┣ 📂dto
+┃ ┃ ┗ 📜user.d.ts
+┃ ┣ 📂models
+┃ ┃ ┗ 📜user.d.ts
+┃ ┗ 📜index.d.ts
+┣ 📂database
+┃ ┣ 📂mongo
+┃ ┃ ┣ 📂models
+┃ ┃ ┃ ┣ 📜index.ts
+┃ ┃ ┃ ┗ 📜user.ts
+┃ ┃ ┣ 📂queries
+┃ ┃ ┃ ┣ 📜index.ts
+┃ ┃ ┃ ┗ 📜user.ts
+┃ ┃ ┣ 📜connection.ts
+┃ ┃ ┗ 📜index.ts
+┃ ┗ 📜index.ts
+┣ 📂graphQL
+┃ ┣ 📂models
+┃ ┃ ┣ 📂User
+┃ ┃ ┃ ┣ 📜index.ts
+┃ ┃ ┃ ┣ 📜mutations.ts
+┃ ┃ ┃ ┣ 📜mutationsResolver.ts
+┃ ┃ ┃ ┣ 📜queries.ts
+┃ ┃ ┃ ┣ 📜queriesResolver.ts
+┃ ┃ ┃ ┣ 📜schemas.ts
+┃ ┃ ┃ ┗ 📜typeDefs.ts
+┃ ┃ ┣ 📂utils
+┃ ┃ ┃ ┣ 📂messages
+┃ ┃ ┃ ┃ ┣ 📜index.ts
+┃ ┃ ┃ ┃ ┗ 📜user.ts
+┃ ┃ ┃ ┗ 📜index.ts
+┃ ┃ ┗ 📜index.ts
+┃ ┗ 📜index.ts
+┣ 📂network
+┃ ┣ 📂routes
+┃ ┃ ┣ 📜docs.ts
+┃ ┃ ┣ 📜home.ts
+┃ ┃ ┣ 📜index.ts
+┃ ┣ 📜index.ts
+┃ ┣ 📜response.ts
+┃ ┣ 📜routes.ts
+┃ ┗ 📜server.ts
+┣ 📂schemas
+┃ ┣ 📜index.ts
+┃ ┗ 📜user.ts
+┣ 📜index.ts
+📂test
+┣ 📜index.test.ts
+┣ 📜jestGlobalSetup.ts
+┗ 📜setEnvVars.ts
 📜.env
 📜.eslintignore
 📜.eslintrc
@@ -450,12 +488,9 @@ If you want to check the content of the files, please check the [example](https:
 
 Please check the [`changelog.md`](https://github.com/AnthonyLzq/simba.js/blob/master/CHANGELOG.md) file. Also, if you want to check what is coming, check the [road map](https://simbajs.notion.site/simbajs/783092dc7d444067b4c56a25d671f658?v=31060f3d17524ca58870e86c2960a6df).
 
-### Version 5.x.x
+### Version 6.x.x
 
-In this major version I would be focusing on adding new possible configurations according to the road map. The major changes of this version will be described here:
-
-- API creation logic was split to improve scalability.
-- Added support for GraphQL in both, Express and Fastify.
+In this major version I would be focusing on adding integrations for CI/CD and testing.
 
 ## <a name="notes"></a>Notes
 
@@ -473,11 +508,13 @@ As `devDependencies`:
 - [`@types/node`](https://www.npmjs.com/package/@types/node)
 - [`@typescript-eslint/eslint-plugin`](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin)
 - [`@typescript-eslint/parser`](https://www.npmjs.com/package/@typescript-eslint/parser)
+- [`axios`](https://www.npmjs.com/package/axios)
 - [`dotenv`](https://www.npmjs.com/package/dotenv)
 - [`eslint`](https://www.npmjs.com/package/eslint)
 - [`eslint-config-prettier`](https://www.npmjs.com/package/eslint-config-prettier)
 - [`eslint-config-standard`](https://www.npmjs.com/package/eslint-config-standard)
 - [`eslint-plugin-import`](https://www.npmjs.com/package/eslint-plugin-import)
+- [`eslint-plugin-n`](https://www.npmjs.com/package/eslint-plugin-n) (in case you are using yarn as package manager)
 - [`eslint-plugin-prettier`](https://www.npmjs.com/package/eslint-plugin-prettier)
 - [`nodemon`](https://www.npmjs.com/package/nodemon)
 - [`prettier`](https://www.npmjs.com/package/prettier)
@@ -499,6 +536,16 @@ As `dependencies`:
 - [`ajv-formats`](https://www.npmjs.com/package/ajv-formats)
 - [`apollo-server-core`](https://www.npmjs.com/package/apollo-server-core)
 - [`graphql`](https://www.npmjs.com/package/graphql)
+
+### In case you added a suit of tests:
+
+As `devDependencies`:
+- [`@jest/types`](https://www.npmjs.com/package/@jest/types)
+- [`@types/jest`](https://www.npmjs.com/package/@types/jest)
+- [`eslint-plugin-jest`](https://www.npmjs.com/package/eslint-plugin-jest)
+- [`jest`](https://www.npmjs.com/package/jest)
+- [`jest-unit`](https://www.npmjs.com/package/jest-unit)
+- [`ts-jest`](https://www.npmjs.com/package/ts-jest)
 
 ### Express case
 
