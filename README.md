@@ -487,7 +487,7 @@ Regardless of the option chosen, a new folder will be generated with the name of
 ## Who uses Simba.js?
 
 <section style="display: flex; align-items: center; justify-content: center">
-  <div style="width: 45%">
+  <div style="width: 300px">
     <a href="https://chazki.com/"><img src="https://images.squarespace-cdn.com/content/5beb6423aa49a118ca9e258b/39f86b41-e094-4c38-8d92-49bbd54bccca/logo-chazki-blanco-2000px.png?format=1000w&content-type=image%2Fpng" alt="Simba.js"></a>
   </div>
   <div style="margin-top: 12px">
