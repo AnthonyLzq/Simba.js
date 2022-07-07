@@ -1,16 +1,14 @@
 import axios from 'axios'
 import { Static, TObject, TProperties, Type } from '@sinclair/typebox'
 import Ajv from 'ajv'
+import addFormats from 'ajv-formats'
 
 import { Server } from '../src/network'
 import { userDto } from '../src/schemas'
 
-const ajv = new Ajv({
-  removeAdditional: true,
-  useDefaults: true,
-  coerceTypes: true,
-  nullable: true
-})
+const ajv = addFormats(new Ajv(), ['email'])
+  .addKeyword('kind')
+  .addKeyword('modifier')
 
 const BASE_URL = 'http://localhost:1996'
 const validator = <T extends TProperties>(
@@ -55,10 +53,11 @@ describe('Simba.js tests', () => {
       })
     })
 
-    describe('API: POST /api/users', () => {
+    describe('API: storeUser mutation', () => {
       const storeUserResponse = Type.Object({
-        error: Type.Boolean(),
-        message: userDto
+        data: Type.Object({
+          user: userDto
+        })
       })
 
       type StoreUserDTO = Static<typeof storeUserResponse>
@@ -66,22 +65,29 @@ describe('Simba.js tests', () => {
       let data: StoreUserDTO
       let status: number
 
-      test('Should return 201 as status code', async () => {
-        const result = await axios.post<StoreUserDTO>(`${BASE_URL}/api/users`, {
-          args: {
-            lastName: 'Lzq',
-            name: 'Anthony'
+      test('Should return 200 as status code', async () => {
+        const result = await axios.post<StoreUserDTO>(`${BASE_URL}/api`, {
+          query: `mutation storeUser($user: StoreUserInput!) {
+            user: storeUser(user: $user) {
+              id
+              name
+              lastName
+              createdAt
+              updatedAt
+            }
+          }`,
+          variables: {
+            user: {
+              lastName: 'Lzq',
+              name: 'Anthony'
+            }
           }
         })
 
         data = result.data
         status = result.status
-        userID = result.data.message.id ?? ''
-        expect(status).toBe(201)
-      })
-
-      test('Should be a successfully operation', () => {
-        expect(data.error).toBe(false)
+        userID = result.data.data.user.id ?? ''
+        expect(status).toBe(200)
       })
 
       test('Should return storeUserResponse', () => {
@@ -89,68 +95,84 @@ describe('Simba.js tests', () => {
       })
     })
 
-    describe('API: GET /api/users', () => {
-      const getAllUsersResponse = Type.Object({
-        error: Type.Boolean(),
-        message: Type.Array(userDto)
+    describe('API: getUsers query', () => {
+      const getUsersResponse = Type.Object({
+        data: Type.Object({
+          users: Type.Array(userDto)
+        })
       })
 
-      type GetAllUsersDTO = Static<typeof getAllUsersResponse>
+      type GetAllUsersDTO = Static<typeof getUsersResponse>
 
       let data: GetAllUsersDTO
       let status: number
 
       test('Should return 200 as status code', async () => {
-        const result = await axios.get<GetAllUsersDTO>(`${BASE_URL}/api/users`)
+        const result = await axios.post<GetAllUsersDTO>(`${BASE_URL}/api`, {
+          query: `query getUsers {
+            users: getUsers {
+              id
+              name
+              lastName
+              createdAt
+              updatedAt
+            }
+          }`
+        })
 
         data = result.data
         status = result.status
         expect(status).toBe(200)
       })
 
-      test('Should be a successfully operation', () => {
-        expect(data.error).toBe(false)
-      })
-
-      test('Should return getAllUsersResponse', () => {
-        expect(validator(getAllUsersResponse, data)).toBe(true)
+      test('Should return getUsersResponse', () => {
+        expect(validator(getUsersResponse, data)).toBe(true)
       })
     })
 
-    describe('API: GET /api/user/:id', () => {
-      const getOneUser = Type.Object({
-        error: Type.Boolean(),
-        message: userDto
+    describe('API: getUser query', () => {
+      const getUserResponse = Type.Object({
+        data: Type.Object({
+          user: userDto
+        })
       })
 
-      type GetOneUserDTO = Static<typeof getOneUser>
+      type GetOneUserDTO = Static<typeof getUserResponse>
 
       let data: GetOneUserDTO
       let status: number
 
       test('Should return 200 as status code', async () => {
-        const result = await axios.get<GetOneUserDTO>(
-          `${BASE_URL}/api/user/${userID}`
-        )
+        const result = await axios.post<GetOneUserDTO>(`${BASE_URL}/api`, {
+          query: `query getUser($id: ID!) {
+            user: getUser(id: $id) {
+              id
+              name
+              lastName
+              createdAt
+              updatedAt
+            }
+          }`,
+          variables: {
+            id: userID
+          }
+        })
 
         data = result.data
         status = result.status
         expect(status).toBe(200)
       })
 
-      test('Should be a successfully operation', () => {
-        expect(data.error).toBe(false)
-      })
-
-      test('Should return getOneUser', () => {
-        expect(validator(getOneUser, data)).toBe(true)
+      test('Should return getOneUserResponse', () => {
+        expect(validator(getUserResponse, data)).toBe(true)
       })
     })
 
-    describe('API: PATCH /api/user/:id', () => {
+    describe('API: updateUser mutation', () => {
       const updateUserResponse = Type.Object({
-        error: Type.Boolean(),
-        message: userDto
+        data: Type.Object({
+          user: userDto
+        })
       })
 
       type UpdateUserDTO = Static<typeof updateUserResponse>
@@ -159,23 +181,28 @@ describe('Simba.js tests', () => {
       let status: number
 
       test('Should return 200 as status code', async () => {
-        const result = await axios.patch<UpdateUserDTO>(
-          `${BASE_URL}/api/user/${userID}`,
-          {
-            args: {
+        const result = await axios.post<UpdateUserDTO>(`${BASE_URL}/api`, {
+          query: `mutation updateUser($user: UpdateUserInput!) {
+            user: updateUser(user: $user) {
+              id
+              name
+              lastName
+              createdAt
+              updatedAt
+            }
+          }`,
+          variables: {
+            user: {
+              id: userID,
               lastName: 'Luzquiños',
               name: 'Anthony'
             }
           }
-        )
+        })
 
         data = result.data
         status = result.status
         expect(status).toBe(200)
-      })
-
-      test('Should be a successfully operation', () => {
-        expect(data.error).toBe(false)
       })
 
       test('Should return updateUserResponse', () => {
@@ -183,56 +210,82 @@ describe('Simba.js tests', () => {
       })
     })
 
-    describe('API: DELETE /api/user/:id', () => {
-      let data: BaseResponseDTO
+    describe('API: deleteUser mutation', () => {
+      const deleteUserResponse = Type.Object({
+        data: Type.Object({
+          result: Type.String()
+        })
+      })
+
+      type DeleteUserDTO = Static<typeof deleteUserResponse>
+
+      let data: DeleteUserDTO
       let status: number
 
       test('Should return 200 as status code', async () => {
-        const result = await axios.delete<BaseResponseDTO>(
-          `${BASE_URL}/api/user/${userID}`
-        )
-
-        data = result.data
-        status = result.status
-        expect(status).toBe(200)
-      })
-
-      test('Should be a successfully operation', () => {
-        expect(data.error).toBe(false)
-      })
-
-      test('Should return deleteUserResponse', () => {
-        expect(validator(baseResponseDto, data)).toBe(true)
-      })
-    })
-
-    describe('API: DELETE /api/users', () => {
-      let data: BaseResponseDTO
-      let status: number
-
-      test('Should return 200 as status code', async () => {
-        await axios.post(`${BASE_URL}/api/users`, {
-          args: {
-            lastName: 'Lzq',
-            name: 'Anthony'
+        const result = await axios.post<DeleteUserDTO>(`${BASE_URL}/api`, {
+          query: `mutation deleteUser($id: ID!) {
+            result: deleteUser(id: $id)
+          }`,
+          variables: {
+            id: userID
           }
         })
 
-        const result = await axios.delete<BaseResponseDTO>(
-          `${BASE_URL}/api/users`
-        )
+        data = result.data
+        status = result.status
+        expect(status).toBe(200)
+      })
+
+      test('Should return deleteUserResponse', () => {
+        expect(validator(deleteUserResponse, data)).toBe(true)
+      })
+    })
+
+    describe('API: deleteAllUsers mutation', () => {
+      const deleteAllUserResponse = Type.Object({
+        data: Type.Object({
+          result: Type.String()
+        })
+      })
+
+      type DeleteAllUsersDTO = Static<typeof deleteAllUserResponse>
+
+      let data: DeleteAllUsersDTO
+      let status: number
+
+      test('Should return 200 as status code', async () => {
+        await axios.post(`${BASE_URL}/api`, {
+          query: `mutation storeUser($user: StoreUserInput!) {
+            user: storeUser(user: $user) {
+              id
+              name
+              lastName
+              createdAt
+              updatedAt
+            }
+          }`,
+          variables: {
+            user: {
+              lastName: 'Lzq',
+              name: 'Anthony'
+            }
+          }
+        })
+
+        const result = await axios.post<DeleteAllUsersDTO>(`${BASE_URL}/api`, {
+          query: `mutation deleteAllUsers {
+            result: deleteAllUsers
+          }`
+        })
 
         data = result.data
         status = result.status
         expect(status).toBe(200)
       })
 
-      test('Should be a successfully operation', () => {
-        expect(data.error).toBe(false)
-      })
-
       test('Should return deleteAllUsersResponse', () => {
-        expect(validator(baseResponseDto, data)).toBe(true)
+        expect(validator(deleteAllUserResponse, data)).toBe(true)
       })
     })
   })

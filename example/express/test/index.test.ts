@@ -118,12 +118,12 @@ describe('Simba.js tests', () => {
     })
 
     describe('API: GET /api/user/:id', () => {
-      const getOneUser = Type.Object({
+      const getOneUserResponse = Type.Object({
         error: Type.Boolean(),
         message: userDto
       })
 
-      type GetOneUserDTO = Static<typeof getOneUser>
+      type GetOneUserDTO = Static<typeof getOneUserResponse>
 
       let data: GetOneUserDTO
       let status: number
@@ -142,8 +142,8 @@ describe('Simba.js tests', () => {
         expect(data.error).toBe(false)
       })
 
-      test('Should return getOneUser', () => {
-        expect(validator(getOneUser, data)).toBe(true)
+      test('Should return getOneUserResponse', () => {
+        expect(validator(getOneUserResponse, data)).toBe(true)
       })
     })
 
