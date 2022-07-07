@@ -1,32 +1,34 @@
 import { Server as HttpServer } from 'http'
 import express from 'express'
-import mongoose from 'mongoose'
 import cors from 'cors'
 import pino, { HttpLogger } from 'express-pino-logger'
 
+import { dbConnection } from 'database'
 import { applyRoutes } from './router'
 
 const PORT = (process.env.PORT as string) || 1996
+const ENVIRONMENTS_WITHOUT_PRETTY_PRINT = ['production', 'ci']
 
 class Server {
   #app: express.Application
-  #connection: mongoose.Connection | undefined
   #log: HttpLogger
   #server: HttpServer | undefined
+  #connection: Awaited<ReturnType<typeof dbConnection>> | undefined
 
   constructor() {
     this.#app = express()
     this.#log = pino({
-      transport:
-        process.env.ENVIRONMENT !== 'production'
-          ? {
-              target: 'pino-pretty',
-              options: {
-                translateTime: 'HH:MM:ss Z',
-                ignore: 'pid,hostname'
-              }
+      transport: !ENVIRONMENTS_WITHOUT_PRETTY_PRINT.includes(
+        process.env.NODE_ENV as string
+      )
+        ? {
+            target: 'pino-pretty',
+            options: {
+              translateTime: 'HH:MM:ss Z',
+              ignore: 'pid,hostname'
             }
-          : undefined
+          }
+        : undefined
     })
     this.#config()
   }
@@ -55,57 +57,26 @@ class Server {
     applyRoutes(this.#app)
   }
 
-  async #mongo(): Promise<void> {
-    this.#connection = mongoose.connection
-    const connection = {
-      keepAlive: true,
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    }
-    this.#connection.on('connected', () => {
-      this.#log.logger.info('Mongo connection established.')
-    })
-    this.#connection.on('reconnected', () => {
-      this.#log.logger.info('Mongo connection reestablished')
-    })
-    this.#connection.on('disconnected', () => {
-      this.#log.logger.info('Mongo connection disconnected')
-      this.#log.logger.info('Trying to reconnected to Mongo...')
-      setTimeout(() => {
-        mongoose.connect(process.env.MONGO_URI as string, {
-          ...connection,
-          connectTimeoutMS: 3000,
-          socketTimeoutMS: 3000
-        })
-      }, 3000)
-    })
-    this.#connection.on('close', () => {
-      this.#log.logger.info('Mongo connection closed')
-    })
-    this.#connection.on('error', (e: Error) => {
-      this.#log.logger.info('Mongo connection error:')
-      this.#log.logger.error(e)
-    })
-    await mongoose.connect(process.env.MONGO_URI as string, connection)
+  async #dbConnection() {
+    this.#connection = await dbConnection(this.#log.logger)
   }
 
-  public start(): void {
-    this.#server = this.#app.listen(PORT, () => {
-      this.#log.logger.info(`Server running at port ${PORT}`)
-    })
-
+  public async start(): Promise<void> {
     try {
-      this.#mongo()
+      await this.#dbConnection()
+      await this.#connection?.connect()
+      this.#server = this.#app.listen(PORT, () => {
+        this.#log.logger.info(`Server running at port ${PORT}`)
+      })
     } catch (e) {
       this.#log.logger.error(e)
     }
   }
 
-  public stop(): void {
+  public async stop(): Promise<void> {
     try {
-      if (this.#server) this.#server.close()
-
-      process.exit(0)
+      await this.#connection?.disconnect()
+      this.#server?.close()
     } catch (e) {
       this.#log.logger.error(e)
     }

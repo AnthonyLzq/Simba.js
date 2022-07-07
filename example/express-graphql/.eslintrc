@@ -1,10 +1,16 @@
 {
   "env": {
-    "node": true
+    "node": true,
+    "jest/globals": true
   },
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "import", "prettier"],
+  "plugins": [
+    "@typescript-eslint",
+    "import",
+    "prettier",
+    "jest"
+  ],
   "extends": [
     "standard",
     "eslint:recommended",
@@ -15,7 +21,10 @@
   "rules": {
     "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/no-empty-interface": "off",
-    "arrow-parens": ["error", "as-needed"],
+    "arrow-parens": [
+      "error",
+      "as-needed"
+    ],
     "import/extensions": [
       2,
       {
@@ -27,9 +36,17 @@
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": ["**/*.test.js", "webpack.config.js"],
-        "optionalDependencies": ["**/*.test.js"],
-        "peerDependencies": ["**/*.test.js"]
+        "devDependencies": [
+          "**/*.test.ts",
+          "webpack.config.js",
+          "jest.config.ts"
+        ],
+        "optionalDependencies": [
+          "**/*.test.ts"
+        ],
+        "peerDependencies": [
+          "**/*.test.ts"
+        ]
       }
     ],
     "max-len": [
@@ -45,8 +62,14 @@
       }
     ],
     "newline-before-return": "error",
-    "object-curly-spacing": ["error", "always"],
-    "object-shorthand": ["error", "always"],
+    "object-curly-spacing": [
+      "error",
+      "always"
+    ],
+    "object-shorthand": [
+      "error",
+      "always"
+    ],
     "prefer-const": "error",
     "prettier/prettier": [
       "error",
@@ -61,7 +84,13 @@
         "trailingComma": "none"
       }
     ],
-    "radix": ["error", "as-needed"],
-    "spaced-comment": ["error", "always"]
+    "radix": [
+      "error",
+      "as-needed"
+    ],
+    "spaced-comment": [
+      "error",
+      "always"
+    ]
   }
 }

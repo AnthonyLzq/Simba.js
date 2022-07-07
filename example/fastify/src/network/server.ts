@@ -1,18 +1,23 @@
 import fastify, { FastifyInstance } from 'fastify'
-import mongoose from 'mongoose'
 
+import { dbConnection } from 'database'
 import { applyRoutes } from './router'
 import { validatorCompiler } from './utils'
 
 const PORT = process.env.PORT ?? 1996
+const ENVIRONMENTS_WITHOUT_PRETTY_PRINT = ['production', 'ci']
 
 class Server {
   #app: FastifyInstance
-  #connection: mongoose.Connection | undefined
+  #connection: Awaited<ReturnType<typeof dbConnection>> | undefined
 
   constructor() {
     this.#app = fastify({
-      logger: { prettyPrint: process.env.NODE_ENV !== 'production' }
+      logger: {
+        prettyPrint: !ENVIRONMENTS_WITHOUT_PRETTY_PRINT.includes(
+          process.env.NODE_ENV as string
+        )
+      }
     })
     this.#config()
   }
@@ -33,44 +38,15 @@ class Server {
     applyRoutes(this.#app)
   }
 
-  async #mongo(): Promise<void> {
-    this.#connection = mongoose.connection
-    const connection = {
-      keepAlive: true,
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    }
-    this.#connection.on('connected', () => {
-      this.#app.log.info('Mongo connection established.')
-    })
-    this.#connection.on('reconnected', () => {
-      this.#app.log.info('Mongo connection reestablished')
-    })
-    this.#connection.on('disconnected', () => {
-      this.#app.log.info('Mongo connection disconnected')
-      this.#app.log.info('Trying to reconnected to Mongo...')
-      setTimeout(() => {
-        mongoose.connect(process.env.MONGO_URI as string, {
-          ...connection,
-          connectTimeoutMS: 3000,
-          socketTimeoutMS: 3000
-        })
-      }, 3000)
-    })
-    this.#connection.on('close', () => {
-      this.#app.log.info('Mongo connection closed')
-    })
-    this.#connection.on('error', (e: Error) => {
-      this.#app.log.info('Mongo connection error:')
-      this.#app.log.error(e)
-    })
-    await mongoose.connect(process.env.MONGO_URI as string, connection)
+  async #dbConnection() {
+    this.#connection = await dbConnection(this.#app.log)
   }
 
   public async start(): Promise<void> {
     try {
+      await this.#dbConnection()
+      await this.#connection?.connect()
       await this.#app.listen(PORT)
-      this.#mongo()
     } catch (e) {
       console.error(e)
     }
@@ -78,8 +54,8 @@ class Server {
 
   public async stop(): Promise<void> {
     try {
+      await this.#connection?.disconnect()
       await this.#app.close()
-      process.exit(0)
     } catch (e) {
       console.error(e)
     }
