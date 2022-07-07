@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0](https://github.com/AnthonyLzq/simba.js/compare/v5.2.0...v6.0.0) (2022-07-07)
+
+
+### Features
+
+* add eslint-plugin-n dependency when using yarn ([5f69db4](https://github.com/AnthonyLzq/simba.js/commit/5f69db49e057eaf91a710ab766984a280c63c426))
+* added badge for testing ci ([e1394f7](https://github.com/AnthonyLzq/simba.js/commit/e1394f78f4a14900cb5482d15714290f72e63daf))
+* added flags and questions for tests and GitHub Actions for tests ([ec45754](https://github.com/AnthonyLzq/simba.js/commit/ec4575455ae197be0fde2f384754e5726979418f))
+* attempt to run all the tests with a single script ([fda262a](https://github.com/AnthonyLzq/simba.js/commit/fda262a5dfb841cddec299f977ecc60913cf86f4))
+* attempt to run tests only for fastify case ([0323973](https://github.com/AnthonyLzq/simba.js/commit/0323973384f7c9eab85c59fff6481932106d42ed))
+* creating a new script for the github action for testing ([ed30262](https://github.com/AnthonyLzq/simba.js/commit/ed30262b69c4f03683f33779fea690447983ede6))
+* first attempt to implement a github action for testing the apis created with Simba.js ([ca16d07](https://github.com/AnthonyLzq/simba.js/commit/ca16d073b71314261d2a00ccbaf3554775f44d72))
+* implemented github action for testing in fastify-rest example ([07a8f30](https://github.com/AnthonyLzq/simba.js/commit/07a8f3004decdb464224be128139d88225289623))
+* implemented script to test both rest api, express and fastify ([9d651d8](https://github.com/AnthonyLzq/simba.js/commit/9d651d838e4e052f6a79092b179540a1b85ac810))
+* implemented tests and gha for express-rest case ([e1f8b32](https://github.com/AnthonyLzq/simba.js/commit/e1f8b3292b0993027f7809a9b20de5758de1d6fe))
+* implemented tests for fastify-rest example ([7a75b0b](https://github.com/AnthonyLzq/simba.js/commit/7a75b0b82870ef2a4239d66f8dea6ed70c932eb1))
+* implemented unit tests for express and fastify graphql apis ([601b96c](https://github.com/AnthonyLzq/simba.js/commit/601b96c01f2efbf4b3ea6b7c0f2ff85f77afc192))
+* renamed gha to ghat for scalability purposes ([734e53b](https://github.com/AnthonyLzq/simba.js/commit/734e53bb0ee99492648b9e2b356d47ce863907b3))
+* updating environment to access the secrets ([d3a6c1e](https://github.com/AnthonyLzq/simba.js/commit/d3a6c1e0dd3ac3002b5586c3aac8de7e63394291))
+* updating installation config to use the flags for tests and github actions ([6b6c47f](https://github.com/AnthonyLzq/simba.js/commit/6b6c47f52e40bd760702cf7f813f7476a584711a))
+* using NODE_ENV to build properly the examples in the ci ([ceed905](https://github.com/AnthonyLzq/simba.js/commit/ceed905a6694c5c773c31523503441f52bbabe3f))
+
+
+### Bug Fixes
+
+* conditional for test script ([c7202f6](https://github.com/AnthonyLzq/simba.js/commit/c7202f6fcc76906b8831dfdcd661741e6c7d0e8d))
+* eslint config ([3305efa](https://github.com/AnthonyLzq/simba.js/commit/3305efa8bae971a247996a97cb6196d6a831ef0c))
+* syntax in the constants file ([837a92b](https://github.com/AnthonyLzq/simba.js/commit/837a92b2a40dc9ea98f57f86a83127f9a3718b63))
+* test:ci script ([7e7cbcc](https://github.com/AnthonyLzq/simba.js/commit/7e7cbcc5106a1e207c6d51fa0ed0829e7ea2fa41))
+
 ## [5.2.0](https://github.com/AnthonyLzq/simba.js/compare/v5.1.1...v5.2.0) (2022-06-27)
 
 
