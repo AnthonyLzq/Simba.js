@@ -17,7 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "@graphql-tools/schema": "^8.5.0",
-    "@sinclair/typebox": "^0.24.10",
+    "@sinclair/typebox": "^0.24.11",
     "ajv": "^8.11.0",
     "ajv-formats": "^2.1.1",
     "apollo-server-core": "^3.9.0",

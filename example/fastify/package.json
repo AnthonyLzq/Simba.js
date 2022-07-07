@@ -18,7 +18,7 @@
   "dependencies": {
     "@fastify/cors": "^7",
     "@fastify/swagger": "^6",
-    "@sinclair/typebox": "^0.24.10",
+    "@sinclair/typebox": "^0.24.11",
     "ajv": "^6",
     "fastify": "^3",
     "http-errors": "^2.0.0",
