@@ -487,7 +487,7 @@ Regardless of the option chosen, a new folder will be generated with the name of
 ## Who uses Simba.js?
 
 <div width="100%" align="center" style="display: flex; justify-content: center; align-items: center;">
-  <a href="https://chazki.com/" align="left">
+  <a href="https://chazki.com/" align="left" width="47%">
     <img
       width="269"
       src="https://images.squarespace-cdn.com/content/5beb6423aa49a118ca9e258b/39f86b41-e094-4c38-8d92-49bbd54bccca/logo-chazki-blanco-300px.png?format=1000w&content-type=image%2Fpng"
@@ -495,7 +495,7 @@ Regardless of the option chosen, a new folder will be generated with the name of
       align="left"
     >
   </a>
-  <a href="https://www.mein.ai" align="right">
+  <a href="https://www.mein.ai" align="right" width="47%">
     <img
       style="margin-top: 12px"
       width="269"
