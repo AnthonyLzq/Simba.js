@@ -486,20 +486,25 @@ Regardless of the option chosen, a new folder will be generated with the name of
 
 ## Who uses Simba.js?
 
-<p align="left">
-  <div style="display: flex;justify-content: center;">
-    <div style="padding: 10px;">
-      <a href="https://chazki.com/">
-        <img width="269" src="https://i.ibb.co/sjq59Yv/logo-chazki-blanco-300pxnew.png" alt="Simba.js">
-      </a>
-    </div>
-    <div style="padding: 10px;">
-      <a href="https://www.mein.ai">
-        <img width="269" src="https://static.wixstatic.com/media/e61b06_ed2d347ea1a44effa5a912e7d4fdd9a2~mv2.png/v1/fill/w_269,h_64,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/logoMein.png" alt="Simba.js">
-      </a>
-    </div>
-  </div>
-</p>
+<div width="100%" align="center" style="display: flex; justify-content: center; align-items: center;">
+  <a href="https://chazki.com/" align="left">
+    <img
+      width="269"
+      src="https://images.squarespace-cdn.com/content/5beb6423aa49a118ca9e258b/39f86b41-e094-4c38-8d92-49bbd54bccca/logo-chazki-blanco-300px.png?format=1000w&content-type=image%2Fpng"
+      alt="Simba.js"
+      align="left"
+    >
+  </a>
+  <a href="https://www.mein.ai" align="right">
+    <img
+      style="margin-top: 12px"
+      width="269"
+      src="https://static.wixstatic.com/media/e61b06_ed2d347ea1a44effa5a912e7d4fdd9a2~mv2.png/v1/fill/w_269,h_64,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/logoMein.png"
+      alt="Simba.js"
+      align="right"
+    >
+  </a>
+</div>
 
 ## What is new?
 
