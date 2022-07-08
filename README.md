@@ -489,8 +489,8 @@ Regardless of the option chosen, a new folder will be generated with the name of
 <p align="left" style="display: flex; align-items: center;">
   <a href="https://chazki.com/">
     <img
-      width="269"
-      src="https://images.squarespace-cdn.com/content/5beb6423aa49a118ca9e258b/39f86b41-e094-4c38-8d92-49bbd54bccca/logo-chazki-blanco-300px.png?format=1000w&content-type=image%2Fpng"
+      width="272"
+      src="https://i.ibb.co/3kbN6gG/logo-chazki-blanco-250px.png"
       alt="Simba.js"
     >
   </a>
