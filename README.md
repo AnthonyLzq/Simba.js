@@ -486,7 +486,7 @@ Regardless of the option chosen, a new folder will be generated with the name of
 
 ## Who uses Simba.js?
 
-<p align="left">
+<p align="left" style="display: flex; align-items: center;">
   <a href="https://chazki.com/">
     <img
       width="269"
