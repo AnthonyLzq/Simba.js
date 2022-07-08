@@ -7,7 +7,7 @@
     "service": "node ./bin",
     "help": "node ./bin --help",
     "release": "standard-version",
-    "test": "npm run build && npm run test:express:local && npm run test:fastify:local && npm run test:express:graphql:local && npm run test:fastify:graphql:local",
+    "test": "npm run build && npm run test:express:local && npm run test:fastify:local && npm run test:express:graphql:local && npm run test:fastify:graphql:local && git restore .",
     "test:ci": "npm run build && npm run test:express:ci && npm run test:fastify:ci && npm run test:express:graphql:ci && npm run test:fastify:graphql:ci",
     "test:only": "npm run test:express:local && npm run test:fastify:local && npm run test:express:graphql:local && npm run test:fastify:graphql:local",
     "build": "npm run rm && npm run build:express && npm run build:fastify && npm run build:express:graphql && npm run build:fastify:graphql",
@@ -34,7 +34,13 @@
     "test:express:graphql:ci": "if [ -d \"example/express-graphql/node_modules\" ]; then npm run test:ci --prefix example/express-graphql; else echo 'Can not run the test for express api because the dependencies are not installed'; fi",
     "test:fastify:graphql:ci": "if [ -d \"example/fastify-graphql/node_modules\" ]; then npm run test:ci --prefix example/fastify-graphql; else echo 'Can not run the test for fastify api because the dependencies are not installed'; fi",
     "cd:mv:example": "if [ ! -d \"example\" ]; then mkdir example && cd example; fi",
-    "version": "npm run release && git add CHANGELOG.md"
+    "version": "npm run release && list:directory:tree:examples && git add .",
+    "remove:node_modules": "if [ -f \"example/express/node_modules\" ]; then rm -rf example/express/node_modules; fi && if [ -d \"example/express-graphql/node_modules\" ]; then rm -rf example/express-graphql/node_modules; fi && if [ -d \"example/fastify/node_modules\" ]; then rm -rf example/fastify/node_modules; fi && if [ -d \"example/fastify-graphql/node_modules\" ]; then rm -rf example/fastify-graphql/node_modules; fi",
+    "list:directory:tree:express": "npm run remove:node_modules && if [ -f \"projectStructureExamples/express.txt\" ]; then rm projectStructureExamples/express.txt; fi && tree example/express -a --dirsfirst --sort name | cut -d'/' -f 2 | head -n -2 >> projectStructureExamples/express.txt",
+    "list:directory:tree:express-graphql": "npm run remove:node_modules && if [ -f \"projectStructureExamples/express-graphql.txt\" ]; then rm projectStructureExamples/express-graphql.txt; fi && tree example/express -a --dirsfirst --sort name | cut -d'/' -f 2 | head -n -2 >> projectStructureExamples/express-graphql.txt",
+    "list:directory:tree:fastify": "npm run remove:node_modules && if [ -f \"projectStructureExamples/fastify.txt\" ]; then rm projectStructureExamples/fastify.txt; fi && tree example/express -a --dirsfirst --sort name | cut -d'/' -f 2 | head -n -2 >> projectStructureExamples/fastify.txt",
+    "list:directory:tree:fastify-graphql": "npm run remove:node_modules && if [ -f \"projectStructureExamples/fastify-graphql.txt\" ]; then rm projectStructureExamples/fastify-graphql.txt; fi && tree example/express -a --dirsfirst --sort name | cut -d'/' -f 2 | head -n -2 >> projectStructureExamples/fastify-graphql.txt",
+    "list:directory:tree:examples": "npm run list:directory:tree:express && npm run list:directory:tree:express-graphql && npm run list:directory:tree:fastify && npm run list:directory:tree:fastify-graphql"
   },
   "bin": {
     "simba": "./bin/index.js"
