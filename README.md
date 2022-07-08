@@ -488,7 +488,7 @@ Regardless of the option chosen, a new folder will be generated with the name of
 
 <section style="display: flex; align-items: center; justify-content: center">
   <div style="width: 300px">
-    <a href="https://chazki.com/"><img src="https://images.squarespace-cdn.com/content/5beb6423aa49a118ca9e258b/39f86b41-e094-4c38-8d92-49bbd54bccca/logo-chazki-blanco-2000px.png?format=1000w&content-type=image%2Fpng" alt="Simba.js"></a>
+    <a href="https://chazki.com/"><img src="https://images.squarespace-cdn.com/content/5beb6423aa49a118ca9e258b/39f86b41-e094-4c38-8d92-49bbd54bccca/logo-chazki-blanco-300px.png?format=1000w&content-type=image%2Fpng" alt="Simba.js"></a>
   </div>
   <div style="margin-top: 12px">
     <a href="https://www.mein.ai"><img src="https://static.wixstatic.com/media/e61b06_ed2d347ea1a44effa5a912e7d4fdd9a2~mv2.png/v1/fill/w_269,h_64,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/logoMein.png" alt="Simba.js"></a>
