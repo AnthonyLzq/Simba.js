@@ -1,6 +1,7 @@
 express
 ├── .github
 │   └── workflows
+│       ├── lint.yml
 │       └── test.yml
 ├── node_modules
 │   ├── abbrev
@@ -933,7 +934,8 @@ semver
 │   │   │   │   │   ├── inference
 │   │   │   │   │   │   ├── index.js
 │   │   │   │   │   │   ├── inferer-reference.js
-│   │   │   │   │   │   └── inferers.js
+│   │   │   │   │   │   ├── inferers.js
+│   │   │   │   │   │   └── util.js
 │   │   │   │   │   ├── lib
 │   │   │   │   │   │   ├── hoister.js
 │   │   │   │   │   │   ├── removal-hooks.js
@@ -13245,6 +13247,13 @@ semver
 │   │       │   ├── compiler.js
 │   │       │   ├── index.d.ts
 │   │       │   └── index.js
+│   │       ├── conditional
+│   │       │   ├── conditional.d.ts
+│   │       │   ├── conditional.js
+│   │       │   ├── index.d.ts
+│   │       │   ├── index.js
+│   │       │   ├── structural.d.ts
+│   │       │   └── structural.js
 │   │       ├── guard
 │   │       │   ├── guard.d.ts
 │   │       │   ├── guard.js

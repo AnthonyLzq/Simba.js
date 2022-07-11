@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.2.1](https://github.com/AnthonyLzq/simba.js/compare/v6.2.0...v6.2.1) (2022-07-11)
+
+
+### Features
+
+* implemented linting gha ([788b19d](https://github.com/AnthonyLzq/simba.js/commit/788b19d98ad7530de1db5d1f9d45eea6e5c6fae2))
+* updated eslint rules ([ebaa193](https://github.com/AnthonyLzq/simba.js/commit/ebaa19386c39123a2935953edae98f34396fa9f6))
+
 ## [6.2.0](https://github.com/AnthonyLzq/simba.js/compare/v6.1.0...v6.2.0) (2022-07-08)
 
 
