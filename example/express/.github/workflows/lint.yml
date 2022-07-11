@@ -1,0 +1,32 @@
+name: Lint - example/express
+
+on: [push]
+
+jobs:
+  run-linters:
+    name: Run linters
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      - name: Install Node.js dependencies
+        run: npm ci
+
+      - name: Revert changes into the package-lock.json file
+        run: git checkout -- package-lock.json
+
+      - name: Run linters
+        uses: wearerequired/lint-action@v1
+        with:
+          auto_fix: true
+          eslint: true
+          eslint_extensions: js

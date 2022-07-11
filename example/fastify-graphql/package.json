@@ -19,7 +19,7 @@
     "@fastify/cors": "^7",
     "@fastify/swagger": "^6",
     "@graphql-tools/schema": "^8.5.0",
-    "@sinclair/typebox": "^0.24.11",
+    "@sinclair/typebox": "^0.24.16",
     "ajv": "^8.11.0",
     "ajv-formats": "^2.1.1",
     "apollo-server-core": "^3.9.0",
@@ -28,7 +28,7 @@
     "fastify": "^3",
     "graphql": "^16.5.0",
     "http-errors": "^2.0.0",
-    "mongoose": "^6.4.3",
+    "mongoose": "^6.4.4",
     "pino-pretty": "^8.1.0"
   },
   "devDependencies": {
