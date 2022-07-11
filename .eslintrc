@@ -40,7 +40,10 @@
       "error",
       "always"
     ],
-    "object-shorthand": ["error", "always"],
+    "object-shorthand": [
+      "error",
+      "always"
+    ],
     "prefer-const": "error",
     "prettier/prettier": [
       "error",
@@ -59,6 +62,13 @@
       "error",
       "as-needed"
     ],
-    "spaced-comment": ["error", "always"]
+    "spaced-comment": [
+      "error",
+      "always"
+    ],
+    "curly": [
+      "error",
+      "multi"
+    ]
   }
 }
