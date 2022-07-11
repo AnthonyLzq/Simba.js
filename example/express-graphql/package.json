@@ -17,7 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "@graphql-tools/schema": "^8.5.0",
-    "@sinclair/typebox": "^0.24.11",
+    "@sinclair/typebox": "^0.24.16",
     "ajv": "^8.11.0",
     "ajv-formats": "^2.1.1",
     "apollo-server-core": "^3.9.0",
@@ -27,7 +27,7 @@
     "express-pino-logger": "^7.0.0",
     "graphql": "^16.5.0",
     "http-errors": "^2.0.0",
-    "mongoose": "^6.4.3",
+    "mongoose": "^6.4.4",
     "pino-pretty": "^8.1.0",
     "swagger-ui-express": "^4.4.0"
   },

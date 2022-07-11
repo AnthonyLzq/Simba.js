@@ -41,9 +41,9 @@ By doing this your prompt will ask you the following questions:
 - `Select your license [1...7]:`, the license you have chosen for the project.
 - `License year (current year):`, the year where your license starts, current year as default.
 - `Will this project use GraphQL? [y/n]:`, yes or no question, only **y** or **n** is accepted. This is not case sensitive.
-- `Will this project be deployed with Heroku? [y/n]:`, yes or no question, only **y** or **n** is accepted. This is not case sensitive.
-- `Would you want to have a basic suit of tests with Jest? [y/n]:`, yes or no question, only **y** or **n** is accepted. This is not case sensitive.
-- `Would you want to have a basic GitHub Action for the suit of tests? [y/n]:`, yes or no question, only **y** or **n** is accepted. This is not case sensitive.
+- `Will this project be deployed with Heroku? [y/n]:`.
+- `Would you want to have a basic suit of tests with Jest? [y/n]:`.
+- `Would you want to have a basic GitHub Action for the suit of tests and linting? [y/n]:`.
 
 The second option you have is by passing flags in one single command. If you need help, please run:
 

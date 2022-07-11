@@ -1,7 +1,7 @@
 {
   "env": {
     "node": true,
-    "jest/globals": true
+    "jest": true
   },
   "root": true,
   "parser": "@typescript-eslint/parser",
@@ -91,6 +91,10 @@
     "spaced-comment": [
       "error",
       "always"
+    ],
+    "curly": [
+      "error",
+      "multi"
     ]
   }
 }

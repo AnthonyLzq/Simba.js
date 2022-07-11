@@ -18,11 +18,11 @@
   "dependencies": {
     "@fastify/cors": "^7",
     "@fastify/swagger": "^6",
-    "@sinclair/typebox": "^0.24.11",
+    "@sinclair/typebox": "^0.24.16",
     "ajv": "^6",
     "fastify": "^3",
     "http-errors": "^2.0.0",
-    "mongoose": "^6.4.3",
+    "mongoose": "^6.4.4",
     "pino-pretty": "^8.1.0"
   },
   "devDependencies": {
