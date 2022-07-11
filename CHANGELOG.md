@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.2.2](https://github.com/AnthonyLzq/simba.js/compare/v6.2.1...v6.2.2) (2022-07-11)
+
+
+### Bug Fixes
+
+* project structures examples content ([4e06f4f](https://github.com/AnthonyLzq/simba.js/commit/4e06f4f9ed57c653ae3b1c312cf679f913157f6b))
+
 ### [6.2.1](https://github.com/AnthonyLzq/simba.js/compare/v6.2.0...v6.2.1) (2022-07-11)
 
 
