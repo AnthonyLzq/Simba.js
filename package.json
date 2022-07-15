@@ -15,7 +15,6 @@
     "build:fastify:graphql": "npm run rm:fastify:graphql && npm run cd:mv:example && node -r dotenv/config ./bin -N example/fastify-graphql -D 'This is a test using fastify with GraphQL' -a AnthonyLzq -e sluzquinosa@uni.pe -l mit -H -F -g && npm run rm:git:fastify:graphql",
     "build:and:test:only": "npm run build && npm run test:only",
     "test": "npm run test:without:restore && git restore .",
-    "test:without:restore": "npm run build && npm run test:express:local && npm run test:fastify:local && npm run test:express:graphql:local && npm run test:fastify:graphql:local",
     "test:ci": "npm run build && npm run test:express:ci && npm run test:fastify:ci && npm run test:express:graphql:ci && npm run test:fastify:graphql:ci",
     "test:only": "npm run test:express:local && npm run test:fastify:local && npm run test:express:graphql:local && npm run test:fastify:graphql:local",
     "test:express:local": "if [ -d \"example/express/node_modules\" ]; then npm run test:local --prefix example/express; else echo 'Can not run the test for express api because the dependencies are not installed'; fi",
