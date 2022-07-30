@@ -8,6 +8,7 @@
     "dirsfirst",
     "eslintignore",
     "fullname",
+    "hstore",
     "LGPL",
     "nargs",
     "nodemon",

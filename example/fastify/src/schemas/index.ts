@@ -1,8 +1,6 @@
 import { Static, Type } from '@sinclair/typebox'
 
-const id = Type.String({
-  pattern: '^[a-zA-Z0-9]{24,}$'
-})
+const id = Type.Number()
 
 type Id = Static<typeof id>
 
