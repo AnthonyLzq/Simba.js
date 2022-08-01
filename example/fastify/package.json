@@ -25,14 +25,13 @@
     "ajv": "^6",
     "fastify": "^3",
     "http-errors": "^2.0.0",
-    "mongoose": "^6.4.4",
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",
     "pino-pretty": "^8.1.0",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.21.3",
     "sequelize-typescript": "^2.1.3",
-    "sequelize-typescript-migration-lts": "^3.1.5"
+    "sequelize-typescript-migration-lts": "^3.2.1"
   },
   "devDependencies": {
     "@jest/types": "^28.1.3",

@@ -34,8 +34,6 @@ const remove = async (
 
   const w = await User.destroy({ truncate: true, transaction })
 
-  console.log(w)
-
   return w
 }
 

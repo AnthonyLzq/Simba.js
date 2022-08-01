@@ -16,7 +16,7 @@ const migration = async () => {
   console.log('Executing migration')
 
   await exec(
-    'npx sequelize db:migrate --to $(ls src/database/postgres/migrations | sort -r | head -n 1)'
+    'yarn migrations:run:last && eslint src/database/* --ext .js --fix'
   )
 
   console.log('Migration complete')

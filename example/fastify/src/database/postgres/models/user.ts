@@ -20,11 +20,6 @@ class User extends Model {
     type: DataType.STRING
   })
   email!: string
-
-  @Column({
-    type: DataType.INTEGER
-  })
-  age!: string
 }
 
 export { User }

@@ -5,14 +5,14 @@ const Sequelize = require('sequelize')
 /**
  * Actions summary:
  *
- * addColumn "email" to table "users"
+ * removeColumn "age" from table "users"
  *
  **/
 
 const info = {
   revision: 2,
-  name: 'update-user-table',
-  created: '2022-07-27T00:33:17.010Z',
+  name: 'update_user_remove_age',
+  created: '2022-08-01T00:25:24.339Z',
   comment: ''
 }
 
@@ -67,14 +67,8 @@ const migrationCommands = [
   },
 
   {
-    fn: 'addColumn',
-    params: [
-      'users',
-      'email',
-      {
-        type: Sequelize.STRING
-      }
-    ]
+    fn: 'removeColumn',
+    params: ['users', 'age']
   }
 ]
 
@@ -93,8 +87,14 @@ const rollbackCommands = [
   },
 
   {
-    fn: 'removeColumn',
-    params: ['users', 'email']
+    fn: 'addColumn',
+    params: [
+      'users',
+      'age',
+      {
+        type: Sequelize.INTEGER
+      }
+    ]
   }
 ]
 

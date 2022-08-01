@@ -30,4 +30,4 @@ Content-Type: application/json
 }
 
 ### Testing delete user
-DELETE http://localhost:1996/api/user/60e7e3b93b01c1a7aa74cd6b
+DELETE http://localhost:1996/api/user/3

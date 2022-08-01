@@ -67,7 +67,7 @@ class UserService {
     try {
       const usersDeleted = (await remove()) as number
 
-      if (usersDeleted === 0) return MFU.ALL_USERS_DELETED
+      if (usersDeleted !== 0) return MFU.ALL_USERS_DELETED
 
       throw new httpErrors.InternalServerError(GE.INTERNAL_SERVER_ERROR)
     } catch (e) {

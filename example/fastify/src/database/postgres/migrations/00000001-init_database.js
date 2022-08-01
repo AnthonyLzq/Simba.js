@@ -11,8 +11,8 @@ const Sequelize = require('sequelize')
 
 const info = {
   revision: 1,
-  name: 'create-user-table',
-  created: '2022-07-27T00:28:34.934Z',
+  name: 'init_database',
+  created: '2022-08-01T00:19:30.599Z',
   comment: ''
 }
 
@@ -59,7 +59,7 @@ const migrationCommands = [
           revision: info.revision,
           name: info.name,
           state:
-            '{"revision":1,"tables":{"users":{"tableName":"users","schema":{"id":{"seqType":"Sequelize.INTEGER","allowNull":false,"primaryKey":true,"autoIncrement":true},"name":{"seqType":"Sequelize.STRING"},"lastName":{"seqType":"Sequelize.STRING"},"createdAt":{"seqType":"Sequelize.DATE","allowNull":false},"updatedAt":{"seqType":"Sequelize.DATE","allowNull":false},"deletedAt":{"seqType":"Sequelize.DATE"}},"indexes":{}}}}'
+            '{"revision":1,"tables":{"users":{"tableName":"users","schema":{"id":{"seqType":"Sequelize.INTEGER","allowNull":false,"primaryKey":true,"autoIncrement":true},"name":{"seqType":"Sequelize.STRING"},"lastName":{"seqType":"Sequelize.STRING"},"email":{"seqType":"Sequelize.STRING"},"age":{"seqType":"Sequelize.INTEGER"},"createdAt":{"seqType":"Sequelize.DATE","allowNull":false},"updatedAt":{"seqType":"Sequelize.DATE","allowNull":false},"deletedAt":{"seqType":"Sequelize.DATE"}},"indexes":{}}}}'
         }
       ],
       {}
@@ -82,6 +82,12 @@ const migrationCommands = [
         },
         lastName: {
           type: Sequelize.STRING
+        },
+        email: {
+          type: Sequelize.STRING
+        },
+        age: {
+          type: Sequelize.INTEGER
         },
         createdAt: {
           allowNull: false,
