@@ -12,6 +12,7 @@
     "LGPL",
     "nargs",
     "nodemon",
+    "sequelizerc",
     "unlicensed",
     "wearerequired"
   ]
