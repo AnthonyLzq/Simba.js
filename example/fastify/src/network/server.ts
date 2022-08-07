@@ -46,10 +46,6 @@ class Server {
     try {
       await this.#dbConnection()
       await this.#connection?.connect()
-
-      if (process.env.MIGRATION)
-        await this.#connection?.createMigration(process.env.MIGRATION)
-
       await this.#app.listen(PORT)
     } catch (e) {
       console.error(e)
