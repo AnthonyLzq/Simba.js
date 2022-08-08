@@ -1,14 +1,4 @@
-const writeFile = require('../utils/writeFile')
-
-/**
- * @param {String} projectName
- * @param {Boolean} dbIsSQL
- * @returns {Promise<void>}
- */
-module.exports = async (projectName, dbIsSQL) => {
-  const data = {
-    base: {
-      content: `{
+{
   "ts-node": {
     "files": true,
     "require": ["tsconfig-paths/register"]
@@ -74,11 +64,7 @@ module.exports = async (projectName, dbIsSQL) => {
     // "inlineSources": true,                 /* Emit the source alongside the sourcemaps within a single file; requires '--inlineSourceMap' or '--sourceMap' to be set. */
 
     /* Experimental Options */
-    ${
-      dbIsSQL
-        ? '    "experimentalDecorators": true,           /* Enables experimental support for ES7 decorators. */'
-        : '    // "experimentalDecorators": true,        /* Enables experimental support for ES7 decorators. */'
-    }
+        "experimentalDecorators": true,           /* Enables experimental support for ES7 decorators. */
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
 
     /* Advanced Options */
@@ -94,32 +80,4 @@ module.exports = async (projectName, dbIsSQL) => {
   "exclude": [
     "node_modules"
   ]
-}
-`,
-      file: 'tsconfig.base.json'
-    },
-    prod: {
-      content: `{
-  "compilerOptions": {
-    "rootDir": "src"
-  },
-  "extends": "./tsconfig.base.json",
-  "exclude": [
-    "node_modules",
-    "test",
-    "tests",
-    "__test__",
-    "dist"
-  ],
-  "include": [
-    "src"
-  ]
-}
-`,
-      file: 'tsconfig.json'
-    }
-  }
-
-  await writeFile(`${projectName}/${data.base.file}`, data.base.content)
-  await writeFile(`${projectName}/${data.prod.file}`, data.prod.content)
 }
