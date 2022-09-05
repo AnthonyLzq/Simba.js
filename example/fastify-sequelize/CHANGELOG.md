@@ -1,0 +1,1 @@
+# Example/fastify  Sequelize

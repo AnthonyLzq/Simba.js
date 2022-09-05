@@ -1,0 +1,33 @@
+### Testing store a user
+POST http://localhost:1996/api/users
+Content-Type: application/json
+
+{
+  "args": {
+    "lastName": "Lzq",
+    "name": "Anthony"
+  }
+}
+
+### Testing getAll users
+GET http://localhost:1996/api/users
+
+### Testing deleteAll users
+DELETE http://localhost:1996/api/users
+
+### Testing getOne user
+GET http://localhost:1996/api/user/60e7e3b93b01c1a7aa74cd6b
+
+### Testing update user
+PATCH http://localhost:1996/api/user/60e7e3b93b01c1a7aa74cd6b
+Content-Type: application/json
+
+{
+  "args": {
+    "name": "Anthony",
+    "lastName": "Luzquiños"
+  }
+}
+
+### Testing delete user
+DELETE http://localhost:1996/api/user/60e7e3b93b01c1a7aa74cd6b

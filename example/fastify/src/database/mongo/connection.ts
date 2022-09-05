@@ -30,7 +30,7 @@ const dbConnection = async (
         'Mongo connection disconnected. Trying to reconnected to Mongo...'
       )
       setTimeout(() => {
-        connect(process.env.MONGO_URI as string, {
+        connect(process.env.DB_URI as string, {
           ...connection,
           connectTimeoutMS: 3000,
           socketTimeoutMS: 3000
@@ -47,7 +47,7 @@ const dbConnection = async (
   })
 
   return {
-    connect: () => connect(process.env.MONGO_URI as string, connectionConfig),
+    connect: () => connect(process.env.DB_URI as string, connectionConfig),
     disconnect: () => connection.close()
   }
 }
