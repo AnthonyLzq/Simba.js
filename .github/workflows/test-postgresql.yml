@@ -1,11 +1,11 @@
-name: Tests for Simba APIs
+name: Tests for Simba APIs with postgresql
 
 on: [push]
 
 jobs:
   test:
     environment: Test-postgresql
-    name: Tests for Simba APIs
+    name: Tests for Simba APIs with postgresql
     runs-on: ubuntu-latest
 
     steps:
@@ -30,3 +30,4 @@ jobs:
         env:
           DB_URI: ${{ secrets.DB_URI }}
           NODE_ENV: ci
+          PORT: 1996
