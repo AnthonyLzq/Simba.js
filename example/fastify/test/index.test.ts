@@ -28,13 +28,13 @@ const baseResponseDto = Type.Object({
 
 type BaseResponseDTO = Static<typeof baseResponseDto>
 
-describe('Simba.js tests - Sequelize', () => {
+describe('Simba.js tests', () => {
   beforeAll(async () => {
     await Server.start()
   })
 
   describe('API endpoints tests', () => {
-    let userID = 0
+    let userID = 
 
     describe('API: GET /', () => {
       let data: BaseResponseDTO
@@ -76,7 +76,7 @@ describe('Simba.js tests - Sequelize', () => {
 
         data = result.data
         status = result.status
-        userID = result.data.message.id ?? 0
+        userID = result.data.message.id ?? userID
         expect(status).toBe(201)
       })
 

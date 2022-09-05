@@ -1,11 +1,11 @@
-name: Tests for Simba APIs
+name: Tests - example/express-sequelize
 
 on: [push]
 
 jobs:
   test:
     environment: Test
-    name: Tests for Simba APIs
+    name: Testing Simba.js API
     runs-on: ubuntu-latest
 
     steps:
@@ -25,20 +25,8 @@ jobs:
       - name: Revert changes into the package-lock.json file
         run: git checkout -- package-lock.json
 
-      - name: Test APIs
+      - name: Run test
         run: npm run test:ci
         env:
-          MONGO_URI: ${{ secrets.MONGO_URI }}
+          DB_URI: ${{ secrets.DB_URI }}
           NODE_ENV: ci
-
-      # - name: Build examples
-      #   run: npm run build:ci
-      #   env:
-      #     MONGO_URI: ${{ secrets.MONGO_URI }}
-      #     NODE_ENV: ci
-
-      # - name: Test Fastify rest example
-      #   run: npm run test:fastify:ci
-      #   env:
-      #     MONGO_URI: ${{ secrets.MONGO_URI }}
-      #     NODE_ENV: ci

@@ -9,7 +9,7 @@ type Process = {
 }
 
 type Arguments = {
-  id?: number
+  id?: string
   user?: User
   userWithId?: UserWithId
 }
@@ -67,7 +67,10 @@ class UserService {
     try {
       const usersDeleted = (await remove()) as number
 
-      if (usersDeleted !== 0) return MFU.ALL_USERS_DELETED
+      if (usersDeleted >= 1) return MFU.ALL_USERS_DELETED
+
+      if (usersDeleted === 0)
+        throw new httpErrors.Conflict(EFU.NOTHING_TO_DELETE)
 
       throw new httpErrors.InternalServerError(GE.INTERNAL_SERVER_ERROR)
     } catch (e) {

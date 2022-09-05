@@ -2,9 +2,9 @@ import { FastifyInstance } from 'fastify'
 import { HttpError } from 'http-errors'
 
 import { response } from './response'
-import { Home, Docs } from './routes'
+import { Home, User, Docs } from './routes'
 
-const routers = [Docs]
+const routers = [Docs, User]
 const applyRoutes = (app: FastifyInstance): void => {
   Home(app)
   routers.forEach(router => router(app))

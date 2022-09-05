@@ -1,9 +1,9 @@
 import { connect, connection } from 'mongoose'
-import { HttpLogger } from 'express-pino-logger'
+import { FastifyLoggerInstance } from 'fastify'
 
 const ENVIRONMENTS_WITHOUT_RECONNECTION = ['ci', 'local']
 const dbConnection = async (
-  logger: HttpLogger['logger']
+  logger: FastifyLoggerInstance
 ): Promise<{
   connect: () => Promise<typeof import('mongoose')>
   disconnect: () => Promise<void>
@@ -30,7 +30,7 @@ const dbConnection = async (
         'Mongo connection disconnected. Trying to reconnected to Mongo...'
       )
       setTimeout(() => {
-        connect(process.env.MONGO_URI as string, {
+        connect(process.env.DB_URI as string, {
           ...connection,
           connectTimeoutMS: 3000,
           socketTimeoutMS: 3000
@@ -47,7 +47,7 @@ const dbConnection = async (
   })
 
   return {
-    connect: () => connect(process.env.MONGO_URI as string, connectionConfig),
+    connect: () => connect(process.env.DB_URI as string, connectionConfig),
     disconnect: () => connection.close()
   }
 }

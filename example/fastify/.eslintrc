@@ -39,8 +39,7 @@
         "devDependencies": [
           "**/*.test.ts",
           "webpack.config.js",
-          "jest.config.ts",
-          "src/database/postgres/config.js"
+          "jest.config.ts"
         ],
         "optionalDependencies": [
           "**/*.test.ts"

@@ -5,7 +5,7 @@ const Home = (app: FastifyInstance, prefix = '/'): void => {
   app.get(`${prefix}`, (request, reply) => {
     response({
       error: false,
-      message: 'Welcome to your Fastify GraphQL Backend!',
+      message: 'Welcome to your Fastify Backend!',
       reply,
       status: 200
     })

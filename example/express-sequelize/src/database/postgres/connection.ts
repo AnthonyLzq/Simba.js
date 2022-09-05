@@ -1,13 +1,13 @@
+import { join } from 'path'
 import { Sequelize } from 'sequelize-typescript'
-import { FastifyLoggerInstance } from 'fastify'
+import { HttpLogger } from 'express-pino-logger'
 
 import * as models from './models'
-import { join } from 'path'
 
 let sequelize: Sequelize
 
 const dbConnection = async (
-  logger?: FastifyLoggerInstance
+  logger?: HttpLogger['logger']
 ): Promise<{
   connect: () => Promise<Sequelize>
   disconnect: () => Promise<void>

@@ -1,0 +1,32 @@
+name: Tests for Simba APIs
+
+on: [push]
+
+jobs:
+  test:
+    environment: Test-postgresql
+    name: Tests for Simba APIs
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      - name: Install Node.js dependencies
+        run: npm ci
+
+      - name: Revert changes into the package-lock.json file
+        run: git checkout -- package-lock.json
+
+      - name: Test APIs
+        run: npm run test:ci
+        env:
+          DB_URI: ${{ secrets.DB_URI }}
+          NODE_ENV: ci
