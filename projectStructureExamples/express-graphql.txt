@@ -3,15 +3,6 @@
 │       ├── lint.yml
 │       └── test.yml
 ├── src
-│   ├── @types
-│   │   ├── custom
-│   │   │   ├── request.d.ts
-│   │   │   └── response.d.ts
-│   │   ├── graphQL
-│   │   │   └── context.d.ts
-│   │   ├── models
-│   │   │   └── user.d.ts
-│   │   └── index.d.ts
 │   ├── database
 │   │   ├── mongo
 │   │   │   ├── models
@@ -27,10 +18,10 @@
 │   │   ├── models
 │   │   │   ├── User
 │   │   │   │   ├── index.ts
-│   │   │   │   ├── mutations.ts
 │   │   │   │   ├── mutationsResolver.ts
-│   │   │   │   ├── queries.ts
+│   │   │   │   ├── mutations.ts
 │   │   │   │   ├── queriesResolver.ts
+│   │   │   │   ├── queries.ts
 │   │   │   │   └── typeDefs.ts
 │   │   │   ├── utils
 │   │   │   │   ├── messages
@@ -44,8 +35,7 @@
 │   │   │   ├── utils
 │   │   │   │   └── index.ts
 │   │   │   ├── home.ts
-│   │   │   ├── index.ts
-│   │   │   └── user.ts
+│   │   │   └── index.ts
 │   │   ├── index.ts
 │   │   ├── response.ts
 │   │   ├── router.ts
@@ -53,6 +43,15 @@
 │   ├── schemas
 │   │   ├── index.ts
 │   │   └── user.ts
+│   ├── @types
+│   │   ├── custom
+│   │   │   ├── request.d.ts
+│   │   │   └── response.d.ts
+│   │   ├── graphQL
+│   │   │   └── context.d.ts
+│   │   ├── models
+│   │   │   └── user.d.ts
+│   │   └── index.d.ts
 │   ├── utils
 │   │   ├── docs.json
 │   │   └── index.ts
@@ -61,23 +60,23 @@
 │   ├── index.test.ts
 │   ├── jestGlobalSetup.ts
 │   └── setEnvVars.ts
+├── CHANGELOG.md
+├── Dockerfile
 ├── .dockerignore
 ├── .env
 ├── .eslintignore
 ├── .eslintrc
 ├── .gitignore
-├── CHANGELOG.md
-├── Dockerfile
-├── LICENSE
-├── README.md
 ├── heroku.yml
 ├── index.http
 ├── jest.config.ts
+├── LICENSE
 ├── nodemon.json
 ├── package.json
+├── README.md
 ├── tsconfig.base.json
 ├── tsconfig.json
 ├── webpack.config.js
 └── yarn.lock
 
-22 directories, 59 files
+22 directories, 58 files

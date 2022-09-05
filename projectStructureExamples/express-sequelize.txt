@@ -3,11 +3,6 @@
 │       ├── lint.yml
 │       └── test.yml
 ├── src
-│   ├── @types
-│   │   ├── custom
-│   │   │   ├── request.d.ts
-│   │   │   └── response.d.ts
-│   │   └── index.d.ts
 │   ├── database
 │   │   ├── migrations
 │   │   ├── postgres
@@ -45,6 +40,11 @@
 │   │   │   └── index.ts
 │   │   ├── index.ts
 │   │   └── user.ts
+│   ├── @types
+│   │   ├── custom
+│   │   │   ├── request.d.ts
+│   │   │   └── response.d.ts
+│   │   └── index.d.ts
 │   ├── utils
 │   │   ├── docs.json
 │   │   └── index.ts
@@ -53,21 +53,21 @@
 │   ├── index.test.ts
 │   ├── jestGlobalSetup.ts
 │   └── setEnvVars.ts
+├── CHANGELOG.md
+├── Dockerfile
 ├── .dockerignore
 ├── .env
 ├── .eslintignore
 ├── .eslintrc
 ├── .gitignore
-├── .sequelizerc
-├── CHANGELOG.md
-├── Dockerfile
-├── LICENSE
-├── README.md
 ├── heroku.yml
 ├── index.http
 ├── jest.config.ts
+├── LICENSE
 ├── nodemon.json
 ├── package.json
+├── README.md
+├── .sequelizerc
 ├── tsconfig.base.json
 ├── tsconfig.json
 ├── webpack.config.js

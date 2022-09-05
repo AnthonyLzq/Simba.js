@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0](https://github.com/AnthonyLzq/simba.js/compare/v6.2.2...v7.0.0) (2022-09-05)
+
+
+### Features
+
+* basic config for using multiple relational databases with sequelize and mongo with mongoose ([272907f](https://github.com/AnthonyLzq/simba.js/commit/272907ff472c06c39d9e4d826bb8f6c4934d7596))
+* sequelize integration part 1 ([a233630](https://github.com/AnthonyLzq/simba.js/commit/a2336305b3159eeead75af289986fb36f1dfc79d))
+* sequelize integration part 2 - finished boilerplate ([86e0f3d](https://github.com/AnthonyLzq/simba.js/commit/86e0f3d115d7998216a65ecdd72340dfac5240a8))
+* sequelize integration part 3 - finished database creation in the express and ([fbbfed9](https://github.com/AnthonyLzq/simba.js/commit/fbbfed92bc5bc751c84ce9d9930a22770dffec6a))
+* sequelize integration part 4 - finished network creation in the express and ([82151c0](https://github.com/AnthonyLzq/simba.js/commit/82151c009d5339365979951015eab9032f6499bb))
+* sequelize integration part 5 - finished schemas ([31fe704](https://github.com/AnthonyLzq/simba.js/commit/31fe704824283f4a5b630e05765d3d9dfff5f4d5))
+* sequelize integration part 6 - finished services creation in the express and ([efad703](https://github.com/AnthonyLzq/simba.js/commit/efad703860483b3023369431cb637479135c3a11))
+* sequelize integration part 7 - finished project boilerplate creation ([f37356f](https://github.com/AnthonyLzq/simba.js/commit/f37356f6b47cf4d32e51d33a763a3c5619ad84e8))
+* sequelize integration part 7 - fixed tests and added express boilerplate ([fae427f](https://github.com/AnthonyLzq/simba.js/commit/fae427fb68e610a47958eb03cb6a261d5312b39e))
+* sequelize integration part 7.5 - fixed express and fastify case ([d3eb286](https://github.com/AnthonyLzq/simba.js/commit/d3eb28680d519ea1b0583384cb1979e550c22dca))
+* sequelize integration part 8 - finished express and sequelize ([65ce7de](https://github.com/AnthonyLzq/simba.js/commit/65ce7de8b69839e56dc33e5ded184a50b0d119fd))
+* sorted npm scripts ([cd36b3b](https://github.com/AnthonyLzq/simba.js/commit/cd36b3b91ff100b357c73cfbcb250a6b4d2cabc8))
+* updated packages ([bfe7404](https://github.com/AnthonyLzq/simba.js/commit/bfe74047de63848922c99e2a2c165e2f59aab1bd))
+
+
+### Bug Fixes
+
+* gha for testing ([7fc2379](https://github.com/AnthonyLzq/simba.js/commit/7fc2379f347bcf9aee1c05176744b311fb3c3484))
+* gha names and ports ([12133b7](https://github.com/AnthonyLzq/simba.js/commit/12133b7564f73b0625b472c8ade97a0c0a4d9057))
+* port in test in lib function ([8915713](https://github.com/AnthonyLzq/simba.js/commit/8915713b88505d72e7897b79c7882d84fc46aec5))
+* removed duplicated npm script ([9935139](https://github.com/AnthonyLzq/simba.js/commit/9935139a28ba25b365d4bbbcfa36ea21ab56bd7e))
+
 ### [6.2.2](https://github.com/AnthonyLzq/simba.js/compare/v6.2.1...v6.2.2) (2022-07-11)
 
 
