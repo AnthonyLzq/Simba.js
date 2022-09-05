@@ -55,43 +55,47 @@ This will generate the following output:
 
 ```bash
 "simba [options]" (if you it installed globally) or only "simba -q" if you want
-to be asked for the options one by one
+to be asked for the options one by one.
 
 Options:
-  -N, --projectName              Project name
-  -D, --projectDescription       Project description
-  -a, --author                   Author of the project
-  -e, --email                    Email of the author
+  -N, --projectName              Project name.
+  -D, --projectDescription       Project description.
+  -a, --author                   Author of the project.
+  -e, --email                    Email of the author.
   -H, --heroku                   Whether or not the project will be deployed
-                                 using Heroku         [boolean] [default: false]
+                                 using Heroku.        [boolean] [default: false]
   -l, --license                  Type of license for the project, it can be one
                                  of: MIT, Apache 2.0, MPL 2.0, LGPL 3.0, GPL 3.0
-                                 and AGPL 3.0, in lowercase without its version
+                                 and AGPL 3.0, in lowercase without its version.
                                                          [default: "unlicensed"]
-  -v, --version                  Project initial version      [default: "0.1.0"]
-  -y, --licenseYear              Year when the license starts  [default: "2022"]
+  -v, --version                  Project initial version.     [default: "0.1.0"]
+  -y, --licenseYear              Year when the license starts. [default: "2022"]
   -n, --npm                      Whether or not the project should use npm as
-                                 package manager      [boolean] [default: false]
-  -f, --mainFile                 Main file of the project
+                                 package manager.     [boolean] [default: false]
+  -f, --mainFile                 Main file of the project.
                                                        [default: "src/index.ts"]
   -q, --questions                Whether or not you want to be asked to answer
-                                 the questions related to the project one by one
-                                                      [boolean] [default: false]
+                                 the questions related to the project one by
+                                 one.                 [boolean] [default: false]
   -F, --fastify                  Whether or not you want to use Fastify for your
-                                 project              [boolean] [default: false]
+                                 project.             [boolean] [default: false]
   -g, --graphql                  Whether or not you want to use GraphQL for your
-                                 project              [boolean] [default: false]
+                                 project.             [boolean] [default: false]
   -t, --tests                    Whether or not you want to have a basic suit of
-                                 unit tests with Jest [boolean] [default: false]
+                                 unit tests with Jest.[boolean] [default: false]
       --ghat, --gh-action-tests  Whether or not you want to have a GitHub Action
-                                 with a CI for your tests. If this option is set
-                                 to true, the tests flag must be set to true.
-                                                                [default: false]
+                                 with a CI for your tests and linting. If this
+                                 option is set to true, the tests flag must be
+                                 set to true.                   [default: false]
+  -d, --database                 Which database you want to use, available
+                                 databases are: MongoDB, PostgreSQL, MySQL,
+                                 MariaDB, Sqlite and Microsoft SQL Server.
+                                                              [default: "mongo"]
   -h, --help                     Show help                             [boolean]
 
 Examples:
   simba -N 'Project Name' -D 'Project description' -a Anthony -e
-  sluzquinosa@uni.pe -l mit -F --tests --ghat
+  sluzquinosa@uni.pe -l mit -F -t -d mongo --ghat
 
 Developed by AnthonyLzq
 ```
@@ -118,6 +122,12 @@ What if I want to use Fastify instead Express? Well, you only have to pass the `
 simba -N myProject -D 'This is a test' -l mit -a myName -e myEmail@email.com -H -F
 ```
 
+If I want to use a relational database instead MongoDB? Well, you only have to pass the `-d` flag:
+
+```bash
+simba -N myProject -D 'This is a test' -l mit -a myName -e myEmail@email.com -H -F -d postgresql
+```
+
 And how can I use GraphQL? Well, you only have to pass the `-g` flag:
 
 ```bash
@@ -142,8 +152,12 @@ Also, if you are interested in the folder structure of each case, please take a 
 
 - [Express case](./projectStructureExamples/express.txt)
 - [Express-GraphQL case](./projectStructureExamples/express-graphql.txt)
+- [Express-GraphQL-Sequelize case](./projectStructureExamples/express-GraphQL-sequelize.txt)
+- [Express-Sequelize case](./projectStructureExamples/express-sequelize.txt)
 - [Fastify case](./projectStructureExamples/fastify.txt)
 - [Fastify-GraphQL case](./../projectStructureExamples/fastify-graphql.txt)
+- [Fastify-GraphQL-Sequelize case](./../projectStructureExamples/fastify-sequelize-graphql.txt)
+- [Fastify-Sequelize case](./../projectStructureExamples/fastify-sequelize-graphql.txt)
 
 ### Some considerations
 
@@ -186,6 +200,7 @@ Also, if you are interested in the folder structure of each case, please take a 
 - Finally, `git` will be initialized and a list of libraries will be installed. Check the [**notes**](#notes).
 - Relative imports is already configured, you do not need to import a file using `../../../some/very/nested/stuff/in/other/folder`, you can use `some/very/nested/stuff/in/other/folder` assuming that your folder is under the `src` folder.
 - The Fastify version is set to v3 because Apollo Server has not yet provided support for Fastify v4 yet, and it is difficult to have support for two different major versions of Fastify, so until Apollo Server supports Fastify v4, this package will use Fastify v3.
+- Support for Heroku will be deprecated in the next major release because it drops its free tier.
 
 ## Who uses Simba.js?
 
@@ -305,6 +320,45 @@ As `dependencies`:
 - [`apollo-server-plugin-base`](https://www.npmjs.com/package/apollo-server-plugin-base)
 
 Feel free to contribute to this project. Every contribution will be appreciated.
+
+### In case you are using a relational database
+
+As `dependencies`:
+
+- [`sequelize`](https://www.npmjs.com/package/sequelize)
+- [`sequelize-typescript`](https://www.npmjs.com/package/sequelize-typescript)
+- [`sequelize-typescript-migration-lts`](https://www.npmjs.com/package/sequelize-typescript-migration-lts)
+
+#### PostgreSQL case
+
+As `dependencies`:
+
+- [`pg`](https://www.npmjs.com/package/pg)
+- [`pg-hstore`](https://www.npmjs.com/package/pg-hstore)
+
+#### MySql case
+
+As `dependencies`:
+
+- [`mysql2`](https://www.npmjs.com/package/mysql2)
+
+#### MariaDB case
+
+As `dependencies`:
+
+- [`mariadb`](https://www.npmjs.com/package/mariadb)
+
+#### Sqlite case
+
+As `dependencies`:
+
+- [`sqlite3`](https://www.npmjs.com/package/sqlite3)
+
+#### SQLServer case
+
+As `dependencies`:
+
+- [`tedious`](https://www.npmjs.com/package/tedious)
 
 ## Author
 
