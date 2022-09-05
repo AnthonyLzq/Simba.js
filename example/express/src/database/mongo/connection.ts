@@ -1,9 +1,9 @@
 import { connect, connection } from 'mongoose'
-import { FastifyLoggerInstance } from 'fastify'
+import { HttpLogger } from 'express-pino-logger'
 
 const ENVIRONMENTS_WITHOUT_RECONNECTION = ['ci', 'local']
 const dbConnection = async (
-  logger: FastifyLoggerInstance
+  logger: HttpLogger['logger']
 ): Promise<{
   connect: () => Promise<typeof import('mongoose')>
   disconnect: () => Promise<void>

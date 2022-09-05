@@ -86,7 +86,7 @@ describe('Simba.js tests', () => {
 
         data = result.data
         status = result.status
-        userID = result.data.data.user.id ?? ''
+        userID = result.data.data.user.id ?? userID
         expect(status).toBe(200)
       })
 

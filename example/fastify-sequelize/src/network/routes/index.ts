@@ -1,3 +1,3 @@
 export * from './home'
-export * from './user'
 export * from './docs'
+export * from './user'

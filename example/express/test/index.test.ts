@@ -34,7 +34,7 @@ describe('Simba.js tests', () => {
   })
 
   describe('API endpoints tests', () => {
-    let userID = 
+    let userID = ''
 
     describe('API: GET /', () => {
       let data: BaseResponseDTO

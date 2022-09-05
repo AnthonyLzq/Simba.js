@@ -1,0 +1,71 @@
+├── .github
+│   └── workflows
+│       ├── lint.yml
+│       └── test.yml
+├── src
+│   ├── @types
+│   │   └── index.d.ts
+│   ├── database
+│   │   ├── postgres
+│   │   │   ├── migrations
+│   │   │   ├── models
+│   │   │   │   ├── index.ts
+│   │   │   │   └── user.ts
+│   │   │   ├── queries
+│   │   │   │   ├── index.ts
+│   │   │   │   └── user.ts
+│   │   │   ├── config.js
+│   │   │   ├── connection.ts
+│   │   │   └── index.ts
+│   │   └── index.ts
+│   ├── network
+│   │   ├── routes
+│   │   │   ├── docs.ts
+│   │   │   ├── home.ts
+│   │   │   ├── index.ts
+│   │   │   └── user.ts
+│   │   ├── utils
+│   │   │   └── index.ts
+│   │   ├── index.ts
+│   │   ├── response.ts
+│   │   ├── router.ts
+│   │   └── server.ts
+│   ├── schemas
+│   │   ├── index.ts
+│   │   └── user.ts
+│   ├── scripts
+│   │   └── migration.ts
+│   ├── services
+│   │   ├── utils
+│   │   │   ├── messages
+│   │   │   │   ├── index.ts
+│   │   │   │   └── user.ts
+│   │   │   └── index.ts
+│   │   ├── index.ts
+│   │   └── user.ts
+│   └── index.ts
+├── test
+│   ├── index.test.ts
+│   ├── jestGlobalSetup.ts
+│   └── setEnvVars.ts
+├── .dockerignore
+├── .env
+├── .eslintignore
+├── .eslintrc
+├── .gitignore
+├── .sequelizerc
+├── CHANGELOG.md
+├── Dockerfile
+├── LICENSE
+├── README.md
+├── heroku.yml
+├── index.http
+├── jest.config.ts
+├── nodemon.json
+├── package.json
+├── tsconfig.base.json
+├── tsconfig.json
+├── webpack.config.js
+└── yarn.lock
+
+18 directories, 51 files

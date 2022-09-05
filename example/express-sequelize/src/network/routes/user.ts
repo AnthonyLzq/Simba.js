@@ -73,8 +73,7 @@ User.route('/user/:id')
         const {
           params: { id }
         } = req
-                const us = new UserService({ id: parseInt(id) })
-
+        const us = new UserService({ id: parseInt(id) })
         const result = await us.process({ type: 'getOne' })
 
         response({ error: false, message: result, res, status: 200 })
@@ -120,8 +119,7 @@ User.route('/user/:id')
         const {
           params: { id }
         } = req
-                const us = new UserService({ id: parseInt(id) })
-
+        const us = new UserService({ id: parseInt(id) })
         const result = await us.process({ type: 'delete' })
 
         response({ error: false, message: result, res, status: 200 })
