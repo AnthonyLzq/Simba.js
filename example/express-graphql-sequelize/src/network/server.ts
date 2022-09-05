@@ -1,9 +1,16 @@
-import { Server as HttpServer } from 'http'
+import { createServer, Server as HttpServer } from 'http'
 import express from 'express'
 import cors from 'cors'
 import pino, { HttpLogger } from 'express-pino-logger'
+import { ApolloServer } from 'apollo-server-express'
+import {
+  ApolloServerPluginDrainHttpServer,
+  ApolloServerPluginLandingPageDisabled,
+  ApolloServerPluginLandingPageGraphQLPlayground
+} from 'apollo-server-core'
 
 import { dbConnection } from 'database'
+import { mergedSchema as schema } from 'graphQL'
 import { applyRoutes } from './router'
 
 const PORT = (process.env.PORT as string) || 1996
@@ -12,11 +19,12 @@ const ENVIRONMENTS_WITHOUT_PRETTY_PRINT = ['production', 'ci']
 class Server {
   #app: express.Application
   #log: HttpLogger
-  #server: HttpServer | undefined
+  #server: HttpServer
   #connection: Awaited<ReturnType<typeof dbConnection>> | undefined
 
   constructor() {
     this.#app = express()
+    this.#server = createServer(this.#app)
     this.#log = pino({
       transport: !ENVIRONMENTS_WITHOUT_PRETTY_PRINT.includes(
         process.env.NODE_ENV as string
@@ -54,7 +62,6 @@ class Server {
         next()
       }
     )
-    applyRoutes(this.#app)
   }
 
   async #dbConnection() {
@@ -62,14 +69,36 @@ class Server {
   }
 
   public async start(): Promise<void> {
+    const server = new ApolloServer({
+      schema,
+      plugins: [
+        ApolloServerPluginDrainHttpServer({ httpServer: this.#server }),
+        process.env.NODE_ENV === 'production'
+          ? ApolloServerPluginLandingPageDisabled()
+          : ApolloServerPluginLandingPageGraphQLPlayground()
+      ],
+      context: (): Context => ({
+        log: this.#log.logger
+      })
+    })
+
     try {
+      await server.start()
+      server.applyMiddleware({
+        app: this.#app,
+        path: '/api'
+      })
+      applyRoutes(this.#app)
       await this.#dbConnection()
       await this.#connection?.connect()
-      this.#server = this.#app.listen(PORT, () => {
-        this.#log.logger.info(`Server running at port ${PORT}`)
+      this.#server.listen(PORT, () => {
+        this.#log.logger.info(`Server listening at port: ${PORT}`)
+        this.#log.logger.info(
+          `GraphQL server listening at: http://localhost:${PORT}${server.graphqlPath}`
+        )
       })
     } catch (e) {
-      this.#log.logger.error(e)
+      console.error(e)
     }
   }
 

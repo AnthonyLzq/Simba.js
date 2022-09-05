@@ -1,12 +1,17 @@
 import { Static, Type } from '@sinclair/typebox'
+import Ajv from 'ajv/dist/2019.js'
+import addFormats from 'ajv-formats'
 
 const id = Type.String({ pattern: '^[a-zA-Z0-9]{24,}$' })
-
-type Id = Static<typeof id>
+type ID = Static<typeof id>
 
 const idSchema = Type.Object({ id })
 
-type IdSchema = Static<typeof idSchema>
+type IDSchema = Static<typeof idSchema>
 
-export { id, Id, idSchema, IdSchema }
+const ajv = addFormats(new Ajv(), ['email'])
+  .addKeyword('kind')
+  .addKeyword('modifier')
+
+export { id, ID, idSchema, IDSchema, ajv }
 export * from './user'

@@ -80,7 +80,7 @@ const Mutation = {
   },
   deleteUser: async (
     parent: unknown,
-    { id }: { id: string },
+    { id }: { id: number },
     context: Context
   ): Promise<string> => {
     const validate = ajv.compile(idSchema)

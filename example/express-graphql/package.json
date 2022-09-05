@@ -16,7 +16,7 @@
   "author": "AnthonyLzq <sluzquinosa@uni.pe>",
   "license": "MIT",
   "dependencies": {
-    "@graphql-tools/schema": "^9.0.2",
+    "@graphql-tools/schema": "^9.0.3",
     "@sinclair/typebox": "^0.24.35",
     "ajv": "^8.11.0",
     "ajv-formats": "^2.1.1",

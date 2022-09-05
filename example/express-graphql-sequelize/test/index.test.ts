@@ -144,7 +144,7 @@ describe('Simba.js tests', () => {
 
       test('Should return 200 as status code', async () => {
         const result = await axios.post<GetOneUserDTO>(`${BASE_URL}/api`, {
-          query: `query getUser($id: ID!) {
+          query: `query getUser($id: Int!) {
             user: getUser(id: $id) {
               id
               name
@@ -224,7 +224,7 @@ describe('Simba.js tests', () => {
 
       test('Should return 200 as status code', async () => {
         const result = await axios.post<DeleteUserDTO>(`${BASE_URL}/api`, {
-          query: `mutation deleteUser($id: ID!) {
+          query: `mutation deleteUser($id: Int!) {
             result: deleteUser(id: $id)
           }`,
           variables: {

@@ -2,7 +2,7 @@ import { gql } from 'apollo-server-core'
 
 const User = gql`
   type User {
-    id: ID!
+    id: Int!
     name: String!
     lastName: String!
     createdAt: String!
@@ -11,7 +11,7 @@ const User = gql`
 
   type Query {
     getUsers: [User!]!
-    getUser(id: ID!): User!
+    getUser(id: Int!): User!
   }
 
   input StoreUserInput {
@@ -20,7 +20,7 @@ const User = gql`
   }
 
   input UpdateUserInput {
-    id: String!
+    id: Int!
     lastName: String!
     name: String!
   }
@@ -29,7 +29,7 @@ const User = gql`
     storeUser(user: StoreUserInput!): User!
     deleteAllUsers: String
     updateUser(user: UpdateUserInput!): User!
-    deleteUser(id: ID!): String
+    deleteUser(id: Int!): String
   }
 `
 

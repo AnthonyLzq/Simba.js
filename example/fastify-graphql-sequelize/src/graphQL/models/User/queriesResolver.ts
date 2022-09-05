@@ -8,7 +8,7 @@ import { errorHandling, GE } from '../utils'
 const Query = {
   getUser: async (
     parent: unknown,
-    { id }: { id: string },
+    { id }: { id: number },
     context: Context
   ): Promise<UserDTO> => {
     const { log } = context

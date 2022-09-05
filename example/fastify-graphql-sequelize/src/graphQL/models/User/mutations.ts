@@ -63,7 +63,7 @@ const updateUser = async (
 }
 
 const deleteUser = async (
-  { id }: { id: string },
+  { id }: { id: number },
   { log }: Context
 ): Promise<string> => {
   try {

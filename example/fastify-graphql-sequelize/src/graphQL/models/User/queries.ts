@@ -24,11 +24,11 @@ const getUsers = async (
 }
 
 const getUser = async (
-  { id }: { id: string },
+  { id }: { id: number },
   { log }: Context
 ): Promise<UserDTO> => {
   try {
-    const user = (await get(id as string)) as UserDTO | null
+    const user = (await get(id)) as UserDTO | null
 
     if (!user) throw new ApolloError(EFU.NOT_FOUND, 'NOT_FOUND')
 
