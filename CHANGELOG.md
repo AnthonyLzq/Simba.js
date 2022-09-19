@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.0.2](https://github.com/AnthonyLzq/simba.js/compare/v7.0.1...v7.0.2) (2022-09-19)
+
+
+### Bug Fixes
+
+* database was not being read when a user use the questions option ([d7f6867](https://github.com/AnthonyLzq/simba.js/commit/d7f686750ed64d913c78ae74f9454340b7e5599e))
+
 ### [7.0.1](https://github.com/AnthonyLzq/simba.js/compare/v7.0.0...v7.0.1) (2022-09-05)
 
 
