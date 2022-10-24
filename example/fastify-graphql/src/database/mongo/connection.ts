@@ -3,7 +3,7 @@ import { FastifyLoggerInstance } from 'fastify'
 
 const ENVIRONMENTS_WITHOUT_RECONNECTION = ['ci', 'local']
 const dbConnection = async (
-  logger: FastifyLoggerInstance
+  logger?: FastifyLoggerInstance
 ): Promise<{
   connect: () => Promise<typeof import('mongoose')>
   disconnect: () => Promise<void>
@@ -15,10 +15,10 @@ const dbConnection = async (
   }
 
   connection.on('connected', () => {
-    logger.info('Mongo connection established.')
+    logger?.info('Mongo connection established.')
   })
   connection.on('reconnected', () => {
-    logger.info('Mongo connection reestablished')
+    logger?.info('Mongo connection reestablished')
   })
   connection.on('disconnected', () => {
     if (
@@ -26,7 +26,7 @@ const dbConnection = async (
         process.env.NODE_ENV as string
       )
     ) {
-      logger.info(
+      logger?.info(
         'Mongo connection disconnected. Trying to reconnected to Mongo...'
       )
       setTimeout(() => {
@@ -39,11 +39,11 @@ const dbConnection = async (
     }
   })
   connection.on('close', () => {
-    logger.info('Mongo connection closed')
+    logger?.info('Mongo connection closed')
   })
   connection.on('error', (e: Error) => {
-    logger.info('Mongo connection error:')
-    logger.error(e)
+    logger?.info('Mongo connection error:')
+    logger?.error(e)
   })
 
   return {

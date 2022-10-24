@@ -7,7 +7,7 @@ import * as models from './models'
 let sequelize: Sequelize
 
 const dbConnection = async (
-  logger: FastifyLoggerInstance
+  logger?: FastifyLoggerInstance
 ): Promise<{
   connect: () => Promise<Sequelize>
   disconnect: () => Promise<void>
