@@ -62,7 +62,6 @@
 ├── index.http
 ├── jest.config.ts
 ├── LICENSE
-├── nodemon.json
 ├── package.json
 ├── README.md
 ├── tsconfig.base.json
@@ -70,4 +69,4 @@
 ├── webpack.config.js
 └── yarn.lock
 
-19 directories, 52 files
+19 directories, 51 files

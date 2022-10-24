@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.1.0](https://github.com/AnthonyLzq/simba.js/compare/v7.0.2...v7.1.0) (2022-10-24)
+
+
+### Features
+
+* making logger optional in connection file ([215f579](https://github.com/AnthonyLzq/simba.js/commit/215f579d48fa0fef97b96983c9982a35fd2048ac))
+* updated packages, removed nodemon.json file in favor of nodemonConfig section in the package.json file ([9b22bd0](https://github.com/AnthonyLzq/simba.js/commit/9b22bd0b445db4233c43cb55d2057e868667de23))
+
 ### [7.0.2](https://github.com/AnthonyLzq/simba.js/compare/v7.0.1...v7.0.2) (2022-09-19)
 
 
