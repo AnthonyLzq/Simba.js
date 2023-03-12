@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.2.1](https://github.com/AnthonyLzq/simba.js/compare/v7.2.0...v7.2.1) (2023-03-12)
+
+
+### Bug Fixes
+
+* updating .npmignore to include static folder ([991bc82](https://github.com/AnthonyLzq/simba.js/commit/991bc82a2efb75e21697870db9df362a0b631809))
+
 ## [7.2.0](https://github.com/AnthonyLzq/simba.js/compare/v7.1.0...v7.2.0) (2023-03-12)
 
 
