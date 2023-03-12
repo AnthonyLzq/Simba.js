@@ -1,6 +1,6 @@
 <h1 align="center">
   <!-- <p align="center">Simba.js</p> -->
-  <a href="https://simbajs.notion.site/783092dc7d444067b4c56a25d671f658?v=31060f3d17524ca58870e86c2960a6df"><img src="https://i.ibb.co/QFX0WnH/simba-pink.png" alt="Simba.js"></a>
+  <a href="./static/simba.png"><img src="https://i.ibb.co/QFX0WnH/simba-pink.png" alt="Simba.js"></a>
 </h1>
 
 
@@ -155,9 +155,9 @@ Also, if you are interested in the folder structure of each case, please take a 
 - [Express-GraphQL-Sequelize case](./projectStructureExamples/express-GraphQL-sequelize.txt)
 - [Express-Sequelize case](./projectStructureExamples/express-sequelize.txt)
 - [Fastify case](./projectStructureExamples/fastify.txt)
-- [Fastify-GraphQL case](./../projectStructureExamples/fastify-graphql.txt)
-- [Fastify-GraphQL-Sequelize case](./../projectStructureExamples/fastify-sequelize-graphql.txt)
-- [Fastify-Sequelize case](./../projectStructureExamples/fastify-sequelize-graphql.txt)
+- [Fastify-GraphQL case](./projectStructureExamples/fastify-graphql.txt)
+- [Fastify-GraphQL-Sequelize case](./projectStructureExamples/fastify-graphql-sequelize.txt)
+- [Fastify-Sequelize case](./projectStructureExamples/fastify-sequelize.txt)
 
 ### Some considerations
 
