@@ -3,6 +3,10 @@
 │       ├── lint.yml
 │       └── test.yml
 ├── src
+│   ├── @types
+│   │   ├── models
+│   │   │   └── user.d.ts
+│   │   └── index.d.ts
 │   ├── database
 │   │   ├── mongo
 │   │   │   ├── models
@@ -37,28 +41,24 @@
 │   │   │   └── index.ts
 │   │   ├── index.ts
 │   │   └── user.ts
-│   ├── @types
-│   │   ├── models
-│   │   │   └── user.d.ts
-│   │   └── index.d.ts
 │   └── index.ts
 ├── test
 │   ├── index.test.ts
 │   ├── jestGlobalSetup.ts
 │   └── setEnvVars.ts
-├── CHANGELOG.md
-├── Dockerfile
 ├── .dockerignore
 ├── .env
 ├── .eslintignore
 ├── .eslintrc
 ├── .gitignore
+├── CHANGELOG.md
+├── Dockerfile
+├── LICENSE
+├── README.md
 ├── heroku.yml
 ├── index.http
 ├── jest.config.ts
-├── LICENSE
 ├── package.json
-├── README.md
 ├── tsconfig.base.json
 ├── tsconfig.json
 ├── webpack.config.js

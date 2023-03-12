@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.2.0](https://github.com/AnthonyLzq/simba.js/compare/v7.1.0...v7.2.0) (2023-03-12)
+
+
+### Features
+
+* making simba.js logo static ([bbf2648](https://github.com/AnthonyLzq/simba.js/commit/bbf26489a30c3471f0665501799b51ddd3cd58e2))
+
 ## [7.1.0](https://github.com/AnthonyLzq/simba.js/compare/v7.0.2...v7.1.0) (2022-10-24)
 
 

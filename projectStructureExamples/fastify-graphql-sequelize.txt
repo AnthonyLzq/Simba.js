@@ -3,6 +3,10 @@
 │       ├── lint.yml
 │       └── test.yml
 ├── src
+│   ├── @types
+│   │   ├── graphQL
+│   │   │   └── context.d.ts
+│   │   └── index.d.ts
 │   ├── database
 │   │   ├── postgres
 │   │   │   ├── migrations
@@ -20,10 +24,10 @@
 │   │   ├── models
 │   │   │   ├── User
 │   │   │   │   ├── index.ts
-│   │   │   │   ├── mutationsResolver.ts
 │   │   │   │   ├── mutations.ts
-│   │   │   │   ├── queriesResolver.ts
+│   │   │   │   ├── mutationsResolver.ts
 │   │   │   │   ├── queries.ts
+│   │   │   │   ├── queriesResolver.ts
 │   │   │   │   └── typeDefs.ts
 │   │   │   ├── utils
 │   │   │   │   ├── messages
@@ -48,29 +52,25 @@
 │   │   └── user.ts
 │   ├── scripts
 │   │   └── migration.ts
-│   ├── @types
-│   │   ├── graphQL
-│   │   │   └── context.d.ts
-│   │   └── index.d.ts
 │   └── index.ts
 ├── test
 │   ├── index.test.ts
 │   ├── jestGlobalSetup.ts
 │   └── setEnvVars.ts
-├── CHANGELOG.md
-├── Dockerfile
 ├── .dockerignore
 ├── .env
 ├── .eslintignore
 ├── .eslintrc
 ├── .gitignore
+├── .sequelizerc
+├── CHANGELOG.md
+├── Dockerfile
+├── LICENSE
+├── README.md
 ├── heroku.yml
 ├── index.http
 ├── jest.config.ts
-├── LICENSE
 ├── package.json
-├── README.md
-├── .sequelizerc
 ├── tsconfig.base.json
 ├── tsconfig.json
 ├── webpack.config.js
