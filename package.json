@@ -100,7 +100,7 @@
   "dependencies": {
     "cli-progress": "^3.11.2",
     "colors": "^1.4.0",
-    "readline-sync": "^1.4.10",
+    "prompts": "^2.4.2",
     "underscore": "^1.13.6",
     "yargs": "^17.6.0"
   },
