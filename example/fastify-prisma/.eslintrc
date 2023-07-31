@@ -4,24 +4,50 @@
     "jest": true
   },
   "root": true,
+  "parser": "@typescript-eslint/parser",
   "plugins": [
+    "@typescript-eslint",
     "import",
-    "prettier"
+    "prettier",
+    "jest"
   ],
   "extends": [
     "standard",
     "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
     "prettier"
   ],
   "rules": {
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/no-empty-interface": "off",
     "arrow-parens": [
       "error",
       "as-needed"
     ],
+    "import/extensions": [
+      2,
+      {
+        "ts": "never",
+        "js": "always",
+        "json": "always"
+      }
+    ],
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": true
+        "devDependencies": [
+          "**/*.test.ts",
+          "webpack.config.js",
+          "jest.config.ts",
+          "src/database/postgres/config.js"
+        ],
+        "optionalDependencies": [
+          "**/*.test.ts"
+        ],
+        "peerDependencies": [
+          "**/*.test.ts"
+        ]
       }
     ],
     "max-len": [

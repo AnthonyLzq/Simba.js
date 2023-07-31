@@ -24,6 +24,7 @@
     "build:fastify:sequelize": "npm run rm:fastify:sequelize && npm run cd:mv:example && node -r dotenv/config ./bin -N example/fastify-sequelize -D 'This is a test using fastify with sequelize' -a AnthonyLzq -e sluzquinosa@uni.pe -l mit -H -F --tests --ghat -d postgres && npm run rm:git:fastify:sequelize",
     "build:express:graphql:sequelize": "npm run rm:express:graphql:sequelize && npm run cd:mv:example && node -r dotenv/config ./bin -N example/express-graphql-sequelize -D 'This is a test using express with graphql and sequelize' -a AnthonyLzq -e sluzquinosa@uni.pe -l mit -H -g --tests --ghat -d postgres && npm run rm:git:express:graphql:sequelize",
     "build:fastify:graphql:sequelize": "npm run rm:fastify:graphql:sequelize && npm run cd:mv:example && node -r dotenv/config ./bin -N example/fastify-graphql-sequelize -D 'This is a test using fastify with graphql and sequelize' -a AnthonyLzq -e sluzquinosa@uni.pe -l mit -H -F -g --tests --ghat -d postgres && npm run rm:git:fastify:graphql:sequelize",
+    "build:fastify:prisma": "npm run rm:fastify:prisma && npm run cd:mv:example && node -r dotenv/config ./bin -N example/fastify-prisma -D 'This is a test using fastify with prisma' -a AnthonyLzq -e sluzquinosa@uni.pe -l mit -H -F --tests --ghat -d postgres && npm run rm:git:fastify:prisma && npm run restore:db",
     "build:and:test:only": "npm run build && npm run test:only",
     "test": "npm run test:without:restore && git restore .",
     "test:local": "npm run test:without:restore && git restore .",
@@ -69,6 +70,7 @@
     "rm:fastify:sequelize": "if [ -d \"example/fastify-sequelize\" ]; then rm -rf example/fastify-sequelize; fi",
     "rm:express:graphql:sequelize": "if [ -d \"example/express-graphql-sequelize\" ]; then rm -rf example/express-graphql-sequelize; fi",
     "rm:fastify:graphql:sequelize": "if [ -d \"example/fastify-graphql-sequelize\" ]; then rm -rf example/fastify-graphql-sequelize; fi",
+    "rm:fastify:prisma": "if [ -d \"example/fastify-prisma\" ]; then rm -rf example/fastify-prisma; fi",
     "rm:git:express": "if [ -d \"example/express/.git\" ]; then rm -rf example/express/.git; fi",
     "rm:git:fastify": "if [ -d \"example/fastify/.git\" ]; then rm -rf example/fastify/.git; fi",
     "rm:git:express:graphql": "if [ -d \"example/express-graphql/.git\" ]; then rm -rf example/express-graphql/.git; fi",
@@ -77,8 +79,10 @@
     "rm:git:fastify:sequelize": "if [ -d \"example/fastify-sequelize/.git\" ]; then rm -rf example/fastify-sequelize/.git; fi",
     "rm:git:express:graphql:sequelize": "if [ -d \"example/express-graphql-sequelize/.git\" ]; then rm -rf example/express-graphql-sequelize/.git; fi",
     "rm:git:fastify:graphql:sequelize": "if [ -d \"example/fastify-graphql-sequelize/.git\" ]; then rm -rf example/fastify-graphql-sequelize/.git; fi",
+    "rm:git:fastify:prisma": "if [ -d \"example/fastify-prisma/.git\" ]; then rm -rf example/fastify-prisma/.git; fi",
     "rm:node_modules": "if [ -d \"example/express/node_modules\" ]; then rm -rf example/express/node_modules; fi && if [ -d \"example/express-graphql/node_modules\" ]; then rm -rf example/express-graphql/node_modules; fi && if [ -d \"example/fastify/node_modules\" ]; then rm -rf example/fastify/node_modules; fi && if [ -d \"example/fastify-graphql/node_modules\" ]; then rm -rf example/fastify-graphql/node_modules; fi",
     "cd:mv:example": "if [ ! -d \"example\" ]; then mkdir example && cd example; fi",
+    "restore:db": "node ./scripts/restoreDb.js",
     "release": "standard-version",
     "version": "npm run release && npm run list:directory:tree:examples && git add ."
   },
@@ -105,6 +109,7 @@
     "yargs": "^17.6.0"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.3",
     "dotenv": "^16.0.3",
     "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.5.0",
@@ -113,6 +118,9 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.1.1",
+    "jest": "^29.6.2",
+    "knex": "^2.5.1",
+    "pg": "^8.11.1",
     "prettier": "^2.7.1",
     "standard-version": "^9.5.0"
   },
