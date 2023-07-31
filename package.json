@@ -28,6 +28,7 @@
     "build:and:test:only": "npm run build && npm run test:only",
     "test": "npm run test:without:restore && git restore .",
     "test:local": "npm run test:without:restore && git restore .",
+    "test:integration": "jest --testPathPattern=test/integration",
     "test:without:restore": "npm run build && npm run test:express:local && npm run test:fastify:local && npm run test:express:graphql:local && npm run test:fastify:graphql:local && npm run test:express:graphql:sequelize:local && test:fastify:graphql:sequelize:local && npm run test:express:sequelize:local && test:fastify:sequelize:local",
     "test:ci:mongo": "npm run build:mongo && npm run test:express:ci && npm run test:fastify:ci && npm run test:express:graphql:ci && npm run test:fastify:graphql:ci",
     "test:ci:postgresql": "npm run build:postgresql && npm run test:express:sequelize:ci && npm run test:fastify:sequelize:ci",

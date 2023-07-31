@@ -57,7 +57,7 @@ class Server implements Log {
     try {
       await this.#connection?.disconnect()
       await this.#app.close()
-      d(`HTTP server stopped.`)
+      d('HTTP server stopped.')
     } catch (e) {
       this.log({
         method: this.stop.name,

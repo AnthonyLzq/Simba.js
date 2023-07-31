@@ -4,9 +4,11 @@
   "main": "src/index.ts",
   "description": "This is a test using fastify with prisma",
   "scripts": {
+    "build:dev": "webpack --mode development",
+    "build": "webpack --mode production",
     "lint": "eslint src/* --ext .ts --fix",
     "service": "nodemon",
-    "start": "ts-node src/index.ts",
+    "start": "node dist/index.js",
     "release": "standard-version",
     "test:ci": "jest --ci -i",
     "test:local": "NODE_ENV=local jest --ci -i"
@@ -19,8 +21,8 @@
     "@types/http-errors": "^2.0.1",
     "@types/jest": "^29.5.3",
     "@types/node": "^20.4.5",
-    "@typescript-eslint/eslint-plugin": "^6.2.0",
-    "@typescript-eslint/parser": "^6.2.0",
+    "@typescript-eslint/eslint-plugin": "^6.2.1",
+    "@typescript-eslint/parser": "^6.2.1",
     "axios": "^1.4.0",
     "dotenv": "^16.3.1",
     "eslint": "^8.46.0",
@@ -41,7 +43,11 @@
     "ts-loader": "^9.4.4",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.1.6"
+    "tsconfig-paths-webpack-plugin": "^4.1.0",
+    "typescript": "^5.1.6",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-node-externals": "^3.0.0"
   },
   "nodemonConfig": {
     "watch": [
@@ -52,7 +58,7 @@
     "ignore": [
       "src/**/*.test.ts"
     ],
-    "exec": "DEBUG=App:* npx ts-node -r dotenv/config ./src/index"
+    "exec": "npx ts-node -r dotenv/config ./src/index"
   },
   "dependencies": {
     "@fastify/cors": "^7",
