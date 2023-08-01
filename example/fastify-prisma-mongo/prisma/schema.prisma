@@ -3,14 +3,14 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
-    lastName String
-    name     String
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  lastName String
+  name     String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

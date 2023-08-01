@@ -1,5 +1,5 @@
 {
-  "name": "example-fastify-prisma",
+  "name": "example-fastify-prisma-mongo",
   "version": "0.1.0",
   "main": "src/index.ts",
   "description": "This is a test using fastify with prisma",
@@ -15,30 +15,6 @@
   },
   "author": "AnthonyLzq <sluzquinosa@uni.pe>",
   "license": "MIT",
-  "dependencies": {
-    "@fastify/cors": "^7",
-    "@fastify/swagger": "^6",
-    "@prisma/client": "^5.0.0",
-    "@sinclair/typebox": "^0.29.6",
-    "ajv": "^6",
-    "debug": "^4.3.4",
-    "fastify": "^3",
-    "http-errors": "^2.0.0",
-    "pg": "^8.11.1",
-    "pg-hstore": "^2.3.4",
-    "pino-pretty": "^10.2.0"
-  },
-  "nodemonConfig": {
-    "watch": [
-      ".env",
-      "src"
-    ],
-    "ext": "ts",
-    "ignore": [
-      "src/**/*.test.ts"
-    ],
-    "exec": "npx ts-node -r dotenv/config ./src/index"
-  },
   "devDependencies": {
     "@jest/types": "^29.6.1",
     "@types/debug": "^4.1.8",
@@ -72,5 +48,28 @@
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
     "webpack-node-externals": "^3.0.0"
+  },
+  "nodemonConfig": {
+    "watch": [
+      ".env",
+      "src"
+    ],
+    "ext": "ts",
+    "ignore": [
+      "src/**/*.test.ts"
+    ],
+    "exec": "npx ts-node -r dotenv/config ./src/index"
+  },
+  "dependencies": {
+    "@fastify/cors": "^7",
+    "@fastify/swagger": "^6",
+    "@prisma/client": "^5.0.0",
+    "@sinclair/typebox": "^0.29.6",
+    "ajv": "^6",
+    "debug": "^4.3.4",
+    "fastify": "^3",
+    "http-errors": "^2.0.0",
+    "mongodb": "^5.7.0",
+    "pino-pretty": "^10.2.0"
   }
 }
