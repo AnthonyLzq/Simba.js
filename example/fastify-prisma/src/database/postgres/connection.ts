@@ -20,7 +20,7 @@ const dbConnection = (
         global.__client__ = new PrismaClient()
         await global.__client__.$connect()
         dbConnected = true
-        d?.('Postgres connection established.')
+        d?.('PostgreSQL connection established.')
       }
 
       return global.__client__
@@ -29,7 +29,7 @@ const dbConnection = (
       if (global.__client__) {
         dbConnected = false
         await global.__client__.$disconnect()
-        d?.('Postgres connection closed.')
+        d?.('PostgreSQL connection closed.')
       }
 
       return dbConnected

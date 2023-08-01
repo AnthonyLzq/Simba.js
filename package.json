@@ -103,7 +103,9 @@
     "terminal",
     "tool",
     "tty",
-    "utility"
+    "utility",
+    "Simba",
+    "shell"
   ],
   "author": "AnthonyLzq",
   "license": "MIT",
