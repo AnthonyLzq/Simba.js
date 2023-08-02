@@ -17,18 +17,15 @@ dependencies:
   '@prisma/client':
     specifier: ^5.1.0
     version: 5.1.0(prisma@5.1.0)
-  '@sinclair/typebox':
-    specifier: ^0.30.2
-    version: 0.30.2
-  ajv:
-    specifier: ^8.12.0
-    version: 8.12.0
   debug:
     specifier: ^4.3.4
     version: 4.3.4
   fastify:
     specifier: ^4.21.0
     version: 4.21.0
+  fastify-type-provider-zod:
+    specifier: ^1.1.9
+    version: 1.1.9(fastify@4.21.0)(zod@3.21.4)
   http-errors:
     specifier: ^2.0.0
     version: 2.0.0
@@ -38,6 +35,9 @@ dependencies:
   pg-hstore:
     specifier: ^2.3.4
     version: 2.3.4
+  zod:
+    specifier: ^3.21.4
+    version: 3.21.4
 
 devDependencies:
   '@jest/types':
@@ -964,10 +964,6 @@ packages:
   /@sinclair/typebox@0.27.8:
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
     dev: true
-
-  /@sinclair/typebox@0.30.2:
-    resolution: {integrity: sha512-PNEojrBZGQL+llfGfGn6EZNHUXxyvA3LeySMUxMk+i+GrtuT1nBBP3BPzzgJKW9b7lUMa9KxHVx+CIPEy5bL5w==}
-    dev: false
 
   /@sinonjs/commons@3.0.0:
     resolution: {integrity: sha512-jXBtWAF4vmdNmZgD5FoKsVLv3rPgDnLgPbU84LIJ3otV44vJlDRokVng5v8NFJdCf/da9legHcKaRuZs4L7faA==}
@@ -2961,6 +2957,17 @@ packages:
 
   /fastify-plugin@4.5.1:
     resolution: {integrity: sha512-stRHYGeuqpEZTL1Ef0Ovr2ltazUT9g844X5z/zEBFLG8RYlpDiOCIG+ATvYEp+/zmc7sN29mcIMp8gvYplYPIQ==}
+    dev: false
+
+  /fastify-type-provider-zod@1.1.9(fastify@4.21.0)(zod@3.21.4):
+    resolution: {integrity: sha512-Ztnu1ZWJEKJouZvdTyfgjuVqS+A4JLoCbWBvFqFhfnrg6YQvEvW+5cJvP98kNbuV5gjfpWmHSOTi3BpkidJPQg==}
+    peerDependencies:
+      fastify: ^4.0.0
+      zod: ^3.14.2
+    dependencies:
+      fastify: 4.21.0
+      zod: 3.21.4
+      zod-to-json-schema: 3.21.4(zod@3.21.4)
     dev: false
 
   /fastify@4.21.0:
@@ -6174,3 +6181,15 @@ packages:
   /yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+
+  /zod-to-json-schema@3.21.4(zod@3.21.4):
+    resolution: {integrity: sha512-fjUZh4nQ1s6HMccgIeE0VP4QG/YRGPmyjO9sAh890aQKPEk3nqbfUXhMFaC+Dr5KvYBm8BCyvfpZf2jY9aGSsw==}
+    peerDependencies:
+      zod: ^3.21.4
+    dependencies:
+      zod: 3.21.4
+    dev: false
+
+  /zod@3.21.4:
+    resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
+    dev: false

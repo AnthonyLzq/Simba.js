@@ -1,32 +1,16 @@
 import axios from 'axios'
-import { Static, TObject, TProperties, Type } from '@sinclair/typebox'
-import Ajv from 'ajv'
+import z from 'zod'
 
 import { Server } from '../src/network'
 import { userDto } from '../src/schemas'
 
-const ajv = new Ajv({
-  removeAdditional: true,
-  useDefaults: true,
-  coerceTypes: true,
-  nullable: true
+const BASE_URL = `http://localhost:${process.env.PORT || 1996}`
+const baseResponseDto = z.object({
+  error: z.boolean(),
+  message: z.string()
 })
 
-const BASE_URL = 'http://localhost:1996'
-const validator = <T extends TProperties>(
-  schema: TObject<T>,
-  object: unknown
-) => {
-  const validate = ajv.compile(schema)
-
-  return validate(object)
-}
-const baseResponseDto = Type.Object({
-  error: Type.Boolean(),
-  message: Type.String()
-})
-
-type BaseResponseDTO = Static<typeof baseResponseDto>
+type BaseResponseDTO = z.infer<typeof baseResponseDto>
 
 describe('Simba.js tests', () => {
   beforeAll(async () => {
@@ -42,17 +26,17 @@ describe('Simba.js tests', () => {
 
         expect(result.status).toBe(200)
         expect(result.data.error).toBe(false)
-        expect(validator(baseResponseDto, result.data)).toBe(true)
+        expect(baseResponseDto.parse(result.data).error).toBe(false)
       })
     })
 
     describe('API: POST /api/users', () => {
-      const storeUserResponse = Type.Object({
-        error: Type.Boolean(),
+      const storeUserResponse = z.object({
+        error: z.boolean(),
         message: userDto
       })
 
-      type StoreUserDTO = Static<typeof storeUserResponse>
+      type StoreUserDTO = z.infer<typeof storeUserResponse>
 
       it('Should create a user successfully', async () => {
         const result = await axios.post<StoreUserDTO>(`${BASE_URL}/api/users`, {
@@ -66,17 +50,17 @@ describe('Simba.js tests', () => {
         expect(userID).toBeTruthy()
         expect(result.status).toBe(201)
         expect(result.data.error).toBe(false)
-        expect(validator(storeUserResponse, result.data)).toBe(true)
+        expect(storeUserResponse.parse(result.data).error).toBe(false)
       })
     })
 
     describe('API: GET /api/user/:id', () => {
-      const getOneUserResponse = Type.Object({
-        error: Type.Boolean(),
+      const getOneUserResponse = z.object({
+        error: z.boolean(),
         message: userDto
       })
 
-      type GetOneUserDTO = Static<typeof getOneUserResponse>
+      type GetOneUserDTO = z.infer<typeof getOneUserResponse>
 
       it('Should return a user', async () => {
         const result = await axios.get<GetOneUserDTO>(
@@ -85,17 +69,17 @@ describe('Simba.js tests', () => {
 
         expect(result.status).toBe(200)
         expect(result.data.error).toBe(false)
-        expect(validator(getOneUserResponse, result.data)).toBe(true)
+        expect(getOneUserResponse.parse(result.data).error).toBe(false)
       })
     })
 
     describe('API: PATCH /api/user/:id', () => {
-      const updateUserResponse = Type.Object({
-        error: Type.Boolean(),
+      const updateUserResponse = z.object({
+        error: z.boolean(),
         message: userDto
       })
 
-      type UpdateUserDTO = Static<typeof updateUserResponse>
+      type UpdateUserDTO = z.infer<typeof updateUserResponse>
 
       it('Should update a user successfully', async () => {
         const result = await axios.patch<UpdateUserDTO>(
@@ -110,7 +94,7 @@ describe('Simba.js tests', () => {
 
         expect(result.status).toBe(200)
         expect(result.data.error).toBe(false)
-        expect(validator(updateUserResponse, result.data)).toBe(true)
+        expect(updateUserResponse.parse(result.data).error).toBe(false)
       })
     })
 
@@ -122,7 +106,7 @@ describe('Simba.js tests', () => {
 
         expect(result.status).toBe(200)
         expect(result.data.error).toBe(false)
-        expect(validator(baseResponseDto, result.data)).toBe(true)
+        expect(baseResponseDto.parse(result.data).error).toBe(false)
       })
     })
   })

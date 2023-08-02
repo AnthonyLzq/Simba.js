@@ -1,11 +1,11 @@
-import { Static, Type } from '@sinclair/typebox'
+import z from 'zod'
 
-const id = Type.Number()
+const id = z.preprocess(val => Number(val), z.number())
 
-type Id = Static<typeof id>
+type Id = z.infer<typeof id>
 
-const idSchema = Type.Object({ id })
+const idSchema = z.object({ id })
 
-type IdSchema = Static<typeof idSchema>
+type IdSchema = z.infer<typeof idSchema>
 
 export { id, Id, idSchema, IdSchema }
