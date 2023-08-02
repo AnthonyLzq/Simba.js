@@ -8,8 +8,7 @@ import { userDto } from '../src/schemas'
 const ajv = new Ajv({
   removeAdditional: true,
   useDefaults: true,
-  coerceTypes: true,
-  nullable: true
+  coerceTypes: true
 })
 
 const BASE_URL = 'http://localhost:1996'

@@ -1,9 +1,9 @@
 import { FastifyInstance } from 'fastify'
 import fastifySwagger from '@fastify/swagger'
+import fastifySwaggerUi from '@fastify/swagger-ui'
 
-const Docs = (app: FastifyInstance, prefix = '/api'): void => {
-  app.register(fastifySwagger, {
-    routePrefix: `${prefix}/docs`,
+const Docs = async (app: FastifyInstance, prefix = '/api') => {
+  await app.register(fastifySwagger, {
     openapi: {
       info: {
         title: 'Test swagger',
@@ -29,9 +29,9 @@ const Docs = (app: FastifyInstance, prefix = '/api'): void => {
           description: 'User related endpoints'
         }
       ]
-    },
-    exposeRoute: true
+    }
   })
+  await app.register(fastifySwaggerUi, { routePrefix: `${prefix}/docs` })
 }
 
 export { Docs }

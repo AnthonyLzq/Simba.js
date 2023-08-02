@@ -9,8 +9,7 @@ import Ajv from 'ajv'
 const ajv = new Ajv({
   removeAdditional: true,
   useDefaults: true,
-  coerceTypes: true,
-  nullable: true
+  coerceTypes: true
 })
 
 const validatorCompiler = ({
@@ -23,7 +22,9 @@ const validatorCompiler = ({
 
     if (!ok && validate.errors) {
       const [error] = validate.errors
-      const errorMessage = `${error.dataPath.replace('.', '')} ${error.message}`
+      const errorMessage = `${error.instancePath.replace('/', '')} ${
+        error.message
+      }`
 
       throw new httpErrors.UnprocessableEntity(errorMessage)
     }

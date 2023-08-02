@@ -14,13 +14,14 @@
   "author": "AnthonyLzq <sluzquinosa@uni.pe>",
   "license": "MIT",
   "dependencies": {
-    "@fastify/cors": "^7",
-    "@fastify/swagger": "^6",
+    "@fastify/cors": "^8.3.0",
+    "@fastify/swagger": "^8.8.0",
+    "@fastify/swagger-ui": "^1.9.3",
     "@prisma/client": "^5.1.0",
-    "@sinclair/typebox": "^0.30.0",
-    "ajv": "^6",
+    "@sinclair/typebox": "^0.30.2",
+    "ajv": "^8.12.0",
     "debug": "^4.3.4",
-    "fastify": "^3",
+    "fastify": "^4.21.0",
     "http-errors": "^2.0.0",
     "pg": "^8.11.2",
     "pg-hstore": "^2.3.4"
@@ -34,7 +35,7 @@
     "ignore": [
       "src/**/*.test.ts"
     ],
-    "exec": "npx ts-node -r dotenv/config ./src/index"
+    "exec": "DEBUG=App:* npx ts-node -r dotenv/config ./src/index"
   },
   "devDependencies": {
     "@jest/types": "^29.6.1",

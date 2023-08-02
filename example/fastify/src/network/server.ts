@@ -16,10 +16,9 @@ class Server implements Log {
   constructor() {
     this.#app = fastify()
     this.#connection = dbConnection(d)
-    this.#config()
   }
 
-  #config() {
+  async #config() {
     this.#app.register(require('@fastify/cors'), {})
     this.#app.addHook('preHandler', (req, reply, done) => {
       reply.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE')
@@ -32,13 +31,17 @@ class Server implements Log {
       done()
     })
     this.#app.setValidatorCompiler(validatorCompiler)
-    applyRoutes(this.#app)
+    await applyRoutes(this.#app)
   }
 
   async start(): Promise<void> {
     try {
+      await this.#config()
       await this.#connection.connect()
-      await this.#app.listen(PORT)
+      await this.#app.listen({
+        port: PORT,
+        host: '0.0.0.0'
+      })
       d(`HTTP server listening on port ${PORT}.`)
     } catch (e) {
       this.log({
