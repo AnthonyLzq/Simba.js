@@ -1,1 +1,0 @@
-# Example/express  Graphql  Sequelize

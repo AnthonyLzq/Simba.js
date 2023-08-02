@@ -1,127 +1,73 @@
-import httpErrors from 'http-errors'
+import debug from 'debug'
 
-import { store, remove, get, update } from 'database'
-import { User, UserDTO, UserWithId } from 'schemas'
-import { EFU, MFU, GE, errorHandling } from './utils'
+import { getById, removeById, store, update } from 'database'
+import { Id, User as UserSchema } from 'schemas'
+import { BaseHttpService } from './BaseHttp'
+import { EFU, MFU, GE } from './utils'
 
-type Process = {
-  type: 'store' | 'getAll' | 'deleteAll' | 'getOne' | 'update' | 'delete'
-}
-
-type Arguments = {
-  id?: string
-  user?: User
-  userWithId?: UserWithId
-}
-
-class UserService {
-  #args: Arguments
-
-  constructor(args: Arguments = {}) {
-    this.#args = args
+class UserService extends BaseHttpService {
+  constructor() {
+    super(debug('App:Services:User'))
   }
 
-  public process({ type }: Process): Promise<string | UserDTO | UserDTO[]> {
-    switch (type) {
-      case 'store':
-        return this.#store()
-      case 'getAll':
-        return this.#getAll()
-      case 'deleteAll':
-        return this.#deleteAll()
-      case 'getOne':
-        return this.#getOne()
-      case 'update':
-        return this.#update()
-      case 'delete':
-        return this.#delete()
-      default:
-        throw new httpErrors.InternalServerError(GE.INTERNAL_SERVER_ERROR)
-    }
-  }
-
-  async #store(): Promise<UserDTO> {
+  async store(userDto: UserSchema) {
     try {
-      if (!this.#args.user)
-        throw new httpErrors.UnprocessableEntity(GE.INTERNAL_SERVER_ERROR)
-
-      const result = await store(this.#args.user)
+      const result = await store(userDto)
+      super.log({ method: this.store.name, value: 'result', content: result })
 
       return result
     } catch (e) {
-      return errorHandling(e, GE.INTERNAL_SERVER_ERROR)
+      return super.errorHandling(e)
     }
   }
 
-  async #getAll(): Promise<UserDTO[]> {
+  async getById(id: Id) {
     try {
-      const users = (await get()) as UserDTO[]
+      const user = getById(id)
+      super.log({ method: this.getById.name, value: 'result', content: user })
 
-      return users
-    } catch (e) {
-      return errorHandling(e, GE.INTERNAL_SERVER_ERROR)
-    }
-  }
-
-  async #deleteAll(): Promise<string> {
-    try {
-      const usersDeleted = (await remove()) as number
-
-      if (usersDeleted >= 1) return MFU.ALL_USERS_DELETED
-
-      if (usersDeleted === 0)
-        throw new httpErrors.Conflict(EFU.NOTHING_TO_DELETE)
-
-      throw new httpErrors.InternalServerError(GE.INTERNAL_SERVER_ERROR)
-    } catch (e) {
-      return errorHandling(e, GE.INTERNAL_SERVER_ERROR)
-    }
-  }
-
-  async #getOne(): Promise<UserDTO> {
-    try {
-      if (!this.#args.id)
-        throw new httpErrors.UnprocessableEntity(GE.INTERNAL_SERVER_ERROR)
-
-      const { id } = this.#args
-      const user = (await get(id)) as UserDTO | null
-
-      if (!user) throw new httpErrors.NotFound(EFU.NOT_FOUND)
+      if (!user)
+        return super.errorHandling(new Error(EFU.NOT_FOUND), { code: '404' })
 
       return user
     } catch (e) {
-      return errorHandling(e, GE.INTERNAL_SERVER_ERROR)
+      return super.errorHandling(e)
     }
   }
 
-  async #update(): Promise<UserDTO> {
+  async update(id: Id, user: UserSchema) {
     try {
-      if (!this.#args.userWithId || !this.#args.userWithId.id)
-        throw new httpErrors.UnprocessableEntity(GE.INTERNAL_SERVER_ERROR)
+      const updatedUser = await update(id, user)
+      super.log({
+        method: this.update.name,
+        value: 'result',
+        content: updatedUser
+      })
 
-      const updatedUser = await update(this.#args.userWithId)
-
-      if (!updatedUser) throw new httpErrors.NotFound(EFU.NOT_FOUND)
+      if (!updatedUser)
+        return super.errorHandling(new Error(EFU.NOT_FOUND), { code: '404' })
 
       return updatedUser
     } catch (e) {
-      return errorHandling(e, GE.INTERNAL_SERVER_ERROR)
+      return super.errorHandling(e, { message: GE.INTERNAL_SERVER_ERROR })
     }
   }
 
-  async #delete(): Promise<string> {
+  async deleteById(id: Id) {
     try {
-      if (!this.#args.id)
-        throw new httpErrors.UnprocessableEntity(GE.INTERNAL_SERVER_ERROR)
+      const deletedUser = await removeById(id)
+      super.log({
+        method: this.deleteById.name,
+        value: 'result',
+        content: deletedUser
+      })
 
-      const { id } = this.#args
-      const deletedUser = await remove(id)
-
-      if (!deletedUser) throw new httpErrors.NotFound(EFU.NOT_FOUND)
+      if (!deletedUser)
+        return super.errorHandling(new Error(EFU.NOT_FOUND), { code: '404' })
 
       return MFU.USER_DELETED
     } catch (e) {
-      return errorHandling(e, GE.INTERNAL_SERVER_ERROR)
+      return super.errorHandling(e)
     }
   }
 }

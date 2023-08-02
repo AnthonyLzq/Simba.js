@@ -1,24 +1,21 @@
 import fastify, { FastifyInstance } from 'fastify'
+import debug from 'debug'
 
 import { dbConnection } from 'database'
+import { Log } from 'utils'
 import { applyRoutes } from './router'
 import { validatorCompiler } from './utils'
 
-const PORT = process.env.PORT ?? 1996
-const ENVIRONMENTS_WITHOUT_PRETTY_PRINT = ['production', 'ci']
+const d = debug('App:Network:Server')
+const PORT = process.env.PORT ? parseInt(process.env.PORT) : 1996
 
-class Server {
+class Server implements Log {
   #app: FastifyInstance
-  #connection: Awaited<ReturnType<typeof dbConnection>> | undefined
+  #connection: Awaited<ReturnType<typeof dbConnection>>
 
   constructor() {
-    this.#app = fastify({
-      logger: {
-        prettyPrint: !ENVIRONMENTS_WITHOUT_PRETTY_PRINT.includes(
-          process.env.NODE_ENV as string
-        )
-      }
-    })
+    this.#app = fastify()
+    this.#connection = dbConnection(d)
     this.#config()
   }
 
@@ -38,27 +35,48 @@ class Server {
     applyRoutes(this.#app)
   }
 
-  async #dbConnection() {
-    this.#connection = await dbConnection(this.#app.log)
-  }
-
-  public async start(): Promise<void> {
+  async start(): Promise<void> {
     try {
-      await this.#dbConnection()
-      await this.#connection?.connect()
+      await this.#connection.connect()
       await this.#app.listen(PORT)
+      d(`HTTP server listening on port ${PORT}.`)
     } catch (e) {
-      console.error(e)
+      this.log({
+        method: this.start.name,
+        value: 'error',
+        content: e
+      })
     }
   }
 
-  public async stop(): Promise<void> {
+  async stop(): Promise<void> {
     try {
       await this.#connection?.disconnect()
       await this.#app.close()
+      d('HTTP server stopped.')
     } catch (e) {
-      console.error(e)
+      this.log({
+        method: this.stop.name,
+        value: 'error',
+        content: e
+      })
     }
+  }
+
+  log({
+    method,
+    value,
+    content
+  }: {
+    method: string
+    value: string
+    content: unknown
+  }) {
+    d(
+      `Server invoked -> ${
+        this.constructor.name
+      } ~ ${method} ~ value: ${value} ~ content: ${JSON.stringify(content)}`
+    )
   }
 }
 

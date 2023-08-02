@@ -1,5 +1,4 @@
 import { FastifyInstance } from 'fastify'
-import { Type } from '@sinclair/typebox'
 
 import { response } from 'network/response'
 import {
@@ -35,73 +34,10 @@ const User = (app: FastifyInstance, prefix = '/api'): void => {
             args: { lastName, name }
           }
         } = request
-        const us = new UserService({
-          user: { lastName, name }
-        })
-        const user = await us.process({ type: 'store' })
-
-        response({
-          error: false,
-          message: user,
-          reply,
-          status: 201
-        })
-      }
-    )
-    .get(
-      `${prefix}/users`,
-      {
-        schema: {
-          response: {
-            200: {
-              error: {
-                type: 'boolean'
-              },
-              message: Type.Array(userDto)
-            }
-          },
-          tags: ['user']
-        }
-      },
-      async (request, reply) => {
         const us = new UserService()
-        const users = await us.process({ type: 'getAll' })
+        const user = await us.store({ lastName, name })
 
-        response({
-          error: false,
-          message: users,
-          reply,
-          status: 200
-        })
-      }
-    )
-    .delete(
-      `${prefix}/users`,
-      {
-        schema: {
-          response: {
-            200: {
-              error: {
-                type: 'boolean'
-              },
-              message: {
-                type: 'string'
-              }
-            }
-          },
-          tags: ['user']
-        }
-      },
-      async (request, reply) => {
-        const us = new UserService()
-        const result = await us.process({ type: 'deleteAll' })
-
-        response({
-          error: false,
-          message: result,
-          reply,
-          status: 200
-        })
+        response({ error: false, message: user, reply, status: 201 })
       }
     )
     .get<{ Params: IdSchema }>(
@@ -124,15 +60,10 @@ const User = (app: FastifyInstance, prefix = '/api'): void => {
         const {
           params: { id }
         } = request
-        const us = new UserService({ id })
-        const user = await us.process({ type: 'getOne' })
+        const us = new UserService()
+        const user = await us.getById(id)
 
-        response({
-          error: false,
-          message: user,
-          reply,
-          status: 200
-        })
+        response({ error: false, message: user, reply, status: 200 })
       }
     )
     .patch<{ Body: StoreUserDTO; Params: IdSchema }>(
@@ -159,17 +90,10 @@ const User = (app: FastifyInstance, prefix = '/api'): void => {
           },
           params: { id }
         } = request
-        const us = new UserService({
-          userWithId: { name, lastName, id }
-        })
-        const user = await us.process({ type: 'update' })
+        const us = new UserService()
+        const user = await us.update(id, { name, lastName })
 
-        response({
-          error: false,
-          message: user,
-          reply,
-          status: 200
-        })
+        response({ error: false, message: user, reply, status: 200 })
       }
     )
     .delete<{ Params: IdSchema }>(
@@ -194,15 +118,10 @@ const User = (app: FastifyInstance, prefix = '/api'): void => {
         const {
           params: { id }
         } = request
-        const us = new UserService({ id })
-        const result = await us.process({ type: 'delete' })
+        const us = new UserService()
+        const result = await us.deleteById(id)
 
-        response({
-          error: false,
-          message: result,
-          reply,
-          status: 200
-        })
+        response({ error: false, message: result, reply, status: 200 })
       }
     )
 }

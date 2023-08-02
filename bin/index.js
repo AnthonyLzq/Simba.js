@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 process.on('SIGINT', () => {
-  console.log('Simba.js process cancelled')
+  console.log('\nSimba.js process cancelled\n')
   process.exit()
 })
 

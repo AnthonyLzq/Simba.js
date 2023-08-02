@@ -1,13 +1,20 @@
 .eslintignore
 .eslintrc
+
+.git
 .gitignore
-CHANGELOG.md
-Dockerfile
-heroku.yml
-*.http
+.github
+
+*.md
 LICENSE
+
+*.http
 nodemon.json
-README.md
+
+jest.config.ts
+*.log
+
+test
 
 # optionally you may want to ignore the .env file, but that depends on your own implementation
 .env

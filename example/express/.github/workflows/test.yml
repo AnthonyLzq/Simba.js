@@ -28,5 +28,5 @@ jobs:
       - name: Run test
         run: npm run test:ci
         env:
-          DB_URI: ${{ secrets.DB_URI }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
           NODE_ENV: ci

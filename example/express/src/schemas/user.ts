@@ -1,6 +1,6 @@
 import { Static, Type } from '@sinclair/typebox'
 
-import { id } from '.'
+import { id } from './id'
 
 const user = Type.Object({
   lastName: Type.String(),

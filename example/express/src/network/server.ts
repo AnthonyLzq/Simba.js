@@ -1,35 +1,23 @@
 import { Server as HttpServer } from 'http'
 import express from 'express'
 import cors from 'cors'
-import pino, { HttpLogger } from 'express-pino-logger'
+import debug from 'debug'
 
 import { dbConnection } from 'database'
 import { applyRoutes } from './router'
+import { Log } from 'utils'
 
+const d = debug('App:Network:Server')
 const PORT = (process.env.PORT as string) || 1996
-const ENVIRONMENTS_WITHOUT_PRETTY_PRINT = ['production', 'ci']
 
-class Server {
+class Server implements Log {
   #app: express.Application
-  #log: HttpLogger
   #server: HttpServer | undefined
-  #connection: Awaited<ReturnType<typeof dbConnection>> | undefined
+  #connection: Awaited<ReturnType<typeof dbConnection>>
 
   constructor() {
     this.#app = express()
-    this.#log = pino({
-      transport: !ENVIRONMENTS_WITHOUT_PRETTY_PRINT.includes(
-        process.env.NODE_ENV as string
-      )
-        ? {
-            target: 'pino-pretty',
-            options: {
-              translateTime: 'HH:MM:ss Z',
-              ignore: 'pid,hostname'
-            }
-          }
-        : undefined
-    })
+    this.#connection = dbConnection()
     this.#config()
   }
 
@@ -37,7 +25,6 @@ class Server {
     this.#app.use(cors())
     this.#app.use(express.json())
     this.#app.use(express.urlencoded({ extended: false }))
-    this.#app.use(this.#log)
     this.#app.use(
       (
         req: express.Request,
@@ -57,29 +44,49 @@ class Server {
     applyRoutes(this.#app)
   }
 
-  async #dbConnection() {
-    this.#connection = await dbConnection(this.#log.logger)
-  }
-
-  public async start(): Promise<void> {
+  async start(): Promise<void> {
     try {
-      await this.#dbConnection()
+      await this.#connection.connect()
       await this.#connection?.connect()
       this.#server = this.#app.listen(PORT, () => {
-        this.#log.logger.info(`Server running at port ${PORT}`)
+        d(`HTTP server listening on port ${PORT}.`)
       })
     } catch (e) {
-      this.#log.logger.error(e)
+      this.log({
+        method: this.start.name,
+        value: 'error',
+        content: e
+      })
     }
   }
 
-  public async stop(): Promise<void> {
+  async stop(): Promise<void> {
     try {
       await this.#connection?.disconnect()
       this.#server?.close()
     } catch (e) {
-      this.#log.logger.error(e)
+      this.log({
+        method: this.stop.name,
+        value: 'error',
+        content: e
+      })
     }
+  }
+
+  log({
+    method,
+    value,
+    content
+  }: {
+    method: string
+    value: string
+    content: unknown
+  }) {
+    d(
+      `Server invoked -> ${
+        this.constructor.name
+      } ~ ${method} ~ value: ${value} ~ content: ${JSON.stringify(content)}`
+    )
   }
 }
 
