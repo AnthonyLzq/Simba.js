@@ -9,12 +9,6 @@ Content-Type: application/json
   }
 }
 
-### Testing getAll users
-GET http://localhost:1996/api/users
-
-### Testing deleteAll users
-DELETE http://localhost:1996/api/users
-
 ### Testing getOne user
 GET http://localhost:1996/api/user/60e7e3b93b01c1a7aa74cd6b
 

@@ -1,30 +1,16 @@
 import axios from 'axios'
-import { Static, TObject, TProperties, Type } from '@sinclair/typebox'
-import Ajv from 'ajv'
-import addFormats from 'ajv-formats'
+import z from 'zod'
 
 import { Server } from '../src/network'
 import { userDto } from '../src/schemas'
 
-const ajv = addFormats(new Ajv(), ['email'])
-  .addKeyword('kind')
-  .addKeyword('modifier')
-
-const BASE_URL = 'http://localhost:1996'
-const validator = <T extends TProperties>(
-  schema: TObject<T>,
-  object: unknown
-) => {
-  const validate = ajv.compile(schema)
-
-  return validate(object)
-}
-const baseResponseDto = Type.Object({
-  error: Type.Boolean(),
-  message: Type.String()
+const BASE_URL = `http://localhost:${process.env.PORT || 1996}`
+const baseResponseDto = z.object({
+  error: z.boolean(),
+  message: z.string()
 })
 
-type BaseResponseDTO = Static<typeof baseResponseDto>
+type BaseResponseDTO = z.infer<typeof baseResponseDto>
 
 describe('Simba.js tests', () => {
   beforeAll(async () => {
@@ -32,43 +18,31 @@ describe('Simba.js tests', () => {
   })
 
   describe('API endpoints tests', () => {
-    let userID = ''
+    let userID = 0
 
     describe('API: GET /', () => {
-      let data: BaseResponseDTO
-
-      test('Should return 200 as status code', async () => {
+      it('Should return 200 with a successful operation', async () => {
         const result = await axios.get<BaseResponseDTO>(BASE_URL)
 
-        data = result.data
         expect(result.status).toBe(200)
-      })
-
-      test('Should be a successfully operation', () => {
-        expect(data.error).toBe(false)
-      })
-
-      test('Should be return baseResponseDto', () => {
-        expect(validator(baseResponseDto, data)).toBe(true)
+        expect(result.data.error).toBe(false)
+        expect(baseResponseDto.parse(result.data).error).toBe(false)
       })
     })
 
     describe('API: storeUser mutation', () => {
-      const storeUserResponse = Type.Object({
-        data: Type.Object({
+      const storeUserResponse = z.object({
+        data: z.object({
           user: userDto
         })
       })
 
-      type StoreUserDTO = Static<typeof storeUserResponse>
+      type StoreUserDTO = z.infer<typeof storeUserResponse>
 
-      let data: StoreUserDTO
-      let status: number
-
-      test('Should return 200 as status code', async () => {
-        const result = await axios.post<StoreUserDTO>(`${BASE_URL}/api`, {
-          query: `mutation storeUser($user: StoreUserInput!) {
-            user: storeUser(user: $user) {
+      it('Should create a user successfully', async () => {
+        const result = await axios.post<StoreUserDTO>(`${BASE_URL}/graphql`, {
+          query: `mutation store($user: UserInput!) {
+            user: store(user: $user) {
               id
               name
               lastName
@@ -84,68 +58,26 @@ describe('Simba.js tests', () => {
           }
         })
 
-        data = result.data
-        status = result.status
         userID = result.data.data.user.id ?? userID
-        expect(status).toBe(200)
-      })
-
-      test('Should return storeUserResponse', () => {
-        expect(validator(storeUserResponse, data)).toBe(true)
-      })
-    })
-
-    describe('API: getUsers query', () => {
-      const getUsersResponse = Type.Object({
-        data: Type.Object({
-          users: Type.Array(userDto)
-        })
-      })
-
-      type GetAllUsersDTO = Static<typeof getUsersResponse>
-
-      let data: GetAllUsersDTO
-      let status: number
-
-      test('Should return 200 as status code', async () => {
-        const result = await axios.post<GetAllUsersDTO>(`${BASE_URL}/api`, {
-          query: `query getUsers {
-            users: getUsers {
-              id
-              name
-              lastName
-              createdAt
-              updatedAt
-            }
-          }`
-        })
-
-        data = result.data
-        status = result.status
-        expect(status).toBe(200)
-      })
-
-      test('Should return getUsersResponse', () => {
-        expect(validator(getUsersResponse, data)).toBe(true)
+        expect(userID).toBeTruthy()
+        expect(result.status).toBe(200)
+        expect(storeUserResponse.safeParse(result.data).success).toBe(true)
       })
     })
 
     describe('API: getUser query', () => {
-      const getUserResponse = Type.Object({
-        data: Type.Object({
+      const getUserResponse = z.object({
+        data: z.object({
           user: userDto
         })
       })
 
-      type GetOneUserDTO = Static<typeof getUserResponse>
+      type GetOneUserDTO = z.infer<typeof getUserResponse>
 
-      let data: GetOneUserDTO
-      let status: number
-
-      test('Should return 200 as status code', async () => {
-        const result = await axios.post<GetOneUserDTO>(`${BASE_URL}/api`, {
-          query: `query getUser($id: ID!) {
-            user: getUser(id: $id) {
+      it('Should return a user', async () => {
+        const result = await axios.post<GetOneUserDTO>(`${BASE_URL}/graphql`, {
+          query: `query getById($id: Float!) {
+            user: getById(id: $id) {
               id
               name
               lastName
@@ -158,32 +90,24 @@ describe('Simba.js tests', () => {
           }
         })
 
-        data = result.data
-        status = result.status
-        expect(status).toBe(200)
-      })
-
-      test('Should return getOneUserResponse', () => {
-        expect(validator(getUserResponse, data)).toBe(true)
+        expect(result.status).toBe(200)
+        expect(getUserResponse.safeParse(result.data).success).toBe(true)
       })
     })
 
     describe('API: updateUser mutation', () => {
-      const updateUserResponse = Type.Object({
-        data: Type.Object({
+      const updateUserResponse = z.object({
+        data: z.object({
           user: userDto
         })
       })
 
-      type UpdateUserDTO = Static<typeof updateUserResponse>
+      type UpdateUserDTO = z.infer<typeof updateUserResponse>
 
-      let data: UpdateUserDTO
-      let status: number
-
-      test('Should return 200 as status code', async () => {
-        const result = await axios.post<UpdateUserDTO>(`${BASE_URL}/api`, {
-          query: `mutation updateUser($user: UpdateUserInput!) {
-            user: updateUser(user: $user) {
+      it('Should update a user successfully', async () => {
+        const result = await axios.post<UpdateUserDTO>(`${BASE_URL}/graphql`, {
+          query: `mutation update($id: Float!, $user: UserInput!) {
+            user: update(id: $id, user: $user) {
               id
               name
               lastName
@@ -192,100 +116,40 @@ describe('Simba.js tests', () => {
             }
           }`,
           variables: {
+            id: userID,
             user: {
-              id: userID,
               lastName: 'Luzquiños',
               name: 'Anthony'
             }
           }
         })
 
-        data = result.data
-        status = result.status
-        expect(status).toBe(200)
-      })
-
-      test('Should return updateUserResponse', () => {
-        expect(validator(updateUserResponse, data)).toBe(true)
+        expect(result.status).toBe(200)
+        expect(updateUserResponse.safeParse(result.data).success).toBe(true)
       })
     })
 
     describe('API: deleteUser mutation', () => {
-      const deleteUserResponse = Type.Object({
-        data: Type.Object({
-          result: Type.String()
+      const deleteUserResponse = z.object({
+        data: z.object({
+          result: z.string()
         })
       })
 
-      type DeleteUserDTO = Static<typeof deleteUserResponse>
+      type DeleteUserDTO = z.infer<typeof deleteUserResponse>
 
-      let data: DeleteUserDTO
-      let status: number
-
-      test('Should return 200 as status code', async () => {
-        const result = await axios.post<DeleteUserDTO>(`${BASE_URL}/api`, {
-          query: `mutation deleteUser($id: ID!) {
-            result: deleteUser(id: $id)
+      it('Should delete the created user', async () => {
+        const result = await axios.post<DeleteUserDTO>(`${BASE_URL}/graphql`, {
+          query: `mutation deleteById($id: Float!) {
+            result: deleteById(id: $id)
           }`,
           variables: {
             id: userID
           }
         })
 
-        data = result.data
-        status = result.status
-        expect(status).toBe(200)
-      })
-
-      test('Should return deleteUserResponse', () => {
-        expect(validator(deleteUserResponse, data)).toBe(true)
-      })
-    })
-
-    describe('API: deleteAllUsers mutation', () => {
-      const deleteAllUserResponse = Type.Object({
-        data: Type.Object({
-          result: Type.String()
-        })
-      })
-
-      type DeleteAllUsersDTO = Static<typeof deleteAllUserResponse>
-
-      let data: DeleteAllUsersDTO
-      let status: number
-
-      test('Should return 200 as status code', async () => {
-        await axios.post(`${BASE_URL}/api`, {
-          query: `mutation storeUser($user: StoreUserInput!) {
-            user: storeUser(user: $user) {
-              id
-              name
-              lastName
-              createdAt
-              updatedAt
-            }
-          }`,
-          variables: {
-            user: {
-              lastName: 'Lzq',
-              name: 'Anthony'
-            }
-          }
-        })
-
-        const result = await axios.post<DeleteAllUsersDTO>(`${BASE_URL}/api`, {
-          query: `mutation deleteAllUsers {
-            result: deleteAllUsers
-          }`
-        })
-
-        data = result.data
-        status = result.status
-        expect(status).toBe(200)
-      })
-
-      test('Should return deleteAllUsersResponse', () => {
-        expect(validator(deleteAllUserResponse, data)).toBe(true)
+        expect(result.status).toBe(200)
+        expect(deleteUserResponse.safeParse(result.data).success).toBe(true)
       })
     })
   })

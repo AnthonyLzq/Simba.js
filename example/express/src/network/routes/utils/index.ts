@@ -1,37 +1,21 @@
-import { NextFunction } from 'express'
+import { type NextFunction, type Request, type Response } from 'express'
 import httpErrors from 'http-errors'
-import { TObject, TProperties } from '@sinclair/typebox'
-import Ajv from 'ajv'
+import { ZodType } from 'zod'
 
-const ajv = new Ajv({
-  removeAdditional: true,
-  useDefaults: true,
-  coerceTypes: true,
-  nullable: true
-})
+type Middleware = (req: Request, res: Response, next: NextFunction) => void
 
-type Middleware = (
-  req: CustomRequest,
-  res: CustomResponse,
-  next: NextFunction
-) => void
-
-const validatorCompiler = <T extends TProperties>(
-  schema: TObject<T>,
+const validatorCompiler = (
+  schema: ZodType,
   value: 'body' | 'params'
 ): Middleware => {
-  return (req: CustomRequest, res: CustomResponse, next: NextFunction) => {
-    const validate = ajv.compile(schema)
-    const ok = validate(req[value])
+  return (req: Request, res: Response, next: NextFunction) => {
+    const result = schema.safeParse(req[value])
 
-    if (!ok && validate.errors) {
-      const [error] = validate.errors
-      const errorMessage = `${error.dataPath.replace('.', '')} ${error.message}`
+    if (result.success) return next()
 
-      return next(new httpErrors.UnprocessableEntity(errorMessage))
-    }
-
-    next()
+    return next(
+      new httpErrors.UnprocessableEntity(JSON.stringify(result.error))
+    )
   }
 }
 

@@ -1,32 +1,16 @@
 import axios from 'axios'
-import { Static, TObject, TProperties, Type } from '@sinclair/typebox'
-import Ajv from 'ajv'
+import z from 'zod'
 
 import { Server } from '../src/network'
 import { userDto } from '../src/schemas'
 
-const ajv = new Ajv({
-  removeAdditional: true,
-  useDefaults: true,
-  coerceTypes: true,
-  nullable: true
+const BASE_URL = `http://localhost:${process.env.PORT || 1996}`
+const baseResponseDto = z.object({
+  error: z.boolean(),
+  message: z.string()
 })
 
-const BASE_URL = 'http://localhost:1996'
-const validator = <T extends TProperties>(
-  schema: TObject<T>,
-  object: unknown
-) => {
-  const validate = ajv.compile(schema)
-
-  return validate(object)
-}
-const baseResponseDto = Type.Object({
-  error: Type.Boolean(),
-  message: Type.String()
-})
-
-type BaseResponseDTO = Static<typeof baseResponseDto>
+type BaseResponseDTO = z.infer<typeof baseResponseDto>
 
 describe('Simba.js tests', () => {
   beforeAll(async () => {
@@ -34,39 +18,27 @@ describe('Simba.js tests', () => {
   })
 
   describe('API endpoints tests', () => {
-    let userID = ''
+    let userID = 0
 
     describe('API: GET /', () => {
-      let data: BaseResponseDTO
-
-      test('Should return 200 as status code', async () => {
+      it('Should return 200 with a successful operation', async () => {
         const result = await axios.get<BaseResponseDTO>(BASE_URL)
 
-        data = result.data
         expect(result.status).toBe(200)
-      })
-
-      test('Should be a successfully operation', () => {
-        expect(data.error).toBe(false)
-      })
-
-      test('Should be return baseResponseDto', () => {
-        expect(validator(baseResponseDto, data)).toBe(true)
+        expect(result.data.error).toBe(false)
+        expect(baseResponseDto.parse(result.data).error).toBe(false)
       })
     })
 
     describe('API: POST /api/users', () => {
-      const storeUserResponse = Type.Object({
-        error: Type.Boolean(),
+      const storeUserResponse = z.object({
+        error: z.boolean(),
         message: userDto
       })
 
-      type StoreUserDTO = Static<typeof storeUserResponse>
+      type StoreUserDTO = z.infer<typeof storeUserResponse>
 
-      let data: StoreUserDTO
-      let status: number
-
-      test('Should return 201 as status code', async () => {
+      it('Should create a user successfully', async () => {
         const result = await axios.post<StoreUserDTO>(`${BASE_URL}/api/users`, {
           args: {
             lastName: 'Lzq',
@@ -74,91 +46,42 @@ describe('Simba.js tests', () => {
           }
         })
 
-        data = result.data
-        status = result.status
         userID = result.data.message.id ?? userID
-        expect(status).toBe(201)
-      })
-
-      test('Should be a successfully operation', () => {
-        expect(data.error).toBe(false)
-      })
-
-      test('Should return storeUserResponse', () => {
-        expect(validator(storeUserResponse, data)).toBe(true)
-      })
-    })
-
-    describe('API: GET /api/users', () => {
-      const getAllUsersResponse = Type.Object({
-        error: Type.Boolean(),
-        message: Type.Array(userDto)
-      })
-
-      type GetAllUsersDTO = Static<typeof getAllUsersResponse>
-
-      let data: GetAllUsersDTO
-      let status: number
-
-      test('Should return 200 as status code', async () => {
-        const result = await axios.get<GetAllUsersDTO>(`${BASE_URL}/api/users`)
-
-        data = result.data
-        status = result.status
-        expect(status).toBe(200)
-      })
-
-      test('Should be a successfully operation', () => {
-        expect(data.error).toBe(false)
-      })
-
-      test('Should return getAllUsersResponse', () => {
-        expect(validator(getAllUsersResponse, data)).toBe(true)
+        expect(userID).toBeTruthy()
+        expect(result.status).toBe(201)
+        expect(result.data.error).toBe(false)
+        expect(storeUserResponse.parse(result.data).error).toBe(false)
       })
     })
 
     describe('API: GET /api/user/:id', () => {
-      const getOneUserResponse = Type.Object({
-        error: Type.Boolean(),
+      const getOneUserResponse = z.object({
+        error: z.boolean(),
         message: userDto
       })
 
-      type GetOneUserDTO = Static<typeof getOneUserResponse>
+      type GetOneUserDTO = z.infer<typeof getOneUserResponse>
 
-      let data: GetOneUserDTO
-      let status: number
-
-      test('Should return 200 as status code', async () => {
+      it('Should return a user', async () => {
         const result = await axios.get<GetOneUserDTO>(
           `${BASE_URL}/api/user/${userID}`
         )
 
-        data = result.data
-        status = result.status
-        expect(status).toBe(200)
-      })
-
-      test('Should be a successfully operation', () => {
-        expect(data.error).toBe(false)
-      })
-
-      test('Should return getOneUserResponse', () => {
-        expect(validator(getOneUserResponse, data)).toBe(true)
+        expect(result.status).toBe(200)
+        expect(result.data.error).toBe(false)
+        expect(getOneUserResponse.parse(result.data).error).toBe(false)
       })
     })
 
     describe('API: PATCH /api/user/:id', () => {
-      const updateUserResponse = Type.Object({
-        error: Type.Boolean(),
+      const updateUserResponse = z.object({
+        error: z.boolean(),
         message: userDto
       })
 
-      type UpdateUserDTO = Static<typeof updateUserResponse>
+      type UpdateUserDTO = z.infer<typeof updateUserResponse>
 
-      let data: UpdateUserDTO
-      let status: number
-
-      test('Should return 200 as status code', async () => {
+      it('Should update a user successfully', async () => {
         const result = await axios.patch<UpdateUserDTO>(
           `${BASE_URL}/api/user/${userID}`,
           {
@@ -169,70 +92,21 @@ describe('Simba.js tests', () => {
           }
         )
 
-        data = result.data
-        status = result.status
-        expect(status).toBe(200)
-      })
-
-      test('Should be a successfully operation', () => {
-        expect(data.error).toBe(false)
-      })
-
-      test('Should return updateUserResponse', () => {
-        expect(validator(updateUserResponse, data)).toBe(true)
+        expect(result.status).toBe(200)
+        expect(result.data.error).toBe(false)
+        expect(updateUserResponse.parse(result.data).error).toBe(false)
       })
     })
 
     describe('API: DELETE /api/user/:id', () => {
-      let data: BaseResponseDTO
-      let status: number
-
-      test('Should return 200 as status code', async () => {
+      it('Should delete the created user', async () => {
         const result = await axios.delete<BaseResponseDTO>(
           `${BASE_URL}/api/user/${userID}`
         )
 
-        data = result.data
-        status = result.status
-        expect(status).toBe(200)
-      })
-
-      test('Should be a successfully operation', () => {
-        expect(data.error).toBe(false)
-      })
-
-      test('Should return deleteUserResponse', () => {
-        expect(validator(baseResponseDto, data)).toBe(true)
-      })
-    })
-
-    describe('API: DELETE /api/users', () => {
-      let data: BaseResponseDTO
-      let status: number
-
-      test('Should return 200 as status code', async () => {
-        await axios.post(`${BASE_URL}/api/users`, {
-          args: {
-            lastName: 'Lzq',
-            name: 'Anthony'
-          }
-        })
-
-        const result = await axios.delete<BaseResponseDTO>(
-          `${BASE_URL}/api/users`
-        )
-
-        data = result.data
-        status = result.status
-        expect(status).toBe(200)
-      })
-
-      test('Should be a successfully operation', () => {
-        expect(data.error).toBe(false)
-      })
-
-      test('Should return deleteAllUsersResponse', () => {
-        expect(validator(baseResponseDto, data)).toBe(true)
+        expect(result.status).toBe(200)
+        expect(result.data.error).toBe(false)
+        expect(baseResponseDto.parse(result.data).error).toBe(false)
       })
     })
   })

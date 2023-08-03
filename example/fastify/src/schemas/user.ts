@@ -1,33 +1,33 @@
-import { Static, Type } from '@sinclair/typebox'
+import z from 'zod'
 
-import { id } from '.'
+import { id } from './id'
 
-const user = Type.Object({
-  lastName: Type.String(),
-  name: Type.String()
+const user = z.object({
+  lastName: z.string(),
+  name: z.string()
 })
 
-type User = Static<typeof user>
+type User = z.infer<typeof user>
 
-const userWithId = Type.Intersect([user, Type.Object({ id })])
+const userWithId = user.extend({ id })
 
-type UserWithId = Static<typeof userWithId>
+type UserWithId = z.infer<typeof userWithId>
 
-const userDto = Type.Object({
-  id: Type.Optional(id),
-  lastName: Type.String(),
-  name: Type.String(),
-  createdAt: Type.Optional(Type.String()),
-  updatedAt: Type.Optional(Type.String())
+const userDto = z.object({
+  id: id.optional(),
+  lastName: z.string(),
+  name: z.string(),
+  createdAt: z.string().optional(),
+  updatedAt: z.string().optional()
 })
 
-type UserDTO = Static<typeof userDto>
+type UserDTO = z.infer<typeof userDto>
 
-const storeUserDto = Type.Object({
+const storeUserDto = z.object({
   args: user
 })
 
-type StoreUserDTO = Static<typeof storeUserDto>
+type StoreUserDTO = z.infer<typeof storeUserDto>
 
 export {
   userDto,

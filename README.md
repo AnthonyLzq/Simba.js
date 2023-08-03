@@ -41,8 +41,6 @@ By doing this your prompt will ask you the following questions:
 - `Select your license [1...7]:`, the license you have chosen for the project.
 - `License year (current year):`, the year where your license starts, current year as default.
 - `Will this project use GraphQL? [y/n]:`, yes or no question, only **y** or **n** is accepted. This is not case sensitive.
-- `Will this project be deployed with Heroku? [y/n]:`.
-- `Would you want to have a basic suit of tests with Jest? [y/n]:`.
 - `Would you want to have a basic GitHub Action for the suit of tests and linting? [y/n]:`.
 
 The second option you have is by passing flags in one single command. If you need help, please run:
@@ -81,8 +79,6 @@ Options:
                                  project.             [boolean] [default: false]
   -g, --graphql                  Whether or not you want to use GraphQL for your
                                  project.             [boolean] [default: false]
-  -t, --tests                    Whether or not you want to have a basic suit of
-                                 unit tests with Jest.[boolean] [default: false]
       --ghat, --gh-action-tests  Whether or not you want to have a GitHub Action
                                  with a CI for your tests and linting. If this
                                  option is set to true, the tests flag must be
@@ -125,8 +121,10 @@ simba -N myProject -D 'This is a test' -l mit -a myName -e myEmail@email.com -H 
 If I want to use a relational database instead MongoDB? Well, you only have to pass the `-d` flag:
 
 ```bash
-simba -N myProject -D 'This is a test' -l mit -a myName -e myEmail@email.com -H -F -d postgresql
+simba -N myProject -D 'This is a test' -l mit -a myName -e myEmail@email.com -H -F -d postgres
 ```
+
+The available databases are: `MongoDB` (_mongo_), `PostgreSQL` (_postgres_), `MySQL` (_mysql_), `MariaDB` (_mariadb_), `Sqlite` (_sqlite_) and `Microsoft SQL Server` (_sqlServer_).
 
 And how can I use GraphQL? Well, you only have to pass the `-g` flag:
 

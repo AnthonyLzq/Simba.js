@@ -5,7 +5,6 @@ const config: Config.InitialOptions = {
   preset: 'ts-jest',
   testEnvironment: 'node',
   testTimeout: 1 * 60 * 1000,
-  globalSetup: './test/jestGlobalSetup.ts',
   modulePaths: ['<rootDir>/src', '<rootDir>/node_modules'],
   roots: ['.'],
   moduleFileExtensions: ['js', 'json', 'ts'],

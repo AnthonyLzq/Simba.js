@@ -1,4 +1,0 @@
-module.exports = {
-  config: './src/database/postgres/config.js',
-  'migrations-path': './src/database/postgres/migrations/'
-}

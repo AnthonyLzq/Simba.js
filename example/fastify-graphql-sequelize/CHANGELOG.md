@@ -1,1 +1,0 @@
-# Example/fastify  Graphql  Sequelize
