@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.0.0](https://github.com/AnthonyLzq/simba.js/compare/v7.2.1...v8.0.0) (2023-08-03)
+
+
+### Features
+
+* fifth step to replace sequelize and mongoose with prisma, now the ([a5e3cb0](https://github.com/AnthonyLzq/simba.js/commit/a5e3cb0519c192a5948a85e4fba87f9c932d92c2))
+* final step to replace sequelize and mongoose with prisma, fastify was ([c1ef961](https://github.com/AnthonyLzq/simba.js/commit/c1ef961845d7ae3d9da0272ce6906050d5e7dc32))
+* first step to replace sequelize with prisma ([5cf3d34](https://github.com/AnthonyLzq/simba.js/commit/5cf3d3407bb0c76116e68b258e0a71eb12888f24))
+* fourth step to replace sequelize (and mongoose) with prisma, now ([770b34e](https://github.com/AnthonyLzq/simba.js/commit/770b34e8d61b2d350ec7df257de65f6614fc506e))
+* replaced @sinclair/typebox with zod for both, express and fastify ([ce0e441](https://github.com/AnthonyLzq/simba.js/commit/ce0e441dcaabf36202c35d32d7554bf6cab4485b))
+* replaced readline-sync with prompts ([3e1b112](https://github.com/AnthonyLzq/simba.js/commit/3e1b1122e006c66b04cf90715d323703e596d943))
+* second step to replace sequelize with prisma, the api is now working ([5db6de1](https://github.com/AnthonyLzq/simba.js/commit/5db6de193aaeaf7a88b7e4ce675ca76cda7a50c3))
+* seventh step to replace sequelize and mongoose with prisma, now it works with ([8ed85f8](https://github.com/AnthonyLzq/simba.js/commit/8ed85f8471d146620f9d76ed00300de27b3bcd92))
+* sixth step to replace sequelize and mongoose with prisma, now ([156ea8f](https://github.com/AnthonyLzq/simba.js/commit/156ea8f30926ca6f7dfbc90104597edf62e8422c))
+* third step to replace sequelize with prisma, the tests are now working ([474f8e0](https://github.com/AnthonyLzq/simba.js/commit/474f8e0c82431c9848724f1085051765757a424d))
+* unified workflows ([0872626](https://github.com/AnthonyLzq/simba.js/commit/087262654febec88d7d63dddaa1acbee70c7ae98))
+* updated all github actions ([1f2d9aa](https://github.com/AnthonyLzq/simba.js/commit/1f2d9aac5950872a1679245ea1999d117f2eea74))
+* updated docs ([cd07749](https://github.com/AnthonyLzq/simba.js/commit/cd07749b8efbe4dfbc415aac00694465f0b5626b))
+* updated graphql integration to work with prisma (sql and mongo), zod, express and fastify ([79607a4](https://github.com/AnthonyLzq/simba.js/commit/79607a4124e7c2c8466892fd521926ae87825530))
+
+
+### Bug Fixes
+
+* .eslintrc issue ([2956dcc](https://github.com/AnthonyLzq/simba.js/commit/2956dcc2aabd459b396d62fa75a3d318548bde30))
+* included pnpm config in the github actions ([d49e2bf](https://github.com/AnthonyLzq/simba.js/commit/d49e2bfdf056d2126ba5d8a0b74af5ec9554c1d0))
+* publish -> test-mongo workflow ([2d0954a](https://github.com/AnthonyLzq/simba.js/commit/2d0954a4332b063176f1b6cd762a7b419a872613))
+* rm:sql script ([816f642](https://github.com/AnthonyLzq/simba.js/commit/816f642f152e3aab967388971509f96fd0bfa79e))
+* Simba.js github actions ([c2253f7](https://github.com/AnthonyLzq/simba.js/commit/c2253f71dfa2a42e49aa83ba2d1d002e8ec559e7))
+* test:sql:ci and test:mongo:ci scripts ([efc53c6](https://github.com/AnthonyLzq/simba.js/commit/efc53c6998468c0410ae855fd6a7d6b480c274ff))
+* workflow names ([f0042a7](https://github.com/AnthonyLzq/simba.js/commit/f0042a7d52aa2c0f11c882ccd9f96d8c494835a8))
+
 ### [7.2.1](https://github.com/AnthonyLzq/simba.js/compare/v7.2.0...v7.2.1) (2023-03-12)
 
 

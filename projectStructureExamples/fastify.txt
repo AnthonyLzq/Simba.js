@@ -36,8 +36,8 @@
 │   │   │   │   └── user.ts
 │   │   │   └── index.ts
 │   │   ├── BaseHttp.ts
-│   │   ├── index.ts
-│   │   └── user.ts
+│   │   ├── User.ts
+│   │   └── index.ts
 │   ├── utils
 │   │   ├── Logger.ts
 │   │   └── index.ts
