@@ -1,17 +1,105 @@
 name: Publish
 
-on:
-  workflow_run:
-    workflows: ["Test-sql", "Test-mongo"]
-    types:
-      - completed
+on: [push]
 
 jobs:
+  run-linters:
+    name: Run linters
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: 'npm'
+
+      - name: Install Node.js dependencies
+        run: npm ci
+
+      - name: Run linter
+        uses: wearerequired/lint-action@v2
+        with:
+          auto_fix: true
+          eslint: true
+          eslint_extensions: js
+
+  test-sql:
+    name: Tests for Simba APIs with sql
+    environment: Test-sql
+    runs-on: ubuntu-latest
+    needs: run-linters
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: 'npm'
+
+      - name: Install Node.js dependencies
+        run: npm ci
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 6.x.x
+
+      - name: Test APIs
+        run: npm run test:sql:ci
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          NODE_ENV: ci
+          PORT: 1996
+
+  test-mongo:
+    name: Tests for Simba APIs with mongo
+    environment: Test-mongo
+    runs-on: ubuntu-latest
+    needs: test-sql
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: 'npm'
+
+      - name: Install Node.js dependencies
+        run: npm ci
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 6.x.x
+
+      - name: Test APIs
+        run: npm run test:ci:mongo
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          NODE_ENV: ci
+          PORT: 1997
+
   publish:
     name: Publish
-    runs-on: ubuntu-latest
-    needs: test
     environment: Publish
+    runs-on: ubuntu-latest
+    needs: test-mongo
     if: github.ref == 'refs/heads/master'
 
     steps:
