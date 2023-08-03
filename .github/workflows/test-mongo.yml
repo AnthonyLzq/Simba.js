@@ -1,4 +1,4 @@
-name: Tests-mongo
+name: Test-mongo
 
 on:
   workflow_run:

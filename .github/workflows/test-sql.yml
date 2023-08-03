@@ -1,4 +1,4 @@
-name: Tests-sql
+name: Test-sql
 
 on:
   workflow_run:
