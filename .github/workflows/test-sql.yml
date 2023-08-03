@@ -27,6 +27,11 @@ jobs:
       - name: Install Node.js dependencies
         run: npm ci
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 6.x.x
+
       - name: Test APIs
         run: npm run test:sql:ci
         env:
