@@ -44,7 +44,7 @@ class Server implements Log {
       await this.#connection.connect()
       await this.#app.listen({
         port: PORT,
-        host: '0.0.0.0'
+        host: '::'
       })
       d(`HTTP server listening on port ${PORT}.`)
     } catch (e) {
@@ -80,9 +80,7 @@ class Server implements Log {
     content: unknown
   }) {
     d(
-      `Server invoked -> ${
-        this.constructor.name
-      } ~ ${method} ~ value: ${value} ~ content: ${JSON.stringify(content)}`
+      `Server invoked -> ${this.constructor.name} ~ ${method} ~ value: ${value} ~ content: ${content}`
     )
   }
 }

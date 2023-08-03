@@ -1,3 +1,3 @@
 # Example/express
 
-This is a test using express with prisma.
+This is a test using Express with Prisma and PostgreSQL.

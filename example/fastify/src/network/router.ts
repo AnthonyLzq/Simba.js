@@ -4,9 +4,8 @@ import { HttpError } from 'http-errors'
 import { response } from './response'
 import { Home, User, Docs } from './routes'
 
-const routers = [User]
+const routers = [Home, User]
 const applyRoutes = async (app: FastifyInstance) => {
-  Home(app)
   routers.forEach(router => router(app))
   await Docs(app)
 

@@ -9,8 +9,8 @@ datasource db {
 
 model User {
   id       Int    @id @default(autoincrement())
-    lastName String
-    name     String
+  lastName String
+  name     String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

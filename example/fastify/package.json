@@ -2,7 +2,7 @@
   "name": "example-fastify",
   "version": "0.1.0",
   "main": "src/index.ts",
-  "description": "This is a test using fastify with prisma",
+  "description": "This is a test using Fastify with Prisma and PostgreSQL",
   "scripts": {
     "lint": "eslint src/* --ext .ts --fix",
     "service": "nodemon",
@@ -42,7 +42,7 @@
     "@types/debug": "^4.1.8",
     "@types/http-errors": "^2.0.1",
     "@types/jest": "^29.5.3",
-    "@types/node": "^20.4.5",
+    "@types/node": "^20.4.6",
     "@typescript-eslint/eslint-plugin": "^6.2.1",
     "@typescript-eslint/parser": "^6.2.1",
     "axios": "^1.4.0",

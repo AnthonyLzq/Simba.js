@@ -17,8 +17,7 @@ class Server implements Log {
 
   constructor() {
     this.#app = express()
-    this.#connection = dbConnection()
-    this.#config()
+    this.#connection = dbConnection(d)
   }
 
   #config() {
@@ -46,7 +45,7 @@ class Server implements Log {
 
   async start(): Promise<void> {
     try {
-      await this.#connection.connect()
+      this.#config()
       await this.#connection?.connect()
       this.#server = this.#app.listen(PORT, () => {
         d(`HTTP server listening on port ${PORT}.`)
