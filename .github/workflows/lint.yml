@@ -16,16 +16,14 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18.x
+          cache: 'npm'
 
       - name: Install Node.js dependencies
         run: npm ci
 
-      - name: Revert changes into the package-lock.json file
-        run: git checkout -- package-lock.json
-
-      - name: Run linters
-        uses: wearerequired/lint-action@v1
+      - name: Run linter
+        uses: wearerequired/lint-action@v2
         with:
           auto_fix: true
           eslint: true

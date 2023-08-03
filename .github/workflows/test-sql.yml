@@ -1,11 +1,15 @@
-name: Tests for Simba APIs with postgresql
+name: Tests-sql
 
-on: [push]
+on:
+  workflow_run:
+    workflows: ["Lint"]
+    types:
+      - completed
 
 jobs:
   test:
-    environment: Test-postgresql
-    name: Tests for Simba APIs with postgresql
+    name: Tests for Simba APIs with sql
+    environment: Test-sql
     runs-on: ubuntu-latest
 
     steps:
@@ -17,17 +21,15 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18.x
+          cache: 'npm'
 
       - name: Install Node.js dependencies
         run: npm ci
 
-      - name: Revert changes into the package-lock.json file
-        run: git checkout -- package-lock.json
-
       - name: Test APIs
-        run: npm run test:ci:postgresql
+        run: npm run test:sql:ci
         env:
-          DB_URI: ${{ secrets.DB_URI }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
           NODE_ENV: ci
           PORT: 1996

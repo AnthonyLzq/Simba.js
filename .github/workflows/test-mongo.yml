@@ -1,11 +1,15 @@
-name: Tests for Simba APIs with mongo
+name: Tests-mongo
 
-on: [push]
+on:
+  workflow_run:
+    workflows: ["Lint"]
+    types:
+      - completed
 
 jobs:
   test:
-    environment: Test-mongo
     name: Tests for Simba APIs with mongo
+    environment: Test-mongo
     runs-on: ubuntu-latest
 
     steps:
@@ -17,17 +21,15 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18.x
+          cache: 'npm'
 
       - name: Install Node.js dependencies
         run: npm ci
 
-      - name: Revert changes into the package-lock.json file
-        run: git checkout -- package-lock.json
-
       - name: Test APIs
         run: npm run test:ci:mongo
         env:
-          DB_URI: ${{ secrets.DB_URI }}
+          MONGO_URI: ${{ secrets.MONGO_URI }}
           NODE_ENV: ci
           PORT: 1997
