@@ -59,7 +59,7 @@
     "list:directory:tree:examples": "npm run list:directory:tree:express && npm list:directories:tree:express:mongo && npm list:directories:tree:fastify && npm list:directories:tree:fastify:mongo && npm list:directories:tree:express:graphql && npm list:directories:tree:express:mongo:graphql && npm list:directories:tree:fastify:graphql && npm list:directories:tree:fastify:mongo:graphql",
     "rm": "if [ -d \"example\" ]; then rm -rf example; fi",
     "rm:mongo": "if [ -d \"example/express-mongo\" ]; then rm -rf example/express-mongo; fi && if [ -d \"example/express-mongo-graphql\" ]; then rm -rf example/express-mongo-graphql; fi && if [ -d \"example/fastify-mongo\" ]; then rm -rf example/fastify-mongo; fi && if [ -d \"example/fastify-mongo-graphql\" ]; then rm -rf example/fastify-mongo-graphql; fi",
-    "rm:sql": "if [ -d \"example/express ] then rm -rf example/express; fi && if [ -d \"example/express-graphql\" ]; then rm -rf example/express-graphql; fi && if [ -d \"example/fastify\" ]; then rm -rf example/fastify; fi && if [ -d \"example/fastify-graphql\" ]; then rm -rf example/fastify-graphql; fi",
+    "rm:sql": "if [ -d \"example/express\" ]; then rm -rf example/express; fi && if [ -d \"example/express-graphql\" ]; then rm -rf example/express-graphql; fi && if [ -d \"example/fastify\" ]; then rm -rf example/fastify; fi && if [ -d \"example/fastify-graphql\" ]; then rm -rf example/fastify-graphql; fi",
     "rm:express": "if [ -d \"example/express\" ]; then rm -rf example/express; fi",
     "rm:express:mongo": "if [ -d \"example/express-mongo\" ]; then rm -rf example/express-mongo; fi",
     "rm:fastify": "if [ -d \"example/fastify\" ]; then rm -rf example/fastify; fi",
