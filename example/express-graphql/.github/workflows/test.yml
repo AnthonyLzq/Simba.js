@@ -17,16 +17,13 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18.x
 
       - name: Install Node.js dependencies
-        run: npm ci
-
-      - name: Revert changes into the package-lock.json file
-        run: git checkout -- package-lock.json
+        run: pnpm i --frozen-lockfile
 
       - name: Run test
-        run: npm run test:ci
+        run: pnpm i test:ci
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           NODE_ENV: ci
