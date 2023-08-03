@@ -2,16 +2,13 @@
 │   └── workflows
 │       ├── lint.yml
 │       └── test.yml
+├── prisma
+│   └── schema.prisma
 ├── src
 │   ├── @types
-│   │   ├── models
-│   │   │   └── user.d.ts
 │   │   └── index.d.ts
 │   ├── database
-│   │   ├── mongo
-│   │   │   ├── models
-│   │   │   │   ├── index.ts
-│   │   │   │   └── user.ts
+│   │   ├── postgres
 │   │   │   ├── queries
 │   │   │   │   ├── index.ts
 │   │   │   │   └── user.ts
@@ -24,13 +21,12 @@
 │   │   │   ├── home.ts
 │   │   │   ├── index.ts
 │   │   │   └── user.ts
-│   │   ├── utils
-│   │   │   └── index.ts
 │   │   ├── index.ts
 │   │   ├── response.ts
 │   │   ├── router.ts
 │   │   └── server.ts
 │   ├── schemas
+│   │   ├── id.ts
 │   │   ├── index.ts
 │   │   └── user.ts
 │   ├── services
@@ -39,13 +35,15 @@
 │   │   │   │   ├── index.ts
 │   │   │   │   └── user.ts
 │   │   │   └── index.ts
+│   │   ├── BaseHttp.ts
 │   │   ├── index.ts
 │   │   └── user.ts
+│   ├── utils
+│   │   ├── Logger.ts
+│   │   └── index.ts
 │   └── index.ts
 ├── test
-│   ├── index.test.ts
-│   ├── jestGlobalSetup.ts
-│   └── setEnvVars.ts
+│   └── index.test.ts
 ├── .dockerignore
 ├── .env
 ├── .eslintignore
@@ -55,13 +53,11 @@
 ├── Dockerfile
 ├── LICENSE
 ├── README.md
-├── heroku.yml
 ├── index.http
 ├── jest.config.ts
 ├── package.json
+├── pnpm-lock.yaml
 ├── tsconfig.base.json
-├── tsconfig.json
-├── webpack.config.js
-└── yarn.lock
+└── tsconfig.json
 
-17 directories, 48 files
+16 directories, 45 files

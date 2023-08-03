@@ -2,69 +2,74 @@
 │   └── workflows
 │       ├── lint.yml
 │       └── test.yml
+├── prisma
+│   └── schema.prisma
 ├── src
 │   ├── @types
+│   │   ├── custom
+│   │   │   └── params.d.ts
+│   │   ├── graphQL
+│   │   │   └── context.d.ts
+│   │   ├── models
 │   │   └── index.d.ts
 │   ├── database
-│   │   ├── postgres
-│   │   │   ├── migrations
-│   │   │   ├── models
-│   │   │   │   ├── index.ts
-│   │   │   │   └── user.ts
+│   │   ├── mongo
 │   │   │   ├── queries
 │   │   │   │   ├── index.ts
 │   │   │   │   └── user.ts
-│   │   │   ├── config.js
 │   │   │   ├── connection.ts
 │   │   │   └── index.ts
 │   │   └── index.ts
 │   ├── network
+│   │   ├── models
+│   │   │   ├── User.ts
+│   │   │   └── index.ts
+│   │   ├── resolvers
+│   │   │   ├── User.ts
+│   │   │   └── index.ts
 │   │   ├── routes
-│   │   │   ├── docs.ts
+│   │   │   ├── utils
+│   │   │   │   └── index.ts
 │   │   │   ├── home.ts
-│   │   │   ├── index.ts
-│   │   │   └── user.ts
-│   │   ├── utils
 │   │   │   └── index.ts
 │   │   ├── index.ts
 │   │   ├── response.ts
 │   │   ├── router.ts
 │   │   └── server.ts
 │   ├── schemas
+│   │   ├── id.ts
 │   │   ├── index.ts
 │   │   └── user.ts
-│   ├── scripts
-│   │   └── migration.ts
 │   ├── services
 │   │   ├── utils
 │   │   │   ├── messages
 │   │   │   │   ├── index.ts
 │   │   │   │   └── user.ts
 │   │   │   └── index.ts
-│   │   ├── index.ts
-│   │   └── user.ts
+│   │   ├── BaseHttp.ts
+│   │   ├── User.ts
+│   │   └── index.ts
+│   ├── utils
+│   │   ├── Logger.ts
+│   │   ├── docs.json
+│   │   └── index.ts
 │   └── index.ts
 ├── test
-│   ├── index.test.ts
-│   ├── jestGlobalSetup.ts
-│   └── setEnvVars.ts
+│   └── index.test.ts
 ├── .dockerignore
 ├── .env
 ├── .eslintignore
 ├── .eslintrc
 ├── .gitignore
-├── .sequelizerc
 ├── CHANGELOG.md
 ├── Dockerfile
 ├── LICENSE
 ├── README.md
-├── heroku.yml
 ├── index.http
 ├── jest.config.ts
 ├── package.json
+├── pnpm-lock.yaml
 ├── tsconfig.base.json
-├── tsconfig.json
-├── webpack.config.js
-└── yarn.lock
+└── tsconfig.json
 
-18 directories, 50 files
+22 directories, 51 files

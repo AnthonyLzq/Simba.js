@@ -2,59 +2,55 @@
 │   └── workflows
 │       ├── lint.yml
 │       └── test.yml
+├── prisma
+│   └── schema.prisma
 ├── src
 │   ├── @types
 │   │   ├── graphQL
 │   │   │   └── context.d.ts
-│   │   ├── models
-│   │   │   └── user.d.ts
 │   │   └── index.d.ts
 │   ├── database
-│   │   ├── mongo
-│   │   │   ├── models
-│   │   │   │   ├── index.ts
-│   │   │   │   └── user.ts
+│   │   ├── postgres
 │   │   │   ├── queries
 │   │   │   │   ├── index.ts
 │   │   │   │   └── user.ts
 │   │   │   ├── connection.ts
 │   │   │   └── index.ts
 │   │   └── index.ts
-│   ├── graphQL
-│   │   ├── models
-│   │   │   ├── User
-│   │   │   │   ├── index.ts
-│   │   │   │   ├── mutations.ts
-│   │   │   │   ├── mutationsResolver.ts
-│   │   │   │   ├── queries.ts
-│   │   │   │   ├── queriesResolver.ts
-│   │   │   │   └── typeDefs.ts
-│   │   │   ├── utils
-│   │   │   │   ├── messages
-│   │   │   │   │   ├── index.ts
-│   │   │   │   │   └── user.ts
-│   │   │   │   └── index.ts
-│   │   │   └── index.ts
-│   │   └── index.ts
 │   ├── network
+│   │   ├── models
+│   │   │   ├── User.ts
+│   │   │   └── index.ts
+│   │   ├── resolvers
+│   │   │   ├── User.ts
+│   │   │   └── index.ts
 │   │   ├── routes
 │   │   │   ├── docs.ts
 │   │   │   ├── home.ts
-│   │   │   └── index.ts
-│   │   ├── utils
 │   │   │   └── index.ts
 │   │   ├── index.ts
 │   │   ├── response.ts
 │   │   ├── router.ts
 │   │   └── server.ts
 │   ├── schemas
+│   │   ├── id.ts
 │   │   ├── index.ts
 │   │   └── user.ts
+│   ├── services
+│   │   ├── utils
+│   │   │   ├── messages
+│   │   │   │   ├── index.ts
+│   │   │   │   └── user.ts
+│   │   │   └── index.ts
+│   │   ├── BaseHttp.ts
+│   │   ├── User.ts
+│   │   └── index.ts
+│   ├── utils
+│   │   ├── Logger.ts
+│   │   └── index.ts
 │   └── index.ts
 ├── test
-│   ├── index.test.ts
-│   ├── jestGlobalSetup.ts
-│   └── setEnvVars.ts
+│   └── index.test.ts
 ├── .dockerignore
 ├── .env
 ├── .eslintignore
@@ -64,13 +60,11 @@
 ├── Dockerfile
 ├── LICENSE
 ├── README.md
-├── heroku.yml
 ├── index.http
 ├── jest.config.ts
 ├── package.json
+├── pnpm-lock.yaml
 ├── tsconfig.base.json
-├── tsconfig.json
-├── webpack.config.js
-└── yarn.lock
+└── tsconfig.json
 
-20 directories, 54 files
+19 directories, 49 files

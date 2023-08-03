@@ -6,11 +6,11 @@
 │   └── schema.prisma
 ├── src
 │   ├── @types
-│   │   ├── custom
-│   │   │   └── params.d.ts
+│   │   ├── models
+│   │   │   └── user.d.ts
 │   │   └── index.d.ts
 │   ├── database
-│   │   ├── postgres
+│   │   ├── mongo
 │   │   │   ├── queries
 │   │   │   │   ├── index.ts
 │   │   │   │   └── user.ts
@@ -19,8 +19,7 @@
 │   │   └── index.ts
 │   ├── network
 │   │   ├── routes
-│   │   │   ├── utils
-│   │   │   │   └── index.ts
+│   │   │   ├── docs.ts
 │   │   │   ├── home.ts
 │   │   │   ├── index.ts
 │   │   │   └── user.ts
@@ -39,11 +38,10 @@
 │   │   │   │   └── user.ts
 │   │   │   └── index.ts
 │   │   ├── BaseHttp.ts
-│   │   ├── index.ts
-│   │   └── user.ts
+│   │   ├── User.ts
+│   │   └── index.ts
 │   ├── utils
 │   │   ├── Logger.ts
-│   │   ├── docs.json
 │   │   └── index.ts
 │   └── index.ts
 ├── test
@@ -64,4 +62,4 @@
 ├── tsconfig.base.json
 └── tsconfig.json
 
-18 directories, 47 files
+17 directories, 46 files
