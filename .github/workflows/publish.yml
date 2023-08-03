@@ -89,7 +89,7 @@ jobs:
           version: 6.x.x
 
       - name: Test APIs
-        run: npm run test:ci:mongo
+        run: npm run test:mongo:ci
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
           NODE_ENV: ci
