@@ -1,11 +1,10 @@
-const knex = require('knex')
-const config = require('./knexConfig')
+import knex from 'knex'
+import config from './knexConfig.mjs'
 
 const db = knex(config)
 
-db.schema
+await db.schema
   .dropTableIfExists('_prisma_migrations')
   .then(() => db.schema.dropTableIfExists('users'))
   .then(() => console.log('Tables deleted successfully'))
-  .catch(err => console.error('There was an error deleting the tables', err))
   .finally(() => db.destroy())
