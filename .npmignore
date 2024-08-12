@@ -1,6 +1,10 @@
+.github
 .vscode
-.prettierrc
 example
-.vscode
-.eslintrc
+projectStructureExamples
+scripts
 static
+test
+.eslintignore
+.eslintrc
+jest.*
