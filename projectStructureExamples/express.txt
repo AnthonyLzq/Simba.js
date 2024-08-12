@@ -5,10 +5,6 @@
 ├── prisma
 │   └── schema.prisma
 ├── src
-│   ├── @types
-│   │   ├── custom
-│   │   │   └── params.d.ts
-│   │   └── index.d.ts
 │   ├── database
 │   │   ├── postgres
 │   │   │   ├── queries
@@ -39,29 +35,31 @@
 │   │   │   │   └── user.ts
 │   │   │   └── index.ts
 │   │   ├── BaseHttp.ts
-│   │   ├── User.ts
-│   │   └── index.ts
+│   │   ├── index.ts
+│   │   └── User.ts
+│   ├── @types
+│   │   └── index.d.ts
 │   ├── utils
-│   │   ├── Logger.ts
 │   │   ├── docs.json
-│   │   └── index.ts
+│   │   ├── index.ts
+│   │   └── Logger.ts
 │   └── index.ts
 ├── test
 │   └── index.test.ts
+├── CHANGELOG.md
+├── Dockerfile
 ├── .dockerignore
 ├── .env
 ├── .eslintignore
 ├── .eslintrc
 ├── .gitignore
-├── CHANGELOG.md
-├── Dockerfile
-├── LICENSE
-├── README.md
 ├── index.http
 ├── jest.config.ts
+├── LICENSE
 ├── package.json
 ├── pnpm-lock.yaml
+├── README.md
 ├── tsconfig.base.json
 └── tsconfig.json
 
-18 directories, 47 files
+18 directories, 46 files

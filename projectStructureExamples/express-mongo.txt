@@ -1,4 +1,5 @@
 ├── .git
+│   ├── branches
 │   ├── hooks
 │   │   ├── applypatch-msg.sample
 │   │   ├── commit-msg.sample
@@ -7,11 +8,12 @@
 │   │   ├── pre-applypatch.sample
 │   │   ├── pre-commit.sample
 │   │   ├── pre-merge-commit.sample
+│   │   ├── prepare-commit-msg.sample
 │   │   ├── pre-push.sample
 │   │   ├── pre-rebase.sample
 │   │   ├── pre-receive.sample
-│   │   ├── prepare-commit-msg.sample
 │   │   ├── push-to-checkout.sample
+│   │   ├── sendemail-validate.sample
 │   │   └── update.sample
 │   ├── info
 │   │   └── exclude
@@ -21,9 +23,9 @@
 │   ├── refs
 │   │   ├── heads
 │   │   └── tags
-│   ├── HEAD
 │   ├── config
-│   └── description
+│   ├── description
+│   └── HEAD
 ├── .github
 │   └── workflows
 │       ├── lint.yml
@@ -31,11 +33,6 @@
 ├── prisma
 │   └── schema.prisma
 ├── src
-│   ├── @types
-│   │   ├── custom
-│   │   │   └── params.d.ts
-│   │   ├── models
-│   │   └── index.d.ts
 │   ├── database
 │   │   ├── mongo
 │   │   │   ├── queries
@@ -66,29 +63,32 @@
 │   │   │   │   └── user.ts
 │   │   │   └── index.ts
 │   │   ├── BaseHttp.ts
-│   │   ├── User.ts
-│   │   └── index.ts
+│   │   ├── index.ts
+│   │   └── User.ts
+│   ├── @types
+│   │   ├── models
+│   │   └── index.d.ts
 │   ├── utils
-│   │   ├── Logger.ts
 │   │   ├── docs.json
-│   │   └── index.ts
+│   │   ├── index.ts
+│   │   └── Logger.ts
 │   └── index.ts
 ├── test
 │   └── index.test.ts
+├── CHANGELOG.md
+├── Dockerfile
 ├── .dockerignore
 ├── .env
 ├── .eslintignore
 ├── .eslintrc
 ├── .gitignore
-├── CHANGELOG.md
-├── Dockerfile
-├── LICENSE
-├── README.md
 ├── index.http
 ├── jest.config.ts
+├── LICENSE
 ├── package.json
 ├── pnpm-lock.yaml
+├── README.md
 ├── tsconfig.base.json
 └── tsconfig.json
 
-28 directories, 64 files
+29 directories, 64 files

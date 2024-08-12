@@ -1,24 +1,20 @@
 {
   "name": "@anthonylzq/simba.js",
-  "version": "8.0.0",
+  "version": "8.1.0",
   "description": "set up a modern backend app by running one command",
   "main": "lib/index.js",
   "scripts": {
     "service": "node ./bin",
     "service:q": "node ./bin -q",
-
     "help": "node ./bin -h",
     "lint": "eslint --ext js lib/ --fix",
-
     "db:create": "node ./scripts/db/sql/create.mjs && node ./scripts/db/mongo/create.mjs",
     "db:create:mongo": "node ./scripts/db/mongo/create.mjs",
     "db:create:sql": "node ./scripts/db/sql/create.mjs",
     "db:restore": "node ./scripts/db/sql/restore.mjs && node ./scripts/db/mongo/restore.mjs",
     "db:restore:mongo": "node ./scripts/db/mongo/restore.mjs",
     "db:restore:sql": "node ./scripts/db/sql/restore.mjs",
-
     "example": "node -r dotenv/config ./bin -N local-example -D 'This is a test using fastify' -a AnthonyLzq -e sluzquinosa@uni.pe -l mit -H --tests --ghat -F",
-
     "build": "npm run build:express:all && npm run build:fastify:all",
     "build:mongo": "npm run rm:mongo && npm run db:create:mongo && npm run build:express:mongo && npm run build:fastify:mongo && npm run build:express:mongo:graphql && npm run build:fastify:mongo:graphql",
     "build:sql": "npm run rm:sql && npm run db:create:sql && npm run build:express && npm run build:fastify && npm run build:express:graphql && npm run build:fastify:graphql",
@@ -33,7 +29,6 @@
     "build:fastify:graphql": "npm run db:create:sql && npm run rm:fastify:graphql && npm run cd:mv:example && node -r dotenv/config ./bin -N example/fastify-graphql -D 'This is a test using Fastify with GraphQL with Prisma and PostgreSQL' -a AnthonyLzq -e sluzquinosa@uni.pe -l mit -H -g --tests --ghat -d postgres -F && npm run rm:git:fastify:graphql",
     "build:fastify:mongo:graphql": "npm run db:create:mongo && npm run rm:fastify:mongo:graphql && npm run cd:mv:example && node -r dotenv/config ./bin -N example/fastify-mongo-graphql -D 'This is a test using Fastify with GraphQL with Prisma and MongoDB' -a AnthonyLzq -e sluzquinosa@uni.pe -l mit -H -g --tests --ghat -F && npm run rm:git:fastify:mongo:graphql",
     "build:and:test:only": "npm run build && npm run test:only",
-
     "test": "npm run test:without:restore && git restore .",
     "test:local": "npm run test:without:restore",
     "test:integration": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config jest.integration.config.js --testPathPattern=test/integration",
@@ -59,7 +54,6 @@
     "test:express:mongo:graphql:ci": "if [ -d \"example/express-mongo-graphql/node_modules\" ]; then npm run test:ci --prefix example/express-mongo-graphql; else echo 'Can not run the test for express-mongo-graphql api because the dependencies are not installed'; fi",
     "test:fastify:graphql:ci": "if [ -d \"example/fastify-graphql/node_modules\" ]; then npm run test:ci --prefix example/fastify-graphql; else echo 'Can not run the test for fastify-graphql api because the dependencies are not installed'; fi",
     "test:fastify:mongo:graphql:ci": "if [ -d \"example/fastify-mongo-graphql/node_modules\" ]; then npm run test:ci --prefix example/fastify-mongo-graphql; else echo 'Can not run the test for fastify-mongo-graphql api because the dependencies are not installed'; fi",
-
     "list:directory:tree:express": "if [ -f \"projectStructureExamples/express.txt\" ]; then rm projectStructureExamples/express.txt; fi && tree example/express -a --dirsfirst --sort name -I node_modules | cut -d'/' -f 2 | tail -n +2 >> projectStructureExamples/express.txt",
     "list:directory:tree:express:mongo": "if [ -f \"projectStructureExamples/express-mongo.txt\" ]; then rm projectStructureExamples/express-mongo.txt; fi && tree example/express-mongo -a --dirsfirst --sort name -I node_modules | cut -d'/' -f 2 | tail -n +2 >> projectStructureExamples/express-mongo.txt",
     "list:directory:tree:fastify": "if [ -f \"projectStructureExamples/fastify.txt\" ]; then rm projectStructureExamples/fastify.txt; fi && tree example/fastify -a --dirsfirst --sort name -I node_modules | cut -d'/' -f 2 | tail -n +2 >> projectStructureExamples/fastify.txt",
@@ -69,7 +63,6 @@
     "list:directory:tree:fastify:graphql": "if [ -f \"projectStructureExamples/fastify-graphql.txt\" ]; then rm projectStructureExamples/fastify-graphql.txt; fi && tree example/fastify-graphql -a --dirsfirst --sort name -I node_modules | cut -d'/' -f 2 | tail -n +2 >> projectStructureExamples/fastify-graphql.txt",
     "list:directory:tree:fastify:mongo:graphql": "if [ -f \"projectStructureExamples/fastify-mongo-graphql.txt\" ]; then rm projectStructureExamples/fastify-mongo-graphql.txt; fi && tree example/fastify-mongo-graphql -a --dirsfirst --sort name -I node_modules | cut -d'/' -f 2 | tail -n +2 >> projectStructureExamples/fastify-mongo-graphql.txt",
     "list:directory:tree:examples": "npm run rm:project:structures && npm run list:directory:tree:express && npm run list:directory:tree:express:mongo && npm run list:directory:tree:fastify && npm run list:directory:tree:fastify:mongo && npm run list:directory:tree:express:graphql && npm run list:directory:tree:express:mongo:graphql && npm run list:directory:tree:fastify:graphql && npm run list:directory:tree:fastify:mongo:graphql",
-
     "rm": "if [ -d \"example\" ]; then rm -rf example; fi",
     "rm:mongo": "if [ -d \"example/express-mongo\" ]; then rm -rf example/express-mongo; fi && if [ -d \"example/express-mongo-graphql\" ]; then rm -rf example/express-mongo-graphql; fi && if [ -d \"example/fastify-mongo\" ]; then rm -rf example/fastify-mongo; fi && if [ -d \"example/fastify-mongo-graphql\" ]; then rm -rf example/fastify-mongo-graphql; fi",
     "rm:sql": "if [ -d \"example/express\" ]; then rm -rf example/express; fi && if [ -d \"example/express-graphql\" ]; then rm -rf example/express-graphql; fi && if [ -d \"example/fastify\" ]; then rm -rf example/fastify; fi && if [ -d \"example/fastify-graphql\" ]; then rm -rf example/fastify-graphql; fi",
@@ -90,9 +83,7 @@
     "rm:git:fastify:graphql": "if [ -d \"example/fastify-graphql/.git\" ]; then rm -rf example/fastify-graphql/.git; fi",
     "rm:git:fastify:mongo:graphql": "if [ -d \"example/fastify-mongo-graphql/.git\" ]; then rm -rf example/fastify-mongo-graphql/.git; fi",
     "rm:project:structures": "if [ -d \"projectStructureExamples\" ]; then rm -rf projectStructureExamples/*; fi",
-
     "cd:mv:example": "if [ ! -d \"example\" ]; then mkdir example && cd example; fi",
-
     "release": "standard-version",
     "version": "npm run release && npm run list:directory:tree:examples && git add ."
   },

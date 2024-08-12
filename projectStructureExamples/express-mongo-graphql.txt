@@ -5,13 +5,6 @@
 ├── prisma
 │   └── schema.prisma
 ├── src
-│   ├── @types
-│   │   ├── custom
-│   │   │   └── params.d.ts
-│   │   ├── graphQL
-│   │   │   └── context.d.ts
-│   │   ├── models
-│   │   └── index.d.ts
 │   ├── database
 │   │   ├── mongo
 │   │   │   ├── queries
@@ -22,11 +15,11 @@
 │   │   └── index.ts
 │   ├── network
 │   │   ├── models
-│   │   │   ├── User.ts
-│   │   │   └── index.ts
+│   │   │   ├── index.ts
+│   │   │   └── User.ts
 │   │   ├── resolvers
-│   │   │   ├── User.ts
-│   │   │   └── index.ts
+│   │   │   ├── index.ts
+│   │   │   └── User.ts
 │   │   ├── routes
 │   │   │   ├── utils
 │   │   │   │   └── index.ts
@@ -47,29 +40,34 @@
 │   │   │   │   └── user.ts
 │   │   │   └── index.ts
 │   │   ├── BaseHttp.ts
-│   │   ├── User.ts
-│   │   └── index.ts
+│   │   ├── index.ts
+│   │   └── User.ts
+│   ├── @types
+│   │   ├── graphQL
+│   │   │   └── context.d.ts
+│   │   ├── models
+│   │   └── index.d.ts
 │   ├── utils
-│   │   ├── Logger.ts
 │   │   ├── docs.json
-│   │   └── index.ts
+│   │   ├── index.ts
+│   │   └── Logger.ts
 │   └── index.ts
 ├── test
 │   └── index.test.ts
+├── CHANGELOG.md
+├── Dockerfile
 ├── .dockerignore
 ├── .env
 ├── .eslintignore
 ├── .eslintrc
 ├── .gitignore
-├── CHANGELOG.md
-├── Dockerfile
-├── LICENSE
-├── README.md
 ├── index.http
 ├── jest.config.ts
+├── LICENSE
 ├── package.json
 ├── pnpm-lock.yaml
+├── README.md
 ├── tsconfig.base.json
 └── tsconfig.json
 
-22 directories, 51 files
+22 directories, 50 files

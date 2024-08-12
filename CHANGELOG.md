@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.1.0](https://github.com/AnthonyLzq/simba.js/compare/v8.0.0...v8.1.0) (2024-08-12)
+
+
+### Features
+
+* created integration tests ([c9dea99](https://github.com/AnthonyLzq/simba.js/commit/c9dea9960dc1b65fbb54c5a2e51cbea233720f9f))
+* udpated packages and minor improvements ([5238518](https://github.com/AnthonyLzq/simba.js/commit/523851835f46acd60b4ef4cd48892fa862b0b17a))
+* updated .npmignore ([05272c5](https://github.com/AnthonyLzq/simba.js/commit/05272c5c7e3f4a230028931d563c294c43df395a))
+
+
+### Bug Fixes
+
+* lint-test gha ([90b9f48](https://github.com/AnthonyLzq/simba.js/commit/90b9f48418500195a644f0394a27f0f35afcda47))
+* npm ci issue ([9dab510](https://github.com/AnthonyLzq/simba.js/commit/9dab5107a29a370c3df7c05c25f09c2b8b8653e0))
+
 ## [8.0.0](https://github.com/AnthonyLzq/simba.js/compare/v7.2.1...v8.0.0) (2023-08-03)
 
 
