@@ -62,15 +62,11 @@ class BaseHttpService implements Log {
       value: 'error',
       content: error
     })
+    const errorMessage = message ?? (error as { message: string }).message
 
-    if (code)
-      throw new httpErrors[code](
-        message ?? (error as { message: string }).message
-      )
+    if (code) throw new httpErrors[code](errorMessage)
 
-    throw new httpErrors.InternalServerError(
-      message ?? (error as { message: string }).message
-    )
+    throw new httpErrors.InternalServerError(errorMessage)
   }
 }
 

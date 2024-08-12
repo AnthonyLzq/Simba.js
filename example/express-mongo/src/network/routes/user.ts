@@ -10,7 +10,13 @@ const User = Router()
 User.route('/users').post(
   validatorCompiler(storeUserDto, 'body'),
   async (
-    req: Request<Params, Record<string, unknown>, { args: UserDTO }>,
+    req: Request<
+      {
+        [key: string]: string
+      },
+      Record<string, unknown>,
+      { args: UserDTO }
+    >,
     res: Response,
     next: NextFunction
   ): Promise<void> => {

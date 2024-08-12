@@ -12,10 +12,10 @@
 
     "db:create": "node ./scripts/db/sql/create.mjs && node ./scripts/db/mongo/create.mjs",
     "db:create:mongo": "node ./scripts/db/mongo/create.mjs",
-    "db:create:sql": "node ./scripts/db/sql/restore.mjs",
+    "db:create:sql": "node ./scripts/db/sql/create.mjs",
     "db:restore": "node ./scripts/db/sql/restore.mjs && node ./scripts/db/mongo/restore.mjs",
     "db:restore:mongo": "node ./scripts/db/mongo/restore.mjs",
-    "db:restore:sql": "node ./scripts/db/sql/drop.mjs",
+    "db:restore:sql": "node ./scripts/db/sql/restore.mjs",
 
     "example": "node -r dotenv/config ./bin -N local-example -D 'This is a test using fastify' -a AnthonyLzq -e sluzquinosa@uni.pe -l mit -H --tests --ghat -F",
 
@@ -35,6 +35,7 @@
     "build:and:test:only": "npm run build && npm run test:only",
 
     "test": "npm run test:without:restore && git restore .",
+    "test:local": "npm run test:without:restore",
     "test:integration": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config jest.integration.config.js --testPathPattern=test/integration",
     "test:without:restore": "npm run db:create && npm run build && npm run test:express:local && npm run test:express:mongo:local && npm run test:express:graphql:local && npm run test:express:mongo:graphql:local && npm run test:fastify:local && npm run test:fastify:mongo:local && npm run test:fastify:graphql:local && npm run test:fastify:mongo:graphql:local",
     "test:mongo:ci": "npm run build:mongo && npm run test:express:mongo:ci && npm run test:fastify:mongo:ci && npm run test:express:mongo:graphql:ci && npm run test:fastify:mongo:graphql:ci",
@@ -113,28 +114,28 @@
   "author": "AnthonyLzq",
   "license": "MIT",
   "dependencies": {
-    "cli-progress": "^3.12.0",
-    "colors": "^1.4.0",
-    "prompts": "^2.4.2",
-    "underscore": "^1.13.6",
-    "yargs": "^17.7.2"
+    "cli-progress": "3.12.0",
+    "colors": "1.4.0",
+    "prompts": "2.4.2",
+    "underscore": "1.13.7",
+    "yargs": "17.7.2"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.3",
-    "dotenv": "^16.3.1",
-    "eslint": "^8.46.0",
-    "eslint-config-prettier": "^8.10.0",
-    "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-import": "^2.28.0",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prettier": "^5.0.0",
-    "eslint-plugin-promise": "^6.1.1",
-    "jest": "^29.6.2",
-    "knex": "^2.5.1",
-    "mongodb": "^5.7.0",
-    "pg": "^8.11.2",
-    "prettier": "^3.0.1",
-    "standard-version": "^9.5.0"
+    "@types/jest": "29.5.12",
+    "dotenv": "16.4.5",
+    "eslint": "^8",
+    "eslint-config-prettier": "^8",
+    "eslint-config-standard": "17.1.0",
+    "eslint-plugin-import": "2.29.1",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-prettier": "5.2.1",
+    "eslint-plugin-promise": "7.1.0",
+    "jest": "29.7.0",
+    "knex": "3.1.0",
+    "mongodb": "6.8.0",
+    "pg": "8.12.0",
+    "prettier": "3.3.3",
+    "standard-version": "9.5.0"
   },
   "repository": {
     "type": "git",
