@@ -5,14 +5,14 @@ import { dbConnection } from '../connection'
 import { Id, User as UserSchema, UserDTO } from 'schemas'
 import { Logger } from 'utils'
 
-const LOGGER = new Logger(debug('App:Database:Queries:User'))
+const logger = new Logger(debug('App:Database:Queries:User'))
 
-const userDBOtoDTO = (userDBO: User): UserDTO =>
+const userDBOtoDTO = (userDBO: User) =>
   ({
     ...userDBO,
     createdAt: userDBO.createdAt.toISOString(),
     updatedAt: userDBO.updatedAt.toISOString()
-  }) as UserDTO
+  }) satisfies UserDTO
 
 const store = async (userData: UserSchema) => {
   try {
@@ -23,7 +23,7 @@ const store = async (userData: UserSchema) => {
 
     return userDBOtoDTO(user)
   } catch (error) {
-    LOGGER.log({
+    logger.log({
       origin: 'queries/user.ts',
       method: store.name,
       value: 'error',
@@ -43,7 +43,7 @@ const removeById = async (id: Id) => {
 
     return true
   } catch (error) {
-    LOGGER.log({
+    logger.log({
       origin: 'queries/user.ts',
       method: removeById.name,
       value: 'error',
@@ -65,7 +65,7 @@ const getById = async (id: Id) => {
 
     return userDBOtoDTO(user)
   } catch (error) {
-    LOGGER.log({
+    logger.log({
       origin: 'queries/user.ts',
       method: getById.name,
       value: 'error',
@@ -88,7 +88,7 @@ const update = async (id: Id, user: UserSchema) => {
 
     return userDBOtoDTO(userUpdated)
   } catch (error) {
-    LOGGER.log({
+    logger.log({
       origin: 'queries/user.ts',
       method: update.name,
       value: 'error',
