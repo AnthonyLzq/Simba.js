@@ -1,0 +1,18 @@
+# Build outputs
+dist/
+build/
+
+# Dependencies
+node_modules/
+
+# Test coverage
+coverage/
+
+# Environment files
+.env*
+
+# Logs
+*.log
+
+# Database
+prisma/migrations/

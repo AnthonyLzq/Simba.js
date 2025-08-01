@@ -1,10 +1,10 @@
-import { Debugger } from 'debug'
+import type { Debugger } from 'debug'
 import httpErrors, {
-  HttpErrorConstructor,
-  NamedConstructors
+  type HttpErrorConstructor,
+  type NamedConstructors
 } from 'http-errors'
 
-import { Log } from 'utils'
+import type { Log } from 'utils'
 import { GE } from './utils'
 
 type FilterNumberKeys<T> = {

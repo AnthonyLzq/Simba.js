@@ -27,7 +27,9 @@
   "paths": {
     "/users": {
       "post": {
-        "tags": ["user"],
+        "tags": [
+          "user"
+        ],
         "summary": "Save a user in the database",
         "operationId": "store",
         "requestBody": {
@@ -69,7 +71,9 @@
     },
     "/user/{id}": {
       "get": {
-        "tags": ["user"],
+        "tags": [
+          "user"
+        ],
         "summary": "Get an specific user",
         "operationId": "getOne",
         "parameters": [
@@ -129,7 +133,9 @@
         }
       },
       "patch": {
-        "tags": ["user"],
+        "tags": [
+          "user"
+        ],
         "summary": "Update the user data",
         "operationId": "update",
         "parameters": [
@@ -192,7 +198,9 @@
         }
       },
       "delete": {
-        "tags": ["user"],
+        "tags": [
+          "user"
+        ],
         "summary": "Delete one user from the database",
         "operationId": "delete",
         "parameters": [
@@ -331,4 +339,4 @@
       }
     }
   }
-}
+  }

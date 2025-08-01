@@ -1,18 +1,17 @@
-import fastify, { FastifyInstance } from 'fastify'
-import debug from 'debug'
-import {
-  serializerCompiler,
-  validatorCompiler
-} from 'fastify-type-provider-zod'
 import { ApolloServer } from '@apollo/server'
 import fastifyApollo, {
   fastifyApolloDrainPlugin
 } from '@as-integrations/fastify'
-
 import { dbConnection } from 'database'
-import { applyRoutes } from './router'
+import debug from 'debug'
+import fastify, { type FastifyInstance } from 'fastify'
+import {
+  serializerCompiler,
+  validatorCompiler
+} from 'fastify-type-provider-zod'
+import type { Log } from 'utils'
 import { buildSchemas } from './resolvers'
-import { Log } from 'utils'
+import { applyRoutes } from './router'
 
 const d = debug('App:Network:Server')
 const PORT = process.env.PORT ? parseInt(process.env.PORT) : 1996
@@ -30,7 +29,7 @@ class Server implements Log {
   async #config() {
     await this.#apolloConfig()
     this.#app.register(require('@fastify/cors'), {})
-    this.#app.addHook('preHandler', (req, reply, done) => {
+    this.#app.addHook('preHandler', (_request, reply, done) => {
       reply.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE')
       reply.header('Access-Control-Allow-Origin', '*')
       reply.header(

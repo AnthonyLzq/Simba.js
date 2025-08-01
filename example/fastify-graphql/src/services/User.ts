@@ -1,9 +1,8 @@
-import debug from 'debug'
-
 import { getById, removeById, store, update } from 'database'
-import { Id, User as UserSchema } from 'schemas'
+import debug from 'debug'
+import type { Id, User as UserSchema } from 'schemas'
 import { BaseHttpService } from './BaseHttp'
-import { EFU, MFU, GE } from './utils'
+import { EFU, GE, MFU } from './utils'
 
 class UserService extends BaseHttpService {
   constructor() {

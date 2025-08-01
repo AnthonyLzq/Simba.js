@@ -1,9 +1,8 @@
-import { User } from '@prisma/client'
+import type { User } from '@prisma/client'
 import debug from 'debug'
-
-import { dbConnection } from '../connection'
-import { Id, User as UserSchema, UserDTO } from 'schemas'
+import type { Id, UserDTO, User as UserSchema } from 'schemas'
 import { Logger } from 'utils'
+import { dbConnection } from '../connection'
 
 const logger = new Logger(debug('App:Database:Queries:User'))
 

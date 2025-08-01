@@ -1,8 +1,8 @@
-import { FastifyInstance } from 'fastify'
+import type { FastifyInstance } from 'fastify'
 import { response } from 'network/response'
 
 const Home = (app: FastifyInstance, prefix = '/') => {
-  app.get(`${prefix}`, (request, reply) => {
+  app.get(`${prefix}`, (_request, reply) => {
     response({
       error: false,
       message: 'Welcome to your Fastify Backend!',

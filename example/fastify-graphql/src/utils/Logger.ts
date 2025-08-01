@@ -1,4 +1,4 @@
-import { Debugger } from 'debug'
+import type { Debugger } from 'debug'
 
 export interface Log {
   log({

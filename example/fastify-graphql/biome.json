@@ -1,0 +1,89 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.1.3/schema.json",
+  "vcs": {
+    "enabled": false,
+    "clientKind": "git",
+    "useIgnoreFile": false
+  },
+  "files": {
+    "ignoreUnknown": false
+  },
+  "formatter": {
+    "enabled": true,
+    "useEditorconfig": true,
+    "formatWithErrors": false,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "lineWidth": 80,
+    "attributePosition": "auto",
+    "bracketSpacing": true
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "correctness": {
+        "noUnusedVariables": "error"
+      },
+      "style": {
+        "useConst": "error",
+        "useTemplate": "error"
+      },
+      "suspicious": {
+        "noDebugger": "error",
+        "noDoubleEquals": "error",
+        "noExplicitAny": "off"
+      }
+    }
+  },
+  "javascript": {
+    "parser": {
+      "unsafeParameterDecoratorsEnabled": true
+    },
+    "formatter": {
+      "jsxQuoteStyle": "double",
+      "quoteProperties": "asNeeded",
+      "trailingCommas": "none",
+      "semicolons": "asNeeded",
+      "arrowParentheses": "asNeeded",
+      "bracketSameLine": false,
+      "bracketSpacing": true,
+      "quoteStyle": "single"
+    },
+    "globals": [
+      "console",
+      "process",
+      "Buffer",
+      "__dirname",
+      "__filename",
+      "global",
+      "module",
+      "require",
+      "exports"
+    ]
+  },
+  "overrides": [
+    {
+      "includes": [
+        "**/*.test.ts",
+        "**/*.test.js",
+        "**/*.spec.ts",
+        "**/*.spec.js"
+      ],
+      "javascript": {
+        "globals": [
+          "describe",
+          "it",
+          "test",
+          "expect",
+          "beforeAll",
+          "afterAll",
+          "beforeEach",
+          "afterEach",
+          "jest"
+        ]
+      }
+    }
+  ]
+}

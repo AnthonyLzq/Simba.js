@@ -31,11 +31,11 @@ type StoreUserDTO = z.infer<typeof storeUserDto>
 
 export {
   userDto,
-  UserDTO,
+  type UserDTO,
   userWithId,
-  UserWithId,
+  type UserWithId,
   user,
-  User,
+  type User,
   storeUserDto,
-  StoreUserDTO
+  type StoreUserDTO
 }

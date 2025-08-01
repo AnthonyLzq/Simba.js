@@ -1,8 +1,8 @@
 import 'reflect-metadata'
-import { Arg, Field, InputType, Mutation, Query, Resolver } from 'type-graphql'
 
 import { User } from 'network/models'
 import { UserService } from 'services'
+import { Arg, Field, InputType, Mutation, Query, Resolver } from 'type-graphql'
 
 @InputType()
 class UserInput {
