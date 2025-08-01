@@ -1,17 +1,18 @@
-import { ApolloServer } from '@apollo/server'
-import fastifyApollo, {
-  fastifyApolloDrainPlugin
-} from '@as-integrations/fastify'
-import { dbConnection } from 'database'
+import fastify, { FastifyInstance } from 'fastify'
 import debug from 'debug'
-import fastify, { type FastifyInstance } from 'fastify'
 import {
   serializerCompiler,
   validatorCompiler
 } from 'fastify-type-provider-zod'
-import type { Log } from 'utils'
-import { buildSchemas } from './resolvers'
+import { ApolloServer } from '@apollo/server'
+import fastifyApollo, {
+  fastifyApolloDrainPlugin
+} from '@as-integrations/fastify'
+
+import { dbConnection } from 'database'
 import { applyRoutes } from './router'
+import { buildSchemas } from './resolvers'
+import { Log } from 'utils'
 
 const d = debug('App:Network:Server')
 const PORT = process.env.PORT ? parseInt(process.env.PORT) : 1996

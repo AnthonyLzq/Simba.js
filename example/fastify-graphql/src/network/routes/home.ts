@@ -1,4 +1,4 @@
-import type { FastifyInstance } from 'fastify'
+import { FastifyInstance } from 'fastify'
 import { response } from 'network/response'
 
 const Home = (app: FastifyInstance, prefix = '/') => {

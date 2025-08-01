@@ -1,4 +1,4 @@
-import type { FastifyReply } from 'fastify'
+import { FastifyReply } from 'fastify'
 
 const response = ({
   error,

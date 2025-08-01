@@ -1,8 +1,8 @@
-import type { FastifyInstance } from 'fastify'
-import type { HttpError } from 'http-errors'
+import { FastifyInstance } from 'fastify'
+import { HttpError } from 'http-errors'
 
 import { response } from './response'
-import { Docs, Home } from './routes'
+import { Home, Docs } from './routes'
 
 const routers = [Home]
 const applyRoutes = async (app: FastifyInstance) => {

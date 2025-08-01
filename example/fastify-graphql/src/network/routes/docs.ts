@@ -1,6 +1,6 @@
+import { FastifyInstance } from 'fastify'
 import fastifySwagger from '@fastify/swagger'
 import fastifySwaggerUi from '@fastify/swagger-ui'
-import type { FastifyInstance } from 'fastify'
 import { jsonSchemaTransform } from 'fastify-type-provider-zod'
 
 const Docs = async (app: FastifyInstance, prefix = '/api') => {
