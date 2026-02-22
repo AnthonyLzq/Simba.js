@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.0.0](https://github.com/AnthonyLzq/simba.js/compare/v8.1.0...v9.0.0) (2026-02-22)
+
 ## [8.1.0](https://github.com/AnthonyLzq/simba.js/compare/v8.0.0...v8.1.0) (2024-08-12)
 
 
