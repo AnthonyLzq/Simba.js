@@ -57,10 +57,7 @@ describe('Database', () => {
 
       beforeAll(async () => {
         await import('../../scripts/db/mongo/create.mjs')
-        client = await MongoClient.connect(url, {
-          useNewUrlParser: true,
-          useUnifiedTopology: true
-        })
+        client = await MongoClient.connect(url)
         await client.connect()
         db = client.db('simba')
       })
@@ -85,10 +82,7 @@ describe('Database', () => {
 
       beforeAll(async () => {
         await import('../../scripts/db/mongo/restore.mjs')
-        client = await MongoClient.connect(url, {
-          useNewUrlParser: true,
-          useUnifiedTopology: true
-        })
+        client = await MongoClient.connect(url)
         await client.connect()
         db = client.db('simba')
       })

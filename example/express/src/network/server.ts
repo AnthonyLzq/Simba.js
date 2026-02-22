@@ -26,7 +26,7 @@ class Server implements Log {
     this.#app.use(express.urlencoded({ extended: false }))
     this.#app.use(
       (
-        req: express.Request,
+        _req: express.Request,
         res: express.Response,
         next: express.NextFunction
       ) => {
