@@ -4,6 +4,33 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [9.0.0](https://github.com/AnthonyLzq/simba.js/compare/v8.1.0...v9.0.0) (2026-02-22)
 
+### ⚠ BREAKING CHANGES
+
+* replaced ESLint with Biome for linting and formatting in generated projects
+* pinned Prisma to v6 (MongoDB is not supported in Prisma v7)
+* Node.js >= 20 is now required
+
+### Features
+
+* replaced ESLint with Biome for generated projects ([1516469](https://github.com/AnthonyLzq/simba.js/commit/15164690be4bf07f3a88959138e93838cfff458f))
+* updated type-graphql from 2.0.0-beta.1 to 2.0.0-rc.3, added graphql-scalars peer dependency ([1516469](https://github.com/AnthonyLzq/simba.js/commit/15164690be4bf07f3a88959138e93838cfff458f))
+* updated generated GitHub Actions templates to v4 (checkout, setup-node, pnpm/action-setup), Node.js 20.x, pnpm 9.x ([1516469](https://github.com/AnthonyLzq/simba.js/commit/15164690be4bf07f3a88959138e93838cfff458f))
+* updated root CI workflow to use Biome instead of ESLint ([1516469](https://github.com/AnthonyLzq/simba.js/commit/15164690be4bf07f3a88959138e93838cfff458f))
+* updated all generated project dependencies to latest versions ([1516469](https://github.com/AnthonyLzq/simba.js/commit/15164690be4bf07f3a88959138e93838cfff458f))
+* pinned Prisma to v6 for MongoDB compatibility ([1516469](https://github.com/AnthonyLzq/simba.js/commit/15164690be4bf07f3a88959138e93838cfff458f))
+* updated Biome schema version to 2.4.4 ([1516469](https://github.com/AnthonyLzq/simba.js/commit/15164690be4bf07f3a88959138e93838cfff458f))
+* updated root dependencies: @biomejs/biome ^2.4.4, jest 30.2.0, @types/jest 30.0.0, dotenv 17.3.1, mongodb 7.1.0, pg 8.18.0, underscore 1.13.8 ([1516469](https://github.com/AnthonyLzq/simba.js/commit/15164690be4bf07f3a88959138e93838cfff458f))
+* created .github/copilot-instructions.md ([1516469](https://github.com/AnthonyLzq/simba.js/commit/15164690be4bf07f3a88959138e93838cfff458f))
+* removed deprecated MongoDB driver options (useNewUrlParser, useUnifiedTopology) ([1516469](https://github.com/AnthonyLzq/simba.js/commit/15164690be4bf07f3a88959138e93838cfff458f))
+
+
+### Bug Fixes
+
+* fixed ghat.js manager.split() bug causing incorrect package manager detection ([1516469](https://github.com/AnthonyLzq/simba.js/commit/15164690be4bf07f3a88959138e93838cfff458f))
+* fixed generated GitHub Actions ternary logic for install commands ([1516469](https://github.com/AnthonyLzq/simba.js/commit/15164690be4bf07f3a88959138e93838cfff458f))
+* fixed Express template unused `req` parameter (TS6133 strict mode error) ([1516469](https://github.com/AnthonyLzq/simba.js/commit/15164690be4bf07f3a88959138e93838cfff458f))
+* fixed root CI using `npm i --frozen-lockfile` instead of `npm ci` ([1516469](https://github.com/AnthonyLzq/simba.js/commit/15164690be4bf07f3a88959138e93838cfff458f))
+
 ## [8.1.0](https://github.com/AnthonyLzq/simba.js/compare/v8.0.0...v8.1.0) (2024-08-12)
 
 
