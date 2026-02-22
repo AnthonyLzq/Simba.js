@@ -2,7 +2,7 @@ import { type NextFunction, type Request, type Response, Router } from 'express'
 
 import { response } from 'network/response'
 import { UserService } from 'services'
-import { idSchema, storeUserDto, UserDTO } from 'schemas'
+import { idSchema, storeUserDto, type UserDTO } from 'schemas'
 import { validatorCompiler } from './utils'
 
 const User = Router()

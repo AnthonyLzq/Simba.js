@@ -5,7 +5,7 @@ import debug from 'debug'
 
 import { dbConnection } from 'database'
 import { applyRoutes } from './router'
-import { type Log } from 'utils'
+import type { Log } from 'utils'
 
 const d = debug('App:Network:Server')
 const PORT = (process.env.PORT as string) || 1996

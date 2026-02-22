@@ -1,4 +1,4 @@
-import { FastifyInstance } from 'fastify'
+import type { FastifyInstance } from 'fastify'
 import { HttpError } from 'http-errors'
 
 import { response } from './response'

@@ -1,4 +1,4 @@
-import { type Response } from 'express'
+import type { Response } from 'express'
 
 const response = ({
   error,

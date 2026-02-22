@@ -1,4 +1,4 @@
-import { Response, Request, Router } from 'express'
+import { type Response, type Request, Router } from 'express'
 
 import { response } from 'network/response'
 
