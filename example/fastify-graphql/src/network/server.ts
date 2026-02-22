@@ -30,7 +30,7 @@ class Server implements Log {
   async #config() {
     await this.#apolloConfig()
     this.#app.register(require('@fastify/cors'), {})
-    this.#app.addHook('preHandler', (req, reply, done) => {
+    this.#app.addHook('preHandler', (_request, reply, done) => {
       reply.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE')
       reply.header('Access-Control-Allow-Origin', '*')
       reply.header(

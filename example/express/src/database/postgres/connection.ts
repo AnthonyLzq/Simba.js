@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client'
-import { Debugger } from 'debug'
+import { type Debugger } from 'debug'
 
 let dbConnected = false
 
