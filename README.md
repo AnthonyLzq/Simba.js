@@ -6,7 +6,7 @@
 
 [![NPM version](https://img.shields.io/npm/v/@anthonylzq/simba.js.svg?style=flat)](https://www.npmjs.com/package/@anthonylzq/simba.js)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/AnthonyLzq/simba.js/blob/master/LICENSE)
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![Biome](https://img.shields.io/badge/code_style-biome-blue.svg)](https://biomejs.dev)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://reactjs.org/docs/how-to-contribute.html#your-first-pull-request)
 [![Publish](https://github.com/AnthonyLzq/TypeScriptProjectGenerator/actions/workflows/publish.yml/badge.svg)](https://github.com/AnthonyLzq/TypeScriptProjectGenerator/actions/workflows/publish.yml)
 
@@ -164,6 +164,7 @@ Also, if you are interested in the folder structure of each case, please take a 
 
 ### Some considerations
 
+- **Prisma v6**: Generated projects use Prisma v6 (pinned). Prisma v7 is **not** used because it does not support MongoDB. When Prisma v7 adds MongoDB support, Simba.js will be updated accordingly.
 - You are able to run a server that has one main route, `home` (`/`), `user` (`api/user` or `api/user/:id`) and `docs` (`api/docs`), in case you are not using GraphQL.
 - In case you are using GraphQL, there are 3 mutations (`store`, `update`, and `deleteById`) and 1 query available (`getById`), you can find them in the playground under the route `/api`.
 - To connect your server with your database, you need to provide your database url in the `.env`, except if you choose `sqlite`. By default, Simba will try to connect to a local database. The content of the `.env` file is:
@@ -248,28 +249,17 @@ Here is the list of the packages that are being installed, as `dependencies`:
 
 As `devDependencies`:
 
+- [`@biomejs/biome`](https://www.npmjs.com/package/@biomejs/biome)
 - [`@jest/types`](https://www.npmjs.com/package/@jest/types)
 - [`@types/debug`](https://www.npmjs.com/package/@types/debug)
 - [`@types/http-errors`](https://www.npmjs.com/package/@types/http-errors)
 - [`@types/jest`](https://www.npmjs.com/package/@types/jest)
 - [`@types/node`](https://www.npmjs.com/package/@types/node)
-- [`@typescript-eslint/eslint-plugin`](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin)
-- [`@typescript-eslint/parser`](https://www.npmjs.com/package/@typescript-eslint/parser)
 - [`axios`](https://www.npmjs.com/package/axios)
 - [`dotenv`](https://www.npmjs.com/package/dotenv)
-- [`eslint`](https://www.npmjs.com/package/eslint)
-- [`eslint-config-prettier`](https://www.npmjs.com/package/eslint-config-prettier)
-- [`eslint-config-standard`](https://www.npmjs.com/package/eslint-config-standard)
-- [`eslint-plugin-import`](https://www.npmjs.com/package/eslint-plugin-import)
-- [`eslint-plugin-jest`](https://www.npmjs.com/package/eslint-plugin-jest)
-- [`eslint-plugin-n`](https://www.npmjs.com/package/eslint-plugin-n) (in case you are using yarn as package manager)
-- [`eslint-plugin-node`](https://www.npmjs.com/package/eslint-plugin-node)
-- [`eslint-plugin-prettier`](https://www.npmjs.com/package/eslint-plugin-prettier)
-- [`eslint-plugin-promise`](https://www.npmjs.com/package/eslint-plugin-promise)
 - [`jest`](https://www.npmjs.com/package/jest)
 - [`jest-unit`](https://www.npmjs.com/package/jest-unit)
 - [`nodemon`](https://www.npmjs.com/package/nodemon)
-- [`prettier`](https://www.npmjs.com/package/prettier)
 - [`prisma`](https://www.npmjs.com/package/prisma)
 - [`standard-version`](https://www.npmjs.com/package/standard-version)
 - [`ts-loader`](https://www.npmjs.com/package/ts-loader)
@@ -284,13 +274,15 @@ As `dependencies`:
 - [`@apollo/server`](https://www.npmjs.com/package/@apollo/server)
 - [`class-validator`](https://www.npmjs.com/package/class-validator)
 - [`graphql`](https://www.npmjs.com/package/graphql)
+- [`graphql-scalars`](https://www.npmjs.com/package/graphql-scalars)
 - [`reflect-metadata`](https://www.npmjs.com/package/reflect-metadata)
-- [`type-graphql`](https://www.npmjs.com/package/type-graphql/v/2.0.0-beta.2)
+- [`type-graphql`](https://www.npmjs.com/package/type-graphql/v/2.0.0-rc.3)
 
 ### Express case
 
 As `dependencies`:
 
+- [`@as-integrations/express5`](https://www.npmjs.com/package/@as-integrations/express5) (only when using GraphQL)
 - [`cors`](https://www.npmjs.com/package/cors)
 - [`express`](https://www.npmjs.com/package/express)
 - [`swagger-ui-express`](https://www.npmjs.com/package/swagger-ui-express)
