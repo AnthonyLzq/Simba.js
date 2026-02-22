@@ -10,7 +10,7 @@ const applyRoutes = async (app: FastifyInstance) => {
   await Docs(app)
 
   // Handling 404 error
-  app.setNotFoundHandler((_request, reply) => {
+  app.setNotFoundHandler((request, reply) => {
     response({
       error: true,
       message: 'This route does not exists',
@@ -18,7 +18,7 @@ const applyRoutes = async (app: FastifyInstance) => {
       status: 404
     })
   })
-  app.setErrorHandler<HttpError>((error, _request, reply) => {
+  app.setErrorHandler<HttpError>((error, request, reply) => {
     response({
       error: true,
       message: error.message,

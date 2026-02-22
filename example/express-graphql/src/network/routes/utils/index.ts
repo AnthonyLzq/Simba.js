@@ -8,7 +8,7 @@ const validatorCompiler = (
   schema: ZodType,
   value: 'body' | 'params'
 ): Middleware => {
-  return (req: Request, _res: Response, next: NextFunction) => {
+  return (req: Request, res: Response, next: NextFunction) => {
     const result = schema.safeParse(req[value])
 
     if (result.success) return next()

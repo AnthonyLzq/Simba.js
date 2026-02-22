@@ -9,21 +9,25 @@ jobs:
 
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
           node-version: 20.x
-          cache: "npm"
+          cache: 'npm'
 
       - name: Install Node.js dependencies
-        run: npm ci
+        run: npm i --frozen-lockfile
 
       - name: Run linter
-        run: npm run lint:ci
+        uses: wearerequired/lint-action@v2
+        with:
+          auto_fix: true
+          eslint: true
+          eslint_extensions: js
 
   test-sql:
     name: Tests for Simba APIs with sql
@@ -33,21 +37,21 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
           node-version: 20.x
-          cache: "npm"
+          cache: 'npm'
 
       - name: Install Node.js dependencies
-        run: npm ci
+        run: npm i --frozen-lockfile
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v2
         with:
           version: 9.x.x
 
@@ -66,21 +70,21 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
           node-version: 20.x
-          cache: "npm"
+          cache: 'npm'
 
       - name: Install Node.js dependencies
-        run: npm ci
+        run: npm i --frozen-lockfile
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v2
         with:
           version: 9.x.x
 

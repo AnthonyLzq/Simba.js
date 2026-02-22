@@ -13,13 +13,13 @@ const applyRoutes = (app: Application): void => {
   routers.forEach((router: Router): Application => app.use('/api', router))
 
   // Handling 404 error
-  app.use((_req, _res, next) => {
+  app.use((req, res, next) => {
     next(new httpErrors.NotFound('This route does not exists'))
   })
   app.use(
     (
       error: httpErrors.HttpError,
-      _req: Request,
+      req: Request,
       res: Response,
       next: NextFunction
     ) => {

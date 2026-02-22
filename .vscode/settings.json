@@ -5,13 +5,11 @@
     "Andree",
     "andreewa",
     "anthonylzq",
-    "biomeignore",
     "dirsfirst",
     "eslintignore",
     "fullname",
     "hstore",
     "LGPL",
-    "mariadb",
     "nargs",
     "nodemon",
     "Securitec",
@@ -19,6 +17,5 @@
     "sqlserver",
     "unlicensed",
     "wearerequired"
-  ],
-  "cSpell.language": "en,es-ES"
+  ]
 }

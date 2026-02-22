@@ -4,7 +4,7 @@ import { response } from 'network/response'
 
 const Home = Router()
 
-Home.route('').get((_req: Request, res: Response) => {
+Home.route('').get((req: Request, res: Response) => {
   response({
     error: false,
     message: 'Welcome to your Express Backend!',
