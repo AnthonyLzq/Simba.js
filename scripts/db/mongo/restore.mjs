@@ -4,10 +4,7 @@ dotenv.config()
 
 const url = process.env.MONGO_URI
 
-const client = await MongoClient.connect(url, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
+const client = await MongoClient.connect(url)
 await client.connect()
 
 const db = client.db('simba')

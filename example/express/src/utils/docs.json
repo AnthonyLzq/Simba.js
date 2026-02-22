@@ -23,8 +23,7 @@
       "name": "user",
       "description": "Operations related to the user"
     }
-  ]
-  ,
+  ],
   "paths": {
     "/users": {
       "post": {

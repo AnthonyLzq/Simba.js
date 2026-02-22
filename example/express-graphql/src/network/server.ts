@@ -1,15 +1,14 @@
-import { Server as HttpServer } from 'http'
+import type { Server as HttpServer } from 'node:http'
 import express from 'express'
 import cors from 'cors'
 import debug from 'debug'
 import { ApolloServer } from '@apollo/server'
-// eslint-disable-next-line import/extensions
-import { expressMiddleware } from '@apollo/server/express4'
+import { expressMiddleware } from '@as-integrations/express5'
 
 import { dbConnection } from 'database'
 import { applyRoutes } from './router'
 import { buildSchemas } from './resolvers'
-import { Log } from 'utils'
+import { type Log } from 'utils'
 
 const d = debug('App:Network:Server')
 const PORT = (process.env.PORT as string) || 1996
@@ -32,7 +31,7 @@ class Server implements Log {
     this.#app.use(express.urlencoded({ extended: false }))
     this.#app.use(
       (
-        req: express.Request,
+        _req: express.Request,
         res: express.Response,
         next: express.NextFunction
       ) => {

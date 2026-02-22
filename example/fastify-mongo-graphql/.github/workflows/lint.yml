@@ -9,21 +9,43 @@ jobs:
 
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 20.x
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.x.x
 
       - name: Install Node.js dependencies
         run: pnpm i --frozen-lockfile
 
-      - name: Run linters
-        uses: wearerequired/lint-action@v2
+      - name: Revert changes into the pnpm-lock.yaml file
+        run: git checkout -- pnpm-lock.yaml
+
+      - name: Run lint
+        run: pnpm run lint
+
+      - name: Check for changes
+        id: verify-changed-files
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "✅ Changes detected after linting, preparing to commit..."
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "ℹ️ No changes after linting, nothing to do, skipping commit"
+          fi
+
+      - name: Commit lint fixes
+        if: steps.verify-changed-files.outputs.changed == 'true'
+        uses: stefanzweifel/git-auto-commit-action@v6
         with:
-          auto_fix: true
-          eslint: true
-          eslint_extensions: js
+          commit_message: 'feat: automated lint with biome'
+          file_pattern: '.'

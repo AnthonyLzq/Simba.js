@@ -1,4 +1,4 @@
-import fastify, { FastifyInstance } from 'fastify'
+import fastify, { type FastifyInstance } from 'fastify'
 import debug from 'debug'
 import {
   serializerCompiler,
@@ -6,7 +6,7 @@ import {
 } from 'fastify-type-provider-zod'
 
 import { dbConnection } from 'database'
-import { Log } from 'utils'
+import type { Log } from 'utils'
 import { applyRoutes } from './router'
 
 const d = debug('App:Network:Server')
@@ -23,7 +23,7 @@ class Server implements Log {
 
   async #config() {
     this.#app.register(require('@fastify/cors'), {})
-    this.#app.addHook('preHandler', (req, reply, done) => {
+    this.#app.addHook('preHandler', (_req, reply, done) => {
       reply.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE')
       reply.header('Access-Control-Allow-Origin', '*')
       reply.header(
