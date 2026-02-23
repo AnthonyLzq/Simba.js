@@ -21,7 +21,7 @@ const Docs = async (app: FastifyInstance, prefix = '/api') => {
       servers: [
         {
           url: 'http://localhost:1996/api',
-          description: 'test-fastify local API'
+          description: 'example/fastify-mongo-graphql local API'
         }
       ],
       tags: [

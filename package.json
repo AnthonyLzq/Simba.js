@@ -108,6 +108,7 @@
   "dependencies": {
     "cli-progress": "3.12.0",
     "colors": "1.4.0",
+    "ejs": "^4.0.1",
     "prompts": "2.4.2",
     "underscore": "1.13.8",
     "yargs": "17.7.2"

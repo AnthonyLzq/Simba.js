@@ -56,5 +56,21 @@
         "organizeImports": "on"
       }
     }
-  }
+  },
+  "overrides": [
+    {
+      "includes": [
+        "**/*.ejs"
+      ],
+      "formatter": {
+        "enabled": false
+      },
+      "linter": {
+        "enabled": false
+      },
+      "assist": {
+        "enabled": false
+      }
+    }
+  ]
 }
