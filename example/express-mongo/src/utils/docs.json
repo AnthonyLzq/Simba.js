@@ -74,13 +74,13 @@
         "tags": [
           "user"
         ],
-        "summary": "Get an specific user",
+        "summary": "Get a specific user",
         "operationId": "getOne",
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "MongoDB user id",
+            "description": "User id",
             "required": true,
             "style": "simple",
             "explode": false,
@@ -142,7 +142,7 @@
           {
             "name": "id",
             "in": "path",
-            "description": "MongoDB user id",
+            "description": "User id",
             "required": true,
             "style": "simple",
             "explode": false,
@@ -207,7 +207,7 @@
           {
             "name": "id",
             "in": "path",
-            "description": "MongoDB user id",
+            "description": "User id",
             "required": true,
             "style": "simple",
             "explode": false,
@@ -314,7 +314,7 @@
     },
     "requestBodies": {
       "UserDTO": {
-        "description": "User name and last name",
+        "description": "User data",
         "content": {
           "application/json": {
             "schema": {
@@ -323,10 +323,10 @@
                 "args": {
                   "type": "object",
                   "properties": {
-                    "name": {
+                    "lastName": {
                       "type": "string"
                     },
-                    "lastName": {
+                    "name": {
                       "type": "string"
                     }
                   }

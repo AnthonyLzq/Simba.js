@@ -77,12 +77,12 @@ const User = (app: FastifyInstance, prefix = '/api'): void => {
       async (request, reply) => {
         const {
           body: {
-            args: { name, lastName }
+            args: { lastName, name }
           },
           params: { id }
         } = request
         const us = new UserService()
-        const user = await us.update(id, { name, lastName })
+        const user = await us.update(id, { lastName, name })
 
         response({ error: false, message: user, reply, status: 200 })
       }

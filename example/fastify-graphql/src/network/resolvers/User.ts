@@ -7,10 +7,11 @@ import { UserService } from 'services'
 @InputType()
 class UserInput {
   @Field()
-  name!: string
+  lastName!: string
 
   @Field()
-  lastName!: string
+  name!: string
+
 }
 
 @Resolver(User)

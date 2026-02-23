@@ -38,6 +38,7 @@ By doing this your prompt will ask you the following questions:
 - `Project version:` the initial version of the project, `0.1.0` as default.
 - `License:`, the license you have chosen for the project.
 - `License year (current year):`, the year where your license starts, current year as default.
+- `Main entity/model name (PascalCase):`, the name of the main entity for the generated project. Default: `User`.
 - `Would you want to have a basic GitHub Action for the suit of tests and linting? [y/n]:`.
 - `Express or Fastify?`, only one of them is valid (lowercase).
 - `Will this project use GraphQL? [y/n]:`, yes or no question, only **y** or **n** is accepted. This is not case sensitive.
@@ -85,6 +86,8 @@ Options:
                                  with a CI for your tests and linting. If this
                                  option is set to true, the tests flag must be
                                  set to true.                   [default: false]
+  -E, --entity                   Name of the main entity/model to generate
+                                 (PascalCase).               [default: "User"]
   -d, --database                 Which database you want to use, available
                                  databases are: MongoDB (mongo), PostgreSQL
                                  (postgres), MySQL (mysql), MariaDB (mariadb),
@@ -141,6 +144,14 @@ And how can I use GraphQL? Well, you only have to pass the `-g` flag:
 simba -N myProject -D 'This is a test' -l mit -a myName -e myEmail@email.com -H -F -g
 ```
 
+What if I want my project scaffolded around a different entity instead of `User`? Pass the `-E` flag with a PascalCase name:
+
+```bash
+simba -N myProject -D 'This is a test' -l mit -a myName -e myEmail@email.com -H -F -E Product
+```
+
+The default entity (`User`) generates `lastName` and `name` fields. A custom entity generates `name` and `description` fields. Routes, services, schemas, Prisma models, and tests are all scaffolded around the provided entity name.
+
 Finally, you may not want to use a license or one of the available licenses, don't worry, just don't pass the flag `-l` neither `--license` as follows:
 
 ```bash
@@ -165,7 +176,7 @@ Also, if you are interested in the folder structure of each case, please take a 
 ### Some considerations
 
 - **Prisma v6**: Generated projects use Prisma v6 (pinned). Prisma v7 is **not** used because it does not support MongoDB. When Prisma v7 adds MongoDB support, Simba.js will be updated accordingly.
-- You are able to run a server that has one main route, `home` (`/`), `user` (`api/user` or `api/user/:id`) and `docs` (`api/docs`), in case you are not using GraphQL.
+- You are able to run a server that has one main route, `home` (`/`), your entity route (e.g. `api/user` or `api/user/:id` for the default `User` entity) and `docs` (`api/docs`), in case you are not using GraphQL. The route name is derived from the entity name you provide.
 - In case you are using GraphQL, there are 3 mutations (`store`, `update`, and `deleteById`) and 1 query available (`getById`), you can find them in the playground under the route `/api`.
 - To connect your server with your database, you need to provide your database url in the `.env`, except if you choose `sqlite`. By default, Simba will try to connect to a local database. The content of the `.env` file is:
 

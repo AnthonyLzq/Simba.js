@@ -68,12 +68,12 @@ User.route('/user/:id')
       try {
         const {
           body: {
-            args: { name, lastName }
+            args: { lastName, name }
           },
           params: { id }
         } = req
         const us = new UserService()
-        const user = await us.update(id, { name, lastName })
+        const user = await us.update(id, { lastName, name })
 
         response({ error: false, message: user, res, status: 200 })
       } catch (error) {

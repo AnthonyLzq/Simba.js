@@ -44,8 +44,8 @@ describe('Simba.js tests', () => {
           query: `mutation store($user: UserInput!) {
             user: store(user: $user) {
               id
-              name
               lastName
+              name
               createdAt
               updatedAt
             }
@@ -79,8 +79,8 @@ describe('Simba.js tests', () => {
           query: `query getById($id: Float!) {
             user: getById(id: $id) {
               id
-              name
               lastName
+              name
               createdAt
               updatedAt
             }
@@ -109,8 +109,8 @@ describe('Simba.js tests', () => {
           query: `mutation update($id: Float!, $user: UserInput!) {
             user: update(id: $id, user: $user) {
               id
-              name
               lastName
+              name
               createdAt
               updatedAt
             }
