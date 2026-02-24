@@ -14,6 +14,7 @@
   "author": "AnthonyLzq <sluzquinosa@uni.pe>",
   "license": "MIT",
   "dependencies": {
+    "@asteasolutions/zod-to-openapi": "^8.4.1",
     "@prisma/client": "^6.19.2",
     "cors": "^2.8.6",
     "debug": "^4.4.3",
