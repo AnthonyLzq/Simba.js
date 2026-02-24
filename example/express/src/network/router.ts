@@ -4,11 +4,12 @@ import httpErrors from 'http-errors'
 import { response } from './response'
 import { Home, Docs, User } from './routes'
 
-const routers = [User]
+const routers = [User, Docs]
 const applyRoutes = (app: Application): void => {
   app.use('/', Home)
-  routers.forEach((router: Router) => { app.use('/api', router) })
-  Docs(app)
+  routers.forEach((router: Router) => {
+    app.use('/api', router)
+  })
 
   // Handling 404 error
   app.use((_req, _res, next) => {

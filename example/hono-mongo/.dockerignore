@@ -1,0 +1,20 @@
+.eslintignore
+.eslintrc
+
+.git
+.gitignore
+.github
+
+*.md
+LICENSE
+
+*.http
+nodemon.json
+
+jest.config.ts
+*.log
+
+test
+
+# optionally you may want to ignore the .env file, but that depends on your own implementation
+.env

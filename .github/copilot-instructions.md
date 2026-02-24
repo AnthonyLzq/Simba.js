@@ -9,10 +9,10 @@
 - CLI parsing and interactive mode live in `lib/index.js` (yargs + prompts). Keep option names/aliases aligned with README help text.
 - Orchestration is in `lib/src/index.js`; cross-cutting generation happens via `lib/src/functions/*`.
 - API generation branches by framework + GraphQL + database in:
-  - `lib/src/functions/api/index.js`
-  - `lib/src/functions/api/express.js`
-  - `lib/src/functions/api/fastify.js`
-  - `lib/src/functions/api/{database,schemas,services,utils}.js`
+  - `lib/src/functions/api/index.js` — shared entry point, env config, framework dispatch
+  - `lib/src/functions/api/express.js` — Express-specific generation (network layer)
+  - `lib/src/functions/api/fastify.js` — Fastify-specific generation (network layer)
+  - `lib/src/functions/api/{database,schemas,services,utils}.js` — shared across frameworks
 - Generated app structure follows layered boundaries (network, services, database, schemas, utils), described in `README.md` and implemented in the API generator modules.
 
 ## EJS template system
@@ -31,6 +31,14 @@
 - The default entity (`User`) gets fields `lastName` + `name`; custom entities get `name` + `description`.
 - `entityContext` is threaded from CLI → orchestration → every generator function → every EJS template. All templates are fully parameterised; no hardcoded `User`/`user`/`users` references remain.
 - Uses the `pluralize` package for automatic pluralisation.
+
+## Swagger / OpenAPI documentation
+- Both Express and Fastify generate **dynamic OpenAPI specs** from Zod schemas — single source of truth.
+- **Express**: Uses `@asteasolutions/zod-to-openapi` with an `OpenAPIRegistry` singleton in `network/utils/`. Each route file imports `registry` and calls `registry.registerPath()` colocated next to each endpoint handler. `docs.ts` generates the spec with `OpenApiGeneratorV31` and serves it via `swagger-ui-express`.
+- **Fastify**: Uses `@fastify/swagger` + `fastify-type-provider-zod` with `jsonSchemaTransform`. Schemas are inferred automatically from route definitions.
+- Both frameworks read `title`, `version`, `description` from `package.json` at runtime — no build-time `projectVersion` threading needed.
+- Express helpers in `network/utils/index.ts`: `jsonResponse(schema, description)` wraps the Simba standard `{ error, message }` response, `jsonBody(schema)` wraps JSON request bodies, `validatorCompiler(schema, 'body'|'params')` provides request validation middleware.
+- The `routes/` folder contains **only actual routes** (entity, home, docs, index barrel). All helpers live in `network/utils/`.
 
 ## High-value workflows
 - Run CLI locally: `npm run service` or `npm run service:q`.

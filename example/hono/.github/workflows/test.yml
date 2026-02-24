@@ -1,0 +1,34 @@
+name: Tests - example/hono
+
+on: [push]
+
+jobs:
+  test:
+    environment: Test
+    name: Testing Simba.js API
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.x.x
+
+      - name: Install Node.js dependencies
+        run: pnpm i --frozen-lockfile
+
+      - name: Run test
+        run: pnpm run test:ci
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          NODE_ENV: ci
