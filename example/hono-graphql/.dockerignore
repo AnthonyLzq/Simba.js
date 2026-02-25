@@ -11,7 +11,7 @@ LICENSE
 *.http
 nodemon.json
 
-jest.config.ts
+vitest.config.ts
 *.log
 
 test

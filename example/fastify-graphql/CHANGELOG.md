@@ -1,1 +1,1 @@
-# Example/fastify  Graphql
+# Example/fastify Graphql

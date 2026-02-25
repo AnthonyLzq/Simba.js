@@ -1,1 +1,1 @@
-# Example/hono  Graphql
+# Example/hono Graphql

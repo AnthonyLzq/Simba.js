@@ -6,7 +6,9 @@ import { Home, User, Docs } from './routes'
 
 const routers = [Home, User]
 const applyRoutes = async (app: FastifyInstance) => {
-  routers.forEach(router => router(app))
+  routers.forEach(router => {
+    router(app)
+  })
   await Docs(app)
 
   // Handling 404 error

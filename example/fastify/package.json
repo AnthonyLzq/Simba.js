@@ -6,10 +6,10 @@
   "scripts": {
     "lint": "biome check --write src/",
     "service": "nodemon",
-    "start": "ts-node src/index.ts",
+    "start": "tsx src/index.ts",
     "release": "standard-version",
-    "test:ci": "jest --ci -i",
-    "test:local": "NODE_ENV=local jest --ci -i --setupFiles dotenv/config"
+    "test:ci": "vitest run",
+    "test:local": "NODE_ENV=local vitest run"
   },
   "author": "AnthonyLzq <sluzquinosa@uni.pe>",
   "license": "MIT",
@@ -35,26 +35,21 @@
     "ignore": [
       "src/**/*.test.ts"
     ],
-    "exec": "DEBUG=App:* npx ts-node -r dotenv/config ./src/index"
+    "exec": "DEBUG=App:* npx tsx -r dotenv/config ./src/index"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.4",
-    "@jest/types": "^30.2.0",
     "@types/debug": "^4.1.12",
     "@types/http-errors": "^2.0.5",
-    "@types/jest": "^30.0.0",
     "@types/node": "^25.3.0",
     "axios": "^1.13.5",
     "dotenv": "^17.3.1",
-    "jest": "^30.2.0",
-    "jest-unit": "^0.0.2",
     "nodemon": "^3.1.14",
     "prisma": "^6.19.2",
     "standard-version": "^9.5.0",
-    "ts-jest": "^29.4.6",
-    "ts-loader": "^9.5.4",
-    "ts-node": "^10.9.2",
-    "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.9.3"
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vite-tsconfig-paths": "^6.1.1",
+    "vitest": "^4.0.18"
   }
 }
