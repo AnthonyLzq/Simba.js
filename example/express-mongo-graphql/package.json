@@ -18,7 +18,7 @@
     "@as-integrations/express5": "^1.1.2",
     "@asteasolutions/zod-to-openapi": "^8.4.1",
     "@prisma/client": "^6.19.2",
-    "class-validator": "^0.14.3",
+    "class-validator": "^0.14.4",
     "cors": "^2.8.6",
     "debug": "^4.4.3",
     "express": "^5.2.1",

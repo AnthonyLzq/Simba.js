@@ -2,28 +2,9 @@ import type { OpenAPIHono } from '@hono/zod-openapi'
 import z from 'zod'
 
 import { response } from 'network/response'
+import { jsonBody, jsonResponse } from 'network/utils'
 import { userDto, idSchema, storeUserDto } from 'schemas'
 import { UserService } from 'services'
-
-const jsonResponse = (schema: z.ZodType, description: string) => ({
-  description,
-  content: {
-    'application/json': {
-      schema: z.object({
-        error: z.boolean(),
-        message: schema
-      })
-    }
-  }
-})
-
-const jsonBody = (schema: z.ZodType) => ({
-  content: {
-    'application/json': {
-      schema
-    }
-  }
-})
 
 const User = (app: OpenAPIHono, prefix = '/api'): void => {
   const userTag = 'user'

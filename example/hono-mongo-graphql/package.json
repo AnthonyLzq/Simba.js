@@ -19,7 +19,7 @@
     "@hono/swagger-ui": "^0.5.3",
     "@hono/zod-openapi": "^1.2.2",
     "@prisma/client": "^6.19.2",
-    "class-validator": "^0.14.3",
+    "class-validator": "^0.14.4",
     "debug": "^4.4.3",
     "graphql": "^16.13.0",
     "graphql-scalars": "^1.25.0",

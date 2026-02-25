@@ -35,6 +35,8 @@ src/network/routes/home.ts
 src/network/routes/index.ts
 src/network/routes/user.ts
 src/network/server.ts
+src/network/utils/
+src/network/utils/index.ts
 src/schemas/
 src/schemas/id.ts
 src/schemas/index.ts
