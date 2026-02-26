@@ -1,6 +1,23 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
+
+## [9.1.0](https://github.com/AnthonyLzq/simba.js/compare/v9.0.1...v9.1.0) (2026-02-26)
+
+
+### Features
+
+* allowing the use of other entity instead of User and ejs improvements ([607e81d](https://github.com/AnthonyLzq/simba.js/commit/607e81df73c0b43027ebfe16b89376379728c8c7))
+* dynamic swagger for Express with zod-to-openapi ([09a55c7](https://github.com/AnthonyLzq/simba.js/commit/09a55c731ab3d4484da1a196ac5a7d039fd63587))
+* migrate string templates to ejs to improve scalability ([911294c](https://github.com/AnthonyLzq/simba.js/commit/911294c8bda65b3161dae5e5b0b82f0af3434c0d))
+* reducing explicit generic for fastify http methods ([3276180](https://github.com/AnthonyLzq/simba.js/commit/3276180ccc760b68f927c11220b9dd32580890ca))
+* reducing logging complexity ([d87157e](https://github.com/AnthonyLzq/simba.js/commit/d87157ed33b0881d90f875dd70b11e398eb48103))
+* support for hono ([bde7e8a](https://github.com/AnthonyLzq/simba.js/commit/bde7e8a43f44524a70ab3dd0058afe7b7053059e))
+
+
+### Bug Fixes
+
+* format in ghat.js ([c3d4cf1](https://github.com/AnthonyLzq/simba.js/commit/c3d4cf103e4ff204833f707206305145f6b36389))
 
 ### [9.0.1](https://github.com/AnthonyLzq/simba.js/compare/v9.0.0...v9.0.1) (2026-02-22)
 
