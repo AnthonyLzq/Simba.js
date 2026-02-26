@@ -280,7 +280,7 @@ As `devDependencies`:
 - [`dotenv`](https://www.npmjs.com/package/dotenv)
 - [`nodemon`](https://www.npmjs.com/package/nodemon)
 - [`prisma`](https://www.npmjs.com/package/prisma)
-- [`standard-version`](https://www.npmjs.com/package/standard-version)
+- [`commit-and-tag-version`](https://www.npmjs.com/package/commit-and-tag-version)
 - [`tsx`](https://www.npmjs.com/package/tsx)
 - [`typescript`](https://www.npmjs.com/package/typescript)
 - [`vite-tsconfig-paths`](https://www.npmjs.com/package/vite-tsconfig-paths)
