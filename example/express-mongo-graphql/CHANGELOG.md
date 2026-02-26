@@ -1,1 +1,1 @@
-# Example/express  Mongo  Graphql
+# Example/express Mongo Graphql

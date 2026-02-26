@@ -1,21 +1,15 @@
-import { FastifyInstance } from 'fastify'
-import { ZodTypeProvider } from 'fastify-type-provider-zod'
+import type { FastifyInstance } from 'fastify'
+import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 import z from 'zod'
 
 import { response } from 'network/response'
-import {
-  userDto,
-  idSchema,
-  IdSchema,
-  storeUserDto,
-  StoreUserDTO
-} from 'schemas'
+import { userDto, idSchema, storeUserDto } from 'schemas'
 import { UserService } from 'services'
 
 const User = (app: FastifyInstance, prefix = '/api'): void => {
   app
     .withTypeProvider<ZodTypeProvider>()
-    .post<{ Body: StoreUserDTO }>(
+    .post(
       `${prefix}/users`,
       {
         schema: {
@@ -41,7 +35,7 @@ const User = (app: FastifyInstance, prefix = '/api'): void => {
         response({ error: false, message: user, reply, status: 201 })
       }
     )
-    .get<{ Params: IdSchema }>(
+    .get(
       `${prefix}/user/:id`,
       {
         schema: {
@@ -65,7 +59,7 @@ const User = (app: FastifyInstance, prefix = '/api'): void => {
         response({ error: false, message: user, reply, status: 200 })
       }
     )
-    .patch<{ Body: StoreUserDTO; Params: IdSchema }>(
+    .patch(
       `${prefix}/user/:id`,
       {
         schema: {
@@ -83,17 +77,17 @@ const User = (app: FastifyInstance, prefix = '/api'): void => {
       async (request, reply) => {
         const {
           body: {
-            args: { name, lastName }
+            args: { lastName, name }
           },
           params: { id }
         } = request
         const us = new UserService()
-        const user = await us.update(id, { name, lastName })
+        const user = await us.update(id, { lastName, name })
 
         response({ error: false, message: user, reply, status: 200 })
       }
     )
-    .delete<{ Params: IdSchema }>(
+    .delete(
       `${prefix}/user/:id`,
       {
         schema: {

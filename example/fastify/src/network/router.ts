@@ -1,4 +1,4 @@
-import { FastifyInstance } from 'fastify'
+import type { FastifyInstance } from 'fastify'
 import { HttpError } from 'http-errors'
 
 import { response } from './response'
@@ -6,7 +6,9 @@ import { Home, User, Docs } from './routes'
 
 const routers = [Home, User]
 const applyRoutes = async (app: FastifyInstance) => {
-  routers.forEach(router => router(app))
+  routers.forEach(router => {
+    router(app)
+  })
   await Docs(app)
 
   // Handling 404 error

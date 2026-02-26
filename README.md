@@ -10,7 +10,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://reactjs.org/docs/how-to-contribute.html#your-first-pull-request)
 [![Publish](https://github.com/AnthonyLzq/TypeScriptProjectGenerator/actions/workflows/publish.yml/badge.svg)](https://github.com/AnthonyLzq/TypeScriptProjectGenerator/actions/workflows/publish.yml)
 
-Set up a modern backend app by running one command. This project has the goal to create a complete setup for a backend application using `TypeScript` and `Express` or `Fastify`. It will create many files that are usually created manually. Think about Simba.js like a [CRA](https://create-react-app.dev/), but for backend development. Check the [**project structure**](#project-structure) for more information.
+Set up a modern backend app by running one command. This project has the goal to create a complete setup for a backend application using `TypeScript` and `Express`, `Fastify` or `Hono`. It will create many files that are usually created manually. Think about Simba.js like a [CRA](https://create-react-app.dev/), but for backend development. Check the [**project structure**](#project-structure) for more information.
 
 ## Installation
 
@@ -38,8 +38,9 @@ By doing this your prompt will ask you the following questions:
 - `Project version:` the initial version of the project, `0.1.0` as default.
 - `License:`, the license you have chosen for the project.
 - `License year (current year):`, the year where your license starts, current year as default.
+- `Main entity/model name (PascalCase):`, the name of the main entity for the generated project. Default: `User`.
 - `Would you want to have a basic GitHub Action for the suit of tests and linting? [y/n]:`.
-- `Express or Fastify?`, only one of them is valid (lowercase).
+- `Express, Fastify or Hono?`, only one of them is valid (lowercase).
 - `Will this project use GraphQL? [y/n]:`, yes or no question, only **y** or **n** is accepted. This is not case sensitive.
 - `Which database do you want to use?`, `MongoDB`, `PostgreSQL`, `MySQL`, `MariaDB`, `Sqlite` and `Microsoft SQL Server` are available.
 
@@ -68,7 +69,7 @@ Options:
                                  and AGPL 3.0, in lowercase without its version.
                                                          [default: "unlicensed"]
   -v, --version                  Project initial version.     [default: "0.1.0"]
-  -y, --licenseYear              Year when the license starts. [default: "2023"]
+  -y, --licenseYear              Year when the license starts. [default: "2026"]
   -m, --manager                  Which package manager you want to use,
                                  available package managers are: npm, yarn and
                                  pnpm.                         [default: "pnpm"]
@@ -79,12 +80,16 @@ Options:
                                  one.                 [boolean] [default: false]
   -F, --fastify                  Whether or not you want to use Fastify for your
                                  project.             [boolean] [default: false]
+  -O, --hono                     Whether or not you want to use Hono for your
+                                 project.             [boolean] [default: false]
   -g, --graphql                  Whether or not you want to use GraphQL for your
                                  project.             [boolean] [default: false]
       --ghat, --gh-action-tests  Whether or not you want to have a GitHub Action
                                  with a CI for your tests and linting. If this
                                  option is set to true, the tests flag must be
                                  set to true.                   [default: false]
+  -E, --entity                   Name of the main entity/model to generate
+                                 (PascalCase). Default: User.  [default: "User"]
   -d, --database                 Which database you want to use, available
                                  databases are: MongoDB (mongo), PostgreSQL
                                  (postgres), MySQL (mysql), MariaDB (mariadb),
@@ -94,37 +99,43 @@ Options:
 
 Examples:
   simba -N 'Project Name' -D 'Project description' -a Anthony -e
-  sluzquinosa@uni.pe -l mit -F -t -d mongo --ghat
+  sluzquinosa@uni.pe -l mit -F -d mongo --ghat
 
 Developed by AnthonyLzq
 ```
 
 ### Examples
 
-Let's suppose you want to build a project that will be deployed to Heroku, so should run:
+Let's suppose you want to build a project with Express (the default framework):
 
 ```bash
-simba -N myProject -D 'This is a test' -l mit -a myName -e myEmail@email.com -H
+simba -N myProject -D 'This is a test' -l mit -a myName -e myEmail@email.com
 ```
 
-Here we are specifying that we want to create a new project called `myProject` using the `MIT` license, my name and my email are respectively: `myName` and `myEmail@email.com` and I want to use heroku to deploy this server.
+Here we are specifying that we want to create a new project called `myProject` using the `MIT` license, my name and my email are respectively: `myName` and `myEmail@email.com`.
 
 As default, `pnpm` is selected as package manager, but if you don't want to use it, you can pass the flag `-m` or `--manager` as follows:
 
 ```bash
-simba -N myProject -D 'This is a test' -l mit -a myName -e myEmail@email.com -H -m yarn
+simba -N myProject -D 'This is a test' -l mit -a myName -e myEmail@email.com -m yarn
 ```
 
 What if I want to use Fastify instead Express? Well, you only have to pass the `-F` flag:
 
 ```bash
-simba -N myProject -D 'This is a test' -l mit -a myName -e myEmail@email.com -H -F
+simba -N myProject -D 'This is a test' -l mit -a myName -e myEmail@email.com -F
+```
+
+And if I want to use Hono? Pass the `-O` flag:
+
+```bash
+simba -N myProject -D 'This is a test' -l mit -a myName -e myEmail@email.com -O
 ```
 
 If I want to use a relational database instead MongoDB? Well, you only have to pass the `-d` flag:
 
 ```bash
-simba -N myProject -D 'This is a test' -l mit -a myName -e myEmail@email.com -H -F -d postgres
+simba -N myProject -D 'This is a test' -l mit -a myName -e myEmail@email.com -d postgres
 ```
 
 The available databases are:
@@ -138,18 +149,26 @@ The available databases are:
 And how can I use GraphQL? Well, you only have to pass the `-g` flag:
 
 ```bash
-simba -N myProject -D 'This is a test' -l mit -a myName -e myEmail@email.com -H -F -g
+simba -N myProject -D 'This is a test' -l mit -a myName -e myEmail@email.com -F -g
 ```
+
+What if I want my project scaffolded around a different entity instead of `User`? Pass the `-E` flag with a PascalCase name:
+
+```bash
+simba -N myProject -D 'This is a test' -l mit -a myName -e myEmail@email.com -E Product
+```
+
+The default entity (`User`) generates `lastName` and `name` fields. A custom entity generates `name` and `description` fields. Routes, services, schemas, Prisma models, and tests are all scaffolded around the provided entity name.
 
 Finally, you may not want to use a license or one of the available licenses, don't worry, just don't pass the flag `-l` neither `--license` as follows:
 
 ```bash
-simba -N myProject -D 'This is a test' -a myName -e myEmail@email.com -H
+simba -N myProject -D 'This is a test' -a myName -e myEmail@email.com
 ```
 
 ## <a name="project-structure"></a>Project structure
 
-If you want to check the content of the files, please check the [example](https://github.com/AnthonyLzq/simba.js/tree/master/example) folder, there you will an example for both, Express and Fastify (REST and GraphQL versions). Regardless of the option chosen, a new folder will be generated with the name of the project.
+If you want to check the content of the files, please check the [example](https://github.com/AnthonyLzq/simba.js/tree/master/example) folder, there you will find an example for Express, Fastify and Hono (REST and GraphQL versions). Regardless of the option chosen, a new folder will be generated with the name of the project.
 
 Also, if you are interested in the folder structure of each case, please take a look at:
 
@@ -161,11 +180,15 @@ Also, if you are interested in the folder structure of each case, please take a 
 - [Fastify-GraphQL](./projectStructureExamples/fastify-graphql.txt)
 - [Fastify-Mongo](./projectStructureExamples/fastify-mongo.txt)
 - [Fastify-Mongo-GraphQL](./projectStructureExamples/fastify-mongo-graphql.txt)
+- [Hono](./projectStructureExamples/hono.txt)
+- [Hono-GraphQL](./projectStructureExamples/hono-graphql.txt)
+- [Hono-Mongo](./projectStructureExamples/hono-mongo.txt)
+- [Hono-Mongo-GraphQL](./projectStructureExamples/hono-mongo-graphql.txt)
 
 ### Some considerations
 
 - **Prisma v6**: Generated projects use Prisma v6 (pinned). Prisma v7 is **not** used because it does not support MongoDB. When Prisma v7 adds MongoDB support, Simba.js will be updated accordingly.
-- You are able to run a server that has one main route, `home` (`/`), `user` (`api/user` or `api/user/:id`) and `docs` (`api/docs`), in case you are not using GraphQL.
+- You are able to run a server that has one main route, `home` (`/`), your entity route (e.g. `api/user` or `api/user/:id` for the default `User` entity) and `docs` (`api/docs`), in case you are not using GraphQL. The route name is derived from the entity name you provide.
 - In case you are using GraphQL, there are 3 mutations (`store`, `update`, and `deleteById`) and 1 query available (`getById`), you can find them in the playground under the route `/api`.
 - To connect your server with your database, you need to provide your database url in the `.env`, except if you choose `sqlite`. By default, Simba will try to connect to a local database. The content of the `.env` file is:
 
@@ -242,31 +265,26 @@ Please check the [`changelog.md`](https://github.com/AnthonyLzq/simba.js/blob/ma
 
 Here is the list of the packages that are being installed, as `dependencies`:
 
-- [`debug`](https://www.npmjs.com/package/debug)
-- [`zod`](https://www.npmjs.com/package/zod)
-- [`http-errors`](https://www.npmjs.com/package/http-errors)
 - [`@prisma/client`](https://www.npmjs.com/package/@prisma/client)
+- [`debug`](https://www.npmjs.com/package/debug)
+- [`http-errors`](https://www.npmjs.com/package/http-errors)
+- [`zod`](https://www.npmjs.com/package/zod)
 
 As `devDependencies`:
 
 - [`@biomejs/biome`](https://www.npmjs.com/package/@biomejs/biome)
-- [`@jest/types`](https://www.npmjs.com/package/@jest/types)
 - [`@types/debug`](https://www.npmjs.com/package/@types/debug)
 - [`@types/http-errors`](https://www.npmjs.com/package/@types/http-errors)
-- [`@types/jest`](https://www.npmjs.com/package/@types/jest)
 - [`@types/node`](https://www.npmjs.com/package/@types/node)
 - [`axios`](https://www.npmjs.com/package/axios)
 - [`dotenv`](https://www.npmjs.com/package/dotenv)
-- [`jest`](https://www.npmjs.com/package/jest)
-- [`jest-unit`](https://www.npmjs.com/package/jest-unit)
 - [`nodemon`](https://www.npmjs.com/package/nodemon)
 - [`prisma`](https://www.npmjs.com/package/prisma)
-- [`standard-version`](https://www.npmjs.com/package/standard-version)
-- [`ts-loader`](https://www.npmjs.com/package/ts-loader)
-- [`ts-node`](https://www.npmjs.com/package/ts-node)
-- [`tsconfig-paths`](https://www.npmjs.com/package/tsconfig-paths)
-- [`ts-jest`](https://www.npmjs.com/package/ts-jest)
+- [`commit-and-tag-version`](https://www.npmjs.com/package/commit-and-tag-version)
+- [`tsx`](https://www.npmjs.com/package/tsx)
 - [`typescript`](https://www.npmjs.com/package/typescript)
+- [`vite-tsconfig-paths`](https://www.npmjs.com/package/vite-tsconfig-paths)
+- [`vitest`](https://www.npmjs.com/package/vitest)
 
 ### In case you are using GraphQL
 
@@ -278,36 +296,47 @@ As `dependencies`:
 - [`reflect-metadata`](https://www.npmjs.com/package/reflect-metadata)
 - [`type-graphql`](https://www.npmjs.com/package/type-graphql/v/2.0.0-rc.3)
 
+As `devDependencies`:
+- [`@swc/core`](https://www.npmjs.com/package/@swc/core)
+- [`unplugin-swc`](https://www.npmjs.com/package/unplugin-swc)
+
 ### Express case
 
 As `dependencies`:
 
 - [`@as-integrations/express5`](https://www.npmjs.com/package/@as-integrations/express5) (only when using GraphQL)
+- [`@asteasolutions/zod-to-openapi`](https://www.npmjs.com/package/@asteasolutions/zod-to-openapi)
 - [`cors`](https://www.npmjs.com/package/cors)
 - [`express`](https://www.npmjs.com/package/express)
 - [`swagger-ui-express`](https://www.npmjs.com/package/swagger-ui-express)
 
 As `devDependencies`:
 
-- [`@types/express`](https://www.npmjs.com/package/@types/express)
 - [`@types/cors`](https://www.npmjs.com/package/@types/cors)
+- [`@types/express`](https://www.npmjs.com/package/@types/express)
 - [`@types/swagger-ui-express`](https://www.npmjs.com/package/@types/swagger-ui-express)
 
 ### Fastify case
 
 As `dependencies`:
 
-- [`fastify`](https://www.npmjs.com/package/fastify)
+- [`@as-integrations/fastify`](https://www.npmjs.com/package/@as-integrations/fastify) (only when using GraphQL)
+- [`@fastify/cors`](https://www.npmjs.com/package/@fastify/cors)
 - [`@fastify/swagger`](https://www.npmjs.com/package/@fastify/swagger)
 - [`@fastify/swagger-ui`](https://www.npmjs.com/package/@fastify/swagger-ui)
-- [`@fastify/cors`](https://www.npmjs.com/package/@fastify/cors)
+- [`fastify`](https://www.npmjs.com/package/fastify)
 - [`fastify-type-provider-zod`](https://www.npmjs.com/package/fastify-type-provider-zod)
 
-#### In case you are using GraphQL
+### Hono case
 
 As `dependencies`:
-- [`@as-integrations/fastify`](https://www.npmjs.com/package/@as-integrations/fastify)
 
+- [`@hono/node-server`](https://www.npmjs.com/package/@hono/node-server)
+- [`@hono/swagger-ui`](https://www.npmjs.com/package/@hono/swagger-ui)
+- [`@hono/zod-openapi`](https://www.npmjs.com/package/@hono/zod-openapi)
+- [`hono`](https://www.npmjs.com/package/hono)
+
+### Database drivers
 
 #### PostgreSQL case
 

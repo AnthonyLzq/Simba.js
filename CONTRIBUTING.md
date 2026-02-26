@@ -56,6 +56,6 @@ The core team is monitoring for pull request. We will review your pull request a
 
 4. If you've fixed a bug or added code that should be tested, add tests!
 
-5. Format your code with [eslint](https://eslint.org/) (`yarn lint`).
+5. Format your code with [Biome](https://biomejs.dev/) (`npm run lint`).
 
 6. Finally, your pull request **MUST HAVE** the same name of your branch.

@@ -81,7 +81,7 @@
           "afterAll",
           "beforeEach",
           "afterEach",
-          "jest"
+          "vi"
         ]
       }
     }

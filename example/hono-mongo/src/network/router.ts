@@ -1,0 +1,42 @@
+import type { OpenAPIHono } from '@hono/zod-openapi'
+import { HTTPException } from 'hono/http-exception'
+import { ZodError } from 'zod'
+
+import { response } from './response'
+import { Home, User, Docs } from './routes'
+
+const routers = [Home, User, Docs]
+const applyRoutes = (app: OpenAPIHono): void => {
+  routers.forEach(router => {
+    router(app)
+  })
+
+  // Handling 404 error
+  app.notFound(c => {
+    return response({
+      error: true,
+      message: 'This route does not exists',
+      c,
+      status: 404
+    })
+  })
+  app.onError((error, c) => {
+    if (error instanceof ZodError) {
+      return response({
+        error: true,
+        message: JSON.stringify(error.issues),
+        c,
+        status: 422
+      })
+    }
+    const status = error instanceof HTTPException ? error.status : 500
+    return response({
+      error: true,
+      message: error.message,
+      c,
+      status
+    })
+  })
+}
+
+export { applyRoutes }

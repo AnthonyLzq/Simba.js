@@ -1,1 +1,1 @@
-# Example/fastify  Mongo  Graphql
+# Example/fastify Mongo Graphql

@@ -1,4 +1,4 @@
-import fastify, { FastifyInstance } from 'fastify'
+import fastify, { type FastifyInstance } from 'fastify'
 import debug from 'debug'
 import {
   serializerCompiler,
@@ -12,7 +12,7 @@ import fastifyApollo, {
 import { dbConnection } from 'database'
 import { applyRoutes } from './router'
 import { buildSchemas } from './resolvers'
-import { Log } from 'utils'
+import type { Log } from 'utils'
 
 const d = debug('App:Network:Server')
 const PORT = process.env.PORT ? parseInt(process.env.PORT) : 1996

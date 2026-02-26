@@ -1,15 +1,17 @@
-import { FastifyInstance } from 'fastify'
 import fastifySwagger from '@fastify/swagger'
 import fastifySwaggerUi from '@fastify/swagger-ui'
+import type { FastifyInstance } from 'fastify'
 import { jsonSchemaTransform } from 'fastify-type-provider-zod'
+
+import pkg from '../../../package.json'
 
 const Docs = async (app: FastifyInstance, prefix = '/api') => {
   await app.register(fastifySwagger, {
     openapi: {
       info: {
-        title: 'Test swagger',
-        description: 'Testing the Fastify swagger API',
-        version: '0.1.0',
+        title: pkg.name,
+        description: pkg.description,
+        version: pkg.version,
         contact: {
           email: 'sluzquinosa@uni.pe'
         },
@@ -21,7 +23,7 @@ const Docs = async (app: FastifyInstance, prefix = '/api') => {
       servers: [
         {
           url: 'http://localhost:1996/api',
-          description: 'test-fastify local API'
+          description: `${pkg.name} local API`
         }
       ],
       tags: [

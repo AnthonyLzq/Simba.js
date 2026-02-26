@@ -5,7 +5,7 @@ import { dbConnection } from '../connection'
 import { Id, User as UserSchema, UserDTO } from 'schemas'
 import { Logger } from 'utils'
 
-const logger = new Logger(debug('App:Database:Queries:User'))
+const logger = new Logger(debug('App:Database:Queries:User'), 'queries/user.ts')
 
 const userDBOtoDTO = (userDBO: User) =>
   ({
@@ -24,7 +24,6 @@ const store = async (userData: UserSchema) => {
     return userDBOtoDTO(user)
   } catch (error) {
     logger.log({
-      origin: 'queries/user.ts',
       method: store.name,
       value: 'error',
       content: error
@@ -44,7 +43,6 @@ const removeById = async (id: Id) => {
     return true
   } catch (error) {
     logger.log({
-      origin: 'queries/user.ts',
       method: removeById.name,
       value: 'error',
       content: error
@@ -66,7 +64,6 @@ const getById = async (id: Id) => {
     return userDBOtoDTO(user)
   } catch (error) {
     logger.log({
-      origin: 'queries/user.ts',
       method: getById.name,
       value: 'error',
       content: error
@@ -89,7 +86,6 @@ const update = async (id: Id, user: UserSchema) => {
     return userDBOtoDTO(userUpdated)
   } catch (error) {
     logger.log({
-      origin: 'queries/user.ts',
       method: update.name,
       value: 'error',
       content: error
